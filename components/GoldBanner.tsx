@@ -1,0 +1,68 @@
+'use client'
+
+const BANNER_IMAGES = [
+  {
+    src: 'https://res.cloudinary.com/dannr2e0c/image/upload/q_auto/f_auto/v1776427969/Gemini_Generated_Image_oa9sz4oa9sz4oa9s_b20hnc.png',
+    alt: 'LUX TIME 18K Gold Collection 1',
+  },
+  {
+    src: 'https://i.ibb.co/dwDPGFXf/Whats-App-Image-2026-03-23-at-18-02-06-1.jpg',
+    alt: 'LUX TIME 18K Gold Luxe',
+  },
+  {
+    src: 'https://i.ibb.co/W4ZCgmbC/Whats-App-Image-2026-03-27-at-20-25-56.jpg',
+    alt: 'LUX TIME 18K Gold Collection 2',
+  },
+]
+
+export default function GoldBanner() {
+  function scrollTo(id: string) {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }
+
+  return (
+    <section className="w-full bg-white py-10 md:py-20">
+      <div className="gold-banner-wrap">
+        <div className="gold-banner-grid">
+          {BANNER_IMAGES.map((img) => (
+            <div key={img.src} className="gold-banner-item">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={img.src} alt={img.alt} />
+            </div>
+          ))}
+        </div>
+
+        <div className="gold-banner-text text-center bg-white px-4">
+          <h2 className="gold-banner-title font-serif text-4xl md:text-6xl lg:text-7xl font-black uppercase tracking-wider text-black leading-none mb-2">
+            18K SOLID GOLD{' '}
+            <span
+              className="gold-banner-launch"
+              style={{
+                fontFamily: 'var(--font-allura), cursive',
+                fontWeight: 400,
+                textTransform: 'none',
+                letterSpacing: 0,
+                color: '#000',
+                display: 'inline-block',
+                transform: 'translateY(8px)',
+                marginLeft: '6px',
+                fontSize: '1.1em',
+              }}
+            >
+              Launch
+            </span>
+          </h2>
+          <p className="gold-banner-sub text-[11px] md:text-xs uppercase tracking-[0.35em] text-black font-semibold mt-4">
+            Shop Our New Gold Collection
+          </p>
+          <button
+            onClick={() => scrollTo('coll-femme')}
+            className="inline-block bg-black text-white text-[10px] font-black uppercase tracking-widest px-8 py-3 mt-6 md:mt-8 hover:bg-[#C5A059] transition-colors duration-300"
+          >
+            Shop Now
+          </button>
+        </div>
+      </div>
+    </section>
+  )
+}

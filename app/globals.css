@@ -1,0 +1,229 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow-x: hidden !important;
+  background-color: #ffffff;
+  width: 100vw !important;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ===== PRODUCT CARDS ===== */
+.product-card {
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  border-radius: 8px;
+  padding-bottom: 10px;
+}
+
+.img-container {
+  overflow: hidden;
+  position: relative;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+  transition: all 0.4s ease;
+}
+
+.product-card:hover .img-container {
+  box-shadow: 0 15px 30px rgba(197, 160, 89, 0.15);
+  transform: translateY(-5px);
+}
+
+.img-container img {
+  transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.product-card:hover .img-container img {
+  transform: scale(1.08);
+}
+
+/* ===== GOLD BANNER ===== */
+.gold-banner-wrap {
+  width: 80%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.gold-banner-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.gold-banner-item {
+  overflow: hidden;
+  background: #fff;
+  aspect-ratio: 3/4;
+}
+
+.gold-banner-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.7s ease;
+}
+
+.gold-banner-item img:hover {
+  transform: scale(1.05);
+}
+
+.gold-banner-text {
+  margin-top: 40px;
+}
+
+@media (max-width: 767px) {
+  .gold-banner-wrap {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .gold-banner-grid {
+    display: flex;
+    grid-template-columns: none;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    gap: 12px;
+    padding: 0 10%;
+    scroll-padding: 0 10%;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .gold-banner-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .gold-banner-item {
+    flex: 0 0 80%;
+    scroll-snap-align: center;
+    aspect-ratio: 3/4;
+  }
+
+  .gold-banner-text {
+    margin-top: 28px;
+    padding: 0 16px;
+  }
+
+  .gold-banner-title {
+    font-size: 1.75rem !important;
+    line-height: 1.05 !important;
+    letter-spacing: 0.05em !important;
+  }
+
+  .gold-banner-launch {
+    font-size: 2.2rem !important;
+    transform: translateY(6px) !important;
+    margin-left: 2px !important;
+  }
+
+  .gold-banner-sub {
+    font-size: 10px !important;
+    letter-spacing: 0.25em !important;
+  }
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: inline-flex;
+  animation: marquee 35s linear infinite;
+}
+
+@keyframes shine {
+  0% {
+    left: -100%;
+  }
+  20% {
+    left: 100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+.btn-shine {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-shine::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.4) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: skewX(-25deg);
+  animation: shine 3s infinite;
+}
+
+/* ===== SCROLL REVEAL ===== */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.scroll-reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== LOADER SPINNER ===== */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loader {
+  width: 22px;
+  height: 22px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+/* ===== HERO ===== */
+@media (min-width: 768px) {
+  .hero-container {
+    height: 55vh;
+  }
+}
