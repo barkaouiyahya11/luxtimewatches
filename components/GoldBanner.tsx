@@ -34,7 +34,7 @@ export default function GoldBanner() {
 
         <div className="gold-banner-text text-center bg-white px-4">
           <h2 className="gold-banner-title font-serif text-4xl md:text-6xl lg:text-7xl font-black uppercase tracking-wider text-black leading-none mb-2">
-            18K SOLID GOLD{' '}
+            DEFINE{' '}
             <span
               className="gold-banner-launch"
               style={{
@@ -49,17 +49,17 @@ export default function GoldBanner() {
                 fontSize: '1.1em',
               }}
             >
-              Launch
+              Your Style
             </span>
           </h2>
           <p className="gold-banner-sub text-[11px] md:text-xs uppercase tracking-[0.35em] text-black font-semibold mt-4">
-            Shop Our New Gold Collection
+            Collection Exclusive · À Partir de 149 MAD
           </p>
           <button
             onClick={() => scrollTo('coll-femme')}
             className="inline-block bg-black text-white text-[10px] font-black uppercase tracking-widest px-8 py-3 mt-6 md:mt-8 hover:bg-[#C5A059] transition-colors duration-300"
           >
-            Shop Now
+            EXPLORE NOW
           </button>
         </div>
       </div>

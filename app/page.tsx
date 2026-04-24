@@ -1,5 +1,4 @@
 import Hero from '@/components/Hero'
-import RedefineSection from '@/components/RedefineSection'
 import GoldBanner from '@/components/GoldBanner'
 import ProductGrid from '@/components/ProductGrid'
 import TrustSection from '@/components/TrustSection'
@@ -12,7 +11,6 @@ export default function HomePage() {
   return (
     <>
       <Hero />
-      <RedefineSection />
       <GoldBanner />
       <ProductGrid products={products} />
       <TrustSection />
