@@ -2,7 +2,7 @@
 
 const BANNER_IMAGES = [
   {
-    src: 'https://res.cloudinary.com/dannr2e0c/image/upload/q_auto/f_auto/v1776427969/Gemini_Generated_Image_oa9sz4oa9sz4oa9s_b20hnc.png',
+    src: 'https://i.ibb.co/DfJh70n6/Gemini-Generated-Image-rdy4m6rdy4m6rdy4-1.png',
     alt: 'LUX TIME 18K Gold Collection 1',
   },
   {
