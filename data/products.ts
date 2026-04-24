@@ -26,22 +26,6 @@ export const products: Product[] = [
     hot: true,
   },
   {
-    id: 2,
-    sku: 'LTF-002',
-    cat: 'femme',
-    name: 'LUX TIME GOLD LUXE',
-    price: 149,
-    originalPrice: 249,
-    stock: 5,
-    rating: 4.8,
-    reviews: 32,
-    gridImg: 'https://i.ibb.co/dwDPGFXf/Whats-App-Image-2026-03-23-at-18-02-06-1.jpg',
-    detailImgs: [
-      'https://i.ibb.co/cSgjy5Yz/Whats-App-Image-2026-03-27-at-20-25-56-6.jpg',
-      'https://i.ibb.co/Z66T8VwL/Whats-App-Image-2026-03-27-at-20-25-56-7.jpg',
-    ],
-  },
-  {
     id: 3,
     sku: 'LTF-003',
     cat: 'femme',
