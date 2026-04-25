@@ -13,7 +13,7 @@ export default function Hero() {
         minHeight: '250px',
         maxHeight: '600px',
         background:
-          "linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.3)), url('https://i.ibb.co/21qpthxC/Chat-GPT-Image-26-mars-2026-16-11-01.png') no-repeat center 30% / cover",
+          "linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.3)), url('/hero-image.png') no-repeat center 30% / cover",
         marginBottom: '30px',
       }}
     >
