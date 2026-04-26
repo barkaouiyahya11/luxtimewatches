@@ -24,7 +24,39 @@ export default function ProductGrid({ products }: Props) {
           </h2>
           <div className="h-px bg-gray-200 w-12 md:w-24" />
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-8">
+
+        {/* Category Visual Selector - Femme */}
+        <div className="flex gap-2 mb-10">
+          <div
+            className="w-1/2 cursor-pointer group"
+            onClick={() => document.getElementById('grid-femme')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
+          >
+            <div className="w-full aspect-[4/3] overflow-hidden">
+              <img
+                src="https://i.ibb.co/TqdL78K6/Whats-App-Image-2026-03-23-at-17-58-22.jpg"
+                alt="Boîte Simple"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+            </div>
+            <div className="bg-white pt-3 text-left">
+              <p className="font-serif font-bold uppercase text-black text-[13px] md:text-xl">BOÎTE SIMPLE →</p>
+            </div>
+          </div>
+          <div className="w-1/2 cursor-default group">
+            <div className="w-full aspect-[4/3] overflow-hidden">
+              <img
+                src="https://i.ibb.co/TqdL78K6/Whats-App-Image-2026-03-23-at-17-58-22.jpg"
+                alt="Avec Packaging"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+            </div>
+            <div className="bg-white pt-3 text-left">
+              <p className="font-serif font-bold uppercase text-black text-[13px] md:text-xl">AVEC PACKAGING →</p>
+            </div>
+          </div>
+        </div>
+
+        <div id="grid-femme" className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-8">
           {femme.map((p) => (
             <ProductCard key={p.id} product={p} />
           ))}
@@ -39,7 +71,39 @@ export default function ProductGrid({ products }: Props) {
           </h2>
           <div className="h-px bg-gray-200 w-12 md:w-24" />
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-8">
+
+        {/* Category Visual Selector - Homme */}
+        <div className="flex gap-2 mb-10">
+          <div
+            className="w-1/2 cursor-pointer group"
+            onClick={() => document.getElementById('grid-homme')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
+          >
+            <div className="w-full aspect-[4/3] overflow-hidden">
+              <img
+                src="https://i.ibb.co/jknKzLpC/Whats-App-Image-2026-03-23-at-18-03-34.jpg"
+                alt="Boîte Simple"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+            </div>
+            <div className="bg-white pt-3 text-left">
+              <p className="font-serif font-bold uppercase text-black text-[13px] md:text-xl">BOÎTE SIMPLE →</p>
+            </div>
+          </div>
+          <div className="w-1/2 cursor-default group">
+            <div className="w-full aspect-[4/3] overflow-hidden">
+              <img
+                src="https://i.ibb.co/jknKzLpC/Whats-App-Image-2026-03-23-at-18-03-34.jpg"
+                alt="Avec Packaging"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+            </div>
+            <div className="bg-white pt-3 text-left">
+              <p className="font-serif font-bold uppercase text-black text-[13px] md:text-xl">AVEC PACKAGING →</p>
+            </div>
+          </div>
+        </div>
+
+        <div id="grid-homme" className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-8">
           {homme.map((p) => (
             <ProductCard key={p.id} product={p} />
           ))}
