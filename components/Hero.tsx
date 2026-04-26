@@ -7,13 +7,12 @@ export default function Hero() {
 
   return (
     <section
-      className="hero-container relative flex items-end justify-center"
+      className="hero-container relative flex items-end justify-center h-[55vh] md:h-[70vh]"
       style={{
-        height: '35vh',
-        minHeight: '250px',
-        maxHeight: '600px',
+        minHeight: '350px',
+        maxHeight: '700px',
         background:
-          "linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.3)), url('/hero-image.png') no-repeat center 30% / cover",
+          "linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.3)), url('https://i.ibb.co/wvW0v0m/Gemini-Generated-Image-swd0bkswd0bkswd0.png') no-repeat center center / cover",
         marginBottom: '30px',
       }}
     >
