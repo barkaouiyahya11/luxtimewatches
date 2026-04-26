@@ -149,15 +149,15 @@ export default function ProductDetail({ product }: Props) {
 
             {/* Packaging */}
             <div className="mb-4">
-              <p className="text-[9px] font-bold text-gray-400 uppercase tracking-widest mb-2">Choisir votre emballage</p>
+              <p className="text-[9px] font-bold text-gray-400 uppercase tracking-widest mb-2">CHOISIR VOTRE EMBALLAGE</p>
               <div className="flex gap-3">
-                <div className="flex-1 border-2 border-[#C5A059] rounded-lg p-3 cursor-pointer">
-                  <p className="font-bold uppercase text-[9px] text-black">BOÎTE SIMPLE</p>
-                  <p className="text-gray-400 text-[9px]">+0 MAD</p>
+                <div className="flex-1 border-2 border-[#C5A059] rounded-lg p-3 cursor-pointer text-center">
+                  <p className="text-[9px] font-black uppercase">BOÎTE SIMPLE</p>
+                  <p className="text-[9px] text-gray-400">+0 MAD</p>
                 </div>
-                <div className="flex-1 border border-[#e5e5e5] rounded-lg p-3 opacity-40 cursor-not-allowed">
-                  <p className="font-bold uppercase text-[9px] text-black">AVEC PACKAGING</p>
-                  <p className="text-gray-400 text-[9px] italic">Bientôt disponible</p>
+                <div className="flex-1 border border-gray-200 rounded-lg p-3 text-center opacity-40 cursor-not-allowed">
+                  <p className="text-[9px] font-black uppercase">AVEC PACKAGING</p>
+                  <p className="text-[9px] text-gray-300 italic">Bientôt disponible</p>
                 </div>
               </div>
             </div>
