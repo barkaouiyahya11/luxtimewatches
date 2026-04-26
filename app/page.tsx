@@ -1,4 +1,5 @@
 import Hero from '@/components/Hero'
+import AnnouncementBar from '@/components/AnnouncementBar'
 import GoldBanner from '@/components/GoldBanner'
 import ProductGrid from '@/components/ProductGrid'
 import TrustSection from '@/components/TrustSection'
@@ -11,6 +12,7 @@ export default function HomePage() {
   return (
     <>
       <Hero />
+      <AnnouncementBar />
       <GoldBanner />
       <ProductGrid products={products} />
       <TrustSection />

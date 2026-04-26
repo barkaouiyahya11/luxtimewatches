@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { Playfair_Display, Inter, Cairo, Allura } from 'next/font/google'
 import Script from 'next/script'
 import { StoreProvider } from '@/context/StoreContext'
-import AnnouncementBar from '@/components/AnnouncementBar'
+
 import Header from '@/components/Header'
 import CartDrawer from '@/components/CartDrawer'
 import CheckoutModal from '@/components/CheckoutModal'
@@ -73,7 +73,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         `}</Script>
 
         <StoreProvider>
-          <AnnouncementBar />
           <Header />
           <main style={{ paddingTop: '95px' }}>{children}</main>
           <CartDrawer />
