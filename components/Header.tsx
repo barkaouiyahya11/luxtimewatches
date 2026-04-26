@@ -25,8 +25,7 @@ export default function Header() {
 
   return (
     <header
-      className="fixed left-0 w-full z-[1000] bg-white/[.98] backdrop-blur-md border-b border-gray-100 h-[60px] flex items-center shadow-sm px-5 md:px-12"
-      style={{ top: '35px' }}
+      className="fixed top-0 left-0 w-full z-[1000] bg-white/[.98] backdrop-blur-md border-b border-gray-100 h-[60px] flex items-center shadow-sm px-5 md:px-12"
     >
       <div className="w-full grid grid-cols-3 items-center max-w-7xl mx-auto">
         <div className="flex items-center">
