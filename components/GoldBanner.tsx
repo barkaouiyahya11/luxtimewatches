@@ -25,9 +25,29 @@ export default function GoldBanner() {
       <div className="gold-banner-wrap">
         <div className="gold-banner-grid">
           {BANNER_IMAGES.map((img) => (
-            <div key={img.src} className="gold-banner-item">
+            <div 
+              key={img.src} 
+              className="gold-banner-item mx-auto"
+              style={{
+                borderRadius: '50%',
+                overflow: 'hidden',
+                aspectRatio: '1/1',
+                border: '3px solid #C5A059',
+                width: '100%',
+                maxWidth: '400px', // Prevents it from getting too large on wide screens if grid is loose
+              }}
+            >
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={img.src} alt={img.alt} />
+              <img 
+                src={img.src} 
+                alt={img.alt} 
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                  objectPosition: 'center',
+                }}
+              />
             </div>
           ))}
         </div>
