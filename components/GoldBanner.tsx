@@ -21,7 +21,12 @@ export default function GoldBanner() {
   }
 
   return (
-    <section className="w-full bg-white py-10 md:py-20">
+    <section
+      className="w-full py-10 md:py-20"
+      style={{
+        background: 'linear-gradient(160deg, #f0f0f0 0%, #e8e8e8 25%, #f5f5f5 55%, #ebebeb 80%, #f2f2f2 100%)',
+      }}
+    >
       <div className="gold-banner-wrap">
         <div className="gold-banner-grid">
           {BANNER_IMAGES.map((img) => (
@@ -52,7 +57,7 @@ export default function GoldBanner() {
           ))}
         </div>
 
-        <div className="gold-banner-text text-center bg-white px-4">
+        <div className="gold-banner-text text-center px-4">
           <h2 className="gold-banner-title font-serif text-4xl md:text-6xl lg:text-7xl font-black uppercase tracking-wider text-black leading-none mb-2">
             DEFINE{' '}
             <span
