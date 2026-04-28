@@ -41,7 +41,7 @@ export default function HomePage() {
             Sublime ta beauté avec nos montres ✨
           </p>
         </div>
-        <ProductGrid products={femme} singleRow />
+        <ProductGrid products={femme} scrollRow />
       </section>
 
       <GoldBanner />
@@ -70,7 +70,7 @@ export default function HomePage() {
             Style & élégance pour homme ✨
           </p>
         </div>
-        <ProductGrid products={homme} scrollRow />
+        <ProductGrid products={homme} />
       </section>
 
       <TrustSection />
