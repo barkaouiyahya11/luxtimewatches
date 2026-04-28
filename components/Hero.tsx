@@ -13,73 +13,62 @@ export default function Hero() {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrent((c) => (c + 1) % SLIDES.length)
-    }, 6000)
+    }, 3000)
     return () => clearInterval(timer)
   }, [])
 
   return (
     <section
       className="hero-container relative w-full overflow-hidden"
-      style={{ height: '92vh', minHeight: 400, maxHeight: 900 }}
+      style={{
+        /* Mobile 4:5 ratio — desktop fixed height */
+        aspectRatio: '4/5',
+        maxHeight: '90vh',
+      }}
     >
-      {/* Ken Burns keyframes */}
-      <style>{`
-        @keyframes kenBurns {
-          0%   { transform: scale(1.00); }
-          100% { transform: scale(1.10); }
-        }
-      `}</style>
-
-      {/* All slides stacked — only active one is visible */}
-      {SLIDES.map((src, i) => (
-        <div
-          key={src}
-          className="absolute inset-0"
-          style={{
-            opacity: i === current ? 1 : 0,
-            transition: 'opacity 1.5s ease-in-out',
-            zIndex: i === current ? 1 : 0,
-          }}
-        >
+      {/* ── Slide track ── */}
+      <div
+        style={{
+          display: 'flex',
+          width: `${SLIDES.length * 100}%`,
+          height: '100%',
+          transform: `translateX(-${(current * 100) / SLIDES.length}%)`,
+          transition: 'transform 1s cubic-bezier(0.77, 0, 0.18, 1)',
+        }}
+      >
+        {SLIDES.map((src) => (
           <div
+            key={src}
             style={{
-              position: 'absolute',
-              inset: 0,
+              width: `${100 / SLIDES.length}%`,
+              height: '100%',
+              flexShrink: 0,
               backgroundImage: `url('${src}')`,
               backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              /* Ken Burns: restart animation every time this slide becomes active */
-              animation: i === current ? 'kenBurns 8s ease-in-out forwards' : 'none',
+              backgroundPosition: 'center top',
             }}
           />
-        </div>
-      ))}
+        ))}
+      </div>
 
-      {/* Subtle vignette for premium depth */}
+      {/* Subtle vignette */}
       <div
-        className="absolute inset-0"
+        className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            'radial-gradient(ellipse at center, transparent 35%, rgba(0,0,0,0.30) 100%)',
-          zIndex: 2,
+            'radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.20) 100%)',
         }}
       />
 
       {/* Wave bottom curve */}
-      <div
-        className="absolute bottom-0 left-0 w-full leading-none"
-        style={{ zIndex: 3 }}
-      >
+      <div className="absolute bottom-0 left-0 w-full leading-none" style={{ zIndex: 3 }}>
         <svg
           viewBox="0 0 1440 80"
           xmlns="http://www.w3.org/2000/svg"
           preserveAspectRatio="none"
-          style={{ display: 'block', width: '100%', height: '70px' }}
+          style={{ display: 'block', width: '100%', height: '60px' }}
         >
-          <path
-            d="M0,40 C360,90 1080,0 1440,50 L1440,80 L0,80 Z"
-            fill="#ffffff"
-          />
+          <path d="M0,40 C360,90 1080,0 1440,50 L1440,80 L0,80 Z" fill="#ffffff" />
         </svg>
       </div>
     </section>
