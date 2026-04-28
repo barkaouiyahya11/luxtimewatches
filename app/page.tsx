@@ -23,9 +23,19 @@ export default function HomePage() {
         <div className="flex flex-col items-center justify-center mb-10 text-center">
           <div className="flex items-center gap-4 w-full justify-center">
             <div className="h-px bg-gray-200 w-12 md:w-24" />
-            <h2 className="text-xl md:text-2xl font-serif uppercase tracking-[0.15em] font-black text-black">
-              NOS BEST PRODUCTS
-            </h2>
+            <h2
+                style={{
+                  fontFamily: 'var(--font-allura), cursive',
+                  fontSize: 'clamp(2rem, 5vw, 3.5rem)',
+                  fontWeight: 400,
+                  textTransform: 'none',
+                  letterSpacing: '0.02em',
+                  color: '#000',
+                  lineHeight: 1.2,
+                }}
+              >
+                Nos Best Products
+              </h2>
             <div className="h-px bg-gray-200 w-12 md:w-24" />
           </div>
           <p className="text-sm text-gray-500 mt-2 font-medium tracking-wide">
@@ -40,9 +50,19 @@ export default function HomePage() {
         <div className="flex flex-col items-center justify-center mb-10 text-center">
           <div className="flex items-center gap-4 w-full justify-center">
             <div className="h-px bg-gray-200 w-12 md:w-24" />
-            <h2 className="text-xl md:text-2xl font-serif uppercase tracking-[0.15em] font-black text-black">
-              NOS BEST PRODUCTS
-            </h2>
+            <h2
+                style={{
+                  fontFamily: 'var(--font-allura), cursive',
+                  fontSize: 'clamp(2rem, 5vw, 3.5rem)',
+                  fontWeight: 400,
+                  textTransform: 'none',
+                  letterSpacing: '0.02em',
+                  color: '#000',
+                  lineHeight: 1.2,
+                }}
+              >
+                Nos Best Products
+              </h2>
             <div className="h-px bg-gray-200 w-12 md:w-24" />
           </div>
           <p className="text-sm text-gray-500 mt-2 font-medium tracking-wide">
