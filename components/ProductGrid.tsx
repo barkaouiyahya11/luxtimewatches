@@ -18,7 +18,7 @@ export default function ProductGrid({ products, singleRow, scrollRow }: Props) {
       <>
         {/* Mobile — horizontal scroll */}
         <div
-          className="md:hidden flex gap-4 overflow-x-auto pb-4"
+          className="md:hidden flex gap-3 overflow-x-auto pb-4 px-1"
           style={{
             scrollSnapType: 'x mandatory',
             WebkitOverflowScrolling: 'touch',
@@ -28,7 +28,7 @@ export default function ProductGrid({ products, singleRow, scrollRow }: Props) {
           {products.map((p) => (
             <div
               key={p.id}
-              style={{ flex: '0 0 72%', scrollSnapAlign: 'start' }}
+              style={{ flex: '0 0 48%', scrollSnapAlign: 'start' }}
             >
               <ProductCard product={p} />
             </div>
