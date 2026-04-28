@@ -13,7 +13,7 @@ export default function Hero() {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrent((c) => (c + 1) % SLIDES.length)
-    }, 3000)
+    }, 5000)
     return () => clearInterval(timer)
   }, [])
 
@@ -45,7 +45,7 @@ export default function Hero() {
               flexShrink: 0,
               backgroundImage: `url('${src}')`,
               backgroundSize: 'cover',
-              backgroundPosition: 'center top',
+              backgroundPosition: 'center center',
             }}
           />
         ))}

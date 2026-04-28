@@ -224,6 +224,8 @@ body {
 /* ===== HERO ===== */
 @media (min-width: 768px) {
   .hero-container {
-    height: 55vh;
+    aspect-ratio: unset !important;
+    height: 78vh !important;
+    max-height: 860px;
   }
 }
