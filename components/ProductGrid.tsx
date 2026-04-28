@@ -28,7 +28,7 @@ export default function ProductGrid({ products, singleRow, scrollRow }: Props) {
           {products.map((p) => (
             <div
               key={p.id}
-              style={{ flex: '0 0 48%', scrollSnapAlign: 'start' }}
+              style={{ flex: '0 0 75%', scrollSnapAlign: 'center' }}
             >
               <ProductCard product={p} />
             </div>
@@ -49,7 +49,7 @@ export default function ProductGrid({ products, singleRow, scrollRow }: Props) {
     <div
       className={
         singleRow
-          ? 'grid grid-cols-4 gap-2 md:gap-6'
+          ? 'grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6'
           : 'grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-8'
       }
     >
