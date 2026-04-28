@@ -16,7 +16,6 @@ export default function HomePage() {
     <>
       <Hero />
       <AnnouncementBar />
-      <GoldBanner />
 
       {/* ── Collection Femme ── */}
       <section id="coll-femme" className="px-4 md:px-8 py-10 max-w-7xl mx-auto">
@@ -44,6 +43,8 @@ export default function HomePage() {
         </div>
         <ProductGrid products={femme} />
       </section>
+
+      <GoldBanner />
 
       {/* ── Collection Homme ── */}
       <section id="coll-homme" className="px-4 md:px-8 py-10 max-w-7xl mx-auto">
