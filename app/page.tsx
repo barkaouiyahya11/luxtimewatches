@@ -20,24 +20,34 @@ export default function HomePage() {
 
       {/* ── Collection Femme ── */}
       <section id="coll-femme" className="px-4 md:px-8 py-10 max-w-7xl mx-auto">
-        <div className="flex items-center justify-center gap-4 mb-10">
-          <div className="h-px bg-gray-200 w-12 md:w-24" />
-          <h2 className="text-xl md:text-2xl font-serif uppercase tracking-[0.15em] font-black text-black">
-            Collection Femme
-          </h2>
-          <div className="h-px bg-gray-200 w-12 md:w-24" />
+        <div className="flex flex-col items-center justify-center mb-10 text-center">
+          <div className="flex items-center gap-4 w-full justify-center">
+            <div className="h-px bg-gray-200 w-12 md:w-24" />
+            <h2 className="text-xl md:text-2xl font-serif uppercase tracking-[0.15em] font-black text-black">
+              NOS BEST PRODUCTS
+            </h2>
+            <div className="h-px bg-gray-200 w-12 md:w-24" />
+          </div>
+          <p className="text-sm text-gray-500 mt-2 font-medium tracking-wide">
+            Sublime ta beauté avec nos montres ✨
+          </p>
         </div>
         <ProductGrid products={femme} />
       </section>
 
       {/* ── Collection Homme ── */}
       <section id="coll-homme" className="px-4 md:px-8 py-10 max-w-7xl mx-auto">
-        <div className="flex items-center justify-center gap-4 mb-10">
-          <div className="h-px bg-gray-200 w-12 md:w-24" />
-          <h2 className="text-xl md:text-2xl font-serif uppercase tracking-[0.15em] font-black text-black">
-            Collection Homme
-          </h2>
-          <div className="h-px bg-gray-200 w-12 md:w-24" />
+        <div className="flex flex-col items-center justify-center mb-10 text-center">
+          <div className="flex items-center gap-4 w-full justify-center">
+            <div className="h-px bg-gray-200 w-12 md:w-24" />
+            <h2 className="text-xl md:text-2xl font-serif uppercase tracking-[0.15em] font-black text-black">
+              NOS BEST PRODUCTS
+            </h2>
+            <div className="h-px bg-gray-200 w-12 md:w-24" />
+          </div>
+          <p className="text-sm text-gray-500 mt-2 font-medium tracking-wide">
+            Style & élégance pour homme ✨
+          </p>
         </div>
         <ProductGrid products={homme} />
       </section>
