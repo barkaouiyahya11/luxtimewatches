@@ -9,98 +9,67 @@ const SLIDES = [
 
 export default function Hero() {
   const [current, setCurrent] = useState(0)
-  const [nextSlide, setNextSlide] = useState<number | null>(null)
-  const [revealing, setRevealing] = useState(false)
-
-  function goTo(idx: number) {
-    if (idx === current || revealing) return
-    setNextSlide(idx)
-    setRevealing(false)
-    // Let DOM mount the hidden layer first, then trigger reveal
-    setTimeout(() => setRevealing(true), 30)
-    // After transition ends, swap current
-    setTimeout(() => {
-      setCurrent(idx)
-      setNextSlide(null)
-      setRevealing(false)
-    }, 1350)
-  }
 
   useEffect(() => {
     const timer = setInterval(() => {
-      const next = (current + 1) % SLIDES.length
-      goTo(next)
-    }, 5500)
+      setCurrent((c) => (c + 1) % SLIDES.length)
+    }, 6000)
     return () => clearInterval(timer)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [current, revealing])
+  }, [])
 
   return (
     <section
-      className="relative w-full overflow-hidden"
+      className="hero-container relative w-full overflow-hidden"
       style={{ height: '92vh', minHeight: 400, maxHeight: 900 }}
     >
-      {/* ── Current image (stays in place, slight slow zoom) ── */}
-      <div
-        className="absolute inset-0"
-        style={{
-          backgroundImage: `url('${SLIDES[current]}')`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          animation: 'heroZoom 6s ease-in-out forwards',
-        }}
-      />
+      {/* Ken Burns keyframes */}
+      <style>{`
+        @keyframes kenBurns {
+          0%   { transform: scale(1.00); }
+          100% { transform: scale(1.10); }
+        }
+      `}</style>
 
-      {/* ── Incoming image — revealed left→right with parallax ── */}
-      {nextSlide !== null && (
+      {/* All slides stacked — only active one is visible */}
+      {SLIDES.map((src, i) => (
         <div
+          key={src}
           className="absolute inset-0"
           style={{
-            backgroundImage: `url('${SLIDES[nextSlide]}')`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            /* Mask reveal: starts fully hidden (right clipped), opens to full */
-            clipPath: revealing ? 'inset(0 0% 0 0)' : 'inset(0 100% 0 0)',
-            /* Parallax: starts pushed right, slides to neutral */
-            transform: revealing ? 'translateX(0%)' : 'translateX(6%)',
-            transition: revealing
-              ? 'clip-path 1.2s cubic-bezier(0.77,0,0.18,1), transform 1.4s cubic-bezier(0.77,0,0.18,1)'
-              : 'none',
+            opacity: i === current ? 1 : 0,
+            transition: 'opacity 1.5s ease-in-out',
+            zIndex: i === current ? 1 : 0,
           }}
-        />
-      )}
+        >
+          <div
+            style={{
+              position: 'absolute',
+              inset: 0,
+              backgroundImage: `url('${src}')`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              /* Ken Burns: restart animation every time this slide becomes active */
+              animation: i === current ? 'kenBurns 8s ease-in-out forwards' : 'none',
+            }}
+          />
+        </div>
+      ))}
 
-      {/* Subtle vignette overlay */}
+      {/* Subtle vignette for premium depth */}
       <div
         className="absolute inset-0"
         style={{
           background:
-            'radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.25) 100%)',
+            'radial-gradient(ellipse at center, transparent 35%, rgba(0,0,0,0.30) 100%)',
+          zIndex: 2,
         }}
       />
 
-      {/* ── Dot indicators ── */}
-      <div className="absolute bottom-14 left-0 right-0 flex justify-center gap-3 z-20">
-        {SLIDES.map((_, i) => (
-          <button
-            key={i}
-            onClick={() => goTo(i)}
-            style={{
-              width: i === current ? '28px' : '8px',
-              height: '8px',
-              borderRadius: '4px',
-              background:
-                i === current ? '#ffffff' : 'rgba(255,255,255,0.4)',
-              border: 'none',
-              cursor: 'pointer',
-              transition: 'all 0.5s ease',
-            }}
-          />
-        ))}
-      </div>
-
-      {/* ── Wave bottom curve ── */}
-      <div className="absolute bottom-0 left-0 w-full z-20 leading-none">
+      {/* Wave bottom curve */}
+      <div
+        className="absolute bottom-0 left-0 w-full leading-none"
+        style={{ zIndex: 3 }}
+      >
         <svg
           viewBox="0 0 1440 80"
           xmlns="http://www.w3.org/2000/svg"
@@ -113,14 +82,6 @@ export default function Hero() {
           />
         </svg>
       </div>
-
-      {/* ── Keyframe for slow zoom on current image ── */}
-      <style>{`
-        @keyframes heroZoom {
-          from { background-size: 105%; }
-          to   { background-size: 100%; }
-        }
-      `}</style>
     </section>
   )
 }
