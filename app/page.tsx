@@ -70,7 +70,7 @@ export default function HomePage() {
             Style & élégance pour homme ✨
           </p>
         </div>
-        <ProductGrid products={homme} />
+        <ProductGrid products={homme} scrollRow />
       </section>
 
       <TrustSection />
