@@ -74,7 +74,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
         <StoreProvider>
           <Header />
-          <main style={{ paddingTop: '60px' }}>{children}</main>
+          <main style={{ paddingTop: '64px' }}>{children}</main>
           <CartDrawer />
           <CheckoutModal />
           <ReviewModal />

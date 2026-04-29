@@ -21,9 +21,11 @@ export default function Hero() {
     <section
       className="hero-container relative w-full overflow-hidden"
       style={{
-        /* Mobile 4:5 ratio — desktop fixed height */
         aspectRatio: '4/5',
         maxHeight: '90vh',
+        marginBottom: 0,
+        display: 'block',
+        lineHeight: 0,
       }}
     >
       {/* ── Slide track ── */}
@@ -68,7 +70,8 @@ export default function Hero() {
           preserveAspectRatio="none"
           style={{ display: 'block', width: '100%', height: '60px' }}
         >
-          <path d="M0,40 C360,90 1080,0 1440,50 L1440,80 L0,80 Z" fill="#ffffff" />
+          <path d="M0,40 C360,90 1080,0 1440,50 L1440,80 L0,80 Z" fill="#fff" />
+          <rect x="0" y="79" width="1440" height="2" fill="#fff" />
         </svg>
       </div>
     </section>
