@@ -41,7 +41,7 @@ export default function HomePage() {
             Sublime ta beauté avec nos montres ✨
           </p>
         </div>
-        <ProductGrid products={femme} />
+        <ProductGrid products={femme} scrollRow />
       </section>
 
       <GoldBanner />

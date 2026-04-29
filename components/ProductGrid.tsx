@@ -18,17 +18,20 @@ export default function ProductGrid({ products, singleRow, scrollRow }: Props) {
       <>
         {/* Mobile — horizontal scroll */}
         <div
-          className="md:hidden flex gap-3 overflow-x-auto pb-4 px-1"
+          className="md:hidden flex gap-3 pb-4 px-1"
           style={{
+            overflowX: 'auto',
+            overflowY: 'hidden',
             WebkitOverflowScrolling: 'touch',
             scrollbarWidth: 'none',
-            overflowY: 'visible',
+            touchAction: 'pan-x',
           }}
         >
           {products.map((p) => (
             <div
               key={p.id}
-              style={{ flex: '0 0 75%' }}
+              className="scroll-reveal visible"
+              style={{ flex: '0 0 55%', minWidth: 0 }}
             >
               <ProductCard product={p} />
             </div>
