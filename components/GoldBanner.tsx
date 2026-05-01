@@ -2,7 +2,7 @@
 
 const BANNER_IMAGES = [
   {
-    src: 'https://i.ibb.co/DfJh70n6/Gemini-Generated-Image-rdy4m6rdy4m6rdy4-1.png',
+    src: 'https://i.ibb.co/W4ZCgmbC/Whats-App-Image-2026-03-27-at-20-25-56.jpg',
     alt: 'LUX TIME 18K Gold Collection 1',
   },
   {
@@ -10,7 +10,7 @@ const BANNER_IMAGES = [
     alt: 'LUX TIME 18K Gold Luxe',
   },
   {
-    src: 'https://i.ibb.co/W4ZCgmbC/Whats-App-Image-2026-03-27-at-20-25-56.jpg',
+    src: 'https://i.ibb.co/DfJh70n6/Gemini-Generated-Image-rdy4m6rdy4m6rdy4-1.png',
     alt: 'LUX TIME 18K Gold Collection 2',
   },
 ]
