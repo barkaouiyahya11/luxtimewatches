@@ -188,4 +188,20 @@ export const products: Product[] = [
     ],
     hot: true,
   },
+  {
+    id: 102,
+    sku: 'LTF221',
+    cat: 'homme',
+    name: 'CARTIER',
+    price: 199,
+    originalPrice: 250,
+    stock: 4,
+    rating: 4.9,
+    reviews: 0,
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1777675221/luxtim/espf5fbjdccmvejteldv.jpg',
+    detailImgs: [
+      'https://res.cloudinary.com/dannr2e0c/image/upload/v1777675221/luxtim/espf5fbjdccmvejteldv.jpg',
+    ],
+    hot: true,
+  },
 ]
