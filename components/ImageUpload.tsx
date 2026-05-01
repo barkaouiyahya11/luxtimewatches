@@ -16,7 +16,7 @@ export default function ImageUpload({ label = 'Image', onUpload, currentUrl }: P
   const inputRef = useRef<HTMLInputElement>(null)
 
   async function uploadFile(file: File) {
-    if (!file.type.startsWith('image/')) {
+    if (!file.type.startsWith('image/') && !file.name.toLowerCase().endsWith('.heic') && !file.name.toLowerCase().endsWith('.heif')) {
       setError('Fichier invalide — sélectionnez une image.')
       return
     }
@@ -117,7 +117,7 @@ export default function ImageUpload({ label = 'Image', onUpload, currentUrl }: P
       <input
         ref={inputRef}
         type="file"
-        accept="image/*"
+        accept="image/*, .heic, .heif, .avif, .webp"
         className="hidden"
         onChange={(e) => e.target.files?.[0] && uploadFile(e.target.files[0])}
       />
