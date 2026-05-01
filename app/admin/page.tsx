@@ -1,0 +1,415 @@
+'use client'
+
+import { useState } from 'react'
+import { useRouter } from 'next/navigation'
+import ImageUpload from '@/components/ImageUpload'
+
+const ADMIN_PASSWORD = 'luxtim2024'
+
+interface ProductForm {
+  name: string
+  sku: string
+  cat: 'femme' | 'homme'
+  price: string
+  originalPrice: string
+  stock: string
+  gridImg: string
+  detailImg1: string
+  detailImg2: string
+  hot: boolean
+}
+
+const EMPTY: ProductForm = {
+  name: '',
+  sku: '',
+  cat: 'femme',
+  price: '',
+  originalPrice: '',
+  stock: '',
+  gridImg: '',
+  detailImg1: '',
+  detailImg2: '',
+  hot: false,
+}
+
+function generateCode(form: ProductForm, id: number): string {
+  const detailImgs = [form.detailImg1, form.detailImg2].filter(Boolean)
+  return `  {
+    id: ${id},
+    sku: '${form.sku}',
+    cat: '${form.cat}',
+    name: '${form.name}',
+    price: ${form.price},
+    originalPrice: ${form.originalPrice},
+    stock: ${form.stock},
+    rating: 4.9,
+    reviews: 0,
+    gridImg: '${form.gridImg}',
+    detailImgs: [
+${detailImgs.map((u) => `      '${u}'`).join(',\n')},
+    ],${form.hot ? '\n    hot: true,' : ''}
+  },`
+}
+
+export default function AdminPage() {
+  const [auth, setAuth] = useState(false)
+  const [password, setPassword] = useState('')
+  const [form, setForm] = useState<ProductForm>(EMPTY)
+  const [generatedCode, setGeneratedCode] = useState('')
+  const [copied, setCopied] = useState(false)
+  const [nextId, setNextId] = useState(100)
+  const router = useRouter()
+
+  function login() {
+    if (password === ADMIN_PASSWORD) setAuth(true)
+    else alert('Mot de passe incorrect')
+  }
+
+  function set(field: keyof ProductForm, value: string | boolean) {
+    setForm((f) => ({ ...f, [field]: value }))
+  }
+
+  function generate() {
+    if (!form.name || !form.price || !form.gridImg) {
+      alert('Remplissez au minimum : nom, prix et image principale')
+      return
+    }
+    const code = generateCode(form, nextId)
+    setGeneratedCode(code)
+    setNextId((n) => n + 1)
+  }
+
+  async function copyCode() {
+    await navigator.clipboard.writeText(generatedCode)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2000)
+  }
+
+  function reset() {
+    setForm(EMPTY)
+    setGeneratedCode('')
+  }
+
+  // ── Login screen ─────────────────────────────────────
+  if (!auth) {
+    return (
+      <div className="min-h-screen bg-black flex items-center justify-center px-4">
+        <div className="w-full max-w-sm">
+          <h1 className="font-serif text-3xl text-white text-center tracking-widest uppercase mb-8">
+            LUX TIME<br />
+            <span className="text-[#C5A059] text-lg">Admin</span>
+          </h1>
+          <div className="bg-white/5 border border-white/10 rounded-2xl p-8 flex flex-col gap-4">
+            <label className="text-[10px] font-black uppercase tracking-widest text-gray-400">
+              Mot de passe
+            </label>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              onKeyDown={(e) => e.key === 'Enter' && login()}
+              className="bg-black border border-white/20 text-white px-4 py-3 rounded-lg text-sm outline-none focus:border-[#C5A059] transition"
+              placeholder="••••••••"
+              autoFocus
+            />
+            <button
+              onClick={login}
+              className="bg-[#C5A059] text-black font-black uppercase text-[11px] tracking-widest py-3 rounded-lg hover:bg-[#d4b572] transition"
+            >
+              Accéder au dashboard
+            </button>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  // ── Dashboard ─────────────────────────────────────────
+  return (
+    <div className="min-h-screen bg-[#0a0a0a] text-white">
+      {/* Header */}
+      <div className="border-b border-white/10 px-6 py-4 flex items-center justify-between sticky top-0 bg-black/90 backdrop-blur z-50">
+        <div className="flex items-center gap-4">
+          <h1 className="font-serif text-xl tracking-widest uppercase">
+            LUX TIME <span className="text-[#C5A059]">Admin</span>
+          </h1>
+          <span className="text-[9px] font-bold uppercase tracking-widest bg-green-500/20 text-green-400 px-2 py-0.5 rounded-full">
+            Connecté
+          </span>
+        </div>
+        <div className="flex gap-3">
+          <button
+            onClick={() => router.push('/')}
+            className="text-[10px] font-black uppercase tracking-widest text-gray-400 hover:text-white transition px-4 py-2 rounded-lg border border-white/10 hover:border-white/30"
+          >
+            ← Voir le site
+          </button>
+          <button
+            onClick={() => setAuth(false)}
+            className="text-[10px] font-black uppercase tracking-widest text-gray-400 hover:text-red-400 transition"
+          >
+            Déconnexion
+          </button>
+        </div>
+      </div>
+
+      <div className="max-w-5xl mx-auto px-6 py-10">
+
+        {/* Title */}
+        <div className="mb-10">
+          <h2 className="text-2xl font-serif font-black uppercase tracking-widest text-white mb-2">
+            Ajouter un produit
+          </h2>
+          <p className="text-gray-500 text-sm">
+            Uploadez vos images, remplissez les infos, puis copiez le code généré dans{' '}
+            <code className="text-[#C5A059] bg-white/5 px-2 py-0.5 rounded text-xs">
+              data/products.ts
+            </code>
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+
+          {/* ── Left: Form ── */}
+          <div className="flex flex-col gap-6">
+
+            {/* Images */}
+            <div className="bg-white/5 border border-white/10 rounded-2xl p-6 flex flex-col gap-5">
+              <h3 className="text-[11px] font-black uppercase tracking-widest text-[#C5A059]">
+                📷 Images Cloudinary
+              </h3>
+
+              <ImageUpload
+                label="Image principale (gridImg)"
+                onUpload={(url) => set('gridImg', url)}
+                currentUrl={form.gridImg}
+              />
+              <ImageUpload
+                label="Image détail 1"
+                onUpload={(url) => set('detailImg1', url)}
+                currentUrl={form.detailImg1}
+              />
+              <ImageUpload
+                label="Image détail 2"
+                onUpload={(url) => set('detailImg2', url)}
+                currentUrl={form.detailImg2}
+              />
+            </div>
+
+            {/* Infos produit */}
+            <div className="bg-white/5 border border-white/10 rounded-2xl p-6 flex flex-col gap-4">
+              <h3 className="text-[11px] font-black uppercase tracking-widest text-[#C5A059]">
+                📝 Informations produit
+              </h3>
+
+              {/* Nom */}
+              <div className="flex flex-col gap-1.5">
+                <label className="text-[10px] font-black uppercase tracking-widest text-gray-400">
+                  Nom du produit *
+                </label>
+                <input
+                  value={form.name}
+                  onChange={(e) => set('name', e.target.value)}
+                  className="bg-black/50 border border-white/10 focus:border-[#C5A059] rounded-lg px-4 py-2.5 text-sm outline-none transition"
+                  placeholder="LUX TIME ROSE GOLD"
+                />
+              </div>
+
+              {/* SKU */}
+              <div className="flex flex-col gap-1.5">
+                <label className="text-[10px] font-black uppercase tracking-widest text-gray-400">
+                  SKU
+                </label>
+                <input
+                  value={form.sku}
+                  onChange={(e) => set('sku', e.target.value)}
+                  className="bg-black/50 border border-white/10 focus:border-[#C5A059] rounded-lg px-4 py-2.5 text-sm outline-none transition"
+                  placeholder="LTF-007"
+                />
+              </div>
+
+              {/* Catégorie */}
+              <div className="flex flex-col gap-1.5">
+                <label className="text-[10px] font-black uppercase tracking-widest text-gray-400">
+                  Catégorie *
+                </label>
+                <div className="flex gap-3">
+                  {(['femme', 'homme'] as const).map((c) => (
+                    <button
+                      key={c}
+                      onClick={() => set('cat', c)}
+                      className={`flex-1 py-2.5 rounded-lg text-[10px] font-black uppercase tracking-widest transition
+                        ${form.cat === c
+                          ? 'bg-[#C5A059] text-black'
+                          : 'bg-black/50 border border-white/10 text-gray-400 hover:border-white/30'
+                        }`}
+                    >
+                      {c}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Prix */}
+              <div className="grid grid-cols-2 gap-3">
+                <div className="flex flex-col gap-1.5">
+                  <label className="text-[10px] font-black uppercase tracking-widest text-gray-400">
+                    Prix (MAD) *
+                  </label>
+                  <input
+                    type="number"
+                    value={form.price}
+                    onChange={(e) => set('price', e.target.value)}
+                    className="bg-black/50 border border-white/10 focus:border-[#C5A059] rounded-lg px-4 py-2.5 text-sm outline-none transition"
+                    placeholder="149"
+                  />
+                </div>
+                <div className="flex flex-col gap-1.5">
+                  <label className="text-[10px] font-black uppercase tracking-widest text-gray-400">
+                    Prix original
+                  </label>
+                  <input
+                    type="number"
+                    value={form.originalPrice}
+                    onChange={(e) => set('originalPrice', e.target.value)}
+                    className="bg-black/50 border border-white/10 focus:border-[#C5A059] rounded-lg px-4 py-2.5 text-sm outline-none transition"
+                    placeholder="249"
+                  />
+                </div>
+              </div>
+
+              {/* Stock + HOT */}
+              <div className="grid grid-cols-2 gap-3">
+                <div className="flex flex-col gap-1.5">
+                  <label className="text-[10px] font-black uppercase tracking-widest text-gray-400">
+                    Stock
+                  </label>
+                  <input
+                    type="number"
+                    value={form.stock}
+                    onChange={(e) => set('stock', e.target.value)}
+                    className="bg-black/50 border border-white/10 focus:border-[#C5A059] rounded-lg px-4 py-2.5 text-sm outline-none transition"
+                    placeholder="5"
+                  />
+                </div>
+                <div className="flex flex-col gap-1.5">
+                  <label className="text-[10px] font-black uppercase tracking-widest text-gray-400">
+                    Badge HOT
+                  </label>
+                  <button
+                    onClick={() => set('hot', !form.hot)}
+                    className={`py-2.5 rounded-lg text-[10px] font-black uppercase tracking-widest transition
+                      ${form.hot
+                        ? 'bg-red-500 text-white'
+                        : 'bg-black/50 border border-white/10 text-gray-400 hover:border-white/30'
+                      }`}
+                  >
+                    {form.hot ? '🔥 HOT activé' : 'Activer HOT'}
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* Actions */}
+            <div className="flex gap-3">
+              <button
+                onClick={generate}
+                className="flex-1 py-4 bg-[#C5A059] text-black font-black uppercase text-[11px] tracking-widest rounded-xl hover:bg-[#d4b572] transition shadow-lg"
+              >
+                ⚡ Générer le code
+              </button>
+              <button
+                onClick={reset}
+                className="px-5 py-4 border border-white/10 text-gray-400 font-black uppercase text-[11px] tracking-widest rounded-xl hover:border-white/30 hover:text-white transition"
+              >
+                Reset
+              </button>
+            </div>
+          </div>
+
+          {/* ── Right: Generated Code ── */}
+          <div className="flex flex-col gap-6">
+
+            {/* Instructions */}
+            <div className="bg-[#C5A059]/10 border border-[#C5A059]/30 rounded-2xl p-5">
+              <h3 className="text-[11px] font-black uppercase tracking-widest text-[#C5A059] mb-3">
+                📋 Comment utiliser
+              </h3>
+              <ol className="text-gray-400 text-xs flex flex-col gap-2 list-decimal list-inside">
+                <li>Uploadez les images depuis votre ordinateur (glisser ou cliquer)</li>
+                <li>Remplissez les informations du produit</li>
+                <li>Cliquez sur <strong className="text-white">Générer le code</strong></li>
+                <li>Copiez le code généré</li>
+                <li>Collez-le dans <code className="text-[#C5A059]">data/products.ts</code> avant le <code className="text-[#C5A059]">]</code> final</li>
+                <li>Sauvegardez et déployez</li>
+              </ol>
+            </div>
+
+            {/* Code output */}
+            <div className="bg-white/5 border border-white/10 rounded-2xl overflow-hidden flex-1 flex flex-col">
+              <div className="flex items-center justify-between px-5 py-3 border-b border-white/10">
+                <span className="text-[10px] font-black uppercase tracking-widest text-gray-400">
+                  Code généré — <code className="text-[#C5A059]">data/products.ts</code>
+                </span>
+                {generatedCode && (
+                  <button
+                    onClick={copyCode}
+                    className={`text-[10px] font-black uppercase tracking-widest px-4 py-1.5 rounded-lg transition
+                      ${copied
+                        ? 'bg-green-500 text-white'
+                        : 'bg-[#C5A059] text-black hover:bg-[#d4b572]'
+                      }`}
+                  >
+                    {copied ? '✓ Copié !' : 'Copier'}
+                  </button>
+                )}
+              </div>
+
+              <div className="flex-1 p-5 min-h-[300px]">
+                {generatedCode ? (
+                  <pre className="text-green-400 text-xs font-mono whitespace-pre-wrap leading-relaxed overflow-auto max-h-[500px]">
+                    {generatedCode}
+                  </pre>
+                ) : (
+                  <div className="h-full flex items-center justify-center text-gray-600">
+                    <div className="text-center">
+                      <div className="text-4xl mb-3">🖊️</div>
+                      <p className="text-[11px] font-bold uppercase tracking-widest">
+                        Le code apparaîtra ici
+                      </p>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* URL checker */}
+            {form.gridImg && (
+              <div className="bg-white/5 border border-white/10 rounded-2xl p-5">
+                <h3 className="text-[10px] font-black uppercase tracking-widest text-[#C5A059] mb-3">
+                  🔗 URLs Cloudinary
+                </h3>
+                <div className="flex flex-col gap-2">
+                  {[
+                    { label: 'gridImg', url: form.gridImg },
+                    { label: 'detailImg1', url: form.detailImg1 },
+                    { label: 'detailImg2', url: form.detailImg2 },
+                  ]
+                    .filter((i) => i.url)
+                    .map((item) => (
+                      <div key={item.label} className="flex items-center gap-2">
+                        <span className="text-[9px] font-black uppercase text-gray-500 w-20 shrink-0">
+                          {item.label}
+                        </span>
+                        <span className="text-green-400 text-[10px] truncate">✓ {item.url.slice(0, 50)}…</span>
+                      </div>
+                    ))}
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
