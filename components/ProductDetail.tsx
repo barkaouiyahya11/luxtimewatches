@@ -14,7 +14,10 @@ export default function ProductDetail({ product }: Props) {
   const router = useRouter()
   const { addToCart, openCheckout, showToast, toggleCart } = useStore()
   const [qty, setQty] = useState(1)
-  const [mainImg, setMainImg] = useState(product.gridImg)
+  const [selectedColor, setSelectedColor] = useState<number>(0)
+  const [mainImg, setMainImg] = useState(
+    product.colors?.length ? product.colors[0].img : product.gridImg
+  )
   const [zoomed, setZoomed] = useState(false)
   const [zoomOrigin, setZoomOrigin] = useState('50% 50%')
   const [showSticky, setShowSticky] = useState(false)
@@ -146,6 +149,32 @@ export default function ProductDetail({ product }: Props) {
                 </span>
               </div>
             </div>
+
+            {/* Color variants */}
+            {product.colors && product.colors.length > 0 && (
+              <div className="mb-5">
+                <p className="text-[9px] font-bold text-gray-400 uppercase tracking-widest mb-3">COULEUR</p>
+                <div className="flex flex-col gap-2">
+                  {product.colors.map((c, i) => (
+                    <button
+                      key={i}
+                      onClick={() => {
+                        setSelectedColor(i)
+                        setMainImg(c.img)
+                        setZoomed(false)
+                      }}
+                      className={`w-full text-left px-5 py-3 rounded-full text-[11px] font-black uppercase tracking-widest border-2 transition-all duration-200 ${
+                        selectedColor === i
+                          ? 'bg-black text-white border-black'
+                          : 'bg-white text-black border-gray-200 hover:border-gray-400'
+                      }`}
+                    >
+                      {c.name}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
 
             {/* Packaging */}
             <div className="mb-4">

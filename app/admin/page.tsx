@@ -6,6 +6,11 @@ import ImageUpload from '@/components/ImageUpload'
 
 const ADMIN_PASSWORD = 'luxtim2024'
 
+interface ColorVariant {
+  name: string
+  img: string
+}
+
 interface ProductForm {
   name: string
   sku: string
@@ -18,6 +23,7 @@ interface ProductForm {
   detailImg2: string
   hot: boolean
   coffret: boolean
+  colors: ColorVariant[]
 }
 
 const EMPTY: ProductForm = {
@@ -32,10 +38,15 @@ const EMPTY: ProductForm = {
   detailImg2: '',
   hot: false,
   coffret: false,
+  colors: [],
 }
 
 function generateCode(form: ProductForm, id: number): string {
   const detailImgs = [form.detailImg1, form.detailImg2].filter(Boolean)
+  const validColors = form.colors.filter((c) => c.name && c.img)
+  const colorsCode = validColors.length > 0
+    ? `\n    colors: [\n${validColors.map((c) => `      { name: '${c.name}', img: '${c.img}' }`).join(',\n')},\n    ],`
+    : ''
   return `  {
     id: ${id},
     sku: '${form.sku}',
@@ -49,7 +60,7 @@ function generateCode(form: ProductForm, id: number): string {
     gridImg: '${form.gridImg}',
     detailImgs: [
 ${detailImgs.map((u) => `      '${u}'`).join(',\n')},
-    ],${form.hot ? '\n    hot: true,' : ''}${form.coffret ? '\n    coffret: true,' : ''}
+    ],${form.hot ? '\n    hot: true,' : ''}${form.coffret ? '\n    coffret: true,' : ''}${colorsCode}
   },`
 }
 
@@ -613,6 +624,58 @@ const CARD_COFFRET = '${cartes.coffret || currentCoffret}'`
                   </button>
                 </div>
               </div>
+            </div>
+
+            {/* Couleurs / Variantes */}
+            <div className="bg-white/5 border border-white/10 rounded-2xl p-6 flex flex-col gap-4">
+              <div className="flex items-center justify-between">
+                <h3 className="text-[11px] font-black uppercase tracking-widest text-[#C5A059]">
+                  🎨 Variantes de couleur
+                </h3>
+                <button
+                  onClick={() => setForm((f) => ({ ...f, colors: [...f.colors, { name: '', img: '' }] }))}
+                  className="text-[10px] font-black uppercase tracking-widest text-[#C5A059] border border-[#C5A059]/40 px-3 py-1.5 rounded-lg hover:bg-[#C5A059]/10 transition"
+                >
+                  + Ajouter
+                </button>
+              </div>
+
+              {form.colors.length === 0 && (
+                <p className="text-gray-600 text-[10px] text-center py-2">
+                  Aucune couleur — cliquez sur &quot;+ Ajouter&quot; pour créer des variantes
+                </p>
+              )}
+
+              {form.colors.map((c, i) => (
+                <div key={i} className="flex flex-col gap-3 border border-white/10 rounded-xl p-4">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[10px] font-black uppercase text-gray-400">Couleur {i + 1}</span>
+                    <button
+                      onClick={() => setForm((f) => ({ ...f, colors: f.colors.filter((_, j) => j !== i) }))}
+                      className="text-red-400 text-[10px] font-black hover:text-red-300"
+                    >
+                      ✕ Supprimer
+                    </button>
+                  </div>
+                  <input
+                    value={c.name}
+                    onChange={(e) => setForm((f) => ({
+                      ...f,
+                      colors: f.colors.map((col, j) => j === i ? { ...col, name: e.target.value } : col)
+                    }))}
+                    placeholder="ex: GRIS TABLEAU NOIR"
+                    className="bg-black/50 border border-white/10 focus:border-[#C5A059] rounded-lg px-4 py-2.5 text-sm outline-none transition uppercase"
+                  />
+                  <ImageUpload
+                    label={`Photo pour "${c.name || `Couleur ${i + 1}`}"`}
+                    onUpload={(url) => setForm((f) => ({
+                      ...f,
+                      colors: f.colors.map((col, j) => j === i ? { ...col, img: url } : col)
+                    }))}
+                    currentUrl={c.img}
+                  />
+                </div>
+              ))}
             </div>
 
             {/* Actions */}

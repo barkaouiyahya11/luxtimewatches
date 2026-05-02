@@ -12,6 +12,7 @@ export interface Product {
   detailImgs: string[]
   hot?: boolean
   coffret?: boolean
+  colors?: { name: string; img: string }[]
 }
 
 export interface CartItem extends Product {
