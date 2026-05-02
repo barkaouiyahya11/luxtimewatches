@@ -58,7 +58,37 @@ export default function AdminPage() {
   const [generatedCode, setGeneratedCode] = useState('')
   const [copied, setCopied] = useState(false)
   const [nextId, setNextId] = useState(100)
+  const [tab, setTab] = useState<'product' | 'banner'>('product')
+  const [banner, setBanner] = useState({ img1: '', img2: '', img3: '' })
+  const [bannerCode, setBannerCode] = useState('')
+  const [bannerCopied, setBannerCopied] = useState(false)
   const router = useRouter()
+
+  function generateBannerCode() {
+    if (!banner.img1 && !banner.img2 && !banner.img3) {
+      alert('Uploadez au moins une image')
+      return
+    }
+    const current = [
+      'https://i.ibb.co/W4ZCgmbC/Whats-App-Image-2026-03-27-at-20-25-56.jpg',
+      'https://i.ibb.co/dwDPGFXf/Whats-App-Image-2026-03-23-at-18-02-06-1.jpg',
+      'https://i.ibb.co/DfJh70n6/Gemini-Generated-Image-rdy4m6rdy4m6rdy4-1.png',
+    ]
+    const code = `Dans components/GoldBanner.tsx, remplacez BANNER_IMAGES par :
+
+const BANNER_IMAGES = [
+  { src: '${banner.img1 || current[0]}', alt: 'LUX TIME Banner 1' },
+  { src: '${banner.img2 || current[1]}', alt: 'LUX TIME Banner 2' },
+  { src: '${banner.img3 || current[2]}', alt: 'LUX TIME Banner 3' },
+]`
+    setBannerCode(code)
+  }
+
+  async function copyBannerCode() {
+    await navigator.clipboard.writeText(bannerCode)
+    setBannerCopied(true)
+    setTimeout(() => setBannerCopied(false), 2000)
+  }
 
   function login() {
     if (password === ADMIN_PASSWORD) setAuth(true)
@@ -155,8 +185,121 @@ export default function AdminPage() {
 
       <div className="max-w-5xl mx-auto px-6 py-10">
 
-        {/* Title */}
-        <div className="mb-10">
+        {/* Tabs */}
+        <div className="flex gap-3 mb-8">
+          <button
+            onClick={() => setTab('product')}
+            className={`px-6 py-3 rounded-xl text-[11px] font-black uppercase tracking-widest transition ${
+              tab === 'product'
+                ? 'bg-[#C5A059] text-black'
+                : 'bg-white/5 border border-white/10 text-gray-400 hover:border-white/30'
+            }`}
+          >
+            🛍️ Ajouter un produit
+          </button>
+          <button
+            onClick={() => setTab('banner')}
+            className={`px-6 py-3 rounded-xl text-[11px] font-black uppercase tracking-widest transition ${
+              tab === 'banner'
+                ? 'bg-[#C5A059] text-black'
+                : 'bg-white/5 border border-white/10 text-gray-400 hover:border-white/30'
+            }`}
+          >
+            🖼️ Modifier le Cadre
+          </button>
+        </div>
+
+        {/* Banner Tab */}
+        {tab === 'banner' && (
+          <div className="flex flex-col gap-6">
+            <div>
+              <h2 className="text-2xl font-serif font-black uppercase tracking-widest text-white mb-2">
+                Modifier le Cadre (Bannière)
+              </h2>
+              <p className="text-gray-500 text-sm">
+                Uploadez les nouvelles photos pour les 3 cercles de la bannière principale
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              <div className="bg-white/5 border border-white/10 rounded-2xl p-6 flex flex-col gap-5">
+                <h3 className="text-[11px] font-black uppercase tracking-widest text-[#C5A059]">
+                  📷 3 Photos du cadre
+                </h3>
+                <ImageUpload
+                  label="Photo cercle 1 (gauche)"
+                  onUpload={(url) => setBanner((b) => ({ ...b, img1: url }))}
+                  currentUrl={banner.img1}
+                />
+                <ImageUpload
+                  label="Photo cercle 2 (centre)"
+                  onUpload={(url) => setBanner((b) => ({ ...b, img2: url }))}
+                  currentUrl={banner.img2}
+                />
+                <ImageUpload
+                  label="Photo cercle 3 (droite)"
+                  onUpload={(url) => setBanner((b) => ({ ...b, img3: url }))}
+                  currentUrl={banner.img3}
+                />
+                <button
+                  onClick={generateBannerCode}
+                  className="w-full py-4 bg-[#C5A059] text-black font-black uppercase text-[11px] tracking-widest rounded-xl hover:bg-[#d4b572] transition"
+                >
+                  ⚡ Générer le code
+                </button>
+              </div>
+
+              <div className="flex flex-col gap-4">
+                <div className="bg-[#C5A059]/10 border border-[#C5A059]/30 rounded-2xl p-5">
+                  <h3 className="text-[11px] font-black uppercase tracking-widest text-[#C5A059] mb-3">
+                    📋 Comment utiliser
+                  </h3>
+                  <ol className="text-gray-400 text-xs flex flex-col gap-2 list-decimal list-inside">
+                    <li>Uploadez 1, 2 ou 3 nouvelles photos</li>
+                    <li>Cliquez sur <strong className="text-white">Générer le code</strong></li>
+                    <li>Copiez et collez dans Antigravity</li>
+                    <li>Antigravity met à jour et déploie</li>
+                  </ol>
+                </div>
+
+                <div className="bg-white/5 border border-white/10 rounded-2xl overflow-hidden flex-1">
+                  <div className="flex items-center justify-between px-5 py-3 border-b border-white/10">
+                    <span className="text-[10px] font-black uppercase tracking-widest text-gray-400">
+                      Code généré
+                    </span>
+                    {bannerCode && (
+                      <button
+                        onClick={copyBannerCode}
+                        className={`text-[10px] font-black uppercase px-4 py-1.5 rounded-lg transition ${
+                          bannerCopied ? 'bg-green-500 text-white' : 'bg-[#C5A059] text-black'
+                        }`}
+                      >
+                        {bannerCopied ? '✓ Copié !' : 'Copier'}
+                      </button>
+                    )}
+                  </div>
+                  <div className="p-5 min-h-[200px]">
+                    {bannerCode ? (
+                      <pre className="text-green-400 text-xs font-mono whitespace-pre-wrap leading-relaxed">
+                        {bannerCode}
+                      </pre>
+                    ) : (
+                      <div className="h-full flex items-center justify-center text-gray-600 py-10">
+                        <p className="text-[11px] font-bold uppercase tracking-widest text-center">
+                          Le code apparaîtra ici
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Product Tab */}
+        {tab === 'product' && (
+        <><div className="mb-10">
           <h2 className="text-2xl font-serif font-black uppercase tracking-widest text-white mb-2">
             Ajouter un produit
           </h2>
@@ -409,6 +552,7 @@ export default function AdminPage() {
             )}
           </div>
         </div>
+        </>)}
       </div>
     </div>
   )
