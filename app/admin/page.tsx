@@ -58,10 +58,13 @@ export default function AdminPage() {
   const [generatedCode, setGeneratedCode] = useState('')
   const [copied, setCopied] = useState(false)
   const [nextId, setNextId] = useState(100)
-  const [tab, setTab] = useState<'product' | 'banner'>('product')
+  const [tab, setTab] = useState<'product' | 'banner' | 'cartes'>('product')
   const [banner, setBanner] = useState({ img1: '', img2: '', img3: '' })
   const [bannerCode, setBannerCode] = useState('')
   const [bannerCopied, setBannerCopied] = useState(false)
+  const [cartes, setCartes] = useState({ simple: '', coffret: '' })
+  const [cartesCode, setCartesCode] = useState('')
+  const [cartesCopied, setCartesCopied] = useState(false)
   const router = useRouter()
 
   function generateBannerCode() {
@@ -88,6 +91,26 @@ const BANNER_IMAGES = [
     await navigator.clipboard.writeText(bannerCode)
     setBannerCopied(true)
     setTimeout(() => setBannerCopied(false), 2000)
+  }
+
+  function generateCartesCode() {
+    if (!cartes.simple && !cartes.coffret) {
+      alert('Uploadez au moins une image')
+      return
+    }
+    const currentSimple = 'https://i.ibb.co/jknKzLpC/Whats-App-Image-2026-03-23-at-18-03-34.jpg'
+    const currentCoffret = 'https://res.cloudinary.com/dannr2e0c/image/upload/v1777675221/luxtim/espf5fbjdccmvejteldv.jpg'
+    const code = `Dans components/HommeSection.tsx, remplacez les 2 lignes CARD_SIMPLE et CARD_COFFRET par :
+
+const CARD_SIMPLE = '${cartes.simple || currentSimple}'
+const CARD_COFFRET = '${cartes.coffret || currentCoffret}'`
+    setCartesCode(code)
+  }
+
+  async function copyCartesCode() {
+    await navigator.clipboard.writeText(cartesCode)
+    setCartesCopied(true)
+    setTimeout(() => setCartesCopied(false), 2000)
   }
 
   function login() {
@@ -186,7 +209,7 @@ const BANNER_IMAGES = [
       <div className="max-w-5xl mx-auto px-6 py-10">
 
         {/* Tabs */}
-        <div className="flex gap-3 mb-8">
+        <div className="flex flex-wrap gap-3 mb-8">
           <button
             onClick={() => setTab('product')}
             className={`px-6 py-3 rounded-xl text-[11px] font-black uppercase tracking-widest transition ${
@@ -206,6 +229,16 @@ const BANNER_IMAGES = [
             }`}
           >
             🖼️ Modifier le Cadre
+          </button>
+          <button
+            onClick={() => setTab('cartes')}
+            className={`px-6 py-3 rounded-xl text-[11px] font-black uppercase tracking-widest transition ${
+              tab === 'cartes'
+                ? 'bg-[#C5A059] text-black'
+                : 'bg-white/5 border border-white/10 text-gray-400 hover:border-white/30'
+            }`}
+          >
+            🃏 Photos des Cartes Homme
           </button>
         </div>
 
@@ -285,6 +318,116 @@ const BANNER_IMAGES = [
                       </pre>
                     ) : (
                       <div className="h-full flex items-center justify-center text-gray-600 py-10">
+                        <p className="text-[11px] font-bold uppercase tracking-widest text-center">
+                          Le code apparaîtra ici
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Cartes Homme Tab */}
+        {tab === 'cartes' && (
+          <div className="flex flex-col gap-6">
+            <div>
+              <h2 className="text-2xl font-serif font-black uppercase tracking-widest text-white mb-2">
+                Photos des Cartes Homme
+              </h2>
+              <p className="text-gray-500 text-sm">
+                Changez les photos des 2 grandes cartes &quot;Boite Simple&quot; et &quot;Avec Coffret&quot;
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              <div className="bg-white/5 border border-white/10 rounded-2xl p-6 flex flex-col gap-5">
+                <h3 className="text-[11px] font-black uppercase tracking-widest text-[#C5A059]">
+                  📷 2 Photos des cartes
+                </h3>
+                <ImageUpload
+                  label="Photo carte BOITE SIMPLE (gauche)"
+                  onUpload={(url) => setCartes((c) => ({ ...c, simple: url }))}
+                  currentUrl={cartes.simple}
+                />
+                <ImageUpload
+                  label="Photo carte AVEC COFFRET (droite)"
+                  onUpload={(url) => setCartes((c) => ({ ...c, coffret: url }))}
+                  currentUrl={cartes.coffret}
+                />
+                <button
+                  onClick={generateCartesCode}
+                  className="w-full py-4 bg-[#C5A059] text-black font-black uppercase text-[11px] tracking-widest rounded-xl hover:bg-[#d4b572] transition"
+                >
+                  ⚡ Générer le code
+                </button>
+              </div>
+
+              <div className="flex flex-col gap-4">
+                <div className="bg-[#C5A059]/10 border border-[#C5A059]/30 rounded-2xl p-5">
+                  <h3 className="text-[11px] font-black uppercase tracking-widest text-[#C5A059] mb-3">
+                    📋 Comment utiliser
+                  </h3>
+                  <ol className="text-gray-400 text-xs flex flex-col gap-2 list-decimal list-inside">
+                    <li>Uploadez la nouvelle photo pour chaque carte</li>
+                    <li>Cliquez sur <strong className="text-white">Générer le code</strong></li>
+                    <li>Copiez et collez dans Antigravity</li>
+                    <li>Antigravity met à jour et déploie</li>
+                  </ol>
+                </div>
+
+                {/* Aperçu cartes actuelles */}
+                <div className="bg-white/5 border border-white/10 rounded-2xl p-5">
+                  <h3 className="text-[10px] font-black uppercase tracking-widest text-[#C5A059] mb-3">
+                    👁️ Aperçu actuel
+                  </h3>
+                  <div className="grid grid-cols-2 gap-3">
+                    <div className="flex flex-col gap-1">
+                      <span className="text-[9px] font-black uppercase text-gray-500">Boite Simple</span>
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={cartes.simple || 'https://i.ibb.co/jknKzLpC/Whats-App-Image-2026-03-23-at-18-03-34.jpg'}
+                        alt="simple"
+                        className="w-full aspect-video object-cover rounded-lg"
+                      />
+                    </div>
+                    <div className="flex flex-col gap-1">
+                      <span className="text-[9px] font-black uppercase text-gray-500">Avec Coffret</span>
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={cartes.coffret || 'https://res.cloudinary.com/dannr2e0c/image/upload/v1777675221/luxtim/espf5fbjdccmvejteldv.jpg'}
+                        alt="coffret"
+                        className="w-full aspect-video object-cover rounded-lg"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-white/5 border border-white/10 rounded-2xl overflow-hidden flex-1">
+                  <div className="flex items-center justify-between px-5 py-3 border-b border-white/10">
+                    <span className="text-[10px] font-black uppercase tracking-widest text-gray-400">
+                      Code généré
+                    </span>
+                    {cartesCode && (
+                      <button
+                        onClick={copyCartesCode}
+                        className={`text-[10px] font-black uppercase px-4 py-1.5 rounded-lg transition ${
+                          cartesCopied ? 'bg-green-500 text-white' : 'bg-[#C5A059] text-black'
+                        }`}
+                      >
+                        {cartesCopied ? '✓ Copié !' : 'Copier'}
+                      </button>
+                    )}
+                  </div>
+                  <div className="p-5 min-h-[150px]">
+                    {cartesCode ? (
+                      <pre className="text-green-400 text-xs font-mono whitespace-pre-wrap leading-relaxed">
+                        {cartesCode}
+                      </pre>
+                    ) : (
+                      <div className="h-full flex items-center justify-center text-gray-600 py-8">
                         <p className="text-[11px] font-bold uppercase tracking-widest text-center">
                           Le code apparaîtra ici
                         </p>
