@@ -157,4 +157,22 @@ export const products: Product[] = [
       { name: 'TABLEAU BLANC', img: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1777764472/luxtim/ibpnqyspsdkzqdeghos1.jpg' },
     ],
   },
+  {
+    id: 106,
+    sku: 'ltf312',
+    cat: 'homme',
+    name: 'ROLEX',
+    price: 199,
+    originalPrice: 249,
+    stock: 6,
+    rating: 4.9,
+    reviews: 0,
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1777765736/luxtim/nhnluvsy9avbpls0osir.jpg',
+    detailImgs: [
+      'https://res.cloudinary.com/dannr2e0c/image/upload/v1777765736/luxtim/nhnluvsy9avbpls0osir.jpg',
+    ],
+    colors: [
+      { name: 'GRIS TABLEAU Bleu Turquoise', img: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1777765721/luxtim/obyk2zfknwfcsijsdqpl.jpg' },
+    ],
+  },
 ]
