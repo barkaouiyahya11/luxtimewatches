@@ -60,8 +60,7 @@ export default function HommeSection({ products }: Props) {
             <img
               src={CARD_SIMPLE}
               alt="Boite Simple"
-              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-              style={{ objectPosition: 'top center' }}
+              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 homme-card-simple"
             />
             {/* subtle dark vignette */}
             <div
@@ -105,8 +104,7 @@ export default function HommeSection({ products }: Props) {
             <img
               src={CARD_COFFRET}
               alt="Avec Coffret"
-              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-              style={{ objectPosition: 'top center' }}
+              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 homme-card-coffret"
             />
             <div
               className="absolute inset-0"

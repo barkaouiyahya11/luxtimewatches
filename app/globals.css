@@ -229,3 +229,14 @@ body {
     max-height: 860px;
   }
 }
+
+/* ===== HOMME SECTION CARDS ===== */
+/* Mobile : portrait → recadrage haut pour aligner les textes intégrés aux photos */
+.homme-card-simple  { object-position: top center; }
+.homme-card-coffret { object-position: top center; }
+
+/* Desktop : paysage (4/3) → on ajuste chaque image indépendamment */
+@media (min-width: 768px) {
+  .homme-card-simple  { object-position: center 15%; }
+  .homme-card-coffret { object-position: center 10%; }
+}
