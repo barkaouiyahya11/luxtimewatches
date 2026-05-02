@@ -49,33 +49,41 @@ export default function HommeSection({ products }: Props) {
         {/* BOITE SIMPLE */}
         <button
           onClick={() => router.push('/collection/homme-simple')}
-          className="relative group overflow-hidden rounded-2xl aspect-[3/4] md:aspect-[4/3] text-left"
-          style={{ boxShadow: '0 4px 24px rgba(0,0,0,0.12)' }}
+          className="group text-left flex flex-col"
         >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={CARD_SIMPLE}
-            alt="Boite Simple"
-            className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-          />
+          {/* Image */}
           <div
-            className="absolute inset-0"
-            style={{
-              background: 'linear-gradient(160deg, rgba(0,0,0,0.60) 0%, rgba(0,0,0,0.20) 55%, rgba(0,0,0,0.55) 100%)',
-            }}
-          />
-          <div className="absolute inset-0 flex flex-col justify-end p-4 md:p-7">
-            <p className="text-[9px] md:text-[10px] font-black uppercase tracking-[0.25em] text-white/60 mb-1">
+            className="relative w-full overflow-hidden rounded-2xl aspect-[3/4] md:aspect-[4/3]"
+            style={{ boxShadow: '0 4px 24px rgba(0,0,0,0.12)' }}
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={CARD_SIMPLE}
+              alt="Boite Simple"
+              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+            />
+            {/* subtle dark vignette */}
+            <div
+              className="absolute inset-0"
+              style={{ background: 'radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.25) 100%)' }}
+            />
+            {/* hover overlay */}
+            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-300" />
+          </div>
+
+          {/* Text below image */}
+          <div className="pt-4 px-1">
+            <p className="text-[9px] md:text-[10px] font-black uppercase tracking-[0.25em] text-gray-400 mb-1">
               Collection Hommes
             </p>
-            <h3 className="text-lg md:text-3xl font-black uppercase tracking-wider text-white leading-tight">
+            <h3 className="text-base md:text-xl font-black uppercase tracking-wider text-black leading-tight">
               Boite Simple
             </h3>
-            <p className="text-[9px] md:text-xs text-white/60 mt-1 font-semibold">
+            <p className="text-[10px] md:text-xs text-gray-400 mt-1 font-semibold">
               {simpleCount} article{simpleCount > 1 ? 's' : ''}
             </p>
-            <div className="mt-4">
-              <span className="inline-block text-[10px] md:text-xs font-black uppercase tracking-widest text-white border border-white/50 px-4 py-2 rounded-full group-hover:bg-white group-hover:text-black transition-all duration-300">
+            <div className="mt-3">
+              <span className="inline-block text-[10px] md:text-xs font-black uppercase tracking-widest text-black border border-black px-4 py-2 rounded-full group-hover:bg-black group-hover:text-white transition-all duration-300">
                 Voir →
               </span>
             </div>
@@ -85,38 +93,45 @@ export default function HommeSection({ products }: Props) {
         {/* AVEC COFFRET */}
         <button
           onClick={() => router.push('/collection/homme-coffret')}
-          className="relative group overflow-hidden rounded-2xl aspect-[3/4] md:aspect-[4/3] text-left"
-          style={{ boxShadow: '0 4px 24px rgba(0,0,0,0.12)' }}
+          className="group text-left flex flex-col"
         >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={CARD_COFFRET}
-            alt="Avec Coffret"
-            className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-          />
+          {/* Image */}
           <div
-            className="absolute inset-0"
-            style={{
-              background: 'linear-gradient(160deg, rgba(100,55,5,0.65) 0%, rgba(80,40,0,0.15) 55%, rgba(100,55,5,0.60) 100%)',
-            }}
-          />
-          <div className="absolute inset-0 flex flex-col justify-end p-4 md:p-7">
-            <p className="text-[9px] md:text-[10px] font-black uppercase tracking-[0.25em] text-white/60 mb-1">
+            className="relative w-full overflow-hidden rounded-2xl aspect-[3/4] md:aspect-[4/3]"
+            style={{ boxShadow: '0 4px 24px rgba(0,0,0,0.12)' }}
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={CARD_COFFRET}
+              alt="Avec Coffret"
+              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+            />
+            <div
+              className="absolute inset-0"
+              style={{ background: 'radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.25) 100%)' }}
+            />
+            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-300" />
+          </div>
+
+          {/* Text below image */}
+          <div className="pt-4 px-1">
+            <p className="text-[9px] md:text-[10px] font-black uppercase tracking-[0.25em] text-gray-400 mb-1">
               Collection Hommes
             </p>
-            <h3 className="text-lg md:text-3xl font-black uppercase tracking-wider text-white leading-tight">
+            <h3 className="text-base md:text-xl font-black uppercase tracking-wider text-black leading-tight">
               Avec Coffret
             </h3>
-            <p className="text-[9px] md:text-xs text-white/60 mt-1 font-semibold">
+            <p className="text-[10px] md:text-xs text-gray-400 mt-1 font-semibold">
               {coffretCount} article{coffretCount > 1 ? 's' : ''}
             </p>
-            <div className="mt-4">
-              <span className="inline-block text-[10px] md:text-xs font-black uppercase tracking-widest text-white border border-white/50 px-4 py-2 rounded-full group-hover:bg-[#C5A059] group-hover:border-[#C5A059] group-hover:text-black transition-all duration-300">
+            <div className="mt-3">
+              <span className="inline-block text-[10px] md:text-xs font-black uppercase tracking-widest text-black border border-[#C5A059] text-[#C5A059] px-4 py-2 rounded-full group-hover:bg-[#C5A059] group-hover:text-black transition-all duration-300">
                 Voir →
               </span>
             </div>
           </div>
         </button>
+
       </div>
     </section>
   )
