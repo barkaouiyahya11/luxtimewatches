@@ -9,7 +9,6 @@ interface Props {
 
 export default function ProductCard({ product }: Props) {
   const router = useRouter()
-  const discount = Math.round((1 - product.price / product.originalPrice) * 100)
 
   return (
     <div
@@ -19,14 +18,6 @@ export default function ProductCard({ product }: Props) {
     >
       {/* Image */}
       <div className="relative w-full aspect-square overflow-hidden mb-3" style={{ borderRadius: '6px' }}>
-        {product.hot && (
-          <div className="absolute top-2 left-2 bg-red-600 text-white text-[8px] font-black px-2 py-0.5 uppercase z-10">
-            HOT
-          </div>
-        )}
-        <div className="absolute top-2 right-2 z-10 bg-red-500 text-white text-[8px] font-black px-1.5 py-0.5">
-          -{discount}%
-        </div>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={product.gridImg}
