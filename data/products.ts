@@ -138,21 +138,6 @@ export const products: Product[] = [
     coffret: true,
   },
   {
-    id: 104,
-    sku: 'hlm679',
-    cat: 'homme',
-    name: 'CASIO',
-    price: 149,
-    originalPrice: 199,
-    stock: 3,
-    rating: 4.9,
-    reviews: 0,
-    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1777763150/luxtim/gg04p10cwkpcmezbxhqc.jpg',
-    detailImgs: [
-      'https://res.cloudinary.com/dannr2e0c/image/upload/v1777763150/luxtim/gg04p10cwkpcmezbxhqc.jpg',
-    ],
-  },
-  {
     id: 105,
     sku: 'LTF374',
     cat: 'homme',
@@ -162,12 +147,14 @@ export const products: Product[] = [
     stock: 5,
     rating: 4.9,
     reviews: 0,
-    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1777764340/luxtim/ij8qgum0dji3phdmblz9.jpg',
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1777763150/luxtim/gg04p10cwkpcmezbxhqc.jpg',
     detailImgs: [
-      'https://res.cloudinary.com/dannr2e0c/image/upload/v1777764340/luxtim/ij8qgum0dji3phdmblz9.jpg',
+      'https://res.cloudinary.com/dannr2e0c/image/upload/v1777763150/luxtim/gg04p10cwkpcmezbxhqc.jpg',
+      'https://res.cloudinary.com/dannr2e0c/image/upload/v1777764472/luxtim/ibpnqyspsdkzqdeghos1.jpg',
     ],
     colors: [
-      { name: 'GRIS TABLEAU BLANC', img: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1777764472/luxtim/ibpnqyspsdkzqdeghos1.jpg' },
+      { name: 'TABLEAU NOIR', img: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1777763150/luxtim/gg04p10cwkpcmezbxhqc.jpg' },
+      { name: 'TABLEAU BLANC', img: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1777764472/luxtim/ibpnqyspsdkzqdeghos1.jpg' },
     ],
   },
 ]
