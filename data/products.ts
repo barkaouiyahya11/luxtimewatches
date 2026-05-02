@@ -121,4 +121,20 @@ export const products: Product[] = [
       'https://res.cloudinary.com/dannr2e0c/image/upload/v1777682816/luxtim/v2ohmelglcmvwzqjrfw7.jpg',
     ],
   },
+  {
+    id: 103,
+    sku: 'hlm678',
+    cat: 'homme',
+    name: 'CARTIER',
+    price: 350,
+    originalPrice: 450,
+    stock: 3,
+    rating: 4.9,
+    reviews: 0,
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1777761983/luxtim/slld3zfcnoslxf9m7xla.jpg',
+    detailImgs: [
+      'https://res.cloudinary.com/dannr2e0c/image/upload/v1777761983/luxtim/slld3zfcnoslxf9m7xla.jpg',
+    ],
+    coffret: true,
+  },
 ]
