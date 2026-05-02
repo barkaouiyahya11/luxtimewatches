@@ -8,21 +8,55 @@ interface Props {
   currentUrl?: string
 }
 
+// Compress image to max 1400px and JPEG 0.85 quality before upload
+async function compressImage(file: File): Promise<Blob> {
+  return new Promise((resolve) => {
+    const img = new Image()
+    const url = URL.createObjectURL(file)
+    img.onload = () => {
+      URL.revokeObjectURL(url)
+      const MAX = 1400
+      let { width, height } = img
+      if (width > MAX || height > MAX) {
+        if (width > height) {
+          height = Math.round((height * MAX) / width)
+          width = MAX
+        } else {
+          width = Math.round((width * MAX) / height)
+          height = MAX
+        }
+      }
+      const canvas = document.createElement('canvas')
+      canvas.width = width
+      canvas.height = height
+      const ctx = canvas.getContext('2d')!
+      ctx.drawImage(img, 0, 0, width, height)
+      canvas.toBlob(
+        (blob) => resolve(blob ?? file),
+        'image/jpeg',
+        0.85
+      )
+    }
+    img.onerror = () => {
+      URL.revokeObjectURL(url)
+      resolve(file) // fallback: upload original
+    }
+    img.src = url
+  })
+}
+
 export default function ImageUpload({ label = 'Image', onUpload, currentUrl }: Props) {
   const [preview, setPreview] = useState<string>(currentUrl || '')
   const [uploading, setUploading] = useState(false)
+  const [progress, setProgress] = useState('')
   const [error, setError] = useState('')
   const [dragging, setDragging] = useState(false)
   const inputRef = useRef<HTMLInputElement>(null)
 
   async function uploadFile(file: File) {
-    if (!file.type.startsWith('image/') && !file.name.toLowerCase().endsWith('.heic') && !file.name.toLowerCase().endsWith('.heif')) {
-      setError('Fichier invalide — sélectionnez une image.')
-      return
-    }
-
     setUploading(true)
     setError('')
+    setProgress('Compression…')
 
     // Local preview immediately
     const reader = new FileReader()
@@ -30,18 +64,32 @@ export default function ImageUpload({ label = 'Image', onUpload, currentUrl }: P
     reader.readAsDataURL(file)
 
     try {
+      // Compress before upload
+      const compressed = await compressImage(file)
+      setProgress('Upload en cours…')
+
       const formData = new FormData()
-      formData.append('file', file)
+      formData.append('file', compressed, 'image.jpg')
 
       const res = await fetch('/api/upload', { method: 'POST', body: formData })
-      const data = await res.json()
+
+      // Handle non-JSON responses (413, 500, etc.)
+      const text = await res.text()
+      let data: { url?: string; error?: string }
+      try {
+        data = JSON.parse(text)
+      } catch {
+        throw new Error(res.status === 413 ? 'Image trop lourde même après compression' : `Erreur serveur (${res.status})`)
+      }
 
       if (!res.ok || data.error) throw new Error(data.error || 'Upload échoué')
 
-      onUpload(data.url)
-      setPreview(data.url)
+      onUpload(data.url!)
+      setPreview(data.url!)
+      setProgress('')
     } catch (e: unknown) {
       setError(e instanceof Error ? e.message : 'Erreur upload')
+      setProgress('')
     } finally {
       setUploading(false)
     }
@@ -89,7 +137,7 @@ export default function ImageUpload({ label = 'Image', onUpload, currentUrl }: P
               {uploading ? '⏳' : '📷'}
             </div>
             <p className="text-[10px] font-bold uppercase tracking-widest text-center">
-              {uploading ? 'Upload en cours…' : 'Cliquer ou glisser une image'}
+              {uploading ? progress : 'Cliquer ou glisser une image'}
             </p>
           </div>
         )}
@@ -99,7 +147,7 @@ export default function ImageUpload({ label = 'Image', onUpload, currentUrl }: P
             <div className="flex flex-col items-center gap-2">
               <div className="w-8 h-8 border-2 border-white border-t-transparent rounded-full animate-spin" />
               <span className="text-white text-[10px] font-black uppercase tracking-widest">
-                Upload…
+                {progress}
               </span>
             </div>
           </div>
@@ -110,7 +158,7 @@ export default function ImageUpload({ label = 'Image', onUpload, currentUrl }: P
         <p className="text-red-500 text-[10px] font-bold">{error}</p>
       )}
 
-      {preview && !uploading && (
+      {preview && !uploading && !error && (
         <p className="text-green-600 text-[10px] font-bold truncate">✓ Image uploadée</p>
       )}
 
