@@ -11,6 +11,7 @@ export interface Product {
   gridImg: string
   detailImgs: string[]
   hot?: boolean
+  coffret?: boolean
 }
 
 export interface CartItem extends Product {
