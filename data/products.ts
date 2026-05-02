@@ -204,4 +204,19 @@ export const products: Product[] = [
     ],
     hot: true,
   },
+  {
+    id: 100,
+    sku: 'htl876',
+    cat: 'homme',
+    name: 'GUESS',
+    price: 199,
+    originalPrice: 237,
+    stock: 3,
+    rating: 4.9,
+    reviews: 0,
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1777682816/luxtim/v2ohmelglcmvwzqjrfw7.jpg',
+    detailImgs: [
+      'https://res.cloudinary.com/dannr2e0c/image/upload/v1777682816/luxtim/v2ohmelglcmvwzqjrfw7.jpg',
+    ],
+  },
 ]

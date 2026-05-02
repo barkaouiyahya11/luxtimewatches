@@ -39,7 +39,10 @@ export default function GoldBanner() {
                 aspectRatio: '1/1',
                 border: '3px solid #C5A059',
                 width: '100%',
-                maxWidth: '400px', // Prevents it from getting too large on wide screens if grid is loose
+                maxWidth: '400px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
               }}
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -50,7 +53,8 @@ export default function GoldBanner() {
                   width: '100%',
                   height: '100%',
                   objectFit: 'cover',
-                  objectPosition: 'center',
+                  objectPosition: 'center center',
+                  display: 'block',
                 }}
               />
             </div>
