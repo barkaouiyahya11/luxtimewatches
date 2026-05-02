@@ -137,4 +137,19 @@ export const products: Product[] = [
     ],
     coffret: true,
   },
+  {
+    id: 104,
+    sku: 'hlm679',
+    cat: 'homme',
+    name: 'CASIO',
+    price: 149,
+    originalPrice: 199,
+    stock: 3,
+    rating: 4.9,
+    reviews: 0,
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1777763150/luxtim/gg04p10cwkpcmezbxhqc.jpg',
+    detailImgs: [
+      'https://res.cloudinary.com/dannr2e0c/image/upload/v1777763150/luxtim/gg04p10cwkpcmezbxhqc.jpg',
+    ],
+  },
 ]
