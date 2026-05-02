@@ -89,7 +89,6 @@ export const products: Product[] = [
       'https://res.cloudinary.com/dannr2e0c/image/upload/v1777670578/luxtim/cdtdfhnvlqd3iybgmps5.jpg',
     ],
     hot: true,
-    coffret: true,
   },
   {
     id: 102,
@@ -106,7 +105,6 @@ export const products: Product[] = [
       'https://res.cloudinary.com/dannr2e0c/image/upload/v1777675221/luxtim/espf5fbjdccmvejteldv.jpg',
     ],
     hot: true,
-    coffret: true,
   },
   {
     id: 100,
