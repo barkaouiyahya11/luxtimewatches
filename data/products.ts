@@ -75,22 +75,6 @@ export const products: Product[] = [
     ],
   },
   {
-    id: 101,
-    sku: 'htl212',
-    cat: 'homme',
-    name: 'ROLEX',
-    price: 180,
-    originalPrice: 230,
-    stock: 5,
-    rating: 4.9,
-    reviews: 0,
-    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1777670578/luxtim/cdtdfhnvlqd3iybgmps5.jpg',
-    detailImgs: [
-      'https://res.cloudinary.com/dannr2e0c/image/upload/v1777670578/luxtim/cdtdfhnvlqd3iybgmps5.jpg',
-    ],
-    hot: true,
-  },
-  {
     id: 102,
     sku: 'LTF221',
     cat: 'homme',
