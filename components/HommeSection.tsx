@@ -61,6 +61,7 @@ export default function HommeSection({ products }: Props) {
               src={CARD_SIMPLE}
               alt="Boite Simple"
               className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              style={{ objectPosition: 'top center' }}
             />
             {/* subtle dark vignette */}
             <div
@@ -105,6 +106,7 @@ export default function HommeSection({ products }: Props) {
               src={CARD_COFFRET}
               alt="Avec Coffret"
               className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              style={{ objectPosition: 'top center' }}
             />
             <div
               className="absolute inset-0"
