@@ -17,6 +17,7 @@ interface ProductForm {
   detailImg1: string
   detailImg2: string
   hot: boolean
+  coffret: boolean
 }
 
 const EMPTY: ProductForm = {
@@ -30,6 +31,7 @@ const EMPTY: ProductForm = {
   detailImg1: '',
   detailImg2: '',
   hot: false,
+  coffret: false,
 }
 
 function generateCode(form: ProductForm, id: number): string {
@@ -47,7 +49,7 @@ function generateCode(form: ProductForm, id: number): string {
     gridImg: '${form.gridImg}',
     detailImgs: [
 ${detailImgs.map((u) => `      '${u}'`).join(',\n')},
-    ],${form.hot ? '\n    hot: true,' : ''}
+    ],${form.hot ? '\n    hot: true,' : ''}${form.coffret ? '\n    coffret: true,' : ''}
   },`
 }
 
@@ -564,20 +566,22 @@ const CARD_COFFRET = '${cartes.coffret || currentCoffret}'`
                 </div>
               </div>
 
-              {/* Stock + HOT */}
+              {/* Stock */}
+              <div className="flex flex-col gap-1.5">
+                <label className="text-[10px] font-black uppercase tracking-widest text-gray-400">
+                  Stock
+                </label>
+                <input
+                  type="number"
+                  value={form.stock}
+                  onChange={(e) => set('stock', e.target.value)}
+                  className="bg-black/50 border border-white/10 focus:border-[#C5A059] rounded-lg px-4 py-2.5 text-sm outline-none transition"
+                  placeholder="5"
+                />
+              </div>
+
+              {/* HOT + COFFRET */}
               <div className="grid grid-cols-2 gap-3">
-                <div className="flex flex-col gap-1.5">
-                  <label className="text-[10px] font-black uppercase tracking-widest text-gray-400">
-                    Stock
-                  </label>
-                  <input
-                    type="number"
-                    value={form.stock}
-                    onChange={(e) => set('stock', e.target.value)}
-                    className="bg-black/50 border border-white/10 focus:border-[#C5A059] rounded-lg px-4 py-2.5 text-sm outline-none transition"
-                    placeholder="5"
-                  />
-                </div>
                 <div className="flex flex-col gap-1.5">
                   <label className="text-[10px] font-black uppercase tracking-widest text-gray-400">
                     Badge HOT
@@ -591,6 +595,21 @@ const CARD_COFFRET = '${cartes.coffret || currentCoffret}'`
                       }`}
                   >
                     {form.hot ? '🔥 HOT activé' : 'Activer HOT'}
+                  </button>
+                </div>
+                <div className="flex flex-col gap-1.5">
+                  <label className="text-[10px] font-black uppercase tracking-widest text-gray-400">
+                    Avec Coffret
+                  </label>
+                  <button
+                    onClick={() => set('coffret', !form.coffret)}
+                    className={`py-2.5 rounded-lg text-[10px] font-black uppercase tracking-widest transition
+                      ${form.coffret
+                        ? 'bg-[#C5A059] text-black'
+                        : 'bg-black/50 border border-white/10 text-gray-400 hover:border-white/30'
+                      }`}
+                  >
+                    {form.coffret ? '🎁 Coffret activé' : 'Activer Coffret'}
                   </button>
                 </div>
               </div>
