@@ -161,4 +161,19 @@ export const products: Product[] = [
       { name: 'BLEU TURQUOISE', img: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1777765721/luxtim/obyk2zfknwfcsijsdqpl.jpg' },
     ],
   },
+  {
+    id: 107,
+    sku: 'LTE343',
+    cat: 'homme',
+    name: 'PATEK PHILIPPE',
+    price: 199,
+    originalPrice: 249,
+    stock: 5,
+    rating: 4.9,
+    reviews: 0,
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1777767119/luxtim/murorbfnuldn8jwfv5so.jpg',
+    detailImgs: [
+      'https://res.cloudinary.com/dannr2e0c/image/upload/v1777767119/luxtim/murorbfnuldn8jwfv5so.jpg',
+    ],
+  },
 ]
