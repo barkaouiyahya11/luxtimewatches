@@ -22,13 +22,13 @@ export default function HomePage() {
       {/* ── Collection Homme ── */}
       <HommeSection products={homme} />
 
-      <GoldBanner />
-
       {/* ── Showcase avant Femme ── */}
       <ShowcaseSection />
 
       {/* ── Collection Femme ── */}
       <FemmeSection products={femme} />
+
+      <GoldBanner />
 
       <TrustSection />
       <ReviewsSection reviews={approvedReviews} />
