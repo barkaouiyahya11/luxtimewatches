@@ -19,12 +19,13 @@ export default function HomePage() {
       <Hero />
       <AnnouncementBar />
 
-      <ShowcaseSection />
-
       {/* ── Collection Homme ── */}
       <HommeSection products={homme} />
 
       <GoldBanner />
+
+      {/* ── Showcase avant Femme ── */}
+      <ShowcaseSection />
 
       {/* ── Collection Femme ── */}
       <FemmeSection products={femme} />
