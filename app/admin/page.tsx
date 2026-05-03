@@ -202,7 +202,7 @@ ${valid.map((c) => `      { name: '${c.name}', img: '${c.img}' }`).join(',\n')},
     else alert('Mot de passe incorrect')
   }
 
-  function set(field: keyof ProductForm, value: string | boolean) {
+  function set(field: keyof ProductForm, value: string | boolean | number) {
     setForm((f) => ({ ...f, [field]: value }))
   }
 
