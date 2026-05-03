@@ -71,13 +71,18 @@ export default function AdminPage() {
   const [generatedCode, setGeneratedCode] = useState('')
   const [copied, setCopied] = useState(false)
   const [nextId, setNextId] = useState(100)
-  const [tab, setTab] = useState<'product' | 'banner' | 'cartes'>('product')
+  const [tab, setTab] = useState<'product' | 'banner' | 'cartes' | 'colors'>('product')
   const [banner, setBanner] = useState({ img1: '', img2: '', img3: '' })
   const [bannerCode, setBannerCode] = useState('')
   const [bannerCopied, setBannerCopied] = useState(false)
   const [cartes, setCartes] = useState({ simple: '', coffret: '' })
   const [cartesCode, setCartesCode] = useState('')
   const [cartesCopied, setCartesCopied] = useState(false)
+  // Colors editor
+  const [editProductId, setEditProductId] = useState('')
+  const [editColors, setEditColors] = useState<ColorVariant[]>([])
+  const [colorsCode, setColorsCode] = useState('')
+  const [colorsCopied, setColorsCopied] = useState(false)
   const router = useRouter()
 
   function generateBannerCode() {
@@ -124,6 +129,24 @@ const CARD_COFFRET = '${cartes.coffret || currentCoffret}'`
     await navigator.clipboard.writeText(cartesCode)
     setCartesCopied(true)
     setTimeout(() => setCartesCopied(false), 2000)
+  }
+
+  function generateColorsCode() {
+    if (!editProductId) { alert('Entrez l\'ID du produit'); return }
+    const valid = editColors.filter((c) => c.name && c.img)
+    if (valid.length === 0) { alert('Ajoutez au moins une couleur'); return }
+    const code = `Dans data/products.ts, pour le produit id: ${editProductId}, remplacez (ou ajoutez) la propriété colors :
+
+    colors: [
+${valid.map((c) => `      { name: '${c.name}', img: '${c.img}' }`).join(',\n')},
+    ],`
+    setColorsCode(code)
+  }
+
+  async function copyColorsCode() {
+    await navigator.clipboard.writeText(colorsCode)
+    setColorsCopied(true)
+    setTimeout(() => setColorsCopied(false), 2000)
   }
 
   function login() {
@@ -253,6 +276,16 @@ const CARD_COFFRET = '${cartes.coffret || currentCoffret}'`
           >
             🃏 Photos des Cartes Homme
           </button>
+          <button
+            onClick={() => setTab('colors')}
+            className={`px-6 py-3 rounded-xl text-[11px] font-black uppercase tracking-widest transition ${
+              tab === 'colors'
+                ? 'bg-[#C5A059] text-black'
+                : 'bg-white/5 border border-white/10 text-gray-400 hover:border-white/30'
+            }`}
+          >
+            🎨 Modifier les Couleurs
+          </button>
         </div>
 
         {/* Banner Tab */}
@@ -328,6 +361,153 @@ const CARD_COFFRET = '${cartes.coffret || currentCoffret}'`
                     {bannerCode ? (
                       <pre className="text-green-400 text-xs font-mono whitespace-pre-wrap leading-relaxed">
                         {bannerCode}
+                      </pre>
+                    ) : (
+                      <div className="h-full flex items-center justify-center text-gray-600 py-10">
+                        <p className="text-[11px] font-bold uppercase tracking-widest text-center">
+                          Le code apparaîtra ici
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Colors Tab */}
+        {tab === 'colors' && (
+          <div className="flex flex-col gap-6">
+            <div>
+              <h2 className="text-2xl font-serif font-black uppercase tracking-widest text-white mb-2">
+                Modifier les Couleurs d&apos;un Produit
+              </h2>
+              <p className="text-gray-500 text-sm">
+                Ajoutez ou modifiez les variantes de couleur d&apos;un produit existant
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              <div className="flex flex-col gap-5">
+
+                {/* Product ID */}
+                <div className="bg-white/5 border border-white/10 rounded-2xl p-6 flex flex-col gap-4">
+                  <h3 className="text-[11px] font-black uppercase tracking-widest text-[#C5A059]">
+                    🔢 ID du produit
+                  </h3>
+                  <div className="flex flex-col gap-1.5">
+                    <label className="text-[10px] font-black uppercase tracking-widest text-gray-400">
+                      Entrez l&apos;ID du produit à modifier
+                    </label>
+                    <input
+                      type="number"
+                      value={editProductId}
+                      onChange={(e) => setEditProductId(e.target.value)}
+                      placeholder="ex: 106"
+                      className="bg-black/50 border border-white/10 focus:border-[#C5A059] rounded-lg px-4 py-3 text-lg font-black outline-none transition text-white"
+                    />
+                    <p className="text-gray-600 text-[10px]">
+                      IDs actuels — ROLEX: 106 · CASIO: 105 · CARTIER: 102/103 · GUESS: 100
+                    </p>
+                  </div>
+                </div>
+
+                {/* Colors list */}
+                <div className="bg-white/5 border border-white/10 rounded-2xl p-6 flex flex-col gap-4">
+                  <div className="flex items-center justify-between">
+                    <h3 className="text-[11px] font-black uppercase tracking-widest text-[#C5A059]">
+                      🎨 Couleurs
+                    </h3>
+                    <button
+                      onClick={() => setEditColors((c) => [...c, { name: '', img: '' }])}
+                      className="text-[10px] font-black uppercase tracking-widest text-[#C5A059] border border-[#C5A059]/40 px-3 py-1.5 rounded-lg hover:bg-[#C5A059]/10 transition"
+                    >
+                      + Ajouter
+                    </button>
+                  </div>
+
+                  {editColors.length === 0 && (
+                    <p className="text-gray-600 text-[10px] text-center py-4">
+                      Cliquez sur &quot;+ Ajouter&quot; pour ajouter des couleurs
+                    </p>
+                  )}
+
+                  {editColors.map((c, i) => (
+                    <div key={i} className="flex flex-col gap-3 border border-white/10 rounded-xl p-4">
+                      <div className="flex items-center justify-between">
+                        <span className="text-[10px] font-black uppercase text-gray-400">Couleur {i + 1}</span>
+                        <button
+                          onClick={() => setEditColors((arr) => arr.filter((_, j) => j !== i))}
+                          className="text-red-400 text-[10px] font-black hover:text-red-300"
+                        >
+                          ✕ Supprimer
+                        </button>
+                      </div>
+                      <input
+                        value={c.name}
+                        onChange={(e) => setEditColors((arr) =>
+                          arr.map((col, j) => j === i ? { ...col, name: e.target.value } : col)
+                        )}
+                        placeholder="ex: TABLEAU NOIR"
+                        className="bg-black/50 border border-white/10 focus:border-[#C5A059] rounded-lg px-4 py-2.5 text-sm outline-none transition uppercase"
+                      />
+                      <ImageUpload
+                        label={`Photo pour "${c.name || `Couleur ${i + 1}`}"`}
+                        onUpload={(url) => setEditColors((arr) =>
+                          arr.map((col, j) => j === i ? { ...col, img: url } : col)
+                        )}
+                        currentUrl={c.img}
+                      />
+                    </div>
+                  ))}
+
+                  {editColors.length > 0 && (
+                    <button
+                      onClick={generateColorsCode}
+                      className="w-full py-4 bg-[#C5A059] text-black font-black uppercase text-[11px] tracking-widest rounded-xl hover:bg-[#d4b572] transition"
+                    >
+                      ⚡ Générer le code
+                    </button>
+                  )}
+                </div>
+              </div>
+
+              {/* Right: instructions + code */}
+              <div className="flex flex-col gap-4">
+                <div className="bg-[#C5A059]/10 border border-[#C5A059]/30 rounded-2xl p-5">
+                  <h3 className="text-[11px] font-black uppercase tracking-widest text-[#C5A059] mb-3">
+                    📋 Comment utiliser
+                  </h3>
+                  <ol className="text-gray-400 text-xs flex flex-col gap-2 list-decimal list-inside">
+                    <li>Entrez l&apos;ID du produit (ex: 106 pour ROLEX)</li>
+                    <li>Cliquez sur <strong className="text-white">+ Ajouter</strong> pour chaque couleur</li>
+                    <li>Écrivez le nom + uploadez la photo</li>
+                    <li>Cliquez sur <strong className="text-white">Générer le code</strong></li>
+                    <li>Copiez et collez dans Antigravity</li>
+                  </ol>
+                </div>
+
+                <div className="bg-white/5 border border-white/10 rounded-2xl overflow-hidden flex-1">
+                  <div className="flex items-center justify-between px-5 py-3 border-b border-white/10">
+                    <span className="text-[10px] font-black uppercase tracking-widest text-gray-400">
+                      Code généré
+                    </span>
+                    {colorsCode && (
+                      <button
+                        onClick={copyColorsCode}
+                        className={`text-[10px] font-black uppercase px-4 py-1.5 rounded-lg transition ${
+                          colorsCopied ? 'bg-green-500 text-white' : 'bg-[#C5A059] text-black'
+                        }`}
+                      >
+                        {colorsCopied ? '✓ Copié !' : 'Copier'}
+                      </button>
+                    )}
+                  </div>
+                  <div className="p-5 min-h-[200px]">
+                    {colorsCode ? (
+                      <pre className="text-green-400 text-xs font-mono whitespace-pre-wrap leading-relaxed">
+                        {colorsCode}
                       </pre>
                     ) : (
                       <div className="h-full flex items-center justify-center text-gray-600 py-10">
