@@ -111,8 +111,9 @@ export default function ProductDetail({ product }: Props) {
                 alt={product.name}
                 className="w-full h-full object-cover"
                 style={{
-                  transform: zoomed ? 'scale(2.5)' : 'scale(1)',
-                  transformOrigin: zoomed ? zoomOrigin : 'center center',
+                  transform: zoomed ? 'scale(2.5)' : `scale(${product.imgScale || 1})`,
+                  transformOrigin: zoomed ? zoomOrigin : (product.imgPosition || 'center'),
+                  objectPosition: product.imgPosition || 'center',
                   transition: 'transform 0.2s ease',
                 }}
               />

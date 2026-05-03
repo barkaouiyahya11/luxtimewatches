@@ -14,6 +14,8 @@ export interface Product {
   coffret?: boolean
   colors?: { name: string; img: string }[]
   frame?: boolean
+  imgScale?: number
+  imgPosition?: string
 }
 
 export interface CartItem extends Product {

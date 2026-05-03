@@ -34,7 +34,12 @@ export default function ProductCard({ product }: Props) {
           src={product.gridImg}
           alt={product.name}
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-          style={{ borderRadius: '3px' }}
+          style={{
+            borderRadius: '3px',
+            objectPosition: product.imgPosition || 'center',
+            transform: `scale(${product.imgScale || 1})`,
+            transformOrigin: product.imgPosition || 'center',
+          }}
           loading="lazy"
         />
       </div>
