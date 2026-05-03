@@ -11,6 +11,8 @@ const TITLES: Record<string, string> = {
   homme: 'Collection Homme',
   'homme-simple': 'Collection Homme — Boite Simple',
   'homme-coffret': 'Collection Homme — Avec Coffret',
+  'femme-simple': 'Collection Femme — Boite Simple',
+  'femme-coffret': 'Collection Femme — Avec Coffret',
 }
 
 const SUBTITLES: Record<string, string> = {
@@ -18,6 +20,8 @@ const SUBTITLES: Record<string, string> = {
   homme: 'Style & élégance pour homme ✨',
   'homme-simple': 'Montres homme sans packaging ✨',
   'homme-coffret': 'Montres homme avec coffret cadeau 🎁',
+  'femme-simple': 'Montres femme sans packaging ✨',
+  'femme-coffret': 'Montres femme avec coffret cadeau 🎁',
 }
 
 export default function CollectionPage() {
@@ -29,12 +33,14 @@ export default function CollectionPage() {
   const filtered = (() => {
     if (cat === 'homme-simple') return products.filter((p) => p.cat === 'homme' && !p.coffret)
     if (cat === 'homme-coffret') return products.filter((p) => p.cat === 'homme' && p.coffret)
+    if (cat === 'femme-simple') return products.filter((p) => p.cat === 'femme' && !p.coffret)
+    if (cat === 'femme-coffret') return products.filter((p) => p.cat === 'femme' && p.coffret)
     return products.filter((p) => p.cat === cat)
   })()
 
   const title = TITLES[cat] ?? 'Collection'
   const subtitle = SUBTITLES[cat] ?? ''
-  const showBack = cat === 'homme-simple' || cat === 'homme-coffret'
+  const showBack = ['homme-simple', 'homme-coffret', 'femme-simple', 'femme-coffret'].includes(cat)
 
   return (
     <>
