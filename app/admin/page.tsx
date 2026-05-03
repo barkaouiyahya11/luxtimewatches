@@ -1221,23 +1221,28 @@ ${valid.map((c) => `      { name: '${c.name}', img: '${c.img}' }`).join(',\n')},
                       🔍 Ajuster le cadrage
                     </p>
 
-                    {/* Zoom slider */}
+                    {/* Zoom buttons */}
                     <div className="flex flex-col gap-1">
-                      <div className="flex justify-between text-[9px] font-black uppercase text-gray-400">
-                        <span>Zoom</span>
-                        <span className="text-[#C5A059]">{form.imgScale.toFixed(1)}×</span>
+                      <span className="text-[9px] font-black uppercase text-gray-400">Zoom</span>
+                      <div className="flex items-center gap-2">
+                        <button
+                          onClick={() => set('imgScale', Math.max(1, parseFloat((form.imgScale - 0.1).toFixed(1))))}
+                          className="flex-1 py-3 bg-gray-100 text-black text-xl font-black rounded-xl hover:bg-gray-200 transition"
+                        >
+                          −
+                        </button>
+                        <span className="text-base font-black text-black w-12 text-center">
+                          {form.imgScale.toFixed(1)}×
+                        </span>
+                        <button
+                          onClick={() => set('imgScale', Math.min(2, parseFloat((form.imgScale + 0.1).toFixed(1))))}
+                          className="flex-1 py-3 bg-[#C5A059] text-black text-xl font-black rounded-xl hover:bg-[#d4b572] transition"
+                        >
+                          +
+                        </button>
                       </div>
-                      <input
-                        type="range"
-                        min="1"
-                        max="2"
-                        step="0.05"
-                        value={form.imgScale}
-                        onChange={(e) => set('imgScale', parseFloat(e.target.value))}
-                        className="w-full accent-[#C5A059] cursor-pointer h-2"
-                      />
-                      <div className="flex justify-between text-[9px] text-gray-300 font-bold">
-                        <span>Normal</span><span>×2</span>
+                      <div className="flex justify-between text-[9px] text-gray-400 font-bold px-1">
+                        <span>1.0× = normal</span><span>2.0× = zoom max</span>
                       </div>
                     </div>
 
