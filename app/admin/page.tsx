@@ -77,7 +77,7 @@ export default function AdminPage() {
   const [generatedCode, setGeneratedCode] = useState('')
   const [copied, setCopied] = useState(false)
   const [nextId, setNextId] = useState(100)
-  const [tab, setTab] = useState<'product' | 'banner' | 'cartes' | 'cartesfemme' | 'colors' | 'vitrine'>('product')
+  const [tab, setTab] = useState<'product' | 'banner' | 'cartes' | 'cartesfemme' | 'colors' | 'vitrine' | 'showcase'>('product')
   const [banner, setBanner] = useState({ img1: '', img2: '', img3: '' })
   const [bannerCode, setBannerCode] = useState('')
   const [bannerCopied, setBannerCopied] = useState(false)
@@ -87,6 +87,11 @@ export default function AdminPage() {
   const [cartesFemme, setCartesFemme] = useState({ simple: '', coffret: '' })
   const [cartesFemmeCode, setCartesFemmeCode] = useState('')
   const [cartesFemmeCopied, setCartesFemmeCopied] = useState(false)
+  // Showcase section
+  const [showcaseImg, setShowcaseImg] = useState('')
+  const [showcaseCode, setShowcaseCode] = useState('')
+  const [showcaseCopied, setShowcaseCopied] = useState(false)
+
   // Vitrine section
   const [vitrineImg, setVitrineImg] = useState('')
   const [vitrineCode, setVitrineCode] = useState('')
@@ -163,6 +168,20 @@ const CARD_COFFRET = '${cartes.coffret || currentCoffret}'`
     await navigator.clipboard.writeText(cartesCode)
     setCartesCopied(true)
     setTimeout(() => setCartesCopied(false), 2000)
+  }
+
+  function generateShowcaseCode() {
+    if (!showcaseImg) { alert('Uploadez une photo'); return }
+    const code = `Dans components/ShowcaseSection.tsx, remplacez la ligne SHOWCASE_IMG par :
+
+export const SHOWCASE_IMG = '${showcaseImg}'`
+    setShowcaseCode(code)
+  }
+
+  async function copyShowcaseCode() {
+    await navigator.clipboard.writeText(showcaseCode)
+    setShowcaseCopied(true)
+    setTimeout(() => setShowcaseCopied(false), 2000)
   }
 
   function generateVitrineCode() {
@@ -303,6 +322,16 @@ ${valid.map((c) => `      { name: '${c.name}', img: '${c.img}' }`).join(',\n')},
             }`}
           >
             🛍️ Ajouter un produit
+          </button>
+          <button
+            onClick={() => setTab('showcase')}
+            className={`px-6 py-3 rounded-xl text-[11px] font-black uppercase tracking-widest transition ${
+              tab === 'showcase'
+                ? 'bg-[#C5A059] text-black'
+                : 'bg-white/5 border border-white/10 text-gray-400 hover:border-white/30'
+            }`}
+          >
+            🌟 Photo Showcase
           </button>
           <button
             onClick={() => setTab('cartes')}
@@ -768,6 +797,80 @@ ${valid.map((c) => `      { name: '${c.name}', img: '${c.img}' }`).join(',\n')},
                         <p className="text-[11px] font-bold uppercase tracking-widest text-center">
                           Le code apparaîtra ici
                         </p>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Showcase Tab */}
+        {tab === 'showcase' && (
+          <div className="flex flex-col gap-6">
+            <div>
+              <h2 className="text-2xl font-serif font-black uppercase tracking-widest text-white mb-2">
+                Photo Showcase
+              </h2>
+              <p className="text-gray-500 text-sm">
+                La grande photo pleine largeur en haut de la page d&apos;accueil
+              </p>
+            </div>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              <div className="bg-white/5 border border-white/10 rounded-2xl p-6 flex flex-col gap-5">
+                <h3 className="text-[11px] font-black uppercase tracking-widest text-[#C5A059]">
+                  📷 Photo pleine largeur
+                </h3>
+                <ImageUpload
+                  label="Photo showcase (pleine largeur)"
+                  onUpload={(url) => setShowcaseImg(url)}
+                  currentUrl={showcaseImg}
+                />
+                {showcaseImg && (
+                  <div>
+                    <p className="text-[9px] font-black uppercase tracking-widest text-gray-500 mb-2">Aperçu</p>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={showcaseImg} alt="aperçu" className="w-full rounded-xl object-cover" style={{ maxHeight: '200px' }} />
+                  </div>
+                )}
+                <button
+                  onClick={generateShowcaseCode}
+                  className="w-full py-4 bg-[#C5A059] text-black font-black uppercase text-[11px] tracking-widest rounded-xl hover:bg-[#d4b572] transition"
+                >
+                  ⚡ Générer le code
+                </button>
+              </div>
+              <div className="flex flex-col gap-4">
+                <div className="bg-[#C5A059]/10 border border-[#C5A059]/30 rounded-2xl p-5">
+                  <h3 className="text-[11px] font-black uppercase tracking-widest text-[#C5A059] mb-3">
+                    📋 Comment utiliser
+                  </h3>
+                  <ol className="text-gray-400 text-xs flex flex-col gap-2 list-decimal list-inside">
+                    <li>Uploadez votre photo</li>
+                    <li>Cliquez sur <strong className="text-white">Générer le code</strong></li>
+                    <li>Copiez et collez dans Antigravity</li>
+                    <li>Antigravity met à jour et déploie</li>
+                  </ol>
+                </div>
+                <div className="bg-white/5 border border-white/10 rounded-2xl overflow-hidden flex-1">
+                  <div className="flex items-center justify-between px-5 py-3 border-b border-white/10">
+                    <span className="text-[10px] font-black uppercase tracking-widest text-gray-400">Code généré</span>
+                    {showcaseCode && (
+                      <button
+                        onClick={copyShowcaseCode}
+                        className={`text-[10px] font-black uppercase px-4 py-1.5 rounded-lg transition ${showcaseCopied ? 'bg-green-500 text-white' : 'bg-[#C5A059] text-black'}`}
+                      >
+                        {showcaseCopied ? '✓ Copié !' : 'Copier'}
+                      </button>
+                    )}
+                  </div>
+                  <div className="p-5 min-h-[150px]">
+                    {showcaseCode ? (
+                      <pre className="text-green-400 text-xs font-mono whitespace-pre-wrap leading-relaxed">{showcaseCode}</pre>
+                    ) : (
+                      <div className="h-full flex items-center justify-center text-gray-600 py-10">
+                        <p className="text-[11px] font-bold uppercase tracking-widest text-center">Le code apparaîtra ici</p>
                       </div>
                     )}
                   </div>
