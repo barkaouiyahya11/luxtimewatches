@@ -34,7 +34,7 @@ export default function GoldBanner() {
               key={img.src} 
               className="gold-banner-item mx-auto"
               style={{
-                borderRadius: '50%',
+                borderRadius: '16px',
                 overflow: 'hidden',
                 aspectRatio: '1/1',
                 border: '3px solid #C5A059',
