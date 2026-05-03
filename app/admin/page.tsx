@@ -1090,58 +1090,6 @@ ${valid.map((c) => `      { name: '${c.name}', img: '${c.img}' }`).join(',\n')},
                   )}
                 </div>
 
-                {/* Zoom control */}
-                <div className="flex flex-col gap-2">
-                  <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 flex items-center justify-between">
-                    🔍 Zoom photo
-                    <span className="text-[#C5A059]">{form.imgScale.toFixed(1)}×</span>
-                  </label>
-                  <input
-                    type="range"
-                    min="1"
-                    max="2"
-                    step="0.05"
-                    value={form.imgScale}
-                    onChange={(e) => set('imgScale', parseFloat(e.target.value))}
-                    className="w-full accent-[#C5A059] cursor-pointer"
-                  />
-                  <div className="flex justify-between text-[9px] text-gray-600 font-bold">
-                    <span>Normal</span><span>Zoom ×2</span>
-                  </div>
-                </div>
-
-                {/* Position control */}
-                <div className="flex flex-col gap-2">
-                  <label className="text-[10px] font-black uppercase tracking-widest text-gray-400">
-                    🎯 Position de la photo
-                  </label>
-                  <div className="grid grid-cols-3 gap-1.5">
-                    {[
-                      { label: '↖', val: 'top left' },
-                      { label: '↑', val: 'top' },
-                      { label: '↗', val: 'top right' },
-                      { label: '←', val: 'left' },
-                      { label: '⊙', val: 'center' },
-                      { label: '→', val: 'right' },
-                      { label: '↙', val: 'bottom left' },
-                      { label: '↓', val: 'bottom' },
-                      { label: '↘', val: 'bottom right' },
-                    ].map(({ label, val }) => (
-                      <button
-                        key={val}
-                        onClick={() => set('imgPosition', val)}
-                        className={`py-2 rounded-lg text-sm font-black transition ${
-                          form.imgPosition === val
-                            ? 'bg-[#C5A059] text-black'
-                            : 'bg-black/40 border border-white/10 text-gray-400 hover:border-white/30'
-                        }`}
-                      >
-                        {label}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
               </div>
             </div>
 
@@ -1263,6 +1211,63 @@ ${valid.map((c) => `      { name: '${c.name}', img: '${c.img}' }`).join(',\n')},
                         <p className="text-black font-black text-xs tracking-wide">
                           {form.price || '000'}.00 <span className="text-[10px] text-gray-500 font-semibold">MAD</span>
                         </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* ── Zoom + Position controls ── */}
+                  <div className="border-t border-gray-100 pt-4 flex flex-col gap-3">
+                    <p className="text-[10px] font-black uppercase tracking-widest text-gray-700">
+                      🔍 Ajuster le cadrage
+                    </p>
+
+                    {/* Zoom slider */}
+                    <div className="flex flex-col gap-1">
+                      <div className="flex justify-between text-[9px] font-black uppercase text-gray-400">
+                        <span>Zoom</span>
+                        <span className="text-[#C5A059]">{form.imgScale.toFixed(1)}×</span>
+                      </div>
+                      <input
+                        type="range"
+                        min="1"
+                        max="2"
+                        step="0.05"
+                        value={form.imgScale}
+                        onChange={(e) => set('imgScale', parseFloat(e.target.value))}
+                        className="w-full accent-[#C5A059] cursor-pointer h-2"
+                      />
+                      <div className="flex justify-between text-[9px] text-gray-300 font-bold">
+                        <span>Normal</span><span>×2</span>
+                      </div>
+                    </div>
+
+                    {/* Position grid */}
+                    <div className="flex flex-col gap-1">
+                      <span className="text-[9px] font-black uppercase text-gray-400">Position</span>
+                      <div className="grid grid-cols-3 gap-1">
+                        {[
+                          { label: '↖', val: 'top left' },
+                          { label: '↑', val: 'top' },
+                          { label: '↗', val: 'top right' },
+                          { label: '←', val: 'left' },
+                          { label: '⊙', val: 'center' },
+                          { label: '→', val: 'right' },
+                          { label: '↙', val: 'bottom left' },
+                          { label: '↓', val: 'bottom' },
+                          { label: '↘', val: 'bottom right' },
+                        ].map(({ label, val }) => (
+                          <button
+                            key={val}
+                            onClick={() => set('imgPosition', val)}
+                            className={`py-2 rounded-lg text-sm font-black transition border ${
+                              form.imgPosition === val
+                                ? 'bg-[#C5A059] text-black border-[#C5A059]'
+                                : 'bg-gray-50 border-gray-200 text-gray-500 hover:border-gray-400'
+                            }`}
+                          >
+                            {label}
+                          </button>
+                        ))}
                       </div>
                     </div>
                   </div>
