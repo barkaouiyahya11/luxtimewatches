@@ -6,6 +6,7 @@ import ReviewsSection from '@/components/ReviewsSection'
 import Footer from '@/components/Footer'
 import HommeSection from '@/components/HommeSection'
 import FemmeSection from '@/components/FemmeSection'
+import VitrineSection from '@/components/VitrineSection'
 import { approvedReviews } from '@/data/reviews'
 import { products } from '@/data/products'
 
@@ -26,6 +27,7 @@ export default function HomePage() {
       {/* ── Collection Femme ── */}
       <FemmeSection products={femme} />
 
+      <VitrineSection />
       <TrustSection />
       <ReviewsSection reviews={approvedReviews} />
       <Footer />
