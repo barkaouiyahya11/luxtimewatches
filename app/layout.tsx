@@ -42,12 +42,11 @@ export const metadata: Metadata = {
     'LUX TIME — Montres de luxe au Maroc. Collections Femme & Homme. Livraison gratuite partout au Maroc. Paiement à la livraison.',
   keywords: 'montres luxe maroc, lux time, montre femme maroc, montre homme maroc, montre or maroc',
   openGraph: {
-    title: 'LUX TIME - Montres de Luxe au Maroc',
-    description: 'Découvrez nos collections exclusives Femme & Homme. Livraison gratuite partout au Maroc.',
-    images: ['https://i.ibb.co/21qpthxC/Chat-GPT-Image-26-mars-2026-16-11-01.png'],
+    title: 'LUX TIME — Montres de Luxe au Maroc',
+    description: '⌚ Montres de luxe · Livraison gratuite au Maroc\nPaiement à la livraison 🇲🇦',
     type: 'website',
   },
-  twitter: { card: 'summary_large_image' },
+  twitter: { card: 'summary' },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
