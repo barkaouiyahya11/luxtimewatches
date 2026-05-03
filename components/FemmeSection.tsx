@@ -60,6 +60,7 @@ export default function FemmeSection({ products }: Props) {
               src={CARD_SIMPLE}
               alt="Boite Simple"
               className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              style={{ objectPosition: 'center bottom' }}
             />
             <div
               className="absolute inset-0"
