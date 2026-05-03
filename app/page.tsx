@@ -19,6 +19,8 @@ export default function HomePage() {
       <Hero />
       <AnnouncementBar />
 
+      <GoldBanner />
+
       {/* ── Collection Homme ── */}
       <HommeSection products={homme} />
 
@@ -27,8 +29,6 @@ export default function HomePage() {
 
       {/* ── Collection Femme ── */}
       <FemmeSection products={femme} />
-
-      <GoldBanner />
 
       <TrustSection />
       <ReviewsSection reviews={approvedReviews} />
