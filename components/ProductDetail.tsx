@@ -89,8 +89,20 @@ export default function ProductDetail({ product }: Props) {
           {/* Images */}
           <div className="w-full md:w-1/2 flex flex-col gap-4">
             <div
-              className="relative aspect-square rounded-xl overflow-hidden shadow-lg"
-              style={{ cursor: zoomed ? 'zoom-out' : 'zoom-in' }}
+              className="relative aspect-square overflow-hidden"
+              style={{
+                cursor: zoomed ? 'zoom-out' : 'zoom-in',
+                ...(product.frame ? {
+                  border: '4px solid #C5A059',
+                  boxShadow: 'inset 0 0 0 3px #fff, inset 0 0 0 4px #C5A059, 0 8px 32px rgba(197,160,89,0.3)',
+                  borderRadius: '10px',
+                  padding: '6px',
+                  background: '#fff',
+                } : {
+                  borderRadius: '12px',
+                  boxShadow: '0 4px 20px rgba(0,0,0,0.1)',
+                }),
+              }}
               onClick={handleZoom}
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}

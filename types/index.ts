@@ -13,6 +13,7 @@ export interface Product {
   hot?: boolean
   coffret?: boolean
   colors?: { name: string; img: string }[]
+  frame?: boolean
 }
 
 export interface CartItem extends Product {

@@ -23,6 +23,7 @@ interface ProductForm {
   detailImg2: string
   hot: boolean
   coffret: boolean
+  frame: boolean
   colors: ColorVariant[]
 }
 
@@ -38,6 +39,7 @@ const EMPTY: ProductForm = {
   detailImg2: '',
   hot: false,
   coffret: false,
+  frame: false,
   colors: [],
 }
 
@@ -60,7 +62,7 @@ function generateCode(form: ProductForm, id: number): string {
     gridImg: '${form.gridImg}',
     detailImgs: [
 ${detailImgs.map((u) => `      '${u}'`).join(',\n')},
-    ],${form.hot ? '\n    hot: true,' : ''}${form.coffret ? '\n    coffret: true,' : ''}${colorsCode}
+    ],${form.hot ? '\n    hot: true,' : ''}${form.coffret ? '\n    coffret: true,' : ''}${form.frame ? '\n    frame: true,' : ''}${colorsCode}
   },`
 }
 
@@ -1061,6 +1063,29 @@ ${valid.map((c) => `      { name: '${c.name}', img: '${c.img}' }`).join(',\n')},
                     {form.coffret ? '🎁 Coffret activé' : 'Activer Coffret'}
                   </button>
                 </div>
+
+                {/* Frame toggle */}
+                <div className="flex flex-col gap-2">
+                  <label className="text-[10px] font-black uppercase tracking-widest text-gray-400">
+                    Cadre Photo
+                  </label>
+                  <button
+                    onClick={() => set('frame', !form.frame)}
+                    className={`py-2.5 rounded-lg text-[10px] font-black uppercase tracking-widest transition
+                      ${form.frame
+                        ? 'bg-[#C5A059] text-black'
+                        : 'bg-black/50 border border-white/10 text-gray-400 hover:border-white/30'
+                      }`}
+                  >
+                    {form.frame ? '🖼️ Cadre activé' : 'Activer Cadre'}
+                  </button>
+                  {form.frame && (
+                    <p className="text-[9px] text-[#C5A059]/70 font-semibold">
+                      ✓ La photo s&apos;affichera avec un cadre doré
+                    </p>
+                  )}
+                </div>
+
               </div>
             </div>
 

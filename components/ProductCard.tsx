@@ -17,12 +17,24 @@ export default function ProductCard({ product }: Props) {
       onClick={() => router.push(`/product/${product.id}`)}
     >
       {/* Image */}
-      <div className="relative w-full aspect-square overflow-hidden mb-3" style={{ borderRadius: '6px' }}>
+      <div
+        className="relative w-full aspect-square overflow-hidden mb-3"
+        style={{
+          borderRadius: '6px',
+          ...(product.frame ? {
+            border: '3px solid #C5A059',
+            boxShadow: 'inset 0 0 0 2px #fff, 0 0 0 1px #C5A059, 0 4px 18px rgba(197,160,89,0.25)',
+            padding: '4px',
+            background: '#fff',
+          } : {}),
+        }}
+      >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={product.gridImg}
           alt={product.name}
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+          style={{ borderRadius: '3px' }}
           loading="lazy"
         />
       </div>
