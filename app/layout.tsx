@@ -4,6 +4,7 @@ import Script from 'next/script'
 import { StoreProvider } from '@/context/StoreContext'
 
 import Header from '@/components/Header'
+import AnnouncementBar from '@/components/AnnouncementBar'
 import CartDrawer from '@/components/CartDrawer'
 import CheckoutModal from '@/components/CheckoutModal'
 import ReviewModal from '@/components/ReviewModal'
@@ -72,6 +73,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         `}</Script>
 
         <StoreProvider>
+          <AnnouncementBar />
           <Header />
           <main style={{ paddingTop: '109px' }}>{children}</main>
           <CartDrawer />
