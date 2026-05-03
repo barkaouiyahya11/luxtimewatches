@@ -60,7 +60,7 @@ export default function Header() {
       <header
         style={{
           position: 'fixed',
-          top: 0, left: 0,
+          top: 45, left: 0,
           width: '100%',
           /* ── Always higher than everything ── */
           zIndex: 9999,

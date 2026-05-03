@@ -26,7 +26,7 @@ export default function AnnouncementBar() {
   const time = useCountdown()
 
   return (
-    <div className="w-full h-[45px] bg-[#efe7dd] border-y border-[#e5ddd3] flex items-center overflow-hidden">
+    <div className="w-full h-[45px] bg-[#efe7dd] border-y border-[#e5ddd3] flex items-center overflow-hidden" style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 10001 }}>
       <div className="animate-marquee font-bold uppercase tracking-widest text-[10px] md:text-[13px] text-[#7B3F00]">
         <MarqueeItem time={time} />
         <MarqueeItem time={time} />

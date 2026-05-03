@@ -17,7 +17,8 @@ export default function HomePage() {
   return (
     <>
       <Hero />
-      <AnnouncementBar />
+
+      <GoldBanner />
 
       {/* ── Collection Homme ── */}
       <HommeSection products={homme} />
@@ -27,8 +28,6 @@ export default function HomePage() {
 
       {/* ── Collection Femme ── */}
       <FemmeSection products={femme} />
-
-      <GoldBanner />
 
       <TrustSection />
       <ReviewsSection reviews={approvedReviews} />
