@@ -154,9 +154,11 @@ export const products: Product[] = [
     gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1777765736/luxtim/nhnluvsy9avbpls0osir.jpg',
     detailImgs: [
       'https://res.cloudinary.com/dannr2e0c/image/upload/v1777765736/luxtim/nhnluvsy9avbpls0osir.jpg',
+      'https://res.cloudinary.com/dannr2e0c/image/upload/v1777765721/luxtim/obyk2zfknwfcsijsdqpl.jpg',
     ],
     colors: [
-      { name: 'GRIS TABLEAU Bleu Turquoise', img: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1777765721/luxtim/obyk2zfknwfcsijsdqpl.jpg' },
+      { name: 'TABLEAU NOIR', img: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1777765736/luxtim/nhnluvsy9avbpls0osir.jpg' },
+      { name: 'BLEU TURQUOISE', img: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1777765721/luxtim/obyk2zfknwfcsijsdqpl.jpg' },
     ],
   },
 ]
