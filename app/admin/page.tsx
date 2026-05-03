@@ -1158,8 +1158,107 @@ ${valid.map((c) => `      { name: '${c.name}', img: '${c.img}' }`).join(',\n')},
             </div>
           </div>
 
-          {/* ── Right: Generated Code ── */}
+          {/* ── Right: Preview + Code ── */}
           <div className="flex flex-col gap-6">
+
+            {/* ── LIVE PREVIEW ── */}
+            <div className="bg-white rounded-2xl p-5 flex flex-col gap-3" style={{ boxShadow: '0 4px 24px rgba(0,0,0,0.15)' }}>
+              <p className="text-[10px] font-black uppercase tracking-widest text-gray-400 flex items-center gap-2">
+                👁️ Aperçu — comme sur le site
+              </p>
+
+              {form.gridImg ? (
+                <div className="flex flex-col gap-4">
+                  {/* Card preview */}
+                  <div>
+                    <p className="text-[9px] font-black uppercase tracking-[0.2em] text-gray-300 mb-2">Vue grille</p>
+                    <div className="w-40 cursor-pointer group">
+                      {/* Image */}
+                      <div
+                        className="relative w-full aspect-square overflow-hidden mb-2"
+                        style={{
+                          borderRadius: '6px',
+                          ...(form.frame ? {
+                            border: '3px solid #C5A059',
+                            boxShadow: 'inset 0 0 0 2px #fff, 0 0 0 1px #C5A059, 0 4px 18px rgba(197,160,89,0.25)',
+                            padding: '4px',
+                            background: '#fff',
+                          } : {}),
+                        }}
+                      >
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                          src={form.gridImg}
+                          alt="aperçu"
+                          className="w-full h-full object-cover"
+                          style={{ borderRadius: '3px' }}
+                        />
+                      </div>
+                      {/* Text */}
+                      <div className="px-0.5">
+                        <h3 className="text-[10px] font-black uppercase text-black leading-snug mb-1">
+                          {form.name || 'NOM DU PRODUIT'}
+                        </h3>
+                        <p className="text-black font-black text-xs tracking-wide">
+                          {form.price || '000'}.00 <span className="text-[10px] text-gray-500 font-semibold">MAD</span>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Detail preview */}
+                  <div className="border-t border-gray-100 pt-4">
+                    <p className="text-[9px] font-black uppercase tracking-[0.2em] text-gray-300 mb-2">Vue page produit</p>
+                    <div
+                      className="relative w-full aspect-square overflow-hidden"
+                      style={{
+                        ...(form.frame ? {
+                          border: '4px solid #C5A059',
+                          boxShadow: 'inset 0 0 0 3px #fff, inset 0 0 0 4px #C5A059, 0 8px 32px rgba(197,160,89,0.3)',
+                          borderRadius: '10px',
+                          padding: '6px',
+                          background: '#fff',
+                        } : {
+                          borderRadius: '12px',
+                          boxShadow: '0 4px 20px rgba(0,0,0,0.1)',
+                        }),
+                      }}
+                    >
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={form.gridImg}
+                        alt="aperçu detail"
+                        className="w-full h-full object-cover"
+                        style={{ borderRadius: form.frame ? '6px' : '10px' }}
+                      />
+                    </div>
+                    <div className="mt-3">
+                      <p className="text-[10px] font-black uppercase text-black leading-snug">
+                        {form.name || 'NOM DU PRODUIT'}
+                      </p>
+                      <p className="text-black font-black text-sm mt-1">
+                        {form.price || '000'}.00 <span className="text-xs text-gray-500 font-semibold">MAD</span>
+                        {form.originalPrice && (
+                          <span className="text-xs text-gray-400 line-through ml-2">{form.originalPrice}.00</span>
+                        )}
+                      </p>
+                      {form.coffret && (
+                        <span className="inline-block mt-1 text-[9px] font-black uppercase tracking-widest bg-[#C5A059]/20 text-[#C5A059] px-2 py-0.5 rounded-full">
+                          Avec Coffret
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <div className="flex flex-col items-center justify-center py-10 text-gray-300">
+                  <div className="text-4xl mb-3">📷</div>
+                  <p className="text-[10px] font-black uppercase tracking-widest text-center">
+                    Uploadez une photo<br />pour voir l&apos;aperçu
+                  </p>
+                </div>
+              )}
+            </div>
 
             {/* Instructions */}
             <div className="bg-[#C5A059]/10 border border-[#C5A059]/30 rounded-2xl p-5">
