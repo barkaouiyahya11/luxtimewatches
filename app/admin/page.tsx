@@ -305,16 +305,6 @@ ${valid.map((c) => `      { name: '${c.name}', img: '${c.img}' }`).join(',\n')},
             🛍️ Ajouter un produit
           </button>
           <button
-            onClick={() => setTab('banner')}
-            className={`px-6 py-3 rounded-xl text-[11px] font-black uppercase tracking-widest transition ${
-              tab === 'banner'
-                ? 'bg-[#C5A059] text-black'
-                : 'bg-white/5 border border-white/10 text-gray-400 hover:border-white/30'
-            }`}
-          >
-            🖼️ Modifier le Cadre
-          </button>
-          <button
             onClick={() => setTab('cartes')}
             className={`px-6 py-3 rounded-xl text-[11px] font-black uppercase tracking-widest transition ${
               tab === 'cartes'
@@ -333,26 +323,6 @@ ${valid.map((c) => `      { name: '${c.name}', img: '${c.img}' }`).join(',\n')},
             }`}
           >
             🎀 Cartes Femme
-          </button>
-          <button
-            onClick={() => setTab('colors')}
-            className={`px-6 py-3 rounded-xl text-[11px] font-black uppercase tracking-widest transition ${
-              tab === 'colors'
-                ? 'bg-[#C5A059] text-black'
-                : 'bg-white/5 border border-white/10 text-gray-400 hover:border-white/30'
-            }`}
-          >
-            🎨 Modifier les Couleurs
-          </button>
-          <button
-            onClick={() => setTab('vitrine')}
-            className={`px-6 py-3 rounded-xl text-[11px] font-black uppercase tracking-widest transition ${
-              tab === 'vitrine'
-                ? 'bg-[#C5A059] text-black'
-                : 'bg-white/5 border border-white/10 text-gray-400 hover:border-white/30'
-            }`}
-          >
-            🖼️ Cadre Vitrine
           </button>
         </div>
 
