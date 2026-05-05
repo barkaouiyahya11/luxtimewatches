@@ -46,11 +46,11 @@ export default function ProductCard({ product }: Props) {
 
       {/* Text — left aligned like the reference */}
       <div className="px-0.5">
-        <h3 className="text-[11px] md:text-sm font-black uppercase text-black leading-snug mb-2">
+        <h3 className="text-[11px] md:text-[13px] font-bold uppercase text-black leading-snug mb-1.5 tracking-wide">
           {product.name}
         </h3>
-        <p className="text-black font-black text-sm md:text-base tracking-wide">
-          {product.price}.00 <span className="text-[11px] text-gray-500 font-semibold">MAD</span>
+        <p className="text-black font-semibold text-[12px] md:text-[13px]">
+          Dh {product.price}.00 MAD
         </p>
       </div>
     </div>
