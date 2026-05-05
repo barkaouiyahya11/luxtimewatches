@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import { useStore } from '@/context/StoreContext'
-import { WHATSAPP_NUMBER } from '@/lib/constants'
 
 function isValidMoroccanPhone(phone: string) {
   const cleaned = phone.replace(/[\s\-.]/g, '')
@@ -65,36 +64,35 @@ export default function CheckoutModal() {
         : cart.map((i) => ({ name: i.name, price: i.price, qty: i.qty, img: i.gridImg }))
 
     const orderTotal = items.reduce((s, i) => s + i.price * i.qty, 0)
-    const sep = '--------------------'
-    const lines = [
-      '⌚ *LUX TIME*',
-      '🙏 *Merci pour votre commande !*',
-      'Nous allons vous contacter très vite.',
-      sep,
-      `👤 *${name.trim()}*`,
-      `📞 *${phone.trim()}*`,
-      `📍 ${address.trim()}, *${city.trim()}*`,
-      sep,
-      ...items.flatMap((item) => [
-        `🛍 *${item.name}*`,
-        `💵 ${item.price} MAD  x${item.qty}  =  *${item.price * item.qty} MAD*`,
-        `📸 ${item.img}`,
-      ]),
-      sep,
-      `💰 *TOTAL : ${orderTotal} MAD*`,
-      sep,
-      '🚚 *Livraison GRATUITE partout au Maroc* 🇲🇦',
-    ]
+
+    const payload = {
+      date: new Date().toLocaleString('fr-MA', { timeZone: 'Africa/Casablanca' }),
+      name: name.trim(),
+      phone: phone.trim(),
+      address: address.trim(),
+      city: city.trim(),
+      items: items
+        .map((it) => `${it.name} x${it.qty} = ${it.price * it.qty} MAD`)
+        .join(' | '),
+      total: `${orderTotal} MAD`,
+    }
 
     setSubmitting(true)
+
+    try {
+      await fetch('/api/order', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      })
+    } catch {
+      // Si l'API échoue, on continue quand même pour ne pas bloquer le client
+    }
+
     setFinalTotal(orderTotal)
     setSuccess(true)
     clearCart()
-    window.open(
-      `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(lines.join('\n'))}`,
-      '_blank'
-    )
-    setTimeout(() => setSubmitting(false), 5000)
+    setSubmitting(false)
   }
 
   return (
