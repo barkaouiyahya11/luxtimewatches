@@ -13,7 +13,6 @@ export default function CheckoutModal() {
   const { checkout, closeCheckout, cart, clearCart } = useStore()
   const [name, setName] = useState('')
   const [phone, setPhone] = useState('')
-  const [address, setAddress] = useState('')
   const [city, setCity] = useState('')
   const [error, setError] = useState('')
   const [success, setSuccess] = useState(false)
@@ -30,7 +29,7 @@ export default function CheckoutModal() {
   function handleClose() {
     closeCheckout()
     setTimeout(() => {
-      setName(''); setPhone(''); setAddress(''); setCity('')
+      setName(''); setPhone(''); setCity('')
       setError(''); setSuccess(false); setSubmitting(false)
     }, 300)
   }
@@ -39,7 +38,7 @@ export default function CheckoutModal() {
     if (submitting) return
     setError('')
 
-    if (!name.trim() || !phone.trim() || !address.trim() || !city.trim()) {
+    if (!name.trim() || !phone.trim() || !city.trim()) {
       setError('Veuillez remplir tous les champs correctement.')
       return
     }
@@ -93,7 +92,7 @@ export default function CheckoutModal() {
       date: new Date().toLocaleString('fr-MA', { timeZone: 'Africa/Casablanca' }),
       name: name.trim(),
       phone: phone.trim(),
-      address: address.trim(),
+      address: '',
       city: city.trim(),
       items: items.map(formatItem).join('\n'),
       total: `${orderTotal} MAD`,
@@ -159,13 +158,6 @@ export default function CheckoutModal() {
                 placeholder="Téléphone: 06XXXXXXXX ou 07XXXXXXXX"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
-                className="w-full p-4 border border-gray-200 rounded-lg outline-none focus:border-[#C5A059] focus:ring-1 focus:ring-[#C5A059] text-sm font-semibold transition"
-              />
-              <input
-                type="text"
-                placeholder="Adresse exacte | العنوان بالتفصيل"
-                value={address}
-                onChange={(e) => setAddress(e.target.value)}
                 className="w-full p-4 border border-gray-200 rounded-lg outline-none focus:border-[#C5A059] focus:ring-1 focus:ring-[#C5A059] text-sm font-semibold transition"
               />
               <input
