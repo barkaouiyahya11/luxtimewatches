@@ -104,16 +104,17 @@ export default function ProductDetail({ product }: Props) {
                 onClick={handleZoom}
                 style={{
                   position: 'relative',
-                  aspectRatio: '1/1',
+                  aspectRatio: '4/5',
                   overflow: 'hidden',
-                  borderRadius: '4px',
-                  background: '#F2EFE9',
+                  borderRadius: '12px',
+                  background: '#F9F8F6',
                   cursor: zoomed ? 'zoom-out' : 'zoom-in',
                   ...(product.frame ? {
-                    border: '3px solid #C6A769',
-                    boxShadow: '0 0 0 6px #fff, 0 8px 40px rgba(198,167,105,0.2)',
+                    border: '2px solid #C6A769',
+                    boxShadow: '0 4px 24px rgba(198,167,105,0.12)',
                   } : {
-                    boxShadow: '0 8px 40px rgba(0,0,0,0.08)',
+                    border: '1px solid rgba(0,0,0,0.03)',
+                    boxShadow: '0 4px 16px rgba(0,0,0,0.04)',
                   }),
                 }}
               >
@@ -129,7 +130,14 @@ export default function ProductDetail({ product }: Props) {
                     transition: 'transform 0.3s ease',
                   }}
                 />
-                <div style={{ position: 'absolute', bottom: '12px', right: '12px', background: 'rgba(255,255,255,0.85)', borderRadius: '20px', padding: '4px 10px', fontSize: '9px', fontWeight: 600, letterSpacing: '0.1em', color: '#6E6E6E' }}>
+                
+                {/* Beige vignette to hide wood */}
+                <div
+                  className="absolute inset-0 pointer-events-none"
+                  style={{ background: 'radial-gradient(ellipse at center, transparent 35%, #F9F8F6 100%)', opacity: 0.85 }}
+                />
+
+                <div style={{ position: 'absolute', bottom: '12px', right: '12px', background: 'rgba(255,255,255,0.85)', borderRadius: '20px', padding: '4px 10px', fontSize: '9px', fontWeight: 600, letterSpacing: '0.1em', color: '#6E6E6E', zIndex: 10 }}>
                   {zoomed ? 'Cliquer pour dézoomer' : 'Cliquer pour zoomer'}
                 </div>
               </div>
@@ -146,14 +154,14 @@ export default function ProductDetail({ product }: Props) {
                       onClick={() => { setMainImg(img); setZoomed(false) }}
                       style={{
                         width: '72px',
-                        height: '72px',
+                        height: '90px',
                         objectFit: 'cover',
-                        borderRadius: '4px',
+                        borderRadius: '8px',
                         flexShrink: 0,
                         cursor: 'pointer',
-                        border: mainImg === img ? '2px solid #C6A769' : '2px solid #E8E4DE',
+                        border: mainImg === img ? '2px solid #111' : '1px solid rgba(0,0,0,0.05)',
                         transition: 'border-color 0.2s ease',
-                        background: '#F2EFE9',
+                        background: '#f9f8f6',
                       }}
                     />
                   ))}
@@ -379,13 +387,20 @@ export default function ProductDetail({ product }: Props) {
                     style={{ cursor: 'pointer' }}
                     className="group"
                   >
-                    <div style={{ aspectRatio: '1/1', overflow: 'hidden', borderRadius: '4px', background: '#F2EFE9', marginBottom: '12px' }}>
+                    <div className="relative" style={{ aspectRatio: '4/5', overflow: 'hidden', borderRadius: '12px', background: '#F9F8F6', marginBottom: '12px', border: '1px solid rgba(0,0,0,0.03)', boxShadow: '0 4px 16px rgba(0,0,0,0.04)' }}>
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
                         src={p.gridImg}
                         alt={p.name}
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                       />
+                      {/* Beige vignette */}
+                      <div
+                        className="absolute inset-0 pointer-events-none"
+                        style={{ background: 'radial-gradient(ellipse at center, transparent 40%, #F9F8F6 100%)', opacity: 0.85 }}
+                      />
+                      {/* hover overlay */}
+                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-500 pointer-events-none" />
                     </div>
                     <p style={{ fontFamily: 'var(--font-playfair), serif', fontSize: '13px', fontWeight: 600, color: '#111', marginBottom: '4px', lineHeight: 1.3 }}>
                       {p.name}

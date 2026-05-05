@@ -16,50 +16,66 @@ export default function ProductCard({ product }: Props) {
       className="product-card group scroll-reveal cursor-pointer"
       onClick={() => router.push(`/product/${product.id}`)}
     >
-      {/* Image */}
+      {/* Image Container */}
       <div
-        className="relative w-full aspect-square overflow-hidden mb-3"
+        className="relative w-full overflow-hidden mb-4"
         style={{
-          borderRadius: '6px',
+          aspectRatio: '4/5',
+          borderRadius: '12px',
+          background: '#F9F8F6', // Soft premium beige background
+          border: '1px solid rgba(0,0,0,0.03)',
+          boxShadow: '0 4px 16px rgba(0,0,0,0.04)',
           ...(product.frame ? {
-            border: '3px solid #C5A059',
-            boxShadow: 'inset 0 0 0 2px #fff, 0 0 0 1px #C5A059, 0 4px 18px rgba(197,160,89,0.25)',
-            padding: '4px',
-            background: '#fff',
+            border: '2px solid #C5A059',
+            boxShadow: '0 4px 24px rgba(197,160,89,0.15)',
           } : {}),
         }}
       >
+        {/* The Photo */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={product.gridImg}
           alt={product.name}
-          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+          className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
           style={{
-            borderRadius: '3px',
             objectPosition: product.imgPosition || 'center',
             transform: `scale(${product.imgScale || 1})`,
             transformOrigin: product.imgPosition || 'center',
           }}
           loading="lazy"
         />
+
+        {/* CSS Overlay to fade out the wooden edges into the beige background */}
+        <div 
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background: 'radial-gradient(ellipse at center, transparent 40%, #F9F8F6 100%)',
+            opacity: 0.85,
+            transition: 'opacity 0.7s ease',
+          }}
+        />
+
+        {/* Hover overlay for a bit of dynamic feel */}
+        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-500 pointer-events-none" />
       </div>
 
       {/* Text */}
-      <div className="px-0.5 pt-3">
+      <div className="px-1 pt-2 flex flex-col items-center text-center">
         <h3
           style={{
             fontFamily: 'var(--font-playfair), serif',
-            fontSize: 'clamp(12px, 2vw, 15px)',
-            fontWeight: 700,
+            fontSize: 'clamp(13px, 2.5vw, 16px)',
+            fontWeight: 600,
             color: '#111111',
-            letterSpacing: '0.04em',
-            lineHeight: 1.3,
-            marginBottom: '6px',
+            letterSpacing: '0.06em',
+            lineHeight: 1.4,
+            marginBottom: '8px',
+            textTransform: 'uppercase',
           }}
         >
           {product.name}
         </h3>
-        <p style={{ fontSize: '12px', color: '#6E6E6E', fontWeight: 500, letterSpacing: '0.02em' }}>
+        <p style={{ fontSize: '13px', color: '#6E6E6E', fontWeight: 500, letterSpacing: '0.04em' }}>
           {product.price} MAD
         </p>
       </div>

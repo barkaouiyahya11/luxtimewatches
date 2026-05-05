@@ -42,21 +42,29 @@ export default function FemmeSection({ products }: Props) {
           className="group text-left flex flex-col"
         >
           <div
-            className="relative w-full overflow-hidden rounded-2xl aspect-[3/4] md:aspect-[4/3]"
-            style={{ boxShadow: '0 4px 24px rgba(0,0,0,0.12)' }}
+            className="relative w-full overflow-hidden"
+            style={{
+              aspectRatio: '4/5',
+              borderRadius: '12px',
+              background: '#F9F8F6',
+              border: '1px solid rgba(0,0,0,0.03)',
+              boxShadow: '0 4px 16px rgba(0,0,0,0.04)',
+            }}
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={CARD_SIMPLE}
               alt="Boite Simple"
-              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               style={{ objectPosition: 'center bottom' }}
             />
+            {/* Beige vignette to hide wood */}
             <div
-              className="absolute inset-0"
-              style={{ background: 'radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.25) 100%)' }}
+              className="absolute inset-0 pointer-events-none"
+              style={{ background: 'radial-gradient(ellipse at center, transparent 40%, #F9F8F6 100%)', opacity: 0.85 }}
             />
-            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-300" />
+            {/* hover overlay */}
+            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-500 pointer-events-none" />
           </div>
           <div className="pt-4 px-1">
             <p className="text-[9px] md:text-[10px] font-black uppercase tracking-[0.25em] text-gray-400 mb-1">
@@ -82,20 +90,28 @@ export default function FemmeSection({ products }: Props) {
           className="group text-left flex flex-col"
         >
           <div
-            className="relative w-full overflow-hidden rounded-2xl aspect-[3/4] md:aspect-[4/3]"
-            style={{ boxShadow: '0 4px 24px rgba(0,0,0,0.12)' }}
+            className="relative w-full overflow-hidden"
+            style={{
+              aspectRatio: '4/5',
+              borderRadius: '12px',
+              background: '#F9F8F6',
+              border: '1px solid rgba(0,0,0,0.03)',
+              boxShadow: '0 4px 16px rgba(0,0,0,0.04)',
+            }}
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={CARD_COFFRET}
               alt="Avec Coffret"
-              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
             />
+            {/* Beige vignette to hide wood */}
             <div
-              className="absolute inset-0"
-              style={{ background: 'radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.25) 100%)' }}
+              className="absolute inset-0 pointer-events-none"
+              style={{ background: 'radial-gradient(ellipse at center, transparent 40%, #F9F8F6 100%)', opacity: 0.85 }}
             />
-            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-300" />
+            {/* hover overlay */}
+            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-500 pointer-events-none" />
           </div>
           <div className="pt-4 px-1">
             <p className="text-[9px] md:text-[10px] font-black uppercase tracking-[0.25em] text-gray-400 mb-1">
