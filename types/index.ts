@@ -20,6 +20,7 @@ export interface Product {
 
 export interface CartItem extends Product {
   qty: number
+  selectedColor?: string  // nom de la couleur choisie par le client
 }
 
 export interface Review {

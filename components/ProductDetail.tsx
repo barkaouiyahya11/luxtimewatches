@@ -49,7 +49,8 @@ export default function ProductDetail({ product }: Props) {
   }
 
   function handleAddToCart() {
-    addToCart(product, qty)
+    const colorName = product.colors?.[selectedColor]?.name
+    addToCart(product, qty, colorName)
     showToast('Ajouté au panier !')
     toggleCart()
   }
@@ -229,7 +230,7 @@ export default function ProductDetail({ product }: Props) {
             <div className="space-y-3">
               <button
                 ref={orderBtnRef}
-                onClick={() => openCheckout('direct', product, qty)}
+                onClick={() => openCheckout('direct', product, qty, product.colors?.[selectedColor]?.name)}
                 className="btn-shine w-full py-4 font-black uppercase text-[11px] rounded-lg flex flex-col items-center justify-center gap-1 shadow-lg text-white"
                 style={{ background: 'linear-gradient(135deg, #C5A059 0%, #d4b572 100%)' }}
               >
@@ -259,7 +260,7 @@ export default function ProductDetail({ product }: Props) {
       {showSticky && (
         <div className="fixed bottom-0 left-0 w-full z-[1500] px-4 pb-5 pt-3 bg-white border-t border-gray-100 shadow-xl md:hidden">
           <button
-            onClick={() => openCheckout('direct', product, qty)}
+            onClick={() => openCheckout('direct', product, qty, product.colors?.[selectedColor]?.name)}
             className="btn-shine w-full py-4 font-black uppercase text-[11px] rounded-lg flex flex-col items-center gap-1 shadow-lg text-white"
             style={{ background: 'linear-gradient(135deg, #C5A059 0%, #d4b572 100%)' }}
           >

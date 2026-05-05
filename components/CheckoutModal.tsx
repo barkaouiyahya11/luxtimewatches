@@ -56,15 +56,38 @@ export default function CheckoutModal() {
       checkout.mode === 'direct'
         ? [
             {
+              sku: checkout.directProduct!.sku,
               name: checkout.directProduct!.name,
+              cat: checkout.directProduct!.cat,
+              coffret: checkout.directProduct!.coffret,
               price: checkout.directProduct!.price,
               qty: checkout.directQty ?? 1,
-              img: checkout.directProduct!.gridImg,
+              selectedColor: checkout.directColor,
             },
           ]
-        : cart.map((i) => ({ name: i.name, price: i.price, qty: i.qty, img: i.gridImg }))
+        : cart.map((i) => ({
+            sku: i.sku,
+            name: i.name,
+            cat: i.cat,
+            coffret: i.coffret,
+            price: i.price,
+            qty: i.qty,
+            selectedColor: i.selectedColor,
+          }))
 
     const orderTotal = items.reduce((s, i) => s + i.price * i.qty, 0)
+
+    function formatItem(it: typeof items[0]) {
+      const parts = [
+        `[${it.sku}]`,
+        it.name,
+        it.cat === 'femme' ? '👩 FEMME' : '👨 HOMME',
+        it.coffret ? '📦 COFFRET' : '🎁 SIMPLE',
+        it.selectedColor ? `🎨 ${it.selectedColor}` : '',
+        `x${it.qty} = ${it.price * it.qty} MAD`,
+      ]
+      return parts.filter(Boolean).join(' | ')
+    }
 
     const payload = {
       date: new Date().toLocaleString('fr-MA', { timeZone: 'Africa/Casablanca' }),
@@ -72,9 +95,7 @@ export default function CheckoutModal() {
       phone: phone.trim(),
       address: address.trim(),
       city: city.trim(),
-      items: items
-        .map((it) => `${it.name} x${it.qty} = ${it.price * it.qty} MAD`)
-        .join(' | '),
+      items: items.map(formatItem).join('\n'),
       total: `${orderTotal} MAD`,
     }
 

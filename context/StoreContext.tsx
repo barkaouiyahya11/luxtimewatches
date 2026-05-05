@@ -8,6 +8,7 @@ interface CheckoutState {
   mode: 'direct' | 'cart'
   directProduct?: Product
   directQty?: number
+  directColor?: string
 }
 
 interface LightboxState {
@@ -25,7 +26,7 @@ interface StoreContextType {
   cart: CartItem[]
   cartCount: number
   cartTotal: number
-  addToCart: (product: Product, qty: number) => void
+  addToCart: (product: Product, qty: number, selectedColor?: string) => void
   removeFromCart: (index: number) => void
   clearCart: () => void
 
@@ -36,7 +37,7 @@ interface StoreContextType {
 
   // Checkout modal
   checkout: CheckoutState
-  openCheckout: (mode: 'direct' | 'cart', product?: Product, qty?: number) => void
+  openCheckout: (mode: 'direct' | 'cart', product?: Product, qty?: number, selectedColor?: string) => void
   closeCheckout: () => void
 
   // Review modal
@@ -64,11 +65,11 @@ export function StoreProvider({ children }: { children: ReactNode }) {
   const [lightbox, setLightbox] = useState<LightboxState>({ isOpen: false, src: '' })
   const [toast, setToast] = useState<ToastState>({ message: '', visible: false })
 
-  const addToCart = useCallback((product: Product, qty: number) => {
+  const addToCart = useCallback((product: Product, qty: number, selectedColor?: string) => {
     setCart(prev => {
       const existing = prev.find(i => i.id === product.id)
       if (existing) return prev.map(i => i.id === product.id ? { ...i, qty: i.qty + qty } : i)
-      return [...prev, { ...product, qty }]
+      return [...prev, { ...product, qty, selectedColor }]
     })
   }, [])
 
@@ -81,8 +82,8 @@ export function StoreProvider({ children }: { children: ReactNode }) {
   const toggleCart = useCallback(() => setIsCartOpen(p => !p), [])
   const closeCart = useCallback(() => setIsCartOpen(false), [])
 
-  const openCheckout = useCallback((mode: 'direct' | 'cart', product?: Product, qty?: number) => {
-    setCheckout({ isOpen: true, mode, directProduct: product, directQty: qty })
+  const openCheckout = useCallback((mode: 'direct' | 'cart', product?: Product, qty?: number, selectedColor?: string) => {
+    setCheckout({ isOpen: true, mode, directProduct: product, directQty: qty, directColor: selectedColor })
     if (mode === 'cart') setIsCartOpen(false)
   }, [])
 
