@@ -225,7 +225,7 @@ ${valid.map((c) => `      { name: '${c.name}', img: '${c.img}' }`).join(',\n')},
     setForm((f) => ({ ...f, [field]: value }))
   }
 
-  function generate() {
+  async function generate() {
     if (!form.name || !form.price || !form.gridImg) {
       alert('Remplissez au minimum : nom, prix et image principale')
       return
@@ -233,6 +233,28 @@ ${valid.map((c) => `      { name: '${c.name}', img: '${c.img}' }`).join(',\n')},
     const code = generateCode(form, nextId)
     setGeneratedCode(code)
     setNextId((n) => n + 1)
+
+    // Envoi automatique au Google Sheet — onglet Catalogue
+    try {
+      const validColors = form.colors.filter((c) => c.name && c.img)
+      await fetch('https://script.google.com/macros/s/AKfycbyzZ5VKvZfLes_Ld-7I9Cxjw3wwaBoZOzlxE6qZNF5_TwrWRN03xSQNHeUM2_A8PQRI/exec', {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify({
+          type: 'catalogue',
+          sku: form.sku,
+          name: form.name,
+          cat: form.cat.toUpperCase(),
+          packaging: form.coffret ? 'COFFRET' : 'SIMPLE',
+          colors: validColors.map((c) => c.name).join(' / ') || '—',
+          price: form.price,
+          stock: form.stock,
+        }),
+      })
+    } catch {
+      // silencieux
+    }
   }
 
   async function copyCode() {

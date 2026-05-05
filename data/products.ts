@@ -76,7 +76,7 @@ export const products: Product[] = [
   },
   {
     id: 102,
-    sku: 'LTF221',
+    sku: 'LTH-102',
     cat: 'homme',
     name: 'CARTIER',
     price: 199,
@@ -92,7 +92,7 @@ export const products: Product[] = [
   },
   {
     id: 100,
-    sku: 'htl876',
+    sku: 'LTH-100',
     cat: 'homme',
     name: 'GUESS',
     price: 199,
@@ -107,7 +107,7 @@ export const products: Product[] = [
   },
   {
     id: 103,
-    sku: 'hlm678',
+    sku: 'LTH-103',
     cat: 'homme',
     name: 'CARTIER',
     price: 350,
@@ -123,7 +123,7 @@ export const products: Product[] = [
   },
   {
     id: 105,
-    sku: 'LTF374',
+    sku: 'LTH-105',
     cat: 'homme',
     name: 'CASIO',
     price: 149,
@@ -143,7 +143,7 @@ export const products: Product[] = [
   },
   {
     id: 106,
-    sku: 'ltf312',
+    sku: 'LTH-106',
     cat: 'homme',
     name: 'ROLEX',
     price: 199,
@@ -163,7 +163,7 @@ export const products: Product[] = [
   },
   {
     id: 107,
-    sku: 'LTE343',
+    sku: 'LTH-107',
     cat: 'homme',
     name: 'PATEK PHILIPPE',
     price: 199,
