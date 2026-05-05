@@ -86,7 +86,10 @@ export default function AdminPage() {
   const [generatedCode, setGeneratedCode] = useState('')
   const [copied, setCopied] = useState(false)
   const [nextId, setNextId] = useState(() => Math.max(0, ...products.map((p) => p.id)) + 1)
-  const [tab, setTab] = useState<'product' | 'banner' | 'cartes' | 'cartesfemme' | 'colors' | 'vitrine' | 'showcase'>('product')
+  const [tab, setTab] = useState<'product' | 'banner' | 'cartes' | 'cartesfemme' | 'colors' | 'vitrine' | 'showcase' | 'manage'>('product')
+  const [editableProducts, setEditableProducts] = useState(products.map(p => ({ ...p })))
+  const [manageCode, setManageCode] = useState('')
+  const [manageCopied, setManageCopied] = useState(false)
   const [banner, setBanner] = useState({ img1: '', img2: '', img3: '' })
   const [bannerCode, setBannerCode] = useState('')
   const [bannerCopied, setBannerCopied] = useState(false)
@@ -384,6 +387,16 @@ ${valid.map((c) => `      { name: '${c.name}', img: '${c.img}' }`).join(',\n')},
           >
             🎀 Cartes Femme
           </button>
+          <button
+            onClick={() => setTab('manage')}
+            className={`px-6 py-3 rounded-xl text-[11px] font-black uppercase tracking-widest transition ${
+              tab === 'manage'
+                ? 'bg-[#C5A059] text-black'
+                : 'bg-white/5 border border-white/10 text-gray-400 hover:border-white/30'
+            }`}
+          >
+            ✏️ Gérer les produits
+          </button>
         </div>
 
         {/* Banner Tab */}
@@ -577,6 +590,107 @@ ${valid.map((c) => `      { name: '${c.name}', img: '${c.img}' }`).join(',\n')},
                 </div>
               </div>
             </div>
+          </div>
+        )}
+
+        {/* ── Gérer les produits Tab ── */}
+        {tab === 'manage' && (
+          <div className="flex flex-col gap-6">
+            <div>
+              <h2 className="text-2xl font-serif font-black uppercase tracking-widest text-white mb-2">
+                ✏️ Gérer les produits
+              </h2>
+              <p className="text-gray-500 text-sm">
+                Modifiez le prix, le stock ou supprimez un produit. Cliquez sur &quot;Générer&quot; puis collez dans Antigravity.
+              </p>
+            </div>
+
+            {/* Table des produits */}
+            <div className="bg-white/5 border border-white/10 rounded-2xl overflow-hidden">
+              <div className="grid grid-cols-[80px_1fr_90px_90px_70px_70px] gap-2 px-4 py-3 border-b border-white/10 text-[9px] font-black uppercase tracking-widest text-gray-500">
+                <span>Code</span><span>Nom</span><span>Prix</span><span>Prix Barré</span><span>Stock</span><span>Action</span>
+              </div>
+              {editableProducts.map((p, idx) => (
+                <div key={p.id} className="grid grid-cols-[80px_1fr_90px_90px_70px_70px] gap-2 px-4 py-3 border-b border-white/5 items-center">
+                  <span className="text-[9px] font-black text-[#C5A059] uppercase">{p.sku}</span>
+                  <input
+                    value={p.name}
+                    onChange={e => setEditableProducts(prev => prev.map((x, i) => i === idx ? { ...x, name: e.target.value } : x))}
+                    className="bg-white/5 border border-white/10 rounded-lg px-2 py-1.5 text-white text-[11px] font-bold w-full focus:border-[#C5A059] outline-none"
+                  />
+                  <input
+                    type="number"
+                    value={p.price}
+                    onChange={e => setEditableProducts(prev => prev.map((x, i) => i === idx ? { ...x, price: Number(e.target.value) } : x))}
+                    className="bg-white/5 border border-white/10 rounded-lg px-2 py-1.5 text-white text-[11px] font-bold w-full focus:border-[#C5A059] outline-none"
+                  />
+                  <input
+                    type="number"
+                    value={p.originalPrice}
+                    onChange={e => setEditableProducts(prev => prev.map((x, i) => i === idx ? { ...x, originalPrice: Number(e.target.value) } : x))}
+                    className="bg-white/5 border border-white/10 rounded-lg px-2 py-1.5 text-gray-400 text-[11px] font-bold w-full focus:border-[#C5A059] outline-none"
+                  />
+                  <input
+                    type="number"
+                    value={p.stock}
+                    onChange={e => setEditableProducts(prev => prev.map((x, i) => i === idx ? { ...x, stock: Number(e.target.value) } : x))}
+                    className="bg-white/5 border border-white/10 rounded-lg px-2 py-1.5 text-white text-[11px] font-bold w-full focus:border-[#C5A059] outline-none"
+                  />
+                  <button
+                    onClick={() => {
+                      if (confirm(`Supprimer "${p.name}" ?`)) {
+                        setEditableProducts(prev => prev.filter((_, i) => i !== idx))
+                      }
+                    }}
+                    className="bg-red-500/20 text-red-400 border border-red-500/30 rounded-lg px-2 py-1.5 text-[10px] font-black hover:bg-red-500/40 transition"
+                  >
+                    🗑
+                  </button>
+                </div>
+              ))}
+            </div>
+
+            <div className="flex gap-4">
+              <button
+                onClick={() => {
+                  const lines = editableProducts.map(p => {
+                    const imgs = p.detailImgs.map(u => `      '${u}'`).join(',\n')
+                    const colors = p.colors?.length
+                      ? `\n    colors: [\n${p.colors.map(c => `      { name: '${c.name}', img: '${c.img}' }`).join(',\n')},\n    ],`
+                      : ''
+                    return `  {\n    id: ${p.id},\n    sku: '${p.sku}',\n    cat: '${p.cat}',\n    name: '${p.name}',\n    price: ${p.price},\n    originalPrice: ${p.originalPrice},\n    stock: ${p.stock},\n    rating: ${p.rating},\n    reviews: ${p.reviews},\n    gridImg: '${p.gridImg}',\n    detailImgs: [\n${imgs},\n    ],${p.hot ? '\n    hot: true,' : ''}${p.coffret ? '\n    coffret: true,' : ''}${p.frame ? '\n    frame: true,' : ''}${p.imgScale && p.imgScale !== 1 ? `\n    imgScale: ${p.imgScale},` : ''}${p.imgPosition && p.imgPosition !== 'center' ? `\n    imgPosition: '${p.imgPosition}',` : ''}${colors}\n  },`
+                  })
+                  const full = `import { Product } from '@/types'\n\nexport const products: Product[] = [\n${lines.join('\n')}\n]\n`
+                  setManageCode(full)
+                }}
+                className="flex-1 py-4 bg-[#C5A059] text-black font-black uppercase text-[11px] tracking-widest rounded-xl hover:bg-[#d4b572] transition"
+              >
+                ⚡ Générer le nouveau catalogue
+              </button>
+              {manageCode && (
+                <button
+                  onClick={async () => {
+                    await navigator.clipboard.writeText(manageCode)
+                    setManageCopied(true)
+                    setTimeout(() => setManageCopied(false), 2000)
+                  }}
+                  className={`px-6 py-4 rounded-xl font-black uppercase text-[11px] transition ${manageCopied ? 'bg-green-500 text-white' : 'bg-white/10 text-white border border-white/20'}`}
+                >
+                  {manageCopied ? '✓ Copié !' : '📋 Copier'}
+                </button>
+              )}
+            </div>
+
+            {manageCode && (
+              <div className="bg-[#C5A059]/10 border border-[#C5A059]/30 rounded-2xl p-5">
+                <p className="text-[11px] font-black uppercase tracking-widest text-[#C5A059] mb-2">📋 Comment appliquer :</p>
+                <ol className="text-gray-400 text-xs flex flex-col gap-1.5 list-decimal list-inside">
+                  <li>Clique sur <strong className="text-white">Copier</strong></li>
+                  <li>Va dans Antigravity et tape : <strong className="text-white">&quot;Remplace tout le contenu de data/products.ts par ce code :&quot;</strong> puis colle</li>
+                  <li>Antigravity modifie le fichier et déploie automatiquement ✅</li>
+                </ol>
+              </div>
+            )}
           </div>
         )}
 
