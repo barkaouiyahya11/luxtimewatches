@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { useStore } from '@/context/StoreContext'
+import { GOOGLE_ORDERS_SCRIPT_URL } from '@/lib/constants'
 
 function isValidMoroccanPhone(phone: string) {
   const cleaned = phone.replace(/[\s\-.]/g, '')
@@ -80,13 +81,14 @@ export default function CheckoutModal() {
     setSubmitting(true)
 
     try {
-      await fetch('/api/order', {
+      await fetch(GOOGLE_ORDERS_SCRIPT_URL, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
         body: JSON.stringify(payload),
       })
     } catch {
-      // Si l'API échoue, on continue quand même pour ne pas bloquer le client
+      // continue même si erreur
     }
 
     setFinalTotal(orderTotal)
