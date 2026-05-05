@@ -34,7 +34,7 @@ export default function CheckoutModal() {
     }, 300)
   }
 
-  function submitOrder() {
+  async function submitOrder() {
     if (submitting) return
     setError('')
 
