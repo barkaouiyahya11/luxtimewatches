@@ -20,26 +20,16 @@ export default function HommeSection({ products }: Props) {
     <section id="coll-homme" className="px-4 md:px-8 py-10 max-w-7xl mx-auto">
 
       {/* Section title */}
-      <div className="flex flex-col items-center justify-center mb-10 text-center">
-        <div className="flex items-center gap-4 w-full justify-center">
-          <div className="h-px bg-gray-200 w-12 md:w-24" />
-          <h2
-            style={{
-              fontFamily: 'var(--font-allura), cursive',
-              fontSize: 'clamp(2rem, 5vw, 3.5rem)',
-              fontWeight: 400,
-              textTransform: 'none',
-              letterSpacing: '0.02em',
-              color: '#000',
-              lineHeight: 1.2,
-            }}
-          >
-            Nos Best Products
-          </h2>
-          <div className="h-px bg-gray-200 w-12 md:w-24" />
-        </div>
-        <p className="text-sm text-gray-500 mt-2 font-medium tracking-wide">
-          Style & élégance pour homme ✨
+      <div className="flex flex-col items-center justify-center mb-12 text-center">
+        <p style={{ fontSize: '10px', letterSpacing: '0.35em', color: '#C6A769', fontWeight: 600, textTransform: 'uppercase', marginBottom: '10px' }}>
+          Sélection Exclusive
+        </p>
+        <h2 style={{ fontFamily: 'var(--font-playfair), serif', fontSize: 'clamp(1.6rem, 4vw, 2.8rem)', fontWeight: 700, color: '#111111', letterSpacing: '0.08em', textTransform: 'uppercase', lineHeight: 1.15 }}>
+          Collection Homme
+        </h2>
+        <div style={{ width: '40px', height: '1px', background: '#C6A769', margin: '14px auto 0' }} />
+        <p style={{ fontSize: '12px', color: '#6E6E6E', marginTop: '10px', letterSpacing: '0.05em' }}>
+          Montres minimalistes sélectionnées avec élégance.
         </p>
       </div>
 

@@ -70,8 +70,8 @@ export default function Hero() {
           preserveAspectRatio="none"
           style={{ display: 'block', width: '100%', height: '60px' }}
         >
-          <path d="M0,40 C360,90 1080,0 1440,50 L1440,80 L0,80 Z" fill="#fff" />
-          <rect x="0" y="79" width="1440" height="2" fill="#fff" />
+          <path d="M0,40 C360,90 1080,0 1440,50 L1440,80 L0,80 Z" fill="#FAF9F7" />
+          <rect x="0" y="79" width="1440" height="2" fill="#FAF9F7" />
         </svg>
       </div>
     </section>

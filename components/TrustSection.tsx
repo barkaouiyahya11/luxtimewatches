@@ -6,33 +6,50 @@ const TRUST_ITEMS = [
   },
   {
     icon: 'fa-handshake-angle',
-    title: 'Paiement Cash',
-    desc: 'Payez à la livraison 100% sécurisé.',
+    title: 'Paiement à la Livraison',
+    desc: 'Payez à réception, 100% sécurisé.',
   },
   {
     icon: 'fa-medal',
     title: 'Qualité Premium',
-    desc: 'Savoir-faire et garantie produit.',
+    desc: 'Sélection rigoureuse, garantie produit.',
   },
 ]
 
 export default function TrustSection() {
   return (
-    <section className="bg-[#Fdfbf8] py-16 text-center border-t border-b border-[#efe7dd] mt-10">
-      <div className="container mx-auto px-6 max-w-5xl">
-        <h2 className="font-serif text-2xl md:text-3xl mb-12 uppercase tracking-[0.1em] font-black italic text-gray-800">
+    <section style={{ background: '#FAF9F7', borderTop: '1px solid #E8E4DE', borderBottom: '1px solid #E8E4DE', padding: '72px 24px' }}>
+      <div style={{ maxWidth: '900px', margin: '0 auto', textAlign: 'center' }}>
+
+        {/* Title */}
+        <p style={{ fontSize: '10px', letterSpacing: '0.35em', color: '#C6A769', fontWeight: 600, textTransform: 'uppercase', marginBottom: '10px' }}>
+          Notre Engagement
+        </p>
+        <h2 style={{ fontFamily: 'var(--font-playfair), serif', fontSize: 'clamp(1.4rem, 3vw, 2rem)', fontWeight: 700, color: '#111111', letterSpacing: '0.06em', textTransform: 'uppercase', marginBottom: '48px' }}>
           L&apos;Excellence Lux Time
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+
+        {/* Items */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '40px' }}>
           {TRUST_ITEMS.map((item) => (
-            <div key={item.title} className="flex flex-col items-center group">
-              <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-md mb-6 transition group-hover:scale-110 group-hover:shadow-lg">
-                <i className={`fa-solid ${item.icon} text-2xl text-[#C5A059]`} />
+            <div key={item.title} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '16px' }}>
+              <div style={{
+                width: '56px', height: '56px',
+                border: '1px solid #E8E4DE',
+                borderRadius: '50%',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                background: '#fff',
+              }}>
+                <i className={`fa-solid ${item.icon}`} style={{ fontSize: '18px', color: '#C6A769' }} />
               </div>
-              <h4 className="font-black text-xs uppercase mb-2 tracking-widest text-black">
-                {item.title}
-              </h4>
-              <p className="text-[10px] text-gray-500 uppercase font-medium">{item.desc}</p>
+              <div>
+                <h4 style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', color: '#111111', marginBottom: '6px' }}>
+                  {item.title}
+                </h4>
+                <p style={{ fontSize: '11px', color: '#6E6E6E', letterSpacing: '0.02em', lineHeight: 1.6 }}>
+                  {item.desc}
+                </p>
+              </div>
             </div>
           ))}
         </div>

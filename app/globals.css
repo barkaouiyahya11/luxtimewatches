@@ -2,44 +2,56 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --bg: #FAF9F7;
+  --black: #111111;
+  --gold: #C6A769;
+  --gold-light: #D4BA85;
+  --secondary: #6E6E6E;
+  --border: #E8E4DE;
+}
+
 html,
 body {
   margin: 0 !important;
   padding: 0 !important;
   overflow-x: hidden !important;
-  background-color: #ffffff;
+  background-color: var(--bg);
+  color: var(--black);
   width: 100vw !important;
   -webkit-tap-highlight-color: transparent;
 }
 
-/* ===== PRODUCT CARDS ===== */
+/* ===== PRODUCT CARDS PREMIUM ===== */
 .product-card {
   cursor: pointer;
-  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-  border-radius: 8px;
-  padding-bottom: 10px;
+  transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+  padding-bottom: 12px;
+  background: transparent;
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
 }
 
 .img-container {
   overflow: hidden;
   position: relative;
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
-  transition: all 0.4s ease;
+  background: #F2EFE9;
+  border-radius: 4px;
+  transition: all 0.5s ease;
 }
 
 .product-card:hover .img-container {
-  box-shadow: 0 15px 30px rgba(197, 160, 89, 0.15);
-  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.12);
 }
 
 .img-container img {
-  transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .product-card:hover .img-container img {
-  transform: scale(1.08);
+  transform: scale(1.06);
 }
 
 /* ===== GOLD BANNER ===== */

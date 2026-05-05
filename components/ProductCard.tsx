@@ -44,13 +44,23 @@ export default function ProductCard({ product }: Props) {
         />
       </div>
 
-      {/* Text — left aligned like the reference */}
-      <div className="px-0.5">
-        <h3 className="text-[11px] md:text-[13px] font-bold uppercase text-black leading-snug mb-1.5 tracking-wide">
+      {/* Text */}
+      <div className="px-0.5 pt-3">
+        <h3
+          style={{
+            fontFamily: 'var(--font-playfair), serif',
+            fontSize: 'clamp(12px, 2vw, 15px)',
+            fontWeight: 700,
+            color: '#111111',
+            letterSpacing: '0.04em',
+            lineHeight: 1.3,
+            marginBottom: '6px',
+          }}
+        >
           {product.name}
         </h3>
-        <p className="text-black font-semibold text-[12px] md:text-[13px]">
-          Dh {product.price}.00 MAD
+        <p style={{ fontSize: '12px', color: '#6E6E6E', fontWeight: 500, letterSpacing: '0.02em' }}>
+          {product.price} MAD
         </p>
       </div>
     </div>
