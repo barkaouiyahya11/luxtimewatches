@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import ImageUpload from '@/components/ImageUpload'
+import { products } from '@/data/products'
 
 const ADMIN_PASSWORD = 'luxtim2024'
 
@@ -53,19 +54,27 @@ function generateCode(form: ProductForm, id: number): string {
   const colorsCode = validColors.length > 0
     ? `\n    colors: [\n${validColors.map((c) => `      { name: '${c.name}', img: '${c.img}' }`).join(',\n')},\n    ],`
     : ''
+  
+  const detailImgsCode = detailImgs.length > 0
+    ? `\n${detailImgs.map((u) => `      '${u}'`).join(',\n')},`
+    : ''
+
+  const priceVal = form.price || '0'
+  const originalPriceVal = form.originalPrice || priceVal
+  const stockVal = form.stock || '0'
+
   return `  {
     id: ${id},
     sku: '${form.sku}',
     cat: '${form.cat}',
     name: '${form.name}',
-    price: ${form.price},
-    originalPrice: ${form.originalPrice},
-    stock: ${form.stock},
+    price: ${priceVal},
+    originalPrice: ${originalPriceVal},
+    stock: ${stockVal},
     rating: 4.9,
     reviews: 0,
     gridImg: '${form.gridImg}',
-    detailImgs: [
-${detailImgs.map((u) => `      '${u}'`).join(',\n')},
+    detailImgs: [${detailImgsCode}
     ],${form.hot ? '\n    hot: true,' : ''}${form.coffret ? '\n    coffret: true,' : ''}${form.frame ? '\n    frame: true,' : ''}${form.imgScale !== 1 ? `\n    imgScale: ${form.imgScale},` : ''}${form.imgPosition !== 'center' ? `\n    imgPosition: '${form.imgPosition}',` : ''}${colorsCode}
   },`
 }
@@ -76,7 +85,7 @@ export default function AdminPage() {
   const [form, setForm] = useState<ProductForm>(EMPTY)
   const [generatedCode, setGeneratedCode] = useState('')
   const [copied, setCopied] = useState(false)
-  const [nextId, setNextId] = useState(100)
+  const [nextId, setNextId] = useState(() => Math.max(0, ...products.map((p) => p.id)) + 1)
   const [tab, setTab] = useState<'product' | 'banner' | 'cartes' | 'cartesfemme' | 'colors' | 'vitrine' | 'showcase'>('product')
   const [banner, setBanner] = useState({ img1: '', img2: '', img3: '' })
   const [bannerCode, setBannerCode] = useState('')
