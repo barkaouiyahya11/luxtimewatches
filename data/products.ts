@@ -176,19 +176,4 @@ export const products: Product[] = [
       'https://res.cloudinary.com/dannr2e0c/image/upload/v1777767119/luxtim/murorbfnuldn8jwfv5so.jpg',
     ],
   },
-  {
-    id: 108,
-    sku: 'ltf1002',
-    cat: 'homme',
-    name: 'tajriba ',
-    price: 130,
-    originalPrice: 130,
-    stock: 0,
-    rating: 4.9,
-    reviews: 0,
-    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778008199/luxtim/qg5x2mbulnsk5qqzjl4v.jpg',
-    detailImgs: [
-      'https://res.cloudinary.com/dannr2e0c/image/upload/v1778008199/luxtim/qg5x2mbulnsk5qqzjl4v.jpg',
-    ],
-  },
 ]
