@@ -45,16 +45,6 @@ export default function ProductCard({ product }: Props) {
           loading="lazy"
         />
 
-        {/* CSS Overlay to fade out the wooden edges into the beige background */}
-        <div 
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background: 'radial-gradient(ellipse at center, transparent 40%, #F9F8F6 100%)',
-            opacity: 0.85,
-            transition: 'opacity 0.7s ease',
-          }}
-        />
-
         {/* Hover overlay for a bit of dynamic feel */}
         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-500 pointer-events-none" />
       </div>

@@ -15,11 +15,6 @@ export default function VitrineSection() {
           className="w-full object-cover"
           style={{ maxHeight: '480px', objectPosition: 'center center' }}
         />
-        {/* Beige vignette */}
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{ background: 'radial-gradient(ellipse at center, transparent 40%, #F9F8F6 100%)', opacity: 0.85 }}
-        />
       </div>
     </section>
   )

@@ -130,12 +130,6 @@ export default function ProductDetail({ product }: Props) {
                     transition: 'transform 0.3s ease',
                   }}
                 />
-                
-                {/* Beige vignette to hide wood */}
-                <div
-                  className="absolute inset-0 pointer-events-none"
-                  style={{ background: 'radial-gradient(ellipse at center, transparent 35%, #F9F8F6 100%)', opacity: 0.85 }}
-                />
 
                 <div style={{ position: 'absolute', bottom: '12px', right: '12px', background: 'rgba(255,255,255,0.85)', borderRadius: '20px', padding: '4px 10px', fontSize: '9px', fontWeight: 600, letterSpacing: '0.1em', color: '#6E6E6E', zIndex: 10 }}>
                   {zoomed ? 'Cliquer pour dézoomer' : 'Cliquer pour zoomer'}
@@ -393,11 +387,6 @@ export default function ProductDetail({ product }: Props) {
                         src={p.gridImg}
                         alt={p.name}
                         className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                      />
-                      {/* Beige vignette */}
-                      <div
-                        className="absolute inset-0 pointer-events-none"
-                        style={{ background: 'radial-gradient(ellipse at center, transparent 40%, #F9F8F6 100%)', opacity: 0.85 }}
                       />
                       {/* hover overlay */}
                       <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-500 pointer-events-none" />

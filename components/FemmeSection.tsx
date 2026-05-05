@@ -58,11 +58,6 @@ export default function FemmeSection({ products }: Props) {
               className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               style={{ objectPosition: 'center bottom' }}
             />
-            {/* Beige vignette to hide wood */}
-            <div
-              className="absolute inset-0 pointer-events-none"
-              style={{ background: 'radial-gradient(ellipse at center, transparent 40%, #F9F8F6 100%)', opacity: 0.85 }}
-            />
             {/* hover overlay */}
             <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-500 pointer-events-none" />
           </div>
@@ -104,11 +99,6 @@ export default function FemmeSection({ products }: Props) {
               src={CARD_COFFRET}
               alt="Avec Coffret"
               className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-            />
-            {/* Beige vignette to hide wood */}
-            <div
-              className="absolute inset-0 pointer-events-none"
-              style={{ background: 'radial-gradient(ellipse at center, transparent 40%, #F9F8F6 100%)', opacity: 0.85 }}
             />
             {/* hover overlay */}
             <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-500 pointer-events-none" />
