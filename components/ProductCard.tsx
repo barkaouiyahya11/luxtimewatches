@@ -22,13 +22,14 @@ export default function ProductCard({ product }: Props) {
         style={{
           aspectRatio: '4/5',
           borderRadius: '12px',
-          background: '#F9F8F6', // Soft premium beige background
-          border: '1px solid rgba(0,0,0,0.03)',
-          boxShadow: '0 4px 16px rgba(0,0,0,0.04)',
-          ...(product.frame ? {
-            border: '2px solid #C5A059',
-            boxShadow: '0 4px 24px rgba(197,160,89,0.15)',
-          } : {}),
+          background: '#F9F8F6',
+          border: product.frame
+            ? '2px solid #C5A059'
+            : '1.5px solid #111111',
+          boxShadow: product.frame
+            ? '0 4px 24px rgba(197,160,89,0.15)'
+            : '0 2px 12px rgba(0,0,0,0.08)',
+          padding: '3px',
         }}
       >
         {/* The Photo */}
