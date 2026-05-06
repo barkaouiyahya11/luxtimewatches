@@ -236,4 +236,19 @@ export const products: Product[] = [
     ],
     imgPosition: 'bottom',
   },
+  {
+    id: 115,
+    sku: 'LTF005',
+    cat: 'femme',
+    name: 'MGQ CHRONOGRAPHE FEMME BOITE SIMPLE',
+    price: 149,
+    originalPrice: 170,
+    stock: 0,
+    rating: 4.9,
+    reviews: 0,
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778093504/luxtim/e3b5ib7hv4ndzret0x29.jpg',
+    detailImgs: [
+    ],
+    imgPosition: 'bottom',
+  },
 ]
