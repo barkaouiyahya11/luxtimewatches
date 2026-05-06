@@ -66,8 +66,8 @@ export default function ProductCard({ product }: Props) {
         >
           {product.name}
         </h3>
-        <p style={{ fontSize: '13px', color: '#6E6E6E', fontWeight: 500, letterSpacing: '0.04em' }}>
-          {product.price} MAD
+        <p style={{ fontSize: '15px', color: '#111111', fontWeight: 700, letterSpacing: '0.06em' }}>
+          {product.price} <span style={{ fontSize: '11px', fontWeight: 600, color: '#C6A769', letterSpacing: '0.1em' }}>MAD</span>
         </p>
       </div>
     </div>
