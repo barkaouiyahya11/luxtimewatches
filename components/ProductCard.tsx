@@ -29,7 +29,6 @@ export default function ProductCard({ product }: Props) {
           boxShadow: product.frame
             ? '0 4px 24px rgba(197,160,89,0.15)'
             : '0 2px 12px rgba(0,0,0,0.08)',
-          padding: '3px',
         }}
       >
         {/* The Photo */}
