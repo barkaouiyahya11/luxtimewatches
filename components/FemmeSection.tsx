@@ -44,7 +44,7 @@ export default function FemmeSection({ products }: Props) {
           <div
             className="relative w-full overflow-hidden"
             style={{
-              aspectRatio: '4/5',
+              aspectRatio: '4/3',
               borderRadius: '12px',
               background: '#F9F8F6',
               border: '1px solid rgba(0,0,0,0.03)',
@@ -87,7 +87,7 @@ export default function FemmeSection({ products }: Props) {
           <div
             className="relative w-full overflow-hidden"
             style={{
-              aspectRatio: '4/5',
+              aspectRatio: '4/3',
               borderRadius: '12px',
               background: '#F9F8F6',
               border: '1px solid rgba(0,0,0,0.03)',
