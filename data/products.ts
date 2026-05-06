@@ -176,4 +176,19 @@ export const products: Product[] = [
       'https://res.cloudinary.com/dannr2e0c/image/upload/v1777767119/luxtim/murorbfnuldn8jwfv5so.jpg',
     ],
   },
+  {
+    id: 109,
+    sku: 'LTF',
+    cat: 'femme',
+    name: 'CASIO BOITE SIMPLE',
+    price: 199,
+    originalPrice: 199,
+    stock: 1,
+    rating: 4.9,
+    reviews: 0,
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778082455/luxtim/cuq9ut8l4edkhwxvwpxt.jpg',
+    detailImgs: [
+    ],
+    imgPosition: 'bottom',
+  },
 ]
