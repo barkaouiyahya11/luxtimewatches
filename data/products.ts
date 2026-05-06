@@ -191,4 +191,19 @@ export const products: Product[] = [
     ],
     imgPosition: 'bottom',
   },
+  {
+    id: 110,
+    sku: 'LTF002',
+    cat: 'femme',
+    name: ' EMPORIO ARMANI BOITE SIMPLE FEMME ',
+    price: 149,
+    originalPrice: 149,
+    stock: 0,
+    rating: 4.9,
+    reviews: 0,
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778091084/luxtim/sk3vageigk5oqq8jqj4a.jpg',
+    detailImgs: [
+    ],
+    imgPosition: 'bottom',
+  },
 ]
