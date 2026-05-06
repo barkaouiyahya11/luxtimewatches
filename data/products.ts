@@ -206,4 +206,19 @@ export const products: Product[] = [
     ],
     imgPosition: 'bottom',
   },
+  {
+    id: 111,
+    sku: 'LTF003',
+    cat: 'femme',
+    name: ' DANIEL WELLINGTON BOITE SIMPLE FEMME ',
+    price: 149,
+    originalPrice: 170,
+    stock: 0,
+    rating: 4.9,
+    reviews: 0,
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778092258/luxtim/hy7qyqzyk9s0lec5owd6.jpg',
+    detailImgs: [
+    ],
+    imgPosition: 'bottom',
+  },
 ]
