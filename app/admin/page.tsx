@@ -86,7 +86,7 @@ export default function AdminPage() {
   const [generatedCode, setGeneratedCode] = useState('')
   const [copied, setCopied] = useState(false)
   const [nextId, setNextId] = useState(() => Math.max(0, ...products.map((p) => p.id)) + 1)
-  const [tab, setTab] = useState<'product' | 'banner' | 'cartes' | 'cartesfemme' | 'colors' | 'vitrine' | 'showcase'>('product')
+  const [tab, setTab] = useState<'product' | 'banner' | 'cartes' | 'cartesfemme' | 'colors' | 'vitrine' | 'showcase' | 'hero'>('product')
   const [banner, setBanner] = useState({ img1: '', img2: '', img3: '' })
   const [bannerCode, setBannerCode] = useState('')
   const [bannerCopied, setBannerCopied] = useState(false)
@@ -100,6 +100,12 @@ export default function AdminPage() {
   const [showcaseImg, setShowcaseImg] = useState('')
   const [showcaseCode, setShowcaseCode] = useState('')
   const [showcaseCopied, setShowcaseCopied] = useState(false)
+
+  // Hero / Accueil section
+  const [heroSlide1, setHeroSlide1] = useState('')
+  const [heroSlide2, setHeroSlide2] = useState('')
+  const [heroCode, setHeroCode] = useState('')
+  const [heroCopied, setHeroCopied] = useState(false)
 
   // Vitrine section
   const [vitrineImg, setVitrineImg] = useState('')
@@ -191,6 +197,26 @@ export const SHOWCASE_IMG = '${showcaseImg}'`
     await navigator.clipboard.writeText(showcaseCode)
     setShowcaseCopied(true)
     setTimeout(() => setShowcaseCopied(false), 2000)
+  }
+
+  function generateHeroCode() {
+    const currentSlide1 = 'https://i.ibb.co/wvW0v0m/Gemini-Generated-Image-swd0bkswd0bkswd0.png'
+    const currentSlide2 = 'https://i.ibb.co/cS4b03NR/Chat-GPT-Image-26-mars-2026-16-09-41.png'
+    const s1 = heroSlide1 || currentSlide1
+    const s2 = heroSlide2 || currentSlide2
+    const slides = heroSlide2
+      ? `['${s1}', '${s2}']`
+      : `['${s1}']`
+    const code = `Dans components/Hero.tsx, remplacez le tableau SLIDES par :
+
+const SLIDES = ${slides}`
+    setHeroCode(code)
+  }
+
+  async function copyHeroCode() {
+    await navigator.clipboard.writeText(heroCode)
+    setHeroCopied(true)
+    setTimeout(() => setHeroCopied(false), 2000)
   }
 
   function generateVitrineCode() {
@@ -355,6 +381,16 @@ ${valid.map((c) => `      { name: '${c.name}', img: '${c.img}' }`).join(',\n')},
             🛍️ Ajouter un produit
           </button>
           <button
+            onClick={() => setTab('hero')}
+            className={`px-6 py-3 rounded-xl text-[11px] font-black uppercase tracking-widest transition ${
+              tab === 'hero'
+                ? 'bg-[#C5A059] text-black'
+                : 'bg-white/5 border border-white/10 text-gray-400 hover:border-white/30'
+            }`}
+          >
+            🏠 Photo Accueil
+          </button>
+          <button
             onClick={() => setTab('showcase')}
             className={`px-6 py-3 rounded-xl text-[11px] font-black uppercase tracking-widest transition ${
               tab === 'showcase'
@@ -385,6 +421,135 @@ ${valid.map((c) => `      { name: '${c.name}', img: '${c.img}' }`).join(',\n')},
             🎀 Cartes Femme
           </button>
         </div>
+
+        {/* Hero / Accueil Tab */}
+        {tab === 'hero' && (
+          <div className="flex flex-col gap-6">
+            <div>
+              <h2 className="text-2xl font-serif font-black uppercase tracking-widest text-white mb-2">
+                Photo d&apos;Accueil
+              </h2>
+              <p className="text-gray-500 text-sm">
+                Changez les photos du slider sur la page d&apos;accueil (1 ou 2 photos)
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              <div className="bg-white/5 border border-white/10 rounded-2xl p-6 flex flex-col gap-5">
+                <h3 className="text-[11px] font-black uppercase tracking-widest text-[#C5A059]">
+                  📷 Photos du slider
+                </h3>
+                <ImageUpload
+                  label="Photo 1 (principale)"
+                  onUpload={(url) => setHeroSlide1(url)}
+                  currentUrl={heroSlide1}
+                />
+                <ImageUpload
+                  label="Photo 2 (optionnelle — slide automatique)"
+                  onUpload={(url) => setHeroSlide2(url)}
+                  currentUrl={heroSlide2}
+                />
+
+                {/* Aperçu */}
+                {(heroSlide1 || heroSlide2) && (
+                  <div>
+                    <p className="text-[9px] font-black uppercase tracking-widest text-gray-500 mb-2">Aperçu</p>
+                    <div className="grid grid-cols-2 gap-2">
+                      {heroSlide1 && (
+                        <div className="flex flex-col gap-1">
+                          <span className="text-[9px] font-black uppercase text-gray-500">Photo 1</span>
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img src={heroSlide1} alt="slide 1" className="w-full aspect-[4/5] object-cover rounded-lg" />
+                        </div>
+                      )}
+                      {heroSlide2 && (
+                        <div className="flex flex-col gap-1">
+                          <span className="text-[9px] font-black uppercase text-gray-500">Photo 2</span>
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img src={heroSlide2} alt="slide 2" className="w-full aspect-[4/5] object-cover rounded-lg" />
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                )}
+
+                <button
+                  onClick={generateHeroCode}
+                  className="w-full py-4 bg-[#C5A059] text-black font-black uppercase text-[11px] tracking-widest rounded-xl hover:bg-[#d4b572] transition"
+                >
+                  ⚡ Générer le code
+                </button>
+              </div>
+
+              <div className="flex flex-col gap-4">
+                <div className="bg-[#C5A059]/10 border border-[#C5A059]/30 rounded-2xl p-5">
+                  <h3 className="text-[11px] font-black uppercase tracking-widest text-[#C5A059] mb-3">
+                    📋 Comment utiliser
+                  </h3>
+                  <ol className="text-gray-400 text-xs flex flex-col gap-2 list-decimal list-inside">
+                    <li>Uploadez 1 ou 2 photos (portrait 4:5 recommandé)</li>
+                    <li>Cliquez sur <strong className="text-white">Générer le code</strong></li>
+                    <li>Copiez le code</li>
+                    <li>Collez dans <code className="text-[#C5A059]">components/Hero.tsx</code></li>
+                    <li>Sauvegardez et déployez sur Vercel</li>
+                  </ol>
+                </div>
+
+                {/* Aperçu actuel */}
+                <div className="bg-white/5 border border-white/10 rounded-2xl p-5">
+                  <h3 className="text-[10px] font-black uppercase tracking-widest text-[#C5A059] mb-3">
+                    👁️ Photos actuelles sur le site
+                  </h3>
+                  <div className="grid grid-cols-2 gap-2">
+                    <div className="flex flex-col gap-1">
+                      <span className="text-[9px] font-black uppercase text-gray-500">Actuelle 1</span>
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src="https://i.ibb.co/wvW0v0m/Gemini-Generated-Image-swd0bkswd0bkswd0.png"
+                        alt="hero 1"
+                        className="w-full aspect-[4/5] object-cover rounded-lg opacity-60"
+                      />
+                    </div>
+                    <div className="flex flex-col gap-1">
+                      <span className="text-[9px] font-black uppercase text-gray-500">Actuelle 2</span>
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src="https://i.ibb.co/cS4b03NR/Chat-GPT-Image-26-mars-2026-16-09-41.png"
+                        alt="hero 2"
+                        className="w-full aspect-[4/5] object-cover rounded-lg opacity-60"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-white/5 border border-white/10 rounded-2xl overflow-hidden flex-1">
+                  <div className="flex items-center justify-between px-5 py-3 border-b border-white/10">
+                    <span className="text-[10px] font-black uppercase tracking-widest text-gray-400">Code généré</span>
+                    {heroCode && (
+                      <button
+                        onClick={copyHeroCode}
+                        className={`text-[10px] font-black uppercase px-4 py-1.5 rounded-lg transition ${
+                          heroCopied ? 'bg-green-500 text-white' : 'bg-[#C5A059] text-black'
+                        }`}
+                      >
+                        {heroCopied ? '✓ Copié !' : 'Copier'}
+                      </button>
+                    )}
+                  </div>
+                  <div className="p-5 min-h-[150px]">
+                    {heroCode ? (
+                      <pre className="text-green-400 text-xs font-mono whitespace-pre-wrap leading-relaxed">{heroCode}</pre>
+                    ) : (
+                      <div className="flex items-center justify-center py-8 text-gray-600">
+                        <p className="text-[11px] font-bold uppercase tracking-widest">Le code apparaîtra ici</p>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* Banner Tab */}
         {tab === 'banner' && (
