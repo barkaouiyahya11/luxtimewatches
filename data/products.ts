@@ -221,4 +221,19 @@ export const products: Product[] = [
     ],
     imgPosition: 'bottom',
   },
+  {
+    id: 112,
+    sku: 'LTF004',
+    cat: 'femme',
+    name: 'MONTRE ROLEX BOITE SIMPLE ',
+    price: 149,
+    originalPrice: 170,
+    stock: 0,
+    rating: 4.9,
+    reviews: 0,
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778092849/luxtim/qc6mdaa0bcn1v2n3ad3f.jpg',
+    detailImgs: [
+    ],
+    imgPosition: 'bottom',
+  },
 ]
