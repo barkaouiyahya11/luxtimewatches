@@ -24,8 +24,8 @@ export default function ProductCard({ product }: Props) {
           borderRadius: '0px',
           background: '#F9F8F6',
           border: product.frame
-            ? '2px solid #C5A059'
-            : '1.5px solid #111111',
+            ? '1.5px solid #C5A059'
+            : '0.8px solid #111111',
           boxShadow: product.frame
             ? '0 4px 24px rgba(197,160,89,0.15)'
             : '0 2px 12px rgba(0,0,0,0.08)',
