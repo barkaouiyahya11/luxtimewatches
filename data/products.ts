@@ -251,4 +251,19 @@ export const products: Product[] = [
     ],
     imgPosition: 'bottom',
   },
+  {
+    id: 116,
+    sku: 'LTF006',
+    cat: 'femme',
+    name: 'MONTRE GUCCI FEMME DORÉ BOITE SIMPLE ',
+    price: 149,
+    originalPrice: 170,
+    stock: 0,
+    rating: 4.9,
+    reviews: 0,
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778094425/luxtim/oy6gud6wvx8p7cp34ysx.jpg',
+    detailImgs: [
+    ],
+    imgPosition: 'bottom',
+  },
 ]
