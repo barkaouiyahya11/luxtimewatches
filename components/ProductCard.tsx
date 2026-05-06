@@ -21,7 +21,7 @@ export default function ProductCard({ product }: Props) {
         className="relative w-full overflow-hidden mb-4"
         style={{
           aspectRatio: '4/5',
-          borderRadius: '12px',
+          borderRadius: '4px',
           background: '#F9F8F6',
           border: product.frame
             ? '2px solid #C5A059'
@@ -41,6 +41,7 @@ export default function ProductCard({ product }: Props) {
             objectPosition: product.imgPosition || 'center',
             transform: `scale(${product.imgScale || 1})`,
             transformOrigin: product.imgPosition || 'center',
+            borderRadius: '3px',
           }}
           loading="lazy"
         />
