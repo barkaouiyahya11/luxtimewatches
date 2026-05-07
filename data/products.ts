@@ -254,4 +254,19 @@ export const products: Product[] = [
     ],
     imgPosition: 'bottom',
   },
+  {
+    id: 131,
+    sku: 'LTH018',
+    cat: 'homme',
+    name: 'GC GUESS COLLECTION HOMME BOITE SIMPLE',
+    price: 200,
+    originalPrice: 230,
+    stock: 0,
+    rating: 4.9,
+    reviews: 0,
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778167658/luxtim/egham8t4tssczpqqrumx.jpg',
+    detailImgs: [
+    ],
+    imgPosition: 'bottom',
+  },
 ]
