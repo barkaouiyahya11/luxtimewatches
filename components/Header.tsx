@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useStore } from '@/context/StoreContext'
 import { DOMAIN } from '@/lib/constants'
+import SearchOverlay from '@/components/SearchOverlay'
 
 export default function Header() {
   const router = useRouter()
@@ -11,6 +12,7 @@ export default function Header() {
 
   const [scrolled, setScrolled] = useState(false)
   const [visible, setVisible]   = useState(true)
+  const [searchOpen, setSearchOpen] = useState(false)
   const lastY = useRef(0)
 
   useEffect(() => {
@@ -125,6 +127,14 @@ export default function Header() {
 
           {/* Right */}
           <div className="flex items-center gap-2 justify-end">
+            {/* Search button */}
+            <button
+              onClick={() => setSearchOpen(true)}
+              className="flex items-center bg-[#F2EBE0] text-[#7A6145] px-2.5 py-1.5 rounded-full border border-[#E0D4C0] hover:bg-[#E8DDD0] transition-colors duration-300"
+              title="Rechercher"
+            >
+              <i className="fa-solid fa-magnifying-glass text-[10px]" />
+            </button>
             <button
               onClick={shareSite}
               title="Partager"
@@ -143,6 +153,8 @@ export default function Header() {
 
         </div>
       </header>
+
+      {searchOpen && <SearchOverlay onClose={() => setSearchOpen(false)} />}
     </>
   )
 }
