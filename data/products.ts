@@ -329,4 +329,22 @@ export const products: Product[] = [
     ],
     imgPosition: 'bottom',
   },
+  {
+    id: 136,
+    sku: 'LTF007',
+    cat: 'femme',
+    name: 'CARTIER TANK CADRAN FEMME VERT AVEC PACKAGING',
+    price: 370,
+    originalPrice: 370,
+    stock: 0,
+    rating: 4.9,
+    reviews: 0,
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778176528/luxtim/ynrozxt9wrtgxedrgdt7.jpg',
+    detailImgs: [
+      'https://res.cloudinary.com/dannr2e0c/image/upload/v1778176169/luxtim/yu38uoug9dxrjm1lxryc.jpg',
+    ],
+    coffret: true,
+    imgScale: 1.1,
+    imgPosition: 'bottom right',
+  },
 ]
