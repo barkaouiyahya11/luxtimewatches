@@ -182,4 +182,18 @@ export const products: Product[] = [
     ],
     coffret: true,
   },
+  {
+    id: 123,
+    sku: 'LTH013',
+    cat: 'femme',
+    name: 'CARTIER SANTOS BOITE SIMPLE',
+    price: 220,
+    originalPrice: 220,
+    stock: 0,
+    rating: 4.9,
+    reviews: 0,
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778166395/luxtim/ucxanbh6gsiccghaqzqk.jpg',
+    detailImgs: [
+    ],
+  },
 ]
