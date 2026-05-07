@@ -269,4 +269,19 @@ export const products: Product[] = [
     ],
     imgPosition: 'bottom',
   },
+  {
+    id: 132,
+    sku: 'LTH019',
+    cat: 'homme',
+    name: 'ROLEX LAND-DWELLER HOMME BOITE SIMPLE',
+    price: 199,
+    originalPrice: 199,
+    stock: 0,
+    rating: 4.9,
+    reviews: 0,
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778168128/luxtim/hiqwjwy2itxfkgaprcny.jpg',
+    detailImgs: [
+    ],
+    imgPosition: 'bottom',
+  },
 ]
