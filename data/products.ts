@@ -210,4 +210,18 @@ export const products: Product[] = [
     detailImgs: [
     ],
   },
+  {
+    id: 125,
+    sku: 'LTH015',
+    cat: 'homme',
+    name: 'ROLEX TABLEAU GRIS HOMME BOITE SIMPLE',
+    price: 150,
+    originalPrice: 220,
+    stock: 0,
+    rating: 4.9,
+    reviews: 0,
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778166971/luxtim/knqhicea3dbjme0ifuvu.jpg',
+    detailImgs: [
+    ],
+  },
 ]
