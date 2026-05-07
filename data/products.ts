@@ -115,4 +115,21 @@ export const products: Product[] = [
     coffret: true,
     imgScale: 1.1,
   },
+  {
+    id: 119,
+    sku: 'LTH009',
+    cat: 'homme',
+    name: 'ROLEX LAND-DWELLER HOMME  AVEC PACKAGING BLANC',
+    price: 350,
+    originalPrice: 400,
+    stock: 2,
+    rating: 4.9,
+    reviews: 0,
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778164720/luxtim/e2gtxysz15ywcfvsqpni.jpg',
+    detailImgs: [
+      'https://res.cloudinary.com/dannr2e0c/image/upload/v1778164707/luxtim/xkatffw8kmmmdr3zyc9u.jpg',
+    ],
+    coffret: true,
+    imgScale: 1.1,
+  },
 ]
