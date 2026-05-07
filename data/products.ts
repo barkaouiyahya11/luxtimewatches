@@ -132,4 +132,21 @@ export const products: Product[] = [
     coffret: true,
     imgScale: 1.1,
   },
+  {
+    id: 120,
+    sku: 'LTH010',
+    cat: 'homme',
+    name: 'ROLEX DATEJUST AVEC PACKAGING HOMME',
+    price: 370,
+    originalPrice: 370,
+    stock: 0,
+    rating: 4.9,
+    reviews: 0,
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778165078/luxtim/anlepnd5e1g9ibygjfzb.jpg',
+    detailImgs: [
+      'https://res.cloudinary.com/dannr2e0c/image/upload/v1778165082/luxtim/p9ftycqhvrnl39jqcerk.jpg',
+    ],
+    coffret: true,
+    imgScale: 1.1,
+  },
 ]
