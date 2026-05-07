@@ -239,4 +239,19 @@ export const products: Product[] = [
     ],
     imgPosition: 'bottom',
   },
+  {
+    id: 127,
+    sku: 'LTH017',
+    cat: 'homme',
+    name: 'ROLEX DATEJUST HOMME BOITE SIMPLE BLANC',
+    price: 190,
+    originalPrice: 220,
+    stock: 0,
+    rating: 4.9,
+    reviews: 0,
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778167573/luxtim/ehbr64hiq3mprxb1xfle.jpg',
+    detailImgs: [
+    ],
+    imgPosition: 'bottom',
+  },
 ]
