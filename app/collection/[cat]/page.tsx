@@ -18,10 +18,10 @@ const TITLES: Record<string, string> = {
 const SUBTITLES: Record<string, string> = {
   femme: 'Sublime ta beauté avec nos montres ✨',
   homme: 'Style & élégance pour homme ✨',
-  'homme-simple': 'Montres homme sans packaging ✨',
-  'homme-coffret': 'Montres homme avec coffret cadeau 🎁',
-  'femme-simple': 'Montres femme sans packaging ✨',
-  'femme-coffret': 'Montres femme avec coffret cadeau 🎁',
+  'homme-simple': 'Montres homme avec boite simple',
+  'homme-coffret': 'Montres homme avec coffret cadeau',
+  'femme-simple': 'Montres femme avec boite simple',
+  'femme-coffret': 'Montres femme avec coffret cadeau',
 }
 
 export default function CollectionPage() {
