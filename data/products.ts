@@ -365,4 +365,21 @@ export const products: Product[] = [
     imgScale: 1.1,
     imgPosition: 'bottom right',
   },
+  {
+    id: 138,
+    sku: 'LTF009',
+    cat: 'femme',
+    name: 'ROLEX TWO-TONE FEMME AVEC PACKAGING',
+    price: 370,
+    originalPrice: 370,
+    stock: 0,
+    rating: 4.9,
+    reviews: 0,
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778177772/luxtim/s1eyinihbpoi8qavwyjj.jpg',
+    detailImgs: [
+      'https://res.cloudinary.com/dannr2e0c/image/upload/v1778177778/luxtim/olwjfr5pdtft3wfgwm8u.jpg',
+    ],
+    coffret: true,
+    imgScale: 1.1,
+  },
 ]
