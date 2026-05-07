@@ -224,4 +224,19 @@ export const products: Product[] = [
     detailImgs: [
     ],
   },
+  {
+    id: 126,
+    sku: 'LTH016',
+    cat: 'homme',
+    name: 'ROLEX DATEJUST HOMME BOITE SIMPLE',
+    price: 190,
+    originalPrice: 220,
+    stock: 0,
+    rating: 4.9,
+    reviews: 0,
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778167412/luxtim/eecynmuzujz0kramtlpw.jpg',
+    detailImgs: [
+    ],
+    imgPosition: 'bottom',
+  },
 ]
