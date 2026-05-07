@@ -200,4 +200,20 @@ export const products: Product[] = [
     ],
     imgPosition: 'bottom',
   },
+  {
+    id: 117,
+    sku: 'LTH008',
+    cat: 'homme',
+    name: ' rolex',
+    price: 450,
+    originalPrice: 170,
+    stock: 0,
+    rating: 4.9,
+    reviews: 0,
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778160558/luxtim/ji72vi58hnmzdhdogmgz.jpg',
+    detailImgs: [
+      'https://res.cloudinary.com/dannr2e0c/image/upload/v1778160598/luxtim/wrwctx1yyo2hwbylvpft.jpg',
+    ],
+    coffret: true,
+  },
 ]
