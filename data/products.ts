@@ -166,4 +166,20 @@ export const products: Product[] = [
     coffret: true,
     imgScale: 1.1,
   },
+  {
+    id: 122,
+    sku: 'LTH012',
+    cat: 'homme',
+    name: 'CARTIER SANTOS HOMME AVEC PACKAGING',
+    price: 380,
+    originalPrice: 380,
+    stock: 0,
+    rating: 4.9,
+    reviews: 0,
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778165747/luxtim/u3mrjfuhisu0srfcwqk5.jpg',
+    detailImgs: [
+      'https://res.cloudinary.com/dannr2e0c/image/upload/v1778165752/luxtim/obh2sdseedccractro0o.jpg',
+    ],
+    coffret: true,
+  },
 ]
