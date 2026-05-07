@@ -347,4 +347,22 @@ export const products: Product[] = [
     imgScale: 1.1,
     imgPosition: 'bottom right',
   },
+  {
+    id: 137,
+    sku: 'LTF008',
+    cat: 'femme',
+    name: 'ROLEX DAY-DATE FEMME AVEC PACKAGING',
+    price: 350,
+    originalPrice: 350,
+    stock: 0,
+    rating: 4.9,
+    reviews: 0,
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778177129/luxtim/zhtvvgh4vrkovoa966xt.jpg',
+    detailImgs: [
+      'https://res.cloudinary.com/dannr2e0c/image/upload/v1778177141/luxtim/tqa068j72l0pbxdv3wjd.jpg',
+    ],
+    coffret: true,
+    imgScale: 1.1,
+    imgPosition: 'bottom right',
+  },
 ]
