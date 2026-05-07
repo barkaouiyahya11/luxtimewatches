@@ -11,25 +11,28 @@ interface Props {
 export default function ProductCard({ product }: Props) {
   const router = useRouter()
 
-  // Slideshow only for coffret products with a detail image
   const slides = product.coffret && product.detailImgs?.length
     ? [product.gridImg, ...product.detailImgs]
     : [product.gridImg]
 
   const [idx, setIdx] = useState(0)
-  const [fade, setFade] = useState(true)
+  const [next, setNext] = useState<number | null>(null)
+  const [sliding, setSliding] = useState(false)
 
   useEffect(() => {
     if (slides.length <= 1) return
     const interval = setInterval(() => {
-      setFade(false)
+      const nextIdx = (idx + 1) % slides.length
+      setNext(nextIdx)
+      setSliding(true)
       setTimeout(() => {
-        setIdx((i) => (i + 1) % slides.length)
-        setFade(true)
-      }, 400)
+        setIdx(nextIdx)
+        setNext(null)
+        setSliding(false)
+      }, 600)
     }, 3000)
     return () => clearInterval(interval)
-  }, [slides.length])
+  }, [idx, slides.length])
 
   return (
     <div
@@ -52,25 +55,42 @@ export default function ProductCard({ product }: Props) {
             : '0 2px 12px rgba(0,0,0,0.08)',
         }}
       >
+        {/* Current image — slides OUT to left */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={slides[idx]}
           alt={product.name}
-          className="w-full h-full object-cover"
+          className="absolute inset-0 w-full h-full object-cover"
           style={{
             objectPosition: product.imgPosition || 'center',
-            transform: `scale(${product.imgScale || 1})`,
+            transform: sliding
+              ? 'translateX(-100%)'
+              : `scale(${product.imgScale || 1})`,
             transformOrigin: product.imgPosition || 'center',
-            borderRadius: '0px',
-            opacity: fade ? 1 : 0,
-            transition: 'opacity 0.4s ease',
+            transition: sliding ? 'transform 0.6s cubic-bezier(0.77,0,0.18,1)' : 'none',
           }}
           loading="lazy"
         />
 
-        {/* Dots indicator for coffret slideshow */}
+        {/* Next image — slides IN from right */}
+        {next !== null && (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={slides[next]}
+            alt={product.name}
+            className="absolute inset-0 w-full h-full object-cover"
+            style={{
+              objectPosition: product.imgPosition || 'center',
+              transform: sliding ? 'translateX(0%)' : 'translateX(100%)',
+              transition: sliding ? 'transform 0.6s cubic-bezier(0.77,0,0.18,1)' : 'none',
+            }}
+            loading="lazy"
+          />
+        )}
+
+        {/* Dots */}
         {slides.length > 1 && (
-          <div className="absolute bottom-2 left-0 right-0 flex justify-center gap-1 pointer-events-none">
+          <div className="absolute bottom-2 left-0 right-0 flex justify-center gap-1 pointer-events-none z-10">
             {slides.map((_, i) => (
               <span
                 key={i}
@@ -87,7 +107,7 @@ export default function ProductCard({ product }: Props) {
           </div>
         )}
 
-        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-500 pointer-events-none" />
+        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-500 pointer-events-none z-10" />
       </div>
 
       {/* Text */}
