@@ -19,7 +19,6 @@ function MarqueeItem({ time }: { time: string }) {
       ⌚ ANAQA FAKHIRA B-ATMINA FI L-MOTANAWIL
       <span className="mx-3 text-[#C6A769]">✦</span>
       💎 LIVRAISON GRATUITE F KAMEL L-MAGHRIB 🇲🇦
-      <CountdownBadge time={time} />
     </span>
   )
 }
