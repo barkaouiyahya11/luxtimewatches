@@ -10,6 +10,11 @@ interface Props {
   product: Product
 }
 
+function optimizeImg(url: string, width = 800): string {
+  if (!url.includes('res.cloudinary.com')) return url
+  return url.replace('/image/upload/', `/image/upload/q_auto,f_auto,w_${width}/`)
+}
+
 export default function ProductDetail({ product }: Props) {
   const router = useRouter()
   const { addToCart, openCheckout, showToast, toggleCart } = useStore()
@@ -120,7 +125,7 @@ export default function ProductDetail({ product }: Props) {
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src={mainImg}
+                  src={optimizeImg(mainImg, 900)}
                   alt={product.name}
                   className="w-full h-full object-cover"
                   style={{
@@ -143,7 +148,7 @@ export default function ProductDetail({ product }: Props) {
                     // eslint-disable-next-line @next/next/no-img-element
                     <img
                       key={i}
-                      src={img}
+                      src={optimizeImg(img, 200)}
                       alt=""
                       onClick={() => { setMainImg(img); setZoomed(false) }}
                       style={{
@@ -384,7 +389,7 @@ export default function ProductDetail({ product }: Props) {
                     <div className="relative" style={{ aspectRatio: '4/5', overflow: 'hidden', borderRadius: '12px', background: '#F9F8F6', marginBottom: '12px', border: '1px solid rgba(0,0,0,0.03)', boxShadow: '0 4px 16px rgba(0,0,0,0.04)' }}>
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
-                        src={p.gridImg}
+                        src={optimizeImg(p.gridImg, 400)}
                         alt={p.name}
                         className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                       />

@@ -7,6 +7,12 @@ interface Props {
   product: Product
 }
 
+// Optimise Cloudinary URLs: auto quality + format + resize to 600px
+function optimizeImg(url: string, width = 600): string {
+  if (!url.includes('res.cloudinary.com')) return url
+  return url.replace('/image/upload/', `/image/upload/q_auto,f_auto,w_${width}/`)
+}
+
 export default function ProductCard({ product }: Props) {
   const router = useRouter()
 
@@ -33,7 +39,7 @@ export default function ProductCard({ product }: Props) {
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src={product.gridImg}
+          src={optimizeImg(product.gridImg)}
           alt={product.name}
           className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
           style={{
@@ -43,6 +49,7 @@ export default function ProductCard({ product }: Props) {
             borderRadius: '0px',
           }}
           loading="lazy"
+          decoding="async"
         />
         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-500 pointer-events-none" />
       </div>
