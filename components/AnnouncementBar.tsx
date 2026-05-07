@@ -14,11 +14,12 @@ function CountdownBadge({ time }: { time: string }) {
 function MarqueeItem({ time }: { time: string }) {
   return (
     <span className="mx-8 md:mx-12 whitespace-nowrap">
-      ⏱️ OFFRE LIMITÉE : JUSQU&apos;À -30% + LIVRAISON GRATUITE AU MAROC 🇲🇦
-      <CountdownBadge time={time} />|{' '}
-      <span className="font-arabic text-[10px] md:text-[12px]">
-        عرض محدود: خصم -30% + التوصيل مجانا 🇲🇦
-      </span>
+      🔥 KHELIK DIMA CLASS M3A LUX TIME
+      <span className="mx-3 text-[#C6A769]">✦</span>
+      ⌚ ANAQA FAKHIRA B-ATMINA FI L-MOTANAWIL
+      <span className="mx-3 text-[#C6A769]">✦</span>
+      💎 LIVRAISON GRATUITE F KAMEL L-MAGHRIB 🇲🇦
+      <CountdownBadge time={time} />
     </span>
   )
 }
