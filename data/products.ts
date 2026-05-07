@@ -284,4 +284,19 @@ export const products: Product[] = [
     ],
     imgPosition: 'bottom',
   },
+  {
+    id: 133,
+    sku: 'LTH020',
+    cat: 'homme',
+    name: 'CASIO QUARTZ HOMME BOITE SIMPLE',
+    price: 170,
+    originalPrice: 170,
+    stock: 0,
+    rating: 4.9,
+    reviews: 0,
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778168375/luxtim/skynndclaumliycdih8a.jpg',
+    detailImgs: [
+    ],
+    imgPosition: 'bottom',
+  },
 ]
