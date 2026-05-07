@@ -1,7 +1,6 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import { useEffect, useState } from 'react'
 import { Product } from '@/types'
 
 interface Props {
@@ -10,29 +9,6 @@ interface Props {
 
 export default function ProductCard({ product }: Props) {
   const router = useRouter()
-
-  const slides = product.coffret && product.detailImgs?.length
-    ? [product.gridImg, ...product.detailImgs]
-    : [product.gridImg]
-
-  const [idx, setIdx] = useState(0)
-  const [next, setNext] = useState<number | null>(null)
-  const [sliding, setSliding] = useState(false)
-
-  useEffect(() => {
-    if (slides.length <= 1) return
-    const interval = setInterval(() => {
-      const nextIdx = (idx + 1) % slides.length
-      setNext(nextIdx)
-      setSliding(true)
-      setTimeout(() => {
-        setIdx(nextIdx)
-        setNext(null)
-        setSliding(false)
-      }, 600)
-    }, 3000)
-    return () => clearInterval(interval)
-  }, [idx, slides.length])
 
   return (
     <div
@@ -55,59 +31,20 @@ export default function ProductCard({ product }: Props) {
             : '0 2px 12px rgba(0,0,0,0.08)',
         }}
       >
-        {/* Current image — slides OUT to left */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src={slides[idx]}
+          src={product.gridImg}
           alt={product.name}
-          className="absolute inset-0 w-full h-full object-cover"
+          className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
           style={{
             objectPosition: product.imgPosition || 'center',
-            transform: sliding
-              ? 'translateX(-100%)'
-              : `scale(${product.imgScale || 1})`,
+            transform: `scale(${product.imgScale || 1})`,
             transformOrigin: product.imgPosition || 'center',
-            transition: sliding ? 'transform 0.6s cubic-bezier(0.77,0,0.18,1)' : 'none',
+            borderRadius: '0px',
           }}
           loading="lazy"
         />
-
-        {/* Next image — slides IN from right */}
-        {next !== null && (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
-            src={slides[next]}
-            alt={product.name}
-            className="absolute inset-0 w-full h-full object-cover"
-            style={{
-              objectPosition: product.imgPosition || 'center',
-              transform: sliding ? 'translateX(0%)' : 'translateX(100%)',
-              transition: sliding ? 'transform 0.6s cubic-bezier(0.77,0,0.18,1)' : 'none',
-            }}
-            loading="lazy"
-          />
-        )}
-
-        {/* Dots */}
-        {slides.length > 1 && (
-          <div className="absolute bottom-2 left-0 right-0 flex justify-center gap-1 pointer-events-none z-10">
-            {slides.map((_, i) => (
-              <span
-                key={i}
-                style={{
-                  width: i === idx ? '14px' : '5px',
-                  height: '5px',
-                  borderRadius: '3px',
-                  background: i === idx ? '#fff' : 'rgba(255,255,255,0.5)',
-                  transition: 'all 0.3s ease',
-                  display: 'inline-block',
-                }}
-              />
-            ))}
-          </div>
-        )}
-
-        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-500 pointer-events-none z-10" />
+        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-500 pointer-events-none" />
       </div>
 
       {/* Text */}
