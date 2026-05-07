@@ -1,6 +1,7 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
+import { useEffect, useState } from 'react'
 import { Product } from '@/types'
 
 interface Props {
@@ -9,6 +10,26 @@ interface Props {
 
 export default function ProductCard({ product }: Props) {
   const router = useRouter()
+
+  // Slideshow only for coffret products with a detail image
+  const slides = product.coffret && product.detailImgs?.length
+    ? [product.gridImg, ...product.detailImgs]
+    : [product.gridImg]
+
+  const [idx, setIdx] = useState(0)
+  const [fade, setFade] = useState(true)
+
+  useEffect(() => {
+    if (slides.length <= 1) return
+    const interval = setInterval(() => {
+      setFade(false)
+      setTimeout(() => {
+        setIdx((i) => (i + 1) % slides.length)
+        setFade(true)
+      }, 400)
+    }, 3000)
+    return () => clearInterval(interval)
+  }, [slides.length])
 
   return (
     <div
@@ -31,22 +52,41 @@ export default function ProductCard({ product }: Props) {
             : '0 2px 12px rgba(0,0,0,0.08)',
         }}
       >
-        {/* The Photo */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src={product.gridImg}
+          src={slides[idx]}
           alt={product.name}
-          className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+          className="w-full h-full object-cover"
           style={{
             objectPosition: product.imgPosition || 'center',
             transform: `scale(${product.imgScale || 1})`,
             transformOrigin: product.imgPosition || 'center',
             borderRadius: '0px',
+            opacity: fade ? 1 : 0,
+            transition: 'opacity 0.4s ease',
           }}
           loading="lazy"
         />
 
-        {/* Hover overlay for a bit of dynamic feel */}
+        {/* Dots indicator for coffret slideshow */}
+        {slides.length > 1 && (
+          <div className="absolute bottom-2 left-0 right-0 flex justify-center gap-1 pointer-events-none">
+            {slides.map((_, i) => (
+              <span
+                key={i}
+                style={{
+                  width: i === idx ? '14px' : '5px',
+                  height: '5px',
+                  borderRadius: '3px',
+                  background: i === idx ? '#fff' : 'rgba(255,255,255,0.5)',
+                  transition: 'all 0.3s ease',
+                  display: 'inline-block',
+                }}
+              />
+            ))}
+          </div>
+        )}
+
         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-500 pointer-events-none" />
       </div>
 
