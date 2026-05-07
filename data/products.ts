@@ -196,4 +196,18 @@ export const products: Product[] = [
     detailImgs: [
     ],
   },
+  {
+    id: 124,
+    sku: 'LTH014',
+    cat: 'homme',
+    name: 'ROLEX LAND-DWELLER HOMME SIMPLE',
+    price: 199,
+    originalPrice: 220,
+    stock: 0,
+    rating: 4.9,
+    reviews: 0,
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778166600/luxtim/cicg0hu7ujjlmpl3nyij.jpg',
+    detailImgs: [
+    ],
+  },
 ]
