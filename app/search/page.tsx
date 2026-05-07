@@ -5,10 +5,12 @@ import { Suspense } from 'react'
 import { products } from '@/data/products'
 import ProductCard from '@/components/ProductCard'
 import Footer from '@/components/Footer'
+import { useScrollReveal } from '@/hooks/useScrollReveal'
 
 function SearchResults() {
   const searchParams = useSearchParams()
   const router = useRouter()
+  useScrollReveal()
   const q = searchParams.get('q') || ''
 
   const results = q.trim().length >= 1
