@@ -314,4 +314,19 @@ export const products: Product[] = [
     ],
     imgPosition: 'bottom',
   },
+  {
+    id: 135,
+    sku: 'LTH022',
+    cat: 'homme',
+    name: 'PATEK PHILIPPE NAUTILUS HOMME BOITE SIMPLE',
+    price: 220,
+    originalPrice: 250,
+    stock: 0,
+    rating: 4.9,
+    reviews: 0,
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778169086/luxtim/bwamrbqiyg12wrtortnu.jpg',
+    detailImgs: [
+    ],
+    imgPosition: 'bottom',
+  },
 ]
