@@ -120,24 +120,21 @@ export default function Header() {
               >
                 GUSHKIN
               </h1>
-              {/* Gold line + subtitle like the SVG logo */}
+              {/* Line + subtitle */}
               <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                <div style={{ width: '28px', height: '1px', background: 'linear-gradient(90deg, transparent, #D4AF37)' }} />
+                <div style={{ width: '28px', height: '1px', background: 'linear-gradient(90deg, transparent, #1a1a1a)' }} />
                 <span style={{
                   fontSize: '6px',
                   letterSpacing: '0.4em',
                   fontFamily: 'sans-serif',
                   fontWeight: 400,
-                  background: 'linear-gradient(135deg, #BF953F, #D4AF37, #AA771C)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  backgroundClip: 'text',
+                  color: '#1a1a1a',
                   textTransform: 'uppercase',
                   whiteSpace: 'nowrap',
                 }}>
                   ACCESSOIRES
                 </span>
-                <div style={{ width: '28px', height: '1px', background: 'linear-gradient(90deg, #D4AF37, transparent)' }} />
+                <div style={{ width: '28px', height: '1px', background: 'linear-gradient(90deg, #1a1a1a, transparent)' }} />
               </div>
             </div>
           </div>
@@ -147,7 +144,7 @@ export default function Header() {
             {/* Search button */}
             <button
               onClick={() => setSearchOpen(true)}
-              className="flex items-center bg-[#F5EDE0] text-[#C5A059] px-2.5 py-1.5 rounded-full border border-[#E8D5B0] hover:bg-[#EDD9B0] transition-colors duration-300"
+              className="flex items-center bg-[#1a1a1a] text-white px-2.5 py-1.5 rounded-full hover:bg-[#333] transition-colors duration-300"
               title="Rechercher"
             >
               <i className="fa-solid fa-magnifying-glass text-[10px]" />
@@ -155,13 +152,13 @@ export default function Header() {
             <button
               onClick={shareSite}
               title="Partager"
-              className="flex items-center bg-[#F5EDE0] text-[#C5A059] px-2.5 py-1.5 rounded-full border border-[#E8D5B0] hover:bg-[#EDD9B0] transition-colors duration-300"
+              className="flex items-center bg-[#1a1a1a] text-white px-2.5 py-1.5 rounded-full hover:bg-[#333] transition-colors duration-300"
             >
               <i className="fa-solid fa-arrow-up-from-bracket text-[10px]" />
             </button>
             <button
               onClick={toggleCart}
-              className="flex items-center gap-1.5 bg-[#F5EDE0] text-[#C5A059] text-[10px] font-bold px-3 py-1.5 rounded-full border border-[#E8D5B0] hover:bg-[#EDD9B0] transition-colors duration-300"
+              className="flex items-center gap-1.5 bg-[#1a1a1a] text-white text-[10px] font-bold px-3 py-1.5 rounded-full hover:bg-[#333] transition-colors duration-300"
             >
               <i className="fa-solid fa-bag-shopping text-[10px]" />
               <span>{cartCount}</span>
