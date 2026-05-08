@@ -15,10 +15,16 @@ function MarqueeItem({ time }: { time: string }) {
   return (
     <span className="mx-8 md:mx-12 whitespace-nowrap">
       🔥 KHELIK DIMA CLASS M3A LUX TIME
+      <span className="mx-2 opacity-50">—</span>
+      <span className="opacity-70">Restez toujours élégant avec LUX TIME</span>
       <span className="mx-3 text-[#C6A769]">✦</span>
       ⌚ ANAQA FAKHIRA B-ATMINA FI L-MOTANAWIL
+      <span className="mx-2 opacity-50">—</span>
+      <span className="opacity-70">Élégance de luxe à prix accessibles</span>
       <span className="mx-3 text-[#C6A769]">✦</span>
       💎 LIVRAISON GRATUITE F KAMEL L-MAGHRIB 🇲🇦
+      <span className="mx-2 opacity-50">—</span>
+      <span className="opacity-70">Livraison gratuite partout au Maroc</span>
     </span>
   )
 }
