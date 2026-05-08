@@ -14,7 +14,7 @@ function CountdownBadge({ time }: { time: string }) {
 function MarqueeItem({ time }: { time: string }) {
   return (
     <span className="mx-8 md:mx-12 whitespace-nowrap">
-      🔥 Restez toujours élégant avec LUX TIME
+      🔥 Restez toujours élégant avec GUSHKIN
       <span className="mx-3 text-[#C6A769]">✦</span>
       ⌚ Élégance de luxe à prix accessibles
       <span className="mx-3 text-[#C6A769]">✦</span>
