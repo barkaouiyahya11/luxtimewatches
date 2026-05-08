@@ -458,4 +458,19 @@ export const products: Product[] = [
     ],
     imgPosition: 'bottom',
   },
+  {
+    id: 145,
+    sku: '',
+    cat: 'femme',
+    name: 'ROLEX OR / DORÉ FEMME BOITE SIMPLE ',
+    price: 220,
+    originalPrice: 220,
+    stock: 0,
+    rating: 4.9,
+    reviews: 0,
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778253702/luxtim/of1vpys2ns7jc47hfsu6.jpg',
+    detailImgs: [
+    ],
+    imgPosition: 'bottom',
+  },
 ]
