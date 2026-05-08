@@ -413,4 +413,19 @@ export const products: Product[] = [
     ],
     imgPosition: 'bottom',
   },
+  {
+    id: 142,
+    sku: '',
+    cat: 'femme',
+    name: 'ROLEX TWO-TONE FEMME BOITE SIMPLE ',
+    price: 199,
+    originalPrice: 199,
+    stock: 0,
+    rating: 4.9,
+    reviews: 0,
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778252967/luxtim/cyfbjwv9qfg4r1dqswpk.jpg',
+    detailImgs: [
+    ],
+    imgPosition: 'bottom',
+  },
 ]
