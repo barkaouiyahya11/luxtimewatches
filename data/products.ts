@@ -428,4 +428,19 @@ export const products: Product[] = [
     ],
     imgPosition: 'bottom',
   },
+  {
+    id: 143,
+    sku: '',
+    cat: 'femme',
+    name: 'CARTIER TANK CADRAN FEMME BOITE SIMPLE ',
+    price: 220,
+    originalPrice: 220,
+    stock: 0,
+    rating: 4.9,
+    reviews: 0,
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778253156/luxtim/p6wr1f2qwh5xy7yra2lf.jpg',
+    detailImgs: [
+    ],
+    imgPosition: 'bottom',
+  },
 ]
