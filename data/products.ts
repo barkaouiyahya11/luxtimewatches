@@ -9,21 +9,6 @@ import { Product } from '@/types'
 // ============================================================
 export const products: Product[] = [
   {
-    id: 109,
-    sku: 'LTF',
-    cat: 'femme',
-    name: 'CASIO BOITE SIMPLE',
-    price: 199,
-    originalPrice: 199,
-    stock: 1,
-    rating: 4.9,
-    reviews: 0,
-    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778082455/luxtim/cuq9ut8l4edkhwxvwpxt.jpg',
-    detailImgs: [
-    ],
-    imgPosition: 'bottom',
-  },
-  {
     id: 110,
     sku: 'LTF002',
     cat: 'femme',
@@ -367,21 +352,6 @@ export const products: Product[] = [
     ],
     coffret: true,
     imgScale: 1.1,
-  },
-  {
-    id: 139,
-    sku: 'HH',
-    cat: 'femme',
-    name: 'HH',
-    price: 198,
-    originalPrice: 198,
-    stock: 0,
-    rating: 4.9,
-    reviews: 0,
-    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778233905/luxtim/elxwioj8bnq20wgsimrp.jpg',
-    detailImgs: [
-    ],
-    imgPosition: 'bottom',
   },
   {
     id: 140,
