@@ -4,7 +4,7 @@ import { WHATSAPP_NUMBER, TIKTOK_URL } from '@/lib/constants'
 
 export default function Footer() {
   return (
-    <footer className="bg-white py-12 text-center border-t border-gray-100 mt-8">
+    <footer className="py-12 text-center mt-8" style={{ background: '#EAE3D9', borderTop: '1px solid #DDD6CC' }}>
       <div className="flex flex-col items-center gap-4 mb-10">
         <button
           onClick={() => window.open(`https://wa.me/${WHATSAPP_NUMBER}`, '_blank')}

@@ -3,12 +3,15 @@
 @tailwind utilities;
 
 :root {
-  --bg: #FAF9F7;
-  --black: #111111;
+  --bg: #F9F7F2;
+  --bg-secondary: #EAE3D9;
+  --black: #000000;
+  --text: #333333;
   --gold: #C6A769;
   --gold-light: #D4BA85;
   --secondary: #6E6E6E;
-  --border: #E8E4DE;
+  --border: #DDD6CC;
+  --beige-text: #F5EFE6;
 }
 
 html,
@@ -17,9 +20,32 @@ body {
   padding: 0 !important;
   overflow-x: hidden !important;
   background-color: var(--bg);
-  color: var(--black);
+  color: var(--text);
   width: 100vw !important;
   -webkit-tap-highlight-color: transparent;
+}
+
+/* ===== QUIET LUXURY — CTA BUTTONS ===== */
+.btn-ql {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: #000000;
+  color: #F5EFE6;
+  border: 1.5px solid #000000;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 14px 28px;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+.btn-ql:hover {
+  background: transparent;
+  color: #000000;
 }
 
 /* ===== PRODUCT CARDS PREMIUM ===== */

@@ -78,7 +78,7 @@ export default function ProductDetail({ product }: Props) {
 
   return (
     <>
-      <div style={{ background: '#FAF9F7', minHeight: '100vh' }}>
+      <div style={{ background: '#F9F7F2', minHeight: '100vh' }}>
         <div className="container mx-auto px-4 md:px-8 max-w-6xl animate-fade-in pb-32 md:pb-16" style={{ paddingTop: '32px' }}>
 
           {/* ── Navigation ── */}
@@ -336,22 +336,8 @@ export default function ProductDetail({ product }: Props) {
                     const extra = selectedBoxColor ? (colorName ? `${colorName} — ${selectedBoxColor}` : selectedBoxColor) : colorName
                     openCheckout('direct', product, qty, extra)
                   }}
-                  style={{
-                    width: '100%',
-                    padding: '16px',
-                    background: '#111111',
-                    color: '#fff',
-                    fontSize: '11px',
-                    fontWeight: 700,
-                    letterSpacing: '0.2em',
-                    textTransform: 'uppercase',
-                    border: 'none',
-                    borderRadius: '2px',
-                    cursor: 'pointer',
-                    transition: 'background 0.3s ease',
-                  }}
-                  onMouseEnter={e => (e.currentTarget.style.background = '#C6A769')}
-                  onMouseLeave={e => (e.currentTarget.style.background = '#111111')}
+                  className="btn-ql"
+                  style={{ width: '100%', padding: '16px', borderRadius: '2px' }}
                 >
                   Commander — Paiement à la livraison
                 </button>
@@ -362,22 +348,22 @@ export default function ProductDetail({ product }: Props) {
                     width: '100%',
                     padding: '14px',
                     background: 'transparent',
-                    color: '#111',
+                    color: '#333333',
                     fontSize: '10px',
                     fontWeight: 700,
                     letterSpacing: '0.2em',
                     textTransform: 'uppercase',
-                    border: '1px solid #E8E4DE',
+                    border: '1.5px solid #000000',
                     borderRadius: '2px',
                     cursor: 'pointer',
-                    transition: 'all 0.3s ease',
+                    transition: 'all 0.25s ease',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
                     gap: '8px',
                   }}
-                  onMouseEnter={e => { e.currentTarget.style.borderColor = '#111'; e.currentTarget.style.background = '#111'; e.currentTarget.style.color = '#fff' }}
-                  onMouseLeave={e => { e.currentTarget.style.borderColor = '#E8E4DE'; e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#111' }}
+                  onMouseEnter={e => { e.currentTarget.style.background = '#000'; e.currentTarget.style.color = '#F5EFE6' }}
+                  onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#333333' }}
                 >
                   <i className="fa-solid fa-bag-shopping text-[10px]" /> Ajouter au panier
                 </button>
@@ -473,7 +459,8 @@ export default function ProductDetail({ product }: Props) {
               const extra = selectedBoxColor ? (colorName ? `${colorName} — ${selectedBoxColor}` : selectedBoxColor) : colorName
               openCheckout('direct', product, qty, extra)
             }}
-            style={{ width: '100%', padding: '15px', background: '#111', color: '#fff', fontSize: '11px', fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', border: 'none', borderRadius: '2px', cursor: 'pointer' }}
+            className="btn-ql"
+            style={{ width: '100%', padding: '15px', borderRadius: '2px' }}
           >
             Commander — Paiement à la livraison
           </button>
