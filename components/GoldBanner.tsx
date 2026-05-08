@@ -2,7 +2,7 @@
 
 const BANNER_IMAGES = [
   {
-    src: 'https://i.ibb.co/W4ZCgmbC/Whats-App-Image-2026-03-27-at-20-25-56.jpg',
+    src: 'https://res.cloudinary.com/dannr2e0c/image/upload/f_auto,q_auto/v1778274005/luxtim/t4i1f0az245jyvo90fqg.heic',
     alt: 'LUX TIME 18K Gold Collection 1',
   },
   {
