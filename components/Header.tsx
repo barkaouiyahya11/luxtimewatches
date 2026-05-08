@@ -108,18 +108,21 @@ export default function Header() {
                 letterSpacing: '0.22em',
                 fontWeight: 900,
                 fontFamily: 'var(--font-playfair), serif',
-                background: 'linear-gradient(180deg, #F5E6B0 0%, #C9A84C 40%, #F5E6B0 60%, #8B6914 100%)',
+                background: 'linear-gradient(135deg, #BF953F 0%, #FCF6BA 30%, #D4AF37 50%, #FBF5B7 70%, #AA771C 100%)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
                 backgroundClip: 'text',
                 cursor: 'pointer',
+                filter: 'drop-shadow(0 0 8px rgba(212,175,55,0.4))',
                 textTransform: 'uppercase',
                 whiteSpace: 'nowrap',
                 lineHeight: 1,
                 userSelect: 'none',
               }}
             >
+              <span style={{ fontSize: '0.55em', verticalAlign: 'middle', marginRight: '6px', opacity: 0.85 }}>✦</span>
               GUSHKIN
+              <span style={{ fontSize: '0.55em', verticalAlign: 'middle', marginLeft: '6px', opacity: 0.85 }}>✦</span>
             </h1>
           </div>
 
