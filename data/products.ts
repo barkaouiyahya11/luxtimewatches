@@ -488,4 +488,18 @@ export const products: Product[] = [
     ],
     imgPosition: 'bottom',
   },
+  {
+    id: 147,
+    sku: '',
+    cat: 'femme',
+    name: 'MGQ DORÉE FEMME BOITE SIMPLE ',
+    price: 199,
+    originalPrice: 199,
+    stock: 0,
+    rating: 4.9,
+    reviews: 0,
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778254567/luxtim/u2qfos5hmxkpsysi2o1b.jpg',
+    detailImgs: [
+    ],
+  },
 ]
