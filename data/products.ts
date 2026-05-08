@@ -398,4 +398,19 @@ export const products: Product[] = [
     ],
     imgPosition: 'bottom',
   },
+  {
+    id: 141,
+    sku: '',
+    cat: 'femme',
+    name: 'ROLEX DAY-DATE FEMME BOITE SIMPLE ',
+    price: 208,
+    originalPrice: 208,
+    stock: 0,
+    rating: 4.9,
+    reviews: 0,
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778252855/luxtim/zjrugdjzijyn3sxfwcvw.jpg',
+    detailImgs: [
+    ],
+    imgPosition: 'bottom',
+  },
 ]
