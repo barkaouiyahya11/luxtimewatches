@@ -92,7 +92,7 @@ export default function Header() {
           <div className="flex items-center">
             <button
               onClick={() => router.push('/')}
-              className="nav-link text-[10px] font-bold uppercase tracking-widest hidden md:flex items-center gap-2 text-[#C5A059] hover:text-[#8B6914] transition-colors duration-300"
+              className="nav-link text-[10px] font-bold uppercase tracking-widest hidden md:flex items-center gap-2 text-[#1a1a1a] hover:text-[#555] transition-colors duration-300"
             >
               <i className="fa-solid fa-house text-[10px]" /> Accueil
             </button>
