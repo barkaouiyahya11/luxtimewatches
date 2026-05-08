@@ -502,4 +502,19 @@ export const products: Product[] = [
     detailImgs: [
     ],
   },
+  {
+    id: 149,
+    sku: '',
+    cat: 'femme',
+    name: 'MGQ BICOLORE CADRAN FEMME BOITE SIMPLE ',
+    price: 149,
+    originalPrice: 149,
+    stock: 0,
+    rating: 4.9,
+    reviews: 0,
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778254808/luxtim/z5afdylqryk8rr2fgupr.jpg',
+    detailImgs: [
+    ],
+    imgPosition: 'bottom',
+  },
 ]
