@@ -124,7 +124,7 @@ export default function Header() {
                 userSelect: 'none',
               }}
             >
-              LUX TIME
+              GUSHKIN
             </h1>
           </div>
 
