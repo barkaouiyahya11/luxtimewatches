@@ -362,8 +362,8 @@ export default function ProductDetail({ product }: Props) {
                     justifyContent: 'center',
                     gap: '8px',
                   }}
-                  onMouseEnter={e => { e.currentTarget.style.background = '#000'; e.currentTarget.style.color = '#F5EFE6' }}
-                  onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#333333' }}
+                  onMouseEnter={e => { e.currentTarget.style.background = '#0A0A0A'; e.currentTarget.style.color = '#fff'; e.currentTarget.style.borderColor = '#0A0A0A' }}
+                  onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#1A1A1A'; e.currentTarget.style.borderColor = '#0A0A0A' }}
                 >
                   <i className="fa-solid fa-bag-shopping text-[10px]" /> Ajouter au panier
                 </button>

@@ -24,7 +24,7 @@ export default function FemmeSection({ products }: Props) {
         <p style={{ fontSize: '10px', letterSpacing: '0.35em', color: '#C6A769', fontWeight: 600, textTransform: 'uppercase', marginBottom: '10px' }}>
           Élégance Féminine
         </p>
-        <h2 style={{ fontFamily: 'var(--font-playfair), serif', fontSize: 'clamp(1.6rem, 4vw, 2.8rem)', fontWeight: 700, color: '#333333', letterSpacing: '0.08em', textTransform: 'uppercase', lineHeight: 1.15 }}>
+        <h2 style={{ fontFamily: 'var(--font-playfair), serif', fontSize: 'clamp(1.6rem, 4vw, 2.8rem)', fontWeight: 700, color: '#1A1A1A', letterSpacing: '0.08em', textTransform: 'uppercase', lineHeight: 1.15 }}>
           Collection Femme
         </h2>
         <div style={{ width: '40px', height: '1px', background: '#C6A769', margin: '14px auto 0' }} />

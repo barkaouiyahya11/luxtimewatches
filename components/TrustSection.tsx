@@ -18,14 +18,14 @@ const TRUST_ITEMS = [
 
 export default function TrustSection() {
   return (
-    <section style={{ background: '#EAE3D9', borderTop: '1px solid #DDD6CC', borderBottom: '1px solid #DDD6CC', padding: '72px 24px' }}>
+    <section style={{ background: '#0A0A0A', borderTop: '1px solid #222', borderBottom: '1px solid #222', padding: '72px 24px' }}>
       <div style={{ maxWidth: '900px', margin: '0 auto', textAlign: 'center' }}>
 
         {/* Title */}
         <p style={{ fontSize: '10px', letterSpacing: '0.35em', color: '#C6A769', fontWeight: 600, textTransform: 'uppercase', marginBottom: '10px' }}>
           Notre Engagement
         </p>
-        <h2 style={{ fontFamily: 'var(--font-playfair), serif', fontSize: 'clamp(1.4rem, 3vw, 2rem)', fontWeight: 700, color: '#333333', letterSpacing: '0.06em', textTransform: 'uppercase', marginBottom: '48px' }}>
+        <h2 style={{ fontFamily: 'var(--font-playfair), serif', fontSize: 'clamp(1.4rem, 3vw, 2rem)', fontWeight: 700, color: '#F5F5F5', letterSpacing: '0.06em', textTransform: 'uppercase', marginBottom: '48px' }}>
           L&apos;Excellence Lux Time
         </h2>
 
@@ -35,18 +35,18 @@ export default function TrustSection() {
             <div key={item.title} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '16px' }}>
               <div style={{
                 width: '56px', height: '56px',
-                border: '1px solid #DDD6CC',
+                border: '1px solid #C6A769',
                 borderRadius: '50%',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
-                background: '#F9F7F2',
+                background: 'transparent',
               }}>
                 <i className={`fa-solid ${item.icon}`} style={{ fontSize: '18px', color: '#C6A769' }} />
               </div>
               <div>
-                <h4 style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', color: '#333333', marginBottom: '6px' }}>
+                <h4 style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', color: '#F5F5F5', marginBottom: '6px' }}>
                   {item.title}
                 </h4>
-                <p style={{ fontSize: '11px', color: '#6E6E6E', letterSpacing: '0.02em', lineHeight: 1.6 }}>
+                <p style={{ fontSize: '11px', color: '#999999', letterSpacing: '0.02em', lineHeight: 1.6 }}>
                   {item.desc}
                 </p>
               </div>
