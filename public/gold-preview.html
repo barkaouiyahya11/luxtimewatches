@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gold Styles — GUSHKIN</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #fff; font-family: 'Georgia', serif; padding: 30px 20px; }
+  h1 { text-align: center; font-size: 14px; letter-spacing: 0.3em; color: #999; text-transform: uppercase; margin-bottom: 40px; }
+  .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; max-width: 700px; margin: 0 auto; }
+  .card {
+    background: #f8f8f8;
+    border: 1px solid #eee;
+    border-radius: 12px;
+    padding: 30px 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+  .card .num {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    color: #bbb;
+    text-transform: uppercase;
+  }
+  .card .label {
+    font-size: 11px;
+    color: #888;
+    letter-spacing: 0.15em;
+  }
+  .logo {
+    font-family: 'Georgia', serif;
+    font-size: 2rem;
+    font-weight: 900;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+  }
+
+  /* 1 — Or Classique */
+  .g1 { background: linear-gradient(135deg, #BF953F 0%, #FCF6BA 30%, #D4AF37 50%, #FBF5B7 70%, #AA771C 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; filter: drop-shadow(0 0 6px rgba(212,175,55,0.3)); }
+
+  /* 2 — Or Brillant Vif */
+  .g2 { background: linear-gradient(135deg, #F7C948 0%, #FFF9C4 40%, #F7C948 60%, #D4A000 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; filter: drop-shadow(0 0 8px rgba(247,201,72,0.5)); }
+
+  /* 3 — Or Platine */
+  .g3 { background: linear-gradient(135deg, #A8A8A8 0%, #FFFFFF 40%, #C0C0C0 60%, #888 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; filter: drop-shadow(0 0 6px rgba(192,192,192,0.4)); }
+
+  /* 4 — Or Rosé */
+  .g4 { background: linear-gradient(135deg, #B76E79 0%, #F4C2C2 35%, #E8A598 55%, #B76E79 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; filter: drop-shadow(0 0 6px rgba(183,110,121,0.3)); }
+
+  /* 5 — Or Champagne */
+  .g5 { background: linear-gradient(135deg, #C8A96E 0%, #F7E7CE 40%, #E2C98A 60%, #A07840 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; filter: drop-shadow(0 0 6px rgba(200,169,110,0.3)); }
+
+  /* 6 — Or Antique */
+  .g6 { background: linear-gradient(135deg, #5C3D11 0%, #D4A017 35%, #8B6914 60%, #F0C040 80%, #6B4A10 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+
+  /* 7 — Or Électrique */
+  .g7 { background: linear-gradient(135deg, #FF8C00 0%, #FFD700 40%, #FF6B00 70%, #FFD700 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; filter: drop-shadow(0 0 10px rgba(255,165,0,0.5)); }
+
+  /* 8 — Or Diamant */
+  .g8 { background: linear-gradient(135deg, #C9A84C 0%, #FFFFFF 25%, #D4AF37 50%, #FFFFFF 75%, #C9A84C 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; filter: drop-shadow(0 0 12px rgba(255,255,200,0.6)); }
+
+  /* 9 — Or Noir */
+  .g9 { background: linear-gradient(180deg, #D4AF37 0%, #8B6914 50%, #2C1810 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+
+  /* 10 — Or Lune */
+  .g10 { background: linear-gradient(135deg, #D4AF37 0%, #F0E6FF 35%, #9B7FD4 55%, #D4AF37 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; filter: drop-shadow(0 0 8px rgba(155,127,212,0.4)); }
+
+  /* Dark card for contrast */
+  .dark { background: #111; border-color: #333; }
+  .dark .num, .dark .label { color: #555; }
+
+  @media (max-width: 500px) {
+    .grid { grid-template-columns: 1fr; }
+    .logo { font-size: 1.6rem; }
+  }
+</style>
+</head>
+<body>
+<h1>Choisis ton style GUSHKIN</h1>
+<div class="grid">
+
+  <div class="card">
+    <span class="num">N°1</span>
+    <span class="logo g1">✦ GUSHKIN ✦</span>
+    <span class="label">Or Classique</span>
+  </div>
+
+  <div class="card">
+    <span class="num">N°2</span>
+    <span class="logo g2">✦ GUSHKIN ✦</span>
+    <span class="label">Or Brillant Vif</span>
+  </div>
+
+  <div class="card">
+    <span class="num">N°3</span>
+    <span class="logo g3">✦ GUSHKIN ✦</span>
+    <span class="label">Or Platine / Argent</span>
+  </div>
+
+  <div class="card">
+    <span class="num">N°4</span>
+    <span class="logo g4">✦ GUSHKIN ✦</span>
+    <span class="label">Or Rosé</span>
+  </div>
+
+  <div class="card">
+    <span class="num">N°5</span>
+    <span class="logo g5">✦ GUSHKIN ✦</span>
+    <span class="label">Or Champagne</span>
+  </div>
+
+  <div class="card dark">
+    <span class="num">N°6</span>
+    <span class="logo g6">✦ GUSHKIN ✦</span>
+    <span class="label" style="color:#555">Or Antique (fond noir)</span>
+  </div>
+
+  <div class="card">
+    <span class="num">N°7</span>
+    <span class="logo g7">✦ GUSHKIN ✦</span>
+    <span class="label">Or Électrique</span>
+  </div>
+
+  <div class="card dark">
+    <span class="num">N°8</span>
+    <span class="logo g8">✦ GUSHKIN ✦</span>
+    <span class="label" style="color:#555">Or Diamant (fond noir)</span>
+  </div>
+
+  <div class="card dark">
+    <span class="num">N°9</span>
+    <span class="logo g9">✦ GUSHKIN ✦</span>
+    <span class="label" style="color:#555">Or Noir (fond noir)</span>
+  </div>
+
+  <div class="card dark">
+    <span class="num">N°10</span>
+    <span class="logo g10">✦ GUSHKIN ✦</span>
+    <span class="label" style="color:#555">Or Lune / Violet (fond noir)</span>
+  </div>
+
+</div>
+</body>
+</html>
