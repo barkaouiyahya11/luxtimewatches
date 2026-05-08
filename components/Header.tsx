@@ -92,7 +92,7 @@ export default function Header() {
           <div className="flex items-center">
             <button
               onClick={() => router.push('/')}
-              className="nav-link text-[10px] font-bold uppercase tracking-widest hidden md:flex items-center gap-2 text-gray-700 hover:text-[#C5A059] transition-colors duration-300"
+              className="nav-link text-[10px] font-bold uppercase tracking-widest hidden md:flex items-center gap-2 text-[#C5A059] hover:text-[#8B6914] transition-colors duration-300"
             >
               <i className="fa-solid fa-house text-[10px]" /> Accueil
             </button>
@@ -108,7 +108,10 @@ export default function Header() {
                 letterSpacing: '0.22em',
                 fontWeight: 900,
                 fontFamily: 'var(--font-playfair), serif',
-                color: '#000000',
+                background: 'linear-gradient(180deg, #F5E6B0 0%, #C9A84C 40%, #F5E6B0 60%, #8B6914 100%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
                 cursor: 'pointer',
                 textTransform: 'uppercase',
                 whiteSpace: 'nowrap',
@@ -125,7 +128,7 @@ export default function Header() {
             {/* Search button */}
             <button
               onClick={() => setSearchOpen(true)}
-              className="flex items-center bg-[#F2EBE0] text-[#7A6145] px-2.5 py-1.5 rounded-full border border-[#E0D4C0] hover:bg-[#E8DDD0] transition-colors duration-300"
+              className="flex items-center bg-[#F5EDE0] text-[#C5A059] px-2.5 py-1.5 rounded-full border border-[#E8D5B0] hover:bg-[#EDD9B0] transition-colors duration-300"
               title="Rechercher"
             >
               <i className="fa-solid fa-magnifying-glass text-[10px]" />
@@ -133,13 +136,13 @@ export default function Header() {
             <button
               onClick={shareSite}
               title="Partager"
-              className="flex items-center bg-[#F2EBE0] text-[#7A6145] px-2.5 py-1.5 rounded-full border border-[#E0D4C0] hover:bg-[#E8DDD0] transition-colors duration-300"
+              className="flex items-center bg-[#F5EDE0] text-[#C5A059] px-2.5 py-1.5 rounded-full border border-[#E8D5B0] hover:bg-[#EDD9B0] transition-colors duration-300"
             >
               <i className="fa-solid fa-arrow-up-from-bracket text-[10px]" />
             </button>
             <button
               onClick={toggleCart}
-              className="flex items-center gap-1.5 bg-gray-900 text-white text-[10px] font-bold px-3 py-1.5 rounded-full hover:bg-[#C5A059] transition-colors duration-300"
+              className="flex items-center gap-1.5 bg-[#F5EDE0] text-[#C5A059] text-[10px] font-bold px-3 py-1.5 rounded-full border border-[#E8D5B0] hover:bg-[#EDD9B0] transition-colors duration-300"
             >
               <i className="fa-solid fa-bag-shopping text-[10px]" />
               <span>{cartCount}</span>
