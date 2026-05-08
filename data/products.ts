@@ -376,51 +376,7 @@ export const products: Product[] = [
     ],
     imgPosition: 'bottom',
   },
-  {
-    id: 141,
-    sku: '',
-    cat: 'femme',
-    name: 'ROLEX DAY-DATE FEMME BOITE SIMPLE ',
-    price: 200,
-    originalPrice: 200,
-    stock: 0,
-    rating: 4.9,
-    reviews: 0,
-    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778252855/luxtim/zjrugdjzijyn3sxfwcvw.jpg',
-    detailImgs: [
-    ],
-    imgPosition: 'bottom',
-  },
-  {
-    id: 143,
-    sku: '',
-    cat: 'femme',
-    name: 'CARTIER TANK CADRAN FEMME BOITE SIMPLE ',
-    price: 220,
-    originalPrice: 220,
-    stock: 0,
-    rating: 4.9,
-    reviews: 0,
-    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778253156/luxtim/p6wr1f2qwh5xy7yra2lf.jpg',
-    detailImgs: [
-    ],
-    imgPosition: 'bottom',
-  },
-  {
-    id: 142,
-    sku: '',
-    cat: 'femme',
-    name: 'ROLEX TWO-TONE FEMME BOITE SIMPLE ',
-    price: 199,
-    originalPrice: 199,
-    stock: 0,
-    rating: 4.9,
-    reviews: 0,
-    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778252967/luxtim/cyfbjwv9qfg4r1dqswpk.jpg',
-    detailImgs: [
-    ],
-    imgPosition: 'bottom',
-  },
+  // 🔴 rouge
   {
     id: 144,
     sku: '',
@@ -436,6 +392,23 @@ export const products: Product[] = [
     ],
     imgPosition: 'bottom',
   },
+  // 🟢 verte
+  {
+    id: 141,
+    sku: '',
+    cat: 'femme',
+    name: 'ROLEX DAY-DATE FEMME BOITE SIMPLE ',
+    price: 200,
+    originalPrice: 200,
+    stock: 0,
+    rating: 4.9,
+    reviews: 0,
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778252855/luxtim/zjrugdjzijyn3sxfwcvw.jpg',
+    detailImgs: [
+    ],
+    imgPosition: 'bottom',
+  },
+  // 🔴 rouge
   {
     id: 145,
     sku: '',
@@ -451,6 +424,23 @@ export const products: Product[] = [
     ],
     imgPosition: 'bottom',
   },
+  // 🟢 verte
+  {
+    id: 142,
+    sku: '',
+    cat: 'femme',
+    name: 'ROLEX TWO-TONE FEMME BOITE SIMPLE ',
+    price: 199,
+    originalPrice: 199,
+    stock: 0,
+    rating: 4.9,
+    reviews: 0,
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778252967/luxtim/cyfbjwv9qfg4r1dqswpk.jpg',
+    detailImgs: [
+    ],
+    imgPosition: 'bottom',
+  },
+  // 🔴 rouge
   {
     id: 146,
     sku: '',
@@ -466,6 +456,23 @@ export const products: Product[] = [
     ],
     imgPosition: 'bottom',
   },
+  // 🟢 verte
+  {
+    id: 143,
+    sku: '',
+    cat: 'femme',
+    name: 'CARTIER TANK CADRAN FEMME BOITE SIMPLE ',
+    price: 220,
+    originalPrice: 220,
+    stock: 0,
+    rating: 4.9,
+    reviews: 0,
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778253156/luxtim/p6wr1f2qwh5xy7yra2lf.jpg',
+    detailImgs: [
+    ],
+    imgPosition: 'bottom',
+  },
+  // 🔴 rouge
   {
     id: 147,
     sku: '',
@@ -480,6 +487,7 @@ export const products: Product[] = [
     detailImgs: [
     ],
   },
+  // 🔴 rouge
   {
     id: 149,
     sku: '',
