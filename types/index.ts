@@ -13,6 +13,7 @@ export interface Product {
   hot?: boolean
   coffret?: boolean
   colors?: { name: string; img: string }[]
+  boxColors?: string[]
   frame?: boolean
   imgScale?: number
   imgPosition?: string

@@ -17,6 +17,9 @@ export default function ProductDetail({ product }: Props) {
   const { addToCart, openCheckout, showToast, toggleCart } = useStore()
   const [qty, setQty] = useState(1)
   const [selectedColor, setSelectedColor] = useState<number>(0)
+  const [selectedBoxColor, setSelectedBoxColor] = useState<string>(
+    product.boxColors?.[0] ?? ''
+  )
   const [mainImg, setMainImg] = useState(
     product.colors?.length ? product.colors[0].img : product.gridImg
   )
@@ -58,7 +61,8 @@ export default function ProductDetail({ product }: Props) {
 
   function handleAddToCart() {
     const colorName = product.colors?.[selectedColor]?.name
-    addToCart(product, qty, colorName)
+    const extra = selectedBoxColor ? (colorName ? `${colorName} — ${selectedBoxColor}` : selectedBoxColor) : colorName
+    addToCart(product, qty, extra)
     showToast('Ajouté au panier !')
     toggleCart()
   }
@@ -251,6 +255,54 @@ export default function ProductDetail({ product }: Props) {
                 </div>
               )}
 
+              {/* Box color selector */}
+              {product.boxColors && product.boxColors.length > 0 && (
+                <div style={{ marginBottom: '20px' }}>
+                  <p style={{ fontSize: '9px', fontWeight: 700, letterSpacing: '0.25em', textTransform: 'uppercase', color: '#6E6E6E', marginBottom: '10px' }}>
+                    Couleur de la boîte — <span style={{ color: '#111' }}>{selectedBoxColor}</span>
+                  </p>
+                  <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
+                    {product.boxColors.map((bc) => {
+                      const isGreen = bc.toLowerCase().includes('vert')
+                      const isRed = bc.toLowerCase().includes('rouge')
+                      const dotColor = isGreen ? '#2E7D32' : isRed ? '#C62828' : '#111'
+                      return (
+                        <button
+                          key={bc}
+                          onClick={() => setSelectedBoxColor(bc)}
+                          style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '8px',
+                            padding: '10px 18px',
+                            fontSize: '10px',
+                            fontWeight: 700,
+                            letterSpacing: '0.15em',
+                            textTransform: 'uppercase',
+                            border: selectedBoxColor === bc ? '1.5px solid #111' : '1.5px solid #E8E4DE',
+                            background: selectedBoxColor === bc ? '#111' : 'transparent',
+                            color: selectedBoxColor === bc ? '#fff' : '#111',
+                            borderRadius: '2px',
+                            cursor: 'pointer',
+                            transition: 'all 0.2s ease',
+                          }}
+                        >
+                          <span style={{
+                            width: '10px',
+                            height: '10px',
+                            borderRadius: '50%',
+                            background: selectedBoxColor === bc ? '#fff' : dotColor,
+                            flexShrink: 0,
+                            display: 'inline-block',
+                          }} />
+                          {bc}
+                        </button>
+                      )
+                    })}
+                  </div>
+                </div>
+              )}
+
               {/* Quantity */}
               <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '24px' }}>
                 <p style={{ fontSize: '9px', fontWeight: 700, letterSpacing: '0.25em', textTransform: 'uppercase', color: '#6E6E6E', whiteSpace: 'nowrap' }}>
@@ -279,7 +331,11 @@ export default function ProductDetail({ product }: Props) {
               <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginBottom: '28px' }}>
                 <button
                   ref={orderBtnRef}
-                  onClick={() => openCheckout('direct', product, qty, product.colors?.[selectedColor]?.name)}
+                  onClick={() => {
+                    const colorName = product.colors?.[selectedColor]?.name
+                    const extra = selectedBoxColor ? (colorName ? `${colorName} — ${selectedBoxColor}` : selectedBoxColor) : colorName
+                    openCheckout('direct', product, qty, extra)
+                  }}
                   style={{
                     width: '100%',
                     padding: '16px',
@@ -412,7 +468,11 @@ export default function ProductDetail({ product }: Props) {
       {showSticky && (
         <div style={{ position: 'fixed', bottom: 0, left: 0, width: '100%', zIndex: 1500, padding: '12px 16px 20px', background: '#fff', borderTop: '1px solid #E8E4DE', boxShadow: '0 -4px 20px rgba(0,0,0,0.08)' }} className="md:hidden">
           <button
-            onClick={() => openCheckout('direct', product, qty, product.colors?.[selectedColor]?.name)}
+            onClick={() => {
+              const colorName = product.colors?.[selectedColor]?.name
+              const extra = selectedBoxColor ? (colorName ? `${colorName} — ${selectedBoxColor}` : selectedBoxColor) : colorName
+              openCheckout('direct', product, qty, extra)
+            }}
             style={{ width: '100%', padding: '15px', background: '#111', color: '#fff', fontSize: '11px', fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', border: 'none', borderRadius: '2px', cursor: 'pointer' }}
           >
             Commander — Paiement à la livraison

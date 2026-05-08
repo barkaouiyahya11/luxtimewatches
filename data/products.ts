@@ -99,6 +99,7 @@ export const products: Product[] = [
     ],
     coffret: true,
     imgScale: 1.1,
+    boxColors: ['BOITE VERTE', 'BOITE ROUGE'],
   },
   {
     id: 119,
@@ -116,6 +117,7 @@ export const products: Product[] = [
     ],
     coffret: true,
     imgScale: 1.1,
+    boxColors: ['BOITE VERTE', 'BOITE ROUGE'],
   },
   {
     id: 120,
@@ -133,6 +135,7 @@ export const products: Product[] = [
     ],
     coffret: true,
     imgScale: 1.1,
+    boxColors: ['BOITE VERTE', 'BOITE ROUGE'],
   },
   {
     id: 121,
@@ -150,6 +153,7 @@ export const products: Product[] = [
     ],
     coffret: true,
     imgScale: 1.1,
+    boxColors: ['BOITE VERTE', 'BOITE ROUGE'],
   },
   {
     id: 122,
@@ -166,6 +170,7 @@ export const products: Product[] = [
       'https://res.cloudinary.com/dannr2e0c/image/upload/v1778165752/luxtim/obh2sdseedccractro0o.jpg',
     ],
     coffret: true,
+    boxColors: ['BOITE VERTE', 'BOITE ROUGE'],
   },
   {
     id: 124,
@@ -317,6 +322,7 @@ export const products: Product[] = [
     coffret: true,
     imgScale: 1.1,
     imgPosition: 'bottom right',
+    boxColors: ['BOITE VERTE', 'BOITE ROUGE'],
   },
   {
     id: 137,
@@ -335,6 +341,7 @@ export const products: Product[] = [
     coffret: true,
     imgScale: 1.1,
     imgPosition: 'bottom right',
+    boxColors: ['BOITE VERTE', 'BOITE ROUGE'],
   },
   {
     id: 138,
@@ -352,6 +359,7 @@ export const products: Product[] = [
     ],
     coffret: true,
     imgScale: 1.1,
+    boxColors: ['BOITE VERTE', 'BOITE ROUGE'],
   },
   {
     id: 140,
@@ -373,8 +381,8 @@ export const products: Product[] = [
     sku: '',
     cat: 'femme',
     name: 'ROLEX DAY-DATE FEMME BOITE SIMPLE ',
-    price: 208,
-    originalPrice: 208,
+    price: 200,
+    originalPrice: 200,
     stock: 0,
     rating: 4.9,
     reviews: 0,
@@ -463,8 +471,8 @@ export const products: Product[] = [
     sku: '',
     cat: 'femme',
     name: 'MGQ DORÉE FEMME BOITE SIMPLE ',
-    price: 199,
-    originalPrice: 199,
+    price: 170,
+    originalPrice: 170,
     stock: 0,
     rating: 4.9,
     reviews: 0,
