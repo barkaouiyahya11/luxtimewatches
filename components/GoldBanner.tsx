@@ -37,7 +37,7 @@ export default function GoldBanner() {
                 borderRadius: '16px',
                 overflow: 'hidden',
                 aspectRatio: '1/1',
-                border: '3px solid #C5A059',
+                border: '1px solid #1a1a1a',
                 width: '100%',
                 maxWidth: '400px',
                 display: 'flex',

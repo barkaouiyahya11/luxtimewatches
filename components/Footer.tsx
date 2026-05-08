@@ -4,7 +4,7 @@ import { WHATSAPP_NUMBER, TIKTOK_URL } from '@/lib/constants'
 
 export default function Footer() {
   return (
-    <footer className="py-12 text-center mt-8" style={{ background: '#0A0A0A', borderTop: '1px solid #222' }}>
+    <footer className="py-12 text-center mt-8" style={{ background: '#FAFAFA', borderTop: '1px solid #E5E5E5' }}>
       <div className="flex flex-col items-center gap-4 mb-10">
         <button
           onClick={() => window.open(`https://wa.me/${WHATSAPP_NUMBER}`, '_blank')}
@@ -32,8 +32,8 @@ export default function Footer() {
         </button>
       </div>
 
-      <div className="w-24 h-px mx-auto mb-6" style={{ background: '#C6A769', opacity: 0.4 }} />
-      <p className="text-[9px] font-bold uppercase tracking-[0.4em]" style={{ color: '#666' }}>
+      <div className="w-24 h-px mx-auto mb-6 bg-gray-200" />
+      <p className="text-[9px] text-gray-400 font-bold uppercase tracking-[0.4em]">
         © 2026 LUX TIME MAROC. TOUS DROITS RÉSERVÉS.
       </p>
     </footer>
