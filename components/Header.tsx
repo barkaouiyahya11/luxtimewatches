@@ -70,16 +70,12 @@ export default function Header() {
           transform: visible ? 'translateY(0)' : 'translateY(-100%)',
           /* ── Height shrink ── */
           height: scrolled ? '52px' : '64px',
-          /* ── SOLID white always — no transparency ── */
-          background: scrolled
-            ? 'rgba(255,255,255,0.95)'
-            : 'rgba(255,255,255,1)',
-          backdropFilter: scrolled ? 'blur(12px)' : 'none',
-          WebkitBackdropFilter: scrolled ? 'blur(12px)' : 'none',
-          borderBottom: '1px solid rgba(0,0,0,0.07)',
-          boxShadow: scrolled
-            ? '0 4px 24px rgba(0,0,0,0.10)'
-            : '0 1px 3px rgba(0,0,0,0.05)',
+          /* ── Black background ── */
+          background: '#0a0a0a',
+          backdropFilter: 'none',
+          WebkitBackdropFilter: 'none',
+          borderBottom: '1px solid rgba(197,160,89,0.2)',
+          boxShadow: '0 2px 20px rgba(0,0,0,0.4)',
           transition:
             'transform 0.4s cubic-bezier(0.4,0,0.2,1),' +
             'height 0.4s cubic-bezier(0.4,0,0.2,1),' +
@@ -97,7 +93,7 @@ export default function Header() {
           <div className="flex items-center">
             <button
               onClick={() => router.push('/')}
-              className="nav-link text-[10px] font-bold uppercase tracking-widest hidden md:flex items-center gap-2 text-gray-700 hover:text-[#C5A059] transition-colors duration-300"
+              className="nav-link text-[10px] font-bold uppercase tracking-widest hidden md:flex items-center gap-2 text-white hover:text-[#C5A059] transition-colors duration-300"
             >
               <i className="fa-solid fa-house text-[10px]" /> Accueil
             </button>
@@ -133,7 +129,7 @@ export default function Header() {
             {/* Search button */}
             <button
               onClick={() => setSearchOpen(true)}
-              className="flex items-center bg-[#F2EBE0] text-[#7A6145] px-2.5 py-1.5 rounded-full border border-[#E0D4C0] hover:bg-[#E8DDD0] transition-colors duration-300"
+              className="flex items-center bg-transparent text-white px-2.5 py-1.5 rounded-full border border-white/30 hover:border-[#C5A059] hover:text-[#C5A059] transition-colors duration-300"
               title="Rechercher"
             >
               <i className="fa-solid fa-magnifying-glass text-[10px]" />
@@ -141,13 +137,13 @@ export default function Header() {
             <button
               onClick={shareSite}
               title="Partager"
-              className="flex items-center bg-[#F2EBE0] text-[#7A6145] px-2.5 py-1.5 rounded-full border border-[#E0D4C0] hover:bg-[#E8DDD0] transition-colors duration-300"
+              className="flex items-center bg-transparent text-white px-2.5 py-1.5 rounded-full border border-white/30 hover:border-[#C5A059] hover:text-[#C5A059] transition-colors duration-300"
             >
               <i className="fa-solid fa-arrow-up-from-bracket text-[10px]" />
             </button>
             <button
               onClick={toggleCart}
-              className="flex items-center gap-1.5 bg-gray-900 text-white text-[10px] font-bold px-3 py-1.5 rounded-full hover:bg-[#C5A059] transition-colors duration-300"
+              className="flex items-center gap-1.5 bg-white text-black text-[10px] font-bold px-3 py-1.5 rounded-full hover:bg-[#C5A059] hover:text-white transition-colors duration-300"
             >
               <i className="fa-solid fa-bag-shopping text-[10px]" />
               <span>{cartCount}</span>
