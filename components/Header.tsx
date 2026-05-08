@@ -150,13 +150,6 @@ export default function Header() {
               <i className="fa-solid fa-magnifying-glass text-[10px]" />
             </button>
             <button
-              onClick={shareSite}
-              title="Partager"
-              className="flex items-center bg-[#1a1a1a] text-white px-2.5 py-1.5 rounded-full hover:bg-[#333] transition-colors duration-300"
-            >
-              <i className="fa-solid fa-arrow-up-from-bracket text-[10px]" />
-            </button>
-            <button
               onClick={toggleCart}
               className="flex items-center gap-1.5 bg-[#1a1a1a] text-white text-[10px] font-bold px-3 py-1.5 rounded-full hover:bg-[#333] transition-colors duration-300"
             >
