@@ -473,4 +473,19 @@ export const products: Product[] = [
     ],
     imgPosition: 'bottom',
   },
+  {
+    id: 146,
+    sku: '',
+    cat: 'femme',
+    name: 'OLIBIN BICOLORE STAINLESS FEMME BOITE SIMPLE ',
+    price: 199,
+    originalPrice: 199,
+    stock: 0,
+    rating: 4.9,
+    reviews: 0,
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778253979/luxtim/eqge3ws1rawdfpkbhbm2.jpg',
+    detailImgs: [
+    ],
+    imgPosition: 'bottom',
+  },
 ]
