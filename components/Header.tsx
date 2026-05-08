@@ -100,30 +100,49 @@ export default function Header() {
 
           {/* Center — Logo */}
           <div className="flex justify-center">
-            <h1
+            <div
               onClick={() => router.push('/')}
-              style={{
-                fontSize: scrolled ? '1.2rem' : '1.55rem',
-                transition: 'font-size 0.4s cubic-bezier(0.4,0,0.2,1)',
-                letterSpacing: '0.22em',
-                fontWeight: 900,
-                fontFamily: 'var(--font-playfair), serif',
-                background: 'linear-gradient(135deg, #BF953F 0%, #FCF6BA 30%, #D4AF37 50%, #FBF5B7 70%, #AA771C 100%)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text',
-                cursor: 'pointer',
-                filter: 'drop-shadow(0 0 8px rgba(212,175,55,0.4))',
-                textTransform: 'uppercase',
-                whiteSpace: 'nowrap',
-                lineHeight: 1,
-                userSelect: 'none',
-              }}
+              style={{ cursor: 'pointer', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '2px', userSelect: 'none' }}
             >
-              <span style={{ fontSize: '0.55em', verticalAlign: 'middle', marginRight: '6px', opacity: 0.85 }}>✦</span>
-              GUSHKIN
-              <span style={{ fontSize: '0.55em', verticalAlign: 'middle', marginLeft: '6px', opacity: 0.85 }}>✦</span>
-            </h1>
+              <h1
+                style={{
+                  fontSize: scrolled ? '1.1rem' : '1.45rem',
+                  transition: 'font-size 0.4s cubic-bezier(0.4,0,0.2,1)',
+                  letterSpacing: '0.35em',
+                  fontWeight: 400,
+                  fontFamily: 'var(--font-playfair), serif',
+                  background: 'linear-gradient(135deg, #BF953F 0%, #FCF6BA 30%, #D4AF37 50%, #FBF5B7 70%, #AA771C 100%)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text',
+                  textTransform: 'uppercase',
+                  whiteSpace: 'nowrap',
+                  lineHeight: 1,
+                  margin: 0,
+                }}
+              >
+                GUSHKIN
+              </h1>
+              {/* Gold line + subtitle like the SVG logo */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                <div style={{ width: '28px', height: '1px', background: 'linear-gradient(90deg, transparent, #D4AF37)' }} />
+                <span style={{
+                  fontSize: '6px',
+                  letterSpacing: '0.4em',
+                  fontFamily: 'sans-serif',
+                  fontWeight: 400,
+                  background: 'linear-gradient(135deg, #BF953F, #D4AF37, #AA771C)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text',
+                  textTransform: 'uppercase',
+                  whiteSpace: 'nowrap',
+                }}>
+                  ACCESSOIRES
+                </span>
+                <div style={{ width: '28px', height: '1px', background: 'linear-gradient(90deg, #D4AF37, transparent)' }} />
+              </div>
+            </div>
           </div>
 
           {/* Right */}
