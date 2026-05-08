@@ -383,4 +383,19 @@ export const products: Product[] = [
     ],
     imgPosition: 'bottom',
   },
+  {
+    id: 140,
+    sku: '',
+    cat: 'femme',
+    name: 'OLIBIN STAINLESS STEEL FEMME BOITE SIMPLE ',
+    price: 199,
+    originalPrice: 199,
+    stock: 0,
+    rating: 4.9,
+    reviews: 0,
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778251485/luxtim/x1arqp8az9mrcqtdaobq.jpg',
+    detailImgs: [
+    ],
+    imgPosition: 'bottom',
+  },
 ]
