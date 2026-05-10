@@ -10,7 +10,7 @@ import { Product } from '@/types'
 export const products: Product[] = [
   {
     id: 110,
-    sku: 'LTF002',
+    sku: 'GSH-F-BS-01',
     cat: 'femme',
     name: ' EMPORIO ARMANI BOITE SIMPLE FEMME ',
     price: 149,
@@ -25,7 +25,7 @@ export const products: Product[] = [
   },
   {
     id: 111,
-    sku: 'LTF003',
+    sku: 'GSH-F-BS-02',
     cat: 'femme',
     name: ' DANIEL WELLINGTON BOITE SIMPLE FEMME ',
     price: 149,
@@ -40,7 +40,7 @@ export const products: Product[] = [
   },
   {
     id: 112,
-    sku: 'LTF004',
+    sku: 'GSH-F-BS-03',
     cat: 'femme',
     name: 'MONTRE ROLEX BOITE SIMPLE ',
     price: 149,
@@ -55,7 +55,7 @@ export const products: Product[] = [
   },
   {
     id: 116,
-    sku: 'LTF006',
+    sku: 'GSH-F-BS-04',
     cat: 'femme',
     name: 'MONTRE GUCCI FEMME DORÉ BOITE SIMPLE ',
     price: 149,
@@ -70,7 +70,7 @@ export const products: Product[] = [
   },
   {
     id: 115,
-    sku: 'LTF005',
+    sku: 'GSH-F-BS-05',
     cat: 'femme',
     name: 'MGQ CHRONOGRAPHE FEMME BOITE SIMPLE',
     price: 149,
@@ -85,7 +85,7 @@ export const products: Product[] = [
   },
   {
     id: 118,
-    sku: 'LTH008',
+    sku: 'GSH-H-CP-01',
     cat: 'homme',
     name: 'ROLEX LAND-DWELLER HOMME  AVEC PACKAGING ',
     price: 350,
@@ -103,7 +103,7 @@ export const products: Product[] = [
   },
   {
     id: 119,
-    sku: 'LTH009',
+    sku: 'GSH-H-CP-02',
     cat: 'homme',
     name: 'ROLEX LAND-DWELLER HOMME  AVEC PACKAGING BLANC',
     price: 350,
@@ -121,7 +121,7 @@ export const products: Product[] = [
   },
   {
     id: 120,
-    sku: 'LTH010',
+    sku: 'GSH-H-CP-03',
     cat: 'homme',
     name: 'ROLEX DATEJUST AVEC PACKAGING HOMME',
     price: 370,
@@ -139,7 +139,7 @@ export const products: Product[] = [
   },
   {
     id: 121,
-    sku: 'LTH011',
+    sku: 'GSH-H-CP-04',
     cat: 'homme',
     name: 'ROLEX DATEJUST AVEC PACKAGING HOMME BLANC',
     price: 370,
@@ -157,7 +157,7 @@ export const products: Product[] = [
   },
   {
     id: 122,
-    sku: 'LTH012',
+    sku: 'GSH-H-CP-05',
     cat: 'homme',
     name: 'CARTIER SANTOS HOMME AVEC PACKAGING',
     price: 380,
@@ -174,7 +174,7 @@ export const products: Product[] = [
   },
   {
     id: 124,
-    sku: 'LTH014',
+    sku: 'GSH-H-BS-01',
     cat: 'homme',
     name: 'ROLEX LAND-DWELLER HOMME SIMPLE',
     price: 199,
@@ -188,7 +188,7 @@ export const products: Product[] = [
   },
   {
     id: 125,
-    sku: 'LTH015',
+    sku: 'GSH-H-BS-02',
     cat: 'homme',
     name: 'ROLEX TABLEAU GRIS HOMME BOITE SIMPLE',
     price: 150,
@@ -202,7 +202,7 @@ export const products: Product[] = [
   },
   {
     id: 126,
-    sku: 'LTH016',
+    sku: 'GSH-H-BS-03',
     cat: 'homme',
     name: 'ROLEX DATEJUST HOMME BOITE SIMPLE',
     price: 190,
@@ -217,7 +217,7 @@ export const products: Product[] = [
   },
   {
     id: 127,
-    sku: 'LTH017',
+    sku: 'GSH-H-BS-04',
     cat: 'homme',
     name: 'ROLEX DATEJUST HOMME BOITE SIMPLE BLANC',
     price: 190,
@@ -232,7 +232,7 @@ export const products: Product[] = [
   },
   {
     id: 131,
-    sku: 'LTH018',
+    sku: 'GSH-H-BS-05',
     cat: 'homme',
     name: 'GC GUESS COLLECTION HOMME BOITE SIMPLE',
     price: 200,
@@ -247,7 +247,7 @@ export const products: Product[] = [
   },
   {
     id: 132,
-    sku: 'LTH019',
+    sku: 'GSH-H-BS-06',
     cat: 'homme',
     name: 'ROLEX LAND-DWELLER HOMME BOITE SIMPLE',
     price: 199,
@@ -262,7 +262,7 @@ export const products: Product[] = [
   },
   {
     id: 133,
-    sku: 'LTH020',
+    sku: 'GSH-H-BS-07',
     cat: 'homme',
     name: 'CASIO QUARTZ HOMME BOITE SIMPLE',
     price: 170,
@@ -277,7 +277,7 @@ export const products: Product[] = [
   },
   {
     id: 134,
-    sku: 'LTH021',
+    sku: 'GSH-H-BS-08',
     cat: 'homme',
     name: 'CASIO QUARTZ HOMME BOITE SIMPLE BLANC',
     price: 170,
@@ -292,7 +292,7 @@ export const products: Product[] = [
   },
   {
     id: 135,
-    sku: 'LTH022',
+    sku: 'GSH-H-BS-09',
     cat: 'homme',
     name: 'PATEK PHILIPPE NAUTILUS HOMME BOITE SIMPLE',
     price: 220,
@@ -307,7 +307,7 @@ export const products: Product[] = [
   },
   {
     id: 136,
-    sku: 'LTF007',
+    sku: 'GSH-F-CP-01',
     cat: 'femme',
     name: 'CARTIER TANK CADRAN FEMME VERT AVEC PACKAGING',
     price: 370,
@@ -326,7 +326,7 @@ export const products: Product[] = [
   },
   {
     id: 137,
-    sku: 'LTF008',
+    sku: 'GSH-F-CP-02',
     cat: 'femme',
     name: 'ROLEX DAY-DATE FEMME AVEC PACKAGING',
     price: 350,
@@ -345,7 +345,7 @@ export const products: Product[] = [
   },
   {
     id: 138,
-    sku: 'LTF009',
+    sku: 'GSH-F-CP-03',
     cat: 'femme',
     name: 'ROLEX TWO-TONE FEMME AVEC PACKAGING',
     price: 370,
@@ -363,7 +363,7 @@ export const products: Product[] = [
   },
   {
     id: 140,
-    sku: '',
+    sku: 'GSH-F-BS-06',
     cat: 'femme',
     name: 'OLIBIN STAINLESS STEEL FEMME BOITE SIMPLE ',
     price: 199,
@@ -379,7 +379,7 @@ export const products: Product[] = [
   // 🔴 rouge
   {
     id: 144,
-    sku: '',
+    sku: 'GSH-F-BS-07',
     cat: 'femme',
     name: 'ROLEX CADRAN DORÉ FEMME BOITE SIMPLE ',
     price: 180,
@@ -395,7 +395,7 @@ export const products: Product[] = [
   // 🟢 verte
   {
     id: 141,
-    sku: '',
+    sku: 'GSH-F-BS-08',
     cat: 'femme',
     name: 'ROLEX DAY-DATE FEMME BOITE SIMPLE ',
     price: 180,
@@ -411,7 +411,7 @@ export const products: Product[] = [
   // 🟢 verte
   {
     id: 142,
-    sku: '',
+    sku: 'GSH-F-BS-09',
     cat: 'femme',
     name: 'ROLEX TWO-TONE FEMME BOITE SIMPLE ',
     price: 180,
@@ -427,7 +427,7 @@ export const products: Product[] = [
   // 🔴 rouge
   {
     id: 146,
-    sku: '',
+    sku: 'GSH-F-BS-10',
     cat: 'femme',
     name: 'OLIBIN BICOLORE STAINLESS FEMME BOITE SIMPLE ',
     price: 199,
@@ -443,7 +443,7 @@ export const products: Product[] = [
   // 🟢 verte
   {
     id: 143,
-    sku: '',
+    sku: 'GSH-F-BS-11',
     cat: 'femme',
     name: 'CARTIER TANK CADRAN FEMME BOITE SIMPLE ',
     price: 220,
@@ -459,7 +459,7 @@ export const products: Product[] = [
   // 🔴 rouge
   {
     id: 147,
-    sku: '',
+    sku: 'GSH-F-BS-12',
     cat: 'femme',
     name: 'MGQ DORÉE FEMME BOITE SIMPLE ',
     price: 170,
@@ -474,7 +474,7 @@ export const products: Product[] = [
   // 🔴 rouge
   {
     id: 149,
-    sku: '',
+    sku: 'GSH-F-BS-13',
     cat: 'femme',
     name: 'MGQ BICOLORE CADRAN FEMME BOITE SIMPLE ',
     price: 149,
