@@ -1,8 +1,10 @@
-'use client'
+﻿'use client'
+
+import Image from 'next/image'
 
 const BANNER_IMAGES = [
   {
-    src: 'https://res.cloudinary.com/dannr2e0c/image/upload/f_auto,q_auto/v1778274005/luxtim/t4i1f0az245jyvo90fqg.heic',
+    src: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778274005/luxtim/t4i1f0az245jyvo90fqg.heic',
     alt: 'GUSHKIN Collection 1',
   },
   {
@@ -30,8 +32,8 @@ export default function GoldBanner() {
       <div className="gold-banner-wrap">
         <div className="gold-banner-grid">
           {BANNER_IMAGES.map((img) => (
-            <div 
-              key={img.src} 
+            <div
+              key={img.src}
               className="gold-banner-item mx-auto"
               style={{
                 borderRadius: '16px',
@@ -40,22 +42,16 @@ export default function GoldBanner() {
                 border: '1px solid #1a1a1a',
                 width: '100%',
                 maxWidth: '400px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
+                position: 'relative',
               }}
             >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img 
-                src={img.src} 
-                alt={img.alt} 
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  objectFit: 'cover',
-                  objectPosition: 'center center',
-                  display: 'block',
-                }}
+              <Image
+                src={img.src}
+                alt={img.alt}
+                fill
+                quality={85}
+                sizes="(max-width: 768px) 80vw, 33vw"
+                style={{ objectFit: 'cover', objectPosition: 'center' }}
               />
             </div>
           ))}
@@ -82,7 +78,7 @@ export default function GoldBanner() {
             </span>
           </h2>
           <p className="gold-banner-sub text-[11px] md:text-xs uppercase tracking-[0.35em] text-black font-semibold mt-4">
-            Collection Exclusive · À Partir de 149 MAD
+            Collection Exclusive Â· Ã€ Partir de 149 MAD
           </p>
           <button
             onClick={() => scrollTo('coll-femme')}

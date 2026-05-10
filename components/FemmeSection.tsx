@@ -1,5 +1,6 @@
-'use client'
+﻿'use client'
 
+import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { Product } from '@/types'
 
@@ -7,8 +8,8 @@ interface Props {
   products: Product[]
 }
 
-const CARD_SIMPLE = 'https://res.cloudinary.com/dannr2e0c/image/upload/f_auto,q_auto,w_800/v1777815524/luxtim/ztmuttn9htbiwdazq7hr.jpg'
-const CARD_COFFRET = 'https://res.cloudinary.com/dannr2e0c/image/upload/f_auto,q_auto,w_800/v1777815586/luxtim/wkm4fuk4euy0dmmtggm8.jpg'
+const CARD_SIMPLE = 'https://res.cloudinary.com/dannr2e0c/image/upload/v1777815524/luxtim/ztmuttn9htbiwdazq7hr.jpg'
+const CARD_COFFRET = 'https://res.cloudinary.com/dannr2e0c/image/upload/v1777815586/luxtim/wkm4fuk4euy0dmmtggm8.jpg'
 
 export default function FemmeSection({ products }: Props) {
   const router = useRouter()
@@ -22,14 +23,14 @@ export default function FemmeSection({ products }: Props) {
       {/* Section title */}
       <div className="flex flex-col items-center justify-center mb-12 text-center">
         <p style={{ fontSize: '10px', letterSpacing: '0.35em', color: '#C6A769', fontWeight: 600, textTransform: 'uppercase', marginBottom: '10px' }}>
-          Élégance Féminine
+          Ã‰lÃ©gance FÃ©minine
         </p>
         <h2 style={{ fontFamily: 'var(--font-playfair), serif', fontSize: 'clamp(1.6rem, 4vw, 2.8rem)', fontWeight: 700, color: '#1A1A1A', letterSpacing: '0.08em', textTransform: 'uppercase', lineHeight: 1.15 }}>
           Collection Femme
         </h2>
         <div style={{ width: '40px', height: '1px', background: '#C6A769', margin: '14px auto 0' }} />
         <p style={{ fontSize: '12px', color: '#6E6E6E', marginTop: '10px', letterSpacing: '0.05em' }}>
-          Raffinement et féminité à chaque instant.
+          Raffinement et fÃ©minitÃ© Ã  chaque instant.
         </p>
       </div>
 
@@ -51,11 +52,13 @@ export default function FemmeSection({ products }: Props) {
               boxShadow: '0 4px 16px rgba(0,0,0,0.04)',
             }}
           >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <Image
               src={CARD_SIMPLE}
               alt="Boite Simple"
-              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              fill
+              quality={85}
+              sizes="(max-width: 768px) 50vw, 40vw"
+              className="object-cover transition-transform duration-700 group-hover:scale-105"
               style={{ objectPosition: 'center bottom' }}
             />
             {/* hover overlay */}
@@ -73,7 +76,7 @@ export default function FemmeSection({ products }: Props) {
             </p>
             <div className="mt-3">
               <span className="inline-block text-[10px] md:text-xs font-black uppercase tracking-widest text-black border border-black px-4 py-2 rounded-full group-hover:bg-black group-hover:text-white transition-all duration-300">
-                Voir →
+                Voir â†’
               </span>
             </div>
           </div>
@@ -94,11 +97,13 @@ export default function FemmeSection({ products }: Props) {
               boxShadow: '0 4px 16px rgba(0,0,0,0.04)',
             }}
           >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <Image
               src={CARD_COFFRET}
               alt="Avec Coffret"
-              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              fill
+              quality={85}
+              sizes="(max-width: 768px) 50vw, 40vw"
+              className="object-cover transition-transform duration-700 group-hover:scale-105"
             />
             {/* hover overlay */}
             <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-500 pointer-events-none" />
@@ -115,7 +120,7 @@ export default function FemmeSection({ products }: Props) {
             </p>
             <div className="mt-3">
               <span className="inline-block text-[10px] md:text-xs font-black uppercase tracking-widest border border-[#C5A059] text-[#C5A059] px-4 py-2 rounded-full group-hover:bg-[#C5A059] group-hover:text-black transition-all duration-300">
-                Voir →
+                Voir â†’
               </span>
             </div>
           </div>
