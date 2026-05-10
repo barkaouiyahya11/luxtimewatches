@@ -38,16 +38,21 @@ const allura = Allura({
 })
 
 export const metadata: Metadata = {
-  title: 'GUSHKIN - Boutique Officielle | Accessoires de Luxe au Maroc',
+  title: 'GUSHKIN - Boutique Officielle | Montres & Accessoires de Luxe au Maroc',
   description:
-    'GUSHKIN — Accessoires de luxe au Maroc. Collections Femme & Homme. Livraison gratuite partout au Maroc. Paiement à la livraison.',
-  keywords: 'gushkin, montres luxe maroc, accessoires luxe maroc, montre femme maroc, montre homme maroc, montre or maroc',
+    'GUSHKIN — Montres et accessoires de luxe au Maroc. Collections Femme & Homme à partir de 149 MAD. Livraison gratuite partout au Maroc. Paiement à la livraison.',
+  keywords: 'gushkin, gushkin maroc, gushkin montres, montres luxe maroc, accessoires luxe maroc, montre femme maroc, montre homme maroc, montre or maroc, livraison gratuite maroc',
+  metadataBase: new URL('https://www.gushkin.com'),
   openGraph: {
-    title: 'GUSHKIN — Accessoires de Luxe | Livraison gratuite au Maroc',
-    description: 'GUSHKIN — Collections Femme & Homme. Livraison gratuite partout au Maroc.',
+    title: 'GUSHKIN — Montres & Accessoires de Luxe au Maroc',
+    description: 'Collections Femme & Homme à partir de 149 MAD. Livraison gratuite partout au Maroc.',
     type: 'website',
+    url: 'https://www.gushkin.com',
+    siteName: 'GUSHKIN',
+    locale: 'fr_MA',
   },
-  twitter: { card: 'summary' },
+  twitter: { card: 'summary_large_image', title: 'GUSHKIN — Accessoires de Luxe au Maroc' },
+  alternates: { canonical: 'https://www.gushkin.com' },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
