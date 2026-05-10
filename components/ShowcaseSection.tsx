@@ -1,5 +1,5 @@
 
-export const SHOWCASE_IMG = 'https://res.cloudinary.com/dannr2e0c/image/upload/v1777842074/luxtim/tnwfyxum5urabiwc1skq.jpg'
+export const SHOWCASE_IMG = 'https://res.cloudinary.com/dannr2e0c/image/upload/f_auto,q_auto,w_1200/v1777842074/luxtim/tnwfyxum5urabiwc1skq.jpg'
 
 export default function ShowcaseSection() {
   if (!SHOWCASE_IMG) return null

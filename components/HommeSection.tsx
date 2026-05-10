@@ -7,8 +7,8 @@ interface Props {
   products: Product[]
 }
 
-const CARD_SIMPLE = 'https://res.cloudinary.com/dannr2e0c/image/upload/v1777747850/luxtim/e674kdpmxph43lddqqut.jpg'
-const CARD_COFFRET = 'https://res.cloudinary.com/dannr2e0c/image/upload/v1777749218/luxtim/ldz36jecb5ywkphillhw.jpg'
+const CARD_SIMPLE = 'https://res.cloudinary.com/dannr2e0c/image/upload/f_auto,q_auto,w_800/v1777747850/luxtim/e674kdpmxph43lddqqut.jpg'
+const CARD_COFFRET = 'https://res.cloudinary.com/dannr2e0c/image/upload/f_auto,q_auto,w_800/v1777749218/luxtim/ldz36jecb5ywkphillhw.jpg'
 
 export default function HommeSection({ products }: Props) {
   const router = useRouter()

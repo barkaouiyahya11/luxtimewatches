@@ -18,7 +18,7 @@ export const products: Product[] = [
     stock: 0,
     rating: 4.9,
     reviews: 0,
-    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778091084/luxtim/sk3vageigk5oqq8jqj4a.jpg',
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/f_auto,q_auto,w_600/v1778091084/luxtim/sk3vageigk5oqq8jqj4a.jpg',
     detailImgs: [
     ],
     imgPosition: 'bottom',
@@ -33,7 +33,7 @@ export const products: Product[] = [
     stock: 0,
     rating: 4.9,
     reviews: 0,
-    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778092258/luxtim/hy7qyqzyk9s0lec5owd6.jpg',
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/f_auto,q_auto,w_600/v1778092258/luxtim/hy7qyqzyk9s0lec5owd6.jpg',
     detailImgs: [
     ],
     imgPosition: 'bottom',
@@ -48,7 +48,7 @@ export const products: Product[] = [
     stock: 0,
     rating: 4.9,
     reviews: 0,
-    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778092849/luxtim/qc6mdaa0bcn1v2n3ad3f.jpg',
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/f_auto,q_auto,w_600/v1778092849/luxtim/qc6mdaa0bcn1v2n3ad3f.jpg',
     detailImgs: [
     ],
     imgPosition: 'bottom',
@@ -63,7 +63,7 @@ export const products: Product[] = [
     stock: 0,
     rating: 4.9,
     reviews: 0,
-    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778094425/luxtim/oy6gud6wvx8p7cp34ysx.jpg',
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/f_auto,q_auto,w_600/v1778094425/luxtim/oy6gud6wvx8p7cp34ysx.jpg',
     detailImgs: [
     ],
     imgPosition: 'bottom',
@@ -78,7 +78,7 @@ export const products: Product[] = [
     stock: 0,
     rating: 4.9,
     reviews: 0,
-    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778093504/luxtim/e3b5ib7hv4ndzret0x29.jpg',
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/f_auto,q_auto,w_600/v1778093504/luxtim/e3b5ib7hv4ndzret0x29.jpg',
     detailImgs: [
     ],
     imgPosition: 'bottom',
@@ -93,9 +93,9 @@ export const products: Product[] = [
     stock: 2,
     rating: 4.9,
     reviews: 0,
-    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778163867/luxtim/aby0vpc2ysejykbdljym.jpg',
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/f_auto,q_auto,w_600/v1778163867/luxtim/aby0vpc2ysejykbdljym.jpg',
     detailImgs: [
-      'https://res.cloudinary.com/dannr2e0c/image/upload/v1778160598/luxtim/wrwctx1yyo2hwbylvpft.jpg',
+      'https://res.cloudinary.com/dannr2e0c/image/upload/f_auto,q_auto,w_600/v1778160598/luxtim/wrwctx1yyo2hwbylvpft.jpg',
     ],
     coffret: true,
     imgScale: 1.1,
@@ -111,9 +111,9 @@ export const products: Product[] = [
     stock: 2,
     rating: 4.9,
     reviews: 0,
-    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778164720/luxtim/e2gtxysz15ywcfvsqpni.jpg',
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/f_auto,q_auto,w_600/v1778164720/luxtim/e2gtxysz15ywcfvsqpni.jpg',
     detailImgs: [
-      'https://res.cloudinary.com/dannr2e0c/image/upload/v1778164707/luxtim/xkatffw8kmmmdr3zyc9u.jpg',
+      'https://res.cloudinary.com/dannr2e0c/image/upload/f_auto,q_auto,w_600/v1778164707/luxtim/xkatffw8kmmmdr3zyc9u.jpg',
     ],
     coffret: true,
     imgScale: 1.1,
@@ -129,9 +129,9 @@ export const products: Product[] = [
     stock: 0,
     rating: 4.9,
     reviews: 0,
-    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778165078/luxtim/anlepnd5e1g9ibygjfzb.jpg',
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/f_auto,q_auto,w_600/v1778165078/luxtim/anlepnd5e1g9ibygjfzb.jpg',
     detailImgs: [
-      'https://res.cloudinary.com/dannr2e0c/image/upload/v1778165082/luxtim/p9ftycqhvrnl39jqcerk.jpg',
+      'https://res.cloudinary.com/dannr2e0c/image/upload/f_auto,q_auto,w_600/v1778165082/luxtim/p9ftycqhvrnl39jqcerk.jpg',
     ],
     coffret: true,
     imgScale: 1.1,
@@ -147,9 +147,9 @@ export const products: Product[] = [
     stock: 0,
     rating: 4.9,
     reviews: 0,
-    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778165595/luxtim/f3ssl5np4iaxmcdcgfna.jpg',
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/f_auto,q_auto,w_600/v1778165595/luxtim/f3ssl5np4iaxmcdcgfna.jpg',
     detailImgs: [
-      'https://res.cloudinary.com/dannr2e0c/image/upload/v1778165581/luxtim/wzd2pgtvgkhkcqjrkize.jpg',
+      'https://res.cloudinary.com/dannr2e0c/image/upload/f_auto,q_auto,w_600/v1778165581/luxtim/wzd2pgtvgkhkcqjrkize.jpg',
     ],
     coffret: true,
     imgScale: 1.1,
@@ -165,9 +165,9 @@ export const products: Product[] = [
     stock: 0,
     rating: 4.9,
     reviews: 0,
-    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778165747/luxtim/u3mrjfuhisu0srfcwqk5.jpg',
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/f_auto,q_auto,w_600/v1778165747/luxtim/u3mrjfuhisu0srfcwqk5.jpg',
     detailImgs: [
-      'https://res.cloudinary.com/dannr2e0c/image/upload/v1778165752/luxtim/obh2sdseedccractro0o.jpg',
+      'https://res.cloudinary.com/dannr2e0c/image/upload/f_auto,q_auto,w_600/v1778165752/luxtim/obh2sdseedccractro0o.jpg',
     ],
     coffret: true,
     boxColors: ['BOITE VERTE', 'BOITE ROUGE'],
@@ -182,7 +182,7 @@ export const products: Product[] = [
     stock: 0,
     rating: 4.9,
     reviews: 0,
-    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778166600/luxtim/cicg0hu7ujjlmpl3nyij.jpg',
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/f_auto,q_auto,w_600/v1778166600/luxtim/cicg0hu7ujjlmpl3nyij.jpg',
     detailImgs: [
     ],
   },
@@ -196,7 +196,7 @@ export const products: Product[] = [
     stock: 0,
     rating: 4.9,
     reviews: 0,
-    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778166971/luxtim/knqhicea3dbjme0ifuvu.jpg',
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/f_auto,q_auto,w_600/v1778166971/luxtim/knqhicea3dbjme0ifuvu.jpg',
     detailImgs: [
     ],
   },
@@ -210,7 +210,7 @@ export const products: Product[] = [
     stock: 0,
     rating: 4.9,
     reviews: 0,
-    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778167412/luxtim/eecynmuzujz0kramtlpw.jpg',
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/f_auto,q_auto,w_600/v1778167412/luxtim/eecynmuzujz0kramtlpw.jpg',
     detailImgs: [
     ],
     imgPosition: 'bottom',
@@ -225,7 +225,7 @@ export const products: Product[] = [
     stock: 0,
     rating: 4.9,
     reviews: 0,
-    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778167573/luxtim/ehbr64hiq3mprxb1xfle.jpg',
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/f_auto,q_auto,w_600/v1778167573/luxtim/ehbr64hiq3mprxb1xfle.jpg',
     detailImgs: [
     ],
     imgPosition: 'bottom',
@@ -240,7 +240,7 @@ export const products: Product[] = [
     stock: 0,
     rating: 4.9,
     reviews: 0,
-    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778167658/luxtim/egham8t4tssczpqqrumx.jpg',
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/f_auto,q_auto,w_600/v1778167658/luxtim/egham8t4tssczpqqrumx.jpg',
     detailImgs: [
     ],
     imgPosition: 'bottom',
@@ -255,7 +255,7 @@ export const products: Product[] = [
     stock: 0,
     rating: 4.9,
     reviews: 0,
-    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778168128/luxtim/hiqwjwy2itxfkgaprcny.jpg',
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/f_auto,q_auto,w_600/v1778168128/luxtim/hiqwjwy2itxfkgaprcny.jpg',
     detailImgs: [
     ],
     imgPosition: 'bottom',
@@ -270,7 +270,7 @@ export const products: Product[] = [
     stock: 0,
     rating: 4.9,
     reviews: 0,
-    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778168375/luxtim/skynndclaumliycdih8a.jpg',
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/f_auto,q_auto,w_600/v1778168375/luxtim/skynndclaumliycdih8a.jpg',
     detailImgs: [
     ],
     imgPosition: 'bottom',
@@ -285,7 +285,7 @@ export const products: Product[] = [
     stock: 0,
     rating: 4.9,
     reviews: 0,
-    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778168770/luxtim/zm4vjuzo2qoyi1uibx7d.jpg',
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/f_auto,q_auto,w_600/v1778168770/luxtim/zm4vjuzo2qoyi1uibx7d.jpg',
     detailImgs: [
     ],
     imgPosition: 'bottom',
@@ -300,7 +300,7 @@ export const products: Product[] = [
     stock: 0,
     rating: 4.9,
     reviews: 0,
-    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778169086/luxtim/bwamrbqiyg12wrtortnu.jpg',
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/f_auto,q_auto,w_600/v1778169086/luxtim/bwamrbqiyg12wrtortnu.jpg',
     detailImgs: [
     ],
     imgPosition: 'bottom',
@@ -315,9 +315,9 @@ export const products: Product[] = [
     stock: 0,
     rating: 4.9,
     reviews: 0,
-    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778176528/luxtim/ynrozxt9wrtgxedrgdt7.jpg',
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/f_auto,q_auto,w_600/v1778176528/luxtim/ynrozxt9wrtgxedrgdt7.jpg',
     detailImgs: [
-      'https://res.cloudinary.com/dannr2e0c/image/upload/v1778176169/luxtim/yu38uoug9dxrjm1lxryc.jpg',
+      'https://res.cloudinary.com/dannr2e0c/image/upload/f_auto,q_auto,w_600/v1778176169/luxtim/yu38uoug9dxrjm1lxryc.jpg',
     ],
     coffret: true,
     imgScale: 1.1,
@@ -334,9 +334,9 @@ export const products: Product[] = [
     stock: 0,
     rating: 4.9,
     reviews: 0,
-    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778177129/luxtim/zhtvvgh4vrkovoa966xt.jpg',
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/f_auto,q_auto,w_600/v1778177129/luxtim/zhtvvgh4vrkovoa966xt.jpg',
     detailImgs: [
-      'https://res.cloudinary.com/dannr2e0c/image/upload/v1778177141/luxtim/tqa068j72l0pbxdv3wjd.jpg',
+      'https://res.cloudinary.com/dannr2e0c/image/upload/f_auto,q_auto,w_600/v1778177141/luxtim/tqa068j72l0pbxdv3wjd.jpg',
     ],
     coffret: true,
     imgScale: 1.1,
@@ -353,9 +353,9 @@ export const products: Product[] = [
     stock: 0,
     rating: 4.9,
     reviews: 0,
-    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778177772/luxtim/s1eyinihbpoi8qavwyjj.jpg',
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/f_auto,q_auto,w_600/v1778177772/luxtim/s1eyinihbpoi8qavwyjj.jpg',
     detailImgs: [
-      'https://res.cloudinary.com/dannr2e0c/image/upload/v1778177778/luxtim/olwjfr5pdtft3wfgwm8u.jpg',
+      'https://res.cloudinary.com/dannr2e0c/image/upload/f_auto,q_auto,w_600/v1778177778/luxtim/olwjfr5pdtft3wfgwm8u.jpg',
     ],
     coffret: true,
     imgScale: 1.1,
@@ -371,7 +371,7 @@ export const products: Product[] = [
     stock: 0,
     rating: 4.9,
     reviews: 0,
-    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778251485/luxtim/x1arqp8az9mrcqtdaobq.jpg',
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/f_auto,q_auto,w_600/v1778251485/luxtim/x1arqp8az9mrcqtdaobq.jpg',
     detailImgs: [
     ],
     imgPosition: 'bottom',
@@ -387,7 +387,7 @@ export const products: Product[] = [
     stock: 0,
     rating: 4.9,
     reviews: 0,
-    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778253282/luxtim/jwaxzehuylirpemot4fj.jpg',
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/f_auto,q_auto,w_600/v1778253282/luxtim/jwaxzehuylirpemot4fj.jpg',
     detailImgs: [
     ],
     imgPosition: 'bottom',
@@ -403,7 +403,7 @@ export const products: Product[] = [
     stock: 0,
     rating: 4.9,
     reviews: 0,
-    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778252855/luxtim/zjrugdjzijyn3sxfwcvw.jpg',
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/f_auto,q_auto,w_600/v1778252855/luxtim/zjrugdjzijyn3sxfwcvw.jpg',
     detailImgs: [
     ],
     imgPosition: 'bottom',
@@ -419,7 +419,7 @@ export const products: Product[] = [
     stock: 0,
     rating: 4.9,
     reviews: 0,
-    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778252967/luxtim/cyfbjwv9qfg4r1dqswpk.jpg',
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/f_auto,q_auto,w_600/v1778252967/luxtim/cyfbjwv9qfg4r1dqswpk.jpg',
     detailImgs: [
     ],
     imgPosition: 'bottom',
@@ -435,7 +435,7 @@ export const products: Product[] = [
     stock: 0,
     rating: 4.9,
     reviews: 0,
-    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778253979/luxtim/eqge3ws1rawdfpkbhbm2.jpg',
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/f_auto,q_auto,w_600/v1778253979/luxtim/eqge3ws1rawdfpkbhbm2.jpg',
     detailImgs: [
     ],
     imgPosition: 'bottom',
@@ -451,7 +451,7 @@ export const products: Product[] = [
     stock: 0,
     rating: 4.9,
     reviews: 0,
-    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778253156/luxtim/p6wr1f2qwh5xy7yra2lf.jpg',
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/f_auto,q_auto,w_600/v1778253156/luxtim/p6wr1f2qwh5xy7yra2lf.jpg',
     detailImgs: [
     ],
     imgPosition: 'bottom',
@@ -467,7 +467,7 @@ export const products: Product[] = [
     stock: 0,
     rating: 4.9,
     reviews: 0,
-    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778254567/luxtim/u2qfos5hmxkpsysi2o1b.jpg',
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/f_auto,q_auto,w_600/v1778254567/luxtim/u2qfos5hmxkpsysi2o1b.jpg',
     detailImgs: [
     ],
   },
@@ -482,7 +482,7 @@ export const products: Product[] = [
     stock: 0,
     rating: 4.9,
     reviews: 0,
-    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778254808/luxtim/z5afdylqryk8rr2fgupr.jpg',
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/f_auto,q_auto,w_600/v1778254808/luxtim/z5afdylqryk8rr2fgupr.jpg',
     detailImgs: [
     ],
     imgPosition: 'bottom',
