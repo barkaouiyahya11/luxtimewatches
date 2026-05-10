@@ -56,7 +56,7 @@ export default function ProductDetail({ product }: Props) {
   }
 
   function shareProduct() {
-    const url = `https://www.luxtimewatches.store/product/${product.id}`
+    const url = `https://www.gushkin.com/product/${product.id}`
     if (navigator.share) {
       navigator.share({ title: `LUX TIME — ${product.name}`, text: `${product.name} — ${product.price} MAD`, url })
     } else {
