@@ -23,7 +23,7 @@ export default function ProductDetail({ product }: Props) {
   const [mainImg, setMainImg] = useState(
     product.colors?.length ? product.colors[0].img : product.gridImg
   )
-  const [lightbox, setLightbox] = useState(false)
+  const [zoomed, setZoomed] = useState(false)
   const [showSticky, setShowSticky] = useState(false)
   const orderBtnRef = useRef<HTMLButtonElement>(null)
 
@@ -95,14 +95,14 @@ export default function ProductDetail({ product }: Props) {
 
               {/* Main image */}
               <div
-                onClick={() => setLightbox(true)}
+                onClick={() => setZoomed(!zoomed)}
                 style={{
                   position: 'relative',
                   aspectRatio: '4/5',
                   overflow: 'hidden',
                   borderRadius: '12px',
                   background: '#F9F8F6',
-                  cursor: 'zoom-in',
+                  cursor: zoomed ? 'zoom-out' : 'zoom-in',
                   ...(product.frame ? {
                     border: '2px solid #C6A769',
                     boxShadow: '0 4px 24px rgba(198,167,105,0.12)',
@@ -116,85 +116,18 @@ export default function ProductDetail({ product }: Props) {
                 <img
                   src={mainImg}
                   alt={product.name}
-                  className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                  className="w-full h-full object-cover"
                   style={{
-                    transform: `scale(${product.imgScale || 1})`,
-                    transformOrigin: product.imgPosition || 'center',
+                    transform: zoomed ? 'scale(2.8)' : `scale(${product.imgScale || 1})`,
+                    transformOrigin: '50% 40%',
                     objectPosition: product.imgPosition || 'center',
+                    transition: 'transform 0.4s cubic-bezier(0.25,0.46,0.45,0.94)',
                   }}
                 />
-                <div style={{ position: 'absolute', bottom: '12px', right: '12px', background: 'rgba(0,0,0,0.55)', borderRadius: '20px', padding: '5px 12px', fontSize: '9px', fontWeight: 600, letterSpacing: '0.12em', color: '#fff', zIndex: 10, display: 'flex', alignItems: 'center', gap: '5px' }}>
-                  <i className="fa-solid fa-magnifying-glass-plus" style={{ fontSize: '9px' }} /> Agrandir
+                <div style={{ position: 'absolute', bottom: '12px', right: '12px', background: 'rgba(255,255,255,0.85)', borderRadius: '20px', padding: '4px 10px', fontSize: '9px', fontWeight: 600, letterSpacing: '0.1em', color: '#6E6E6E', zIndex: 10 }}>
+                  {zoomed ? 'Cliquer pour dézoomer' : 'Cliquer pour zoomer'}
                 </div>
               </div>
-
-              {/* Lightbox */}
-              {lightbox && (
-                <div
-                  onClick={() => setLightbox(false)}
-                  style={{
-                    position: 'fixed', inset: 0, zIndex: 99999,
-                    background: 'rgba(0,0,0,0.92)',
-                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    padding: '20px',
-                    animation: 'fadeIn 0.2s ease',
-                  }}
-                >
-                  {/* Close button */}
-                  <button
-                    onClick={() => setLightbox(false)}
-                    style={{
-                      position: 'absolute', top: '20px', right: '20px',
-                      background: 'rgba(255,255,255,0.15)', border: 'none',
-                      color: '#fff', width: '40px', height: '40px',
-                      borderRadius: '50%', fontSize: '18px', cursor: 'pointer',
-                      display: 'flex', alignItems: 'center', justifyContent: 'center',
-                      backdropFilter: 'blur(4px)',
-                    }}
-                  >
-                    ✕
-                  </button>
-
-                  {/* Image */}
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={mainImg}
-                    alt={product.name}
-                    onClick={(e) => e.stopPropagation()}
-                    style={{
-                      maxWidth: '90vw',
-                      maxHeight: '90vh',
-                      objectFit: 'contain',
-                      borderRadius: '8px',
-                      boxShadow: '0 20px 60px rgba(0,0,0,0.6)',
-                    }}
-                  />
-
-                  {/* Thumbnails in lightbox */}
-                  {allImgs.length > 1 && (
-                    <div
-                      onClick={(e) => e.stopPropagation()}
-                      style={{ position: 'absolute', bottom: '20px', left: '50%', transform: 'translateX(-50%)', display: 'flex', gap: '8px' }}
-                    >
-                      {allImgs.map((img, i) => (
-                        // eslint-disable-next-line @next/next/no-img-element
-                        <img
-                          key={i}
-                          src={img}
-                          alt=""
-                          onClick={() => setMainImg(img)}
-                          style={{
-                            width: '52px', height: '52px', objectFit: 'cover',
-                            borderRadius: '6px', cursor: 'pointer',
-                            border: mainImg === img ? '2px solid #fff' : '2px solid rgba(255,255,255,0.3)',
-                            transition: 'border-color 0.2s',
-                          }}
-                        />
-                      ))}
-                    </div>
-                  )}
-                </div>
-              )}
 
               {/* Thumbnails */}
               {allImgs.length > 1 && (
