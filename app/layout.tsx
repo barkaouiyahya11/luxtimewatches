@@ -53,6 +53,9 @@ export const metadata: Metadata = {
   },
   twitter: { card: 'summary_large_image', title: 'GUSHKIN — Accessoires de Luxe au Maroc' },
   alternates: { canonical: 'https://www.gushkin.com' },
+  verification: {
+    google: '57b66e78014f253a',
+  },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
