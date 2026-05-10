@@ -205,7 +205,7 @@ export default function ProductDetail({ product }: Props) {
                       key={i}
                       src={img}
                       alt=""
-                      onClick={() => { setMainImg(img); setZoomed(false) }}
+                      onClick={() => { setMainImg(img) }}
                       style={{
                         width: '72px',
                         height: '90px',
@@ -286,7 +286,7 @@ export default function ProductDetail({ product }: Props) {
                     {product.colors.map((c, i) => (
                       <button
                         key={i}
-                        onClick={() => { setSelectedColor(i); setMainImg(c.img); setZoomed(false) }}
+                        onClick={() => { setSelectedColor(i); setMainImg(c.img) }}
                         style={{
                           padding: '10px 20px',
                           fontSize: '10px',
