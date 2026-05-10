@@ -58,7 +58,7 @@ export default function ProductDetail({ product }: Props) {
   function shareProduct() {
     const url = `https://www.gushkin.com/product/${product.id}`
     if (navigator.share) {
-      navigator.share({ title: `LUX TIME — ${product.name}`, text: `${product.name} — ${product.price} MAD`, url })
+      navigator.share({ title: `GUSHKIN — ${product.name}`, text: `${product.name} — ${product.price} MAD`, url })
     } else {
       window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(`${product.name} — ${product.price} MAD\n${url}`)}`, '_blank')
     }

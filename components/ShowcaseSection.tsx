@@ -18,7 +18,7 @@ export default function ShowcaseSection() {
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={SHOWCASE_IMG}
-        alt="LUX TIME"
+        alt="GUSHKIN"
         className="w-full h-full object-cover object-center"
       />
 

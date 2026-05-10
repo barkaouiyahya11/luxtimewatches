@@ -38,13 +38,13 @@ const allura = Allura({
 })
 
 export const metadata: Metadata = {
-  title: 'LUX TIME - Boutique Officielle | Montres de Luxe au Maroc',
+  title: 'GUSHKIN - Boutique Officielle | Accessoires de Luxe au Maroc',
   description:
-    'LUX TIME — Montres de luxe au Maroc. Collections Femme & Homme. Livraison gratuite partout au Maroc. Paiement à la livraison.',
-  keywords: 'montres luxe maroc, lux time, montre femme maroc, montre homme maroc, montre or maroc',
+    'GUSHKIN — Accessoires de luxe au Maroc. Collections Femme & Homme. Livraison gratuite partout au Maroc. Paiement à la livraison.',
+  keywords: 'gushkin, montres luxe maroc, accessoires luxe maroc, montre femme maroc, montre homme maroc, montre or maroc',
   openGraph: {
-    title: 'Livraison gratuite au Maroc',
-    description: '',
+    title: 'GUSHKIN — Accessoires de Luxe | Livraison gratuite au Maroc',
+    description: 'GUSHKIN — Collections Femme & Homme. Livraison gratuite partout au Maroc.',
     type: 'website',
   },
   twitter: { card: 'summary' },

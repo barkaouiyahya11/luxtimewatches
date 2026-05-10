@@ -11,7 +11,7 @@ export default function VitrineSection() {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={VITRINE_IMG}
-          alt="Vitrine LUX TIME"
+          alt="Vitrine GUSHKIN"
           className="w-full object-cover"
           style={{ maxHeight: '480px', objectPosition: 'center center' }}
         />

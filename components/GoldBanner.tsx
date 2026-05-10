@@ -3,15 +3,15 @@
 const BANNER_IMAGES = [
   {
     src: 'https://res.cloudinary.com/dannr2e0c/image/upload/f_auto,q_auto/v1778274005/luxtim/t4i1f0az245jyvo90fqg.heic',
-    alt: 'LUX TIME 18K Gold Collection 1',
+    alt: 'GUSHKIN Collection 1',
   },
   {
     src: 'https://i.ibb.co/dwDPGFXf/Whats-App-Image-2026-03-23-at-18-02-06-1.jpg',
-    alt: 'LUX TIME 18K Gold Luxe',
+    alt: 'GUSHKIN Luxe',
   },
   {
     src: 'https://i.ibb.co/DfJh70n6/Gemini-Generated-Image-rdy4m6rdy4m6rdy4-1.png',
-    alt: 'LUX TIME 18K Gold Collection 2',
+    alt: 'GUSHKIN Collection 2',
   },
 ]
 

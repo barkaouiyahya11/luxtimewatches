@@ -34,7 +34,7 @@ export default function Footer() {
 
       <div className="w-24 h-px mx-auto mb-6 bg-gray-200" />
       <p className="text-[9px] text-gray-400 font-bold uppercase tracking-[0.4em]">
-        © 2026 LUX TIME MAROC. TOUS DROITS RÉSERVÉS.
+        © 2026 GUSHKIN MAROC. TOUS DROITS RÉSERVÉS.
       </p>
     </footer>
   )

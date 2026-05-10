@@ -29,14 +29,14 @@ export default function Header() {
   function shareSite() {
     if (navigator.share) {
       navigator.share({
-        title: 'LUX TIME - Montres de Luxe au Maroc',
-        text: '⌚ Découvrez LUX TIME — Montres de luxe, livraison gratuite partout au Maroc !',
+        title: 'GUSHKIN - Accessoires de Luxe au Maroc',
+        text: '⌚ Découvrez GUSHKIN — Accessoires de luxe, livraison gratuite partout au Maroc !',
         url: DOMAIN,
       })
     } else {
       window.open(
         `https://api.whatsapp.com/send?text=${encodeURIComponent(
-          `⌚ Découvrez LUX TIME — Montres de luxe au Maroc !\n${DOMAIN}`
+          `⌚ Découvrez GUSHKIN — Accessoires de luxe au Maroc !\n${DOMAIN}`
         )}`,
         '_blank'
       )

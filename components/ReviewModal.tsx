@@ -52,7 +52,7 @@ export default function ReviewModal() {
     // Notify owner via WhatsApp
     const maskedEmail = email.replace(/@.*/, '@...')
     const msg =
-      `⭐ *NOUVEL AVIS CLIENT - LUX TIME*%0A` +
+      `⭐ *NOUVEL AVIS CLIENT - GUSHKIN*%0A` +
       `──────────────────────%0A` +
       `👤 Nom    : *${name}*%0A` +
       `🏙️ Ville  : ${city}%0A` +
