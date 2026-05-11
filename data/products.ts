@@ -487,4 +487,18 @@ export const products: Product[] = [
     ],
     imgPosition: 'bottom',
   },
+  {
+    id: 150,
+    sku: 'GSH-H-BS-10',
+    cat: 'homme',
+    name: 'GC GUESS COLLECTION HOMME BOITE SIMPLE GRIS',
+    price: 199,
+    originalPrice: 250,
+    stock: 0,
+    rating: 4.9,
+    reviews: 0,
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778514119/luxtim/nr8tmb1dhafe7br412ju.jpg',
+    detailImgs: [
+    ],
+  },
 ]
