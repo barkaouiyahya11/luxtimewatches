@@ -5,7 +5,6 @@ import { useRouter } from 'next/navigation'
 import { Product } from '@/types'
 import { useStore } from '@/context/StoreContext'
 import { products } from '@/data/products'
-import Lightbox from '@/components/Lightbox'
 
 interface Props {
   product: Product
@@ -24,9 +23,72 @@ export default function ProductDetail({ product }: Props) {
   const [mainImg, setMainImg] = useState(
     product.colors?.length ? product.colors[0].img : product.gridImg
   )
-  const [lightbox, setLightbox] = useState(false)
   const [showSticky, setShowSticky] = useState(false)
   const orderBtnRef = useRef<HTMLButtonElement>(null)
+
+  // ── Inline pinch-to-zoom ──
+  const [imgZoom, setImgZoom] = useState(1)
+  const [imgTranslate, setImgTranslate] = useState({ x: 0, y: 0 })
+  const zLastDist = useRef<number | null>(null)
+  const zLastPos = useRef<{ x: number; y: number } | null>(null)
+  const zBaseScale = useRef(1)
+  const zBaseTranslate = useRef({ x: 0, y: 0 })
+
+  // Reset zoom when thumbnail changes
+  useEffect(() => {
+    setImgZoom(1)
+    setImgTranslate({ x: 0, y: 0 })
+  }, [mainImg])
+
+  function resetImgZoom() {
+    setImgZoom(1)
+    setImgTranslate({ x: 0, y: 0 })
+  }
+
+  function onImgTouchStart(e: React.TouchEvent) {
+    if (e.touches.length === 2) {
+      const dx = e.touches[0].clientX - e.touches[1].clientX
+      const dy = e.touches[0].clientY - e.touches[1].clientY
+      zLastDist.current = Math.hypot(dx, dy)
+      zBaseScale.current = imgZoom
+      zBaseTranslate.current = { x: imgTranslate.x, y: imgTranslate.y }
+    } else if (e.touches.length === 1 && imgZoom > 1) {
+      zLastPos.current = { x: e.touches[0].clientX, y: e.touches[0].clientY }
+      zBaseTranslate.current = { x: imgTranslate.x, y: imgTranslate.y }
+    }
+  }
+
+  function onImgTouchMove(e: React.TouchEvent) {
+    if (e.touches.length === 2) e.preventDefault()
+    if (e.touches.length === 2 && zLastDist.current) {
+      const dx = e.touches[0].clientX - e.touches[1].clientX
+      const dy = e.touches[0].clientY - e.touches[1].clientY
+      const dist = Math.hypot(dx, dy)
+      const next = Math.min(Math.max(zBaseScale.current * (dist / zLastDist.current), 1), 5)
+      setImgZoom(next)
+      zBaseScale.current = next
+      zLastDist.current = dist
+    } else if (e.touches.length === 1 && imgZoom > 1 && zLastPos.current) {
+      e.preventDefault()
+      const dx = e.touches[0].clientX - zLastPos.current.x
+      const dy = e.touches[0].clientY - zLastPos.current.y
+      setImgTranslate({
+        x: zBaseTranslate.current.x + dx,
+        y: zBaseTranslate.current.y + dy,
+      })
+      zBaseTranslate.current = {
+        x: zBaseTranslate.current.x + dx,
+        y: zBaseTranslate.current.y + dy,
+      }
+      zLastPos.current = { x: e.touches[0].clientX, y: e.touches[0].clientY }
+    }
+  }
+
+  function onImgTouchEnd() {
+    zLastDist.current = null
+    zLastPos.current = null
+    if (imgZoom < 1.1) resetImgZoom()
+  }
 
   const discount = Math.round((1 - product.price / product.originalPrice) * 100)
 
@@ -94,16 +156,17 @@ export default function ProductDetail({ product }: Props) {
             {/* ── LEFT: Gallery ── */}
             <div className="w-full md:w-[52%] flex flex-col gap-4">
 
-              {/* Main image */}
+              {/* Main image — inline pinch-to-zoom */}
               <div
-                onClick={() => setLightbox(true)}
                 style={{
                   position: 'relative',
                   aspectRatio: '4/5',
                   overflow: 'hidden',
                   borderRadius: '12px',
                   background: '#F9F8F6',
-                  cursor: 'zoom-in',
+                  cursor: imgZoom > 1 ? 'grab' : 'default',
+                  touchAction: 'pan-y',
+                  userSelect: 'none',
                   ...(product.frame ? {
                     border: '2px solid #C6A769',
                     boxShadow: '0 4px 24px rgba(198,167,105,0.12)',
@@ -112,31 +175,44 @@ export default function ProductDetail({ product }: Props) {
                     boxShadow: '0 4px 16px rgba(0,0,0,0.04)',
                   }),
                 }}
+                onTouchStart={onImgTouchStart}
+                onTouchMove={onImgTouchMove}
+                onTouchEnd={onImgTouchEnd}
               >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={mainImg}
-                  alt={product.name}
-                  className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                {/* zoom wrapper */}
+                <div
                   style={{
-                    transform: `scale(${product.imgScale || 1})`,
-                    transformOrigin: product.imgPosition || 'center',
-                    objectPosition: product.imgPosition || 'center',
+                    width: '100%',
+                    height: '100%',
+                    transform: `scale(${imgZoom}) translate(${imgTranslate.x / imgZoom}px, ${imgTranslate.y / imgZoom}px)`,
+                    transition: imgZoom === 1 ? 'transform 0.3s ease' : 'none',
+                    transformOrigin: 'center center',
                   }}
-                />
-                <div style={{ position: 'absolute', bottom: '12px', right: '12px', background: 'rgba(0,0,0,0.45)', borderRadius: '50%', width: '36px', height: '36px', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 10, fontSize: '16px' }}>
+                >
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={mainImg}
+                    alt={product.name}
+                    className="w-full h-full object-cover"
+                    draggable={false}
+                    style={{
+                      transform: `scale(${product.imgScale || 1})`,
+                      transformOrigin: product.imgPosition || 'center',
+                      objectPosition: product.imgPosition || 'center',
+                      WebkitUserSelect: 'none',
+                      display: 'block',
+                    }}
+                  />
+                </div>
+
+                {/* 🔍 — tap resets zoom */}
+                <div
+                  onClick={resetImgZoom}
+                  style={{ position: 'absolute', bottom: '12px', right: '12px', background: 'rgba(0,0,0,0.45)', borderRadius: '50%', width: '36px', height: '36px', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 10, fontSize: '16px', cursor: 'pointer' }}
+                >
                   🔍
                 </div>
               </div>
-
-              {/* Lightbox */}
-              {lightbox && (
-                <Lightbox
-                  images={allImgs}
-                  initialIndex={allImgs.indexOf(mainImg)}
-                  onClose={() => setLightbox(false)}
-                />
-              )}
 
               {/* Thumbnails */}
               {allImgs.length > 1 && (
