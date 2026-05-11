@@ -30,9 +30,20 @@ interface ProductForm {
   colors: ColorVariant[]
 }
 
+// ── Auto-génération de la référence SKU ─────────────────
+function computeSku(cat: 'femme' | 'homme', coffret: boolean): string {
+  const prefix = `GSH-${cat === 'femme' ? 'F' : 'H'}-${coffret ? 'CP' : 'BS'}`
+  const existing = products
+    .filter((p) => p.sku && p.sku.startsWith(prefix))
+    .map((p) => parseInt(p.sku.split('-').pop() || '0'))
+    .filter((n) => !isNaN(n))
+  const max = existing.length > 0 ? Math.max(...existing) : 0
+  return `${prefix}-${String(max + 1).padStart(2, '0')}`
+}
+
 const EMPTY: ProductForm = {
   name: '',
-  sku: '',
+  sku: computeSku('femme', false),
   cat: 'femme',
   price: '',
   originalPrice: '',
@@ -86,7 +97,20 @@ export default function AdminPage() {
   const [generatedCode, setGeneratedCode] = useState('')
   const [copied, setCopied] = useState(false)
   const [nextId, setNextId] = useState(() => Math.max(0, ...products.map((p) => p.id)) + 1)
-  const [tab, setTab] = useState<'product' | 'banner' | 'cartes' | 'cartesfemme' | 'colors' | 'vitrine' | 'showcase' | 'hero'>('product')
+  const [skuManual, setSkuManual] = useState(false)
+  const [tab, setTab] = useState<'product' | 'edit' | 'banner' | 'cartes' | 'cartesfemme' | 'colors' | 'vitrine' | 'showcase' | 'hero'>('product')
+
+  // ── Edit product state ──────────────────────────────────
+  const [editingProduct, setEditingProduct] = useState<typeof products[0] | null>(null)
+  const [editName, setEditName] = useState('')
+  const [editPrice, setEditPrice] = useState('')
+  const [editOriginalPrice, setEditOriginalPrice] = useState('')
+  const [editGridImg, setEditGridImg] = useState('')
+  const [editDetailImg1, setEditDetailImg1] = useState('')
+  const [editDetailImg2, setEditDetailImg2] = useState('')
+  const [editCode, setEditCode] = useState('')
+  const [editCopied, setEditCopied] = useState(false)
+  const [editSearch, setEditSearch] = useState('')
   const [banner, setBanner] = useState({ img1: '', img2: '', img3: '' })
   const [bannerCode, setBannerCode] = useState('')
   const [bannerCopied, setBannerCopied] = useState(false)
@@ -257,7 +281,75 @@ ${valid.map((c) => `      { name: '${c.name}', img: '${c.img}' }`).join(',\n')},
   }
 
   function set(field: keyof ProductForm, value: string | boolean | number) {
-    setForm((f) => ({ ...f, [field]: value }))
+    setForm((f) => {
+      const next = { ...f, [field]: value }
+      // Auto-update SKU when cat or coffret changes (only if not manually set)
+      if ((field === 'cat' || field === 'coffret') && !skuManual) {
+        const cat = field === 'cat' ? (value as 'femme' | 'homme') : f.cat
+        const coffret = field === 'coffret' ? (value as boolean) : f.coffret
+        next.sku = computeSku(cat, coffret)
+      }
+      return next
+    })
+  }
+
+  function loadProductForEdit(product: typeof products[0]) {
+    setEditingProduct(product)
+    setEditName(product.name.trim())
+    setEditPrice(String(product.price))
+    setEditOriginalPrice(String(product.originalPrice))
+    setEditGridImg(product.gridImg)
+    setEditDetailImg1(product.detailImgs?.[0] || '')
+    setEditDetailImg2(product.detailImgs?.[1] || '')
+    setEditCode('')
+  }
+
+  function generateEditCode() {
+    if (!editingProduct) return
+    const p = editingProduct
+    const name = editName || p.name
+    const price = editPrice || String(p.price)
+    const originalPrice = editOriginalPrice || String(p.originalPrice)
+    const gridImg = editGridImg || p.gridImg
+    const detailImgs = [editDetailImg1, editDetailImg2].filter(Boolean)
+    const detailImgsCode = detailImgs.length > 0
+      ? `\n${detailImgs.map((u) => `      '${u}'`).join(',\n')},`
+      : ''
+    const colorsCode = p.colors && p.colors.length > 0
+      ? `\n    colors: [\n${p.colors.map((c: {name:string;img:string}) => `      { name: '${c.name}', img: '${c.img}' }`).join(',\n')},\n    ],`
+      : ''
+    const code = `  {
+    id: ${p.id},
+    sku: '${p.sku}',
+    cat: '${p.cat}',
+    name: '${name}',
+    price: ${price},
+    originalPrice: ${originalPrice},
+    stock: ${p.stock},
+    rating: ${p.rating},
+    reviews: ${p.reviews},
+    gridImg: '${gridImg}',
+    detailImgs: [${detailImgsCode}
+    ],${p.hot ? '\n    hot: true,' : ''}${p.coffret ? '\n    coffret: true,' : ''}${p.frame ? '\n    frame: true,' : ''}${p.imgScale && p.imgScale !== 1 ? `\n    imgScale: ${p.imgScale},` : ''}${p.imgPosition && p.imgPosition !== 'center' ? `\n    imgPosition: '${p.imgPosition}',` : ''}${colorsCode}
+  },`
+    setEditCode(code)
+  }
+
+  function resetEdit() {
+    setEditingProduct(null)
+    setEditName('')
+    setEditPrice('')
+    setEditOriginalPrice('')
+    setEditGridImg('')
+    setEditDetailImg1('')
+    setEditDetailImg2('')
+    setEditCode('')
+  }
+
+  async function copyEditCode() {
+    await navigator.clipboard.writeText(editCode)
+    setEditCopied(true)
+    setTimeout(() => setEditCopied(false), 2000)
   }
 
   async function generate() {
@@ -299,7 +391,8 @@ ${valid.map((c) => `      { name: '${c.name}', img: '${c.img}' }`).join(',\n')},
   }
 
   function reset() {
-    setForm(EMPTY)
+    setSkuManual(false)
+    setForm({ ...EMPTY, sku: computeSku('femme', false) })
     setGeneratedCode('')
   }
 
@@ -379,6 +472,16 @@ ${valid.map((c) => `      { name: '${c.name}', img: '${c.img}' }`).join(',\n')},
             }`}
           >
             🛍️ Ajouter un produit
+          </button>
+          <button
+            onClick={() => { setTab('edit'); resetEdit() }}
+            className={`px-6 py-3 rounded-xl text-[11px] font-black uppercase tracking-widest transition ${
+              tab === 'edit'
+                ? 'bg-[#C5A059] text-black'
+                : 'bg-white/5 border border-white/10 text-gray-400 hover:border-white/30'
+            }`}
+          >
+            ✏️ Modifier un produit
           </button>
           <button
             onClick={() => setTab('hero')}
@@ -1166,6 +1269,261 @@ ${valid.map((c) => `      { name: '${c.name}', img: '${c.img}' }`).join(',\n')},
           </div>
         )}
 
+        {/* ── Edit Product Tab ─────────────────────────────── */}
+        {tab === 'edit' && (
+          <div className="flex flex-col gap-6">
+            <div>
+              <h2 className="text-2xl font-serif font-black uppercase tracking-widest text-white mb-2">
+                Modifier un produit
+              </h2>
+              <p className="text-gray-500 text-sm">
+                Sélectionnez un produit pour modifier son nom, prix ou photos
+              </p>
+            </div>
+
+            {!editingProduct ? (
+              /* ── Product list ── */
+              <div className="flex flex-col gap-4">
+                {/* Search */}
+                <input
+                  value={editSearch}
+                  onChange={(e) => setEditSearch(e.target.value)}
+                  placeholder="🔍 Rechercher un produit..."
+                  className="bg-white/5 border border-white/10 focus:border-[#C5A059] rounded-xl px-5 py-3 text-sm outline-none transition text-white placeholder-gray-600"
+                />
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  {products
+                    .filter((p) =>
+                      editSearch === '' ||
+                      p.name.toLowerCase().includes(editSearch.toLowerCase()) ||
+                      p.sku.toLowerCase().includes(editSearch.toLowerCase())
+                    )
+                    .map((p) => (
+                      <button
+                        key={p.id}
+                        onClick={() => loadProductForEdit(p)}
+                        className="flex items-center gap-4 bg-white/5 border border-white/10 hover:border-[#C5A059]/50 rounded-2xl p-4 text-left transition group"
+                      >
+                        {/* Thumbnail */}
+                        <div className="w-16 h-16 rounded-xl overflow-hidden shrink-0 bg-white/5">
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img
+                            src={p.gridImg}
+                            alt={p.name}
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
+                        {/* Info */}
+                        <div className="flex-1 min-w-0">
+                          <p className="text-[9px] font-black uppercase tracking-widest text-[#C5A059] mb-0.5">
+                            {p.sku}
+                          </p>
+                          <p className="text-xs font-black uppercase text-white leading-snug line-clamp-2 mb-1">
+                            {p.name.trim()}
+                          </p>
+                          <p className="text-[10px] font-black text-gray-400">
+                            {p.price} MAD
+                          </p>
+                        </div>
+                        <span className="text-[#C5A059] text-lg group-hover:translate-x-1 transition-transform">→</span>
+                      </button>
+                    ))}
+                </div>
+              </div>
+            ) : (
+              /* ── Edit form ── */
+              <div className="flex flex-col gap-6">
+                {/* Back button + product info */}
+                <div className="flex items-center gap-4">
+                  <button
+                    onClick={resetEdit}
+                    className="text-[10px] font-black uppercase tracking-widest text-gray-400 hover:text-white border border-white/10 hover:border-white/30 px-4 py-2 rounded-lg transition"
+                  >
+                    ← Retour à la liste
+                  </button>
+                  <div>
+                    <p className="text-[9px] font-black uppercase tracking-widest text-[#C5A059]">
+                      {editingProduct.sku}
+                    </p>
+                    <p className="text-xs font-black uppercase text-white">
+                      {editingProduct.name.trim()}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                  {/* Left: form */}
+                  <div className="flex flex-col gap-5">
+
+                    {/* Nom */}
+                    <div className="bg-white/5 border border-white/10 rounded-2xl p-6 flex flex-col gap-4">
+                      <h3 className="text-[11px] font-black uppercase tracking-widest text-[#C5A059]">
+                        📝 Nom du produit
+                      </h3>
+                      <input
+                        value={editName}
+                        onChange={(e) => setEditName(e.target.value)}
+                        className="bg-black/50 border border-white/10 focus:border-[#C5A059] rounded-lg px-4 py-3 text-sm outline-none transition text-white"
+                        placeholder={editingProduct.name.trim()}
+                      />
+                    </div>
+
+                    {/* Prix */}
+                    <div className="bg-white/5 border border-white/10 rounded-2xl p-6 flex flex-col gap-4">
+                      <h3 className="text-[11px] font-black uppercase tracking-widest text-[#C5A059]">
+                        💰 Prix
+                      </h3>
+                      <div className="grid grid-cols-2 gap-3">
+                        <div className="flex flex-col gap-1.5">
+                          <label className="text-[10px] font-black uppercase tracking-widest text-gray-400">
+                            Prix de vente (MAD)
+                          </label>
+                          <input
+                            type="number"
+                            value={editPrice}
+                            onChange={(e) => setEditPrice(e.target.value)}
+                            className="bg-black/50 border border-white/10 focus:border-[#C5A059] rounded-lg px-4 py-2.5 text-sm outline-none transition text-white"
+                            placeholder={String(editingProduct.price)}
+                          />
+                        </div>
+                        <div className="flex flex-col gap-1.5">
+                          <label className="text-[10px] font-black uppercase tracking-widest text-gray-400">
+                            Prix barré (MAD)
+                          </label>
+                          <input
+                            type="number"
+                            value={editOriginalPrice}
+                            onChange={(e) => setEditOriginalPrice(e.target.value)}
+                            className="bg-black/50 border border-white/10 focus:border-[#C5A059] rounded-lg px-4 py-2.5 text-sm outline-none transition text-white"
+                            placeholder={String(editingProduct.originalPrice)}
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Photos */}
+                    <div className="bg-white/5 border border-white/10 rounded-2xl p-6 flex flex-col gap-5">
+                      <h3 className="text-[11px] font-black uppercase tracking-widest text-[#C5A059]">
+                        📷 Photos
+                      </h3>
+                      <ImageUpload
+                        label="Photo principale (grille)"
+                        onUpload={(url) => setEditGridImg(url)}
+                        currentUrl={editGridImg}
+                      />
+                      <ImageUpload
+                        label="Photo détail 1"
+                        onUpload={(url) => setEditDetailImg1(url)}
+                        currentUrl={editDetailImg1}
+                      />
+                      <ImageUpload
+                        label="Photo détail 2 (optionnel)"
+                        onUpload={(url) => setEditDetailImg2(url)}
+                        currentUrl={editDetailImg2}
+                      />
+                    </div>
+
+                    <button
+                      onClick={generateEditCode}
+                      className="w-full py-4 bg-[#C5A059] text-black font-black uppercase text-[11px] tracking-widest rounded-xl hover:bg-[#d4b572] transition shadow-lg"
+                    >
+                      ⚡ Générer le code mis à jour
+                    </button>
+                  </div>
+
+                  {/* Right: preview + code */}
+                  <div className="flex flex-col gap-5">
+                    {/* Current vs new preview */}
+                    <div className="bg-white rounded-2xl p-5 flex flex-col gap-4">
+                      <p className="text-[10px] font-black uppercase tracking-widest text-gray-500">
+                        👁️ Aperçu
+                      </p>
+                      <div className="grid grid-cols-2 gap-4">
+                        <div className="flex flex-col gap-2">
+                          <span className="text-[9px] font-black uppercase text-gray-400">AVANT</span>
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img
+                            src={editingProduct.gridImg}
+                            alt="avant"
+                            className="w-full aspect-square object-cover rounded-xl opacity-60"
+                          />
+                          <p className="text-[9px] font-black uppercase text-gray-500 line-clamp-1">
+                            {editingProduct.name.trim()}
+                          </p>
+                          <p className="text-[10px] font-black text-gray-500">
+                            {editingProduct.price} MAD
+                          </p>
+                        </div>
+                        <div className="flex flex-col gap-2">
+                          <span className="text-[9px] font-black uppercase text-[#C5A059]">APRÈS</span>
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img
+                            src={editGridImg || editingProduct.gridImg}
+                            alt="après"
+                            className="w-full aspect-square object-cover rounded-xl"
+                          />
+                          <p className="text-[9px] font-black uppercase text-black line-clamp-1">
+                            {editName || editingProduct.name.trim()}
+                          </p>
+                          <p className="text-[10px] font-black text-black">
+                            {editPrice || editingProduct.price} MAD
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Instructions */}
+                    <div className="bg-[#C5A059]/10 border border-[#C5A059]/30 rounded-2xl p-5">
+                      <h3 className="text-[11px] font-black uppercase tracking-widest text-[#C5A059] mb-3">
+                        📋 Comment utiliser
+                      </h3>
+                      <ol className="text-gray-400 text-xs flex flex-col gap-2 list-decimal list-inside">
+                        <li>Modifiez le nom, le prix ou uploadez de nouvelles photos</li>
+                        <li>Cliquez sur <strong className="text-white">Générer le code</strong></li>
+                        <li>Copiez le code généré</li>
+                        <li>Dans <code className="text-[#C5A059]">data/products.ts</code>, trouvez le produit <strong className="text-white">{editingProduct.sku}</strong> et remplacez-le</li>
+                      </ol>
+                    </div>
+
+                    {/* Generated code */}
+                    <div className="bg-white/5 border border-white/10 rounded-2xl overflow-hidden flex-1">
+                      <div className="flex items-center justify-between px-5 py-3 border-b border-white/10">
+                        <span className="text-[10px] font-black uppercase tracking-widest text-gray-400">
+                          Code généré
+                        </span>
+                        {editCode && (
+                          <button
+                            onClick={copyEditCode}
+                            className={`text-[10px] font-black uppercase px-4 py-1.5 rounded-lg transition ${
+                              editCopied ? 'bg-green-500 text-white' : 'bg-[#C5A059] text-black'
+                            }`}
+                          >
+                            {editCopied ? '✓ Copié !' : 'Copier'}
+                          </button>
+                        )}
+                      </div>
+                      <div className="p-5 min-h-[200px]">
+                        {editCode ? (
+                          <pre className="text-green-400 text-xs font-mono whitespace-pre-wrap leading-relaxed overflow-auto max-h-[400px]">
+                            {editCode}
+                          </pre>
+                        ) : (
+                          <div className="flex items-center justify-center py-10 text-gray-600">
+                            <p className="text-[11px] font-bold uppercase tracking-widest text-center">
+                              Le code apparaîtra ici
+                            </p>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+
         {/* Product Tab */}
         {tab === 'product' && (
         <><div className="mb-10">
@@ -1229,15 +1587,30 @@ ${valid.map((c) => `      { name: '${c.name}', img: '${c.img}' }`).join(',\n')},
 
               {/* SKU */}
               <div className="flex flex-col gap-1.5">
-                <label className="text-[10px] font-black uppercase tracking-widest text-gray-400">
-                  SKU
-                </label>
+                <div className="flex items-center justify-between">
+                  <label className="text-[10px] font-black uppercase tracking-widest text-gray-400">
+                    Référence (SKU)
+                  </label>
+                  {skuManual && (
+                    <button
+                      onClick={() => { setSkuManual(false); set('sku', computeSku(form.cat, form.coffret)) }}
+                      className="text-[9px] font-black uppercase tracking-widest text-[#C5A059] hover:underline"
+                    >
+                      ↺ Auto
+                    </button>
+                  )}
+                </div>
                 <input
                   value={form.sku}
-                  onChange={(e) => set('sku', e.target.value)}
-                  className="bg-black/50 border border-white/10 focus:border-[#C5A059] rounded-lg px-4 py-2.5 text-sm outline-none transition"
-                  placeholder="LTF-007"
+                  onChange={(e) => { setSkuManual(true); set('sku', e.target.value) }}
+                  className={`bg-black/50 border rounded-lg px-4 py-2.5 text-sm outline-none transition font-mono ${
+                    skuManual ? 'border-[#C5A059]/60 text-[#C5A059]' : 'border-white/10 text-green-400'
+                  }`}
+                  placeholder="GSH-F-BS-01"
                 />
+                <p className="text-[9px] text-gray-600 font-semibold">
+                  {skuManual ? '✎ Modifié manuellement' : '⚡ Généré automatiquement selon catégorie'}
+                </p>
               </div>
 
               {/* Catégorie */}
