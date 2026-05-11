@@ -263,10 +263,14 @@ export default function ProductDetail({ product }: Props) {
                     cursor: 'pointer', transition: 'background 0.2s',
                   }}
                 >
-                  <span style={{ display: 'flex', alignItems: 'center', color: '#fff', fontSize: '13px', fontWeight: 700, gap: '1px', lineHeight: 1 }}>
-                    <span style={{ fontSize: '15px' }}>🔍</span>
-                    <span style={{ fontSize: '16px', marginTop: '-2px' }}>{imgZoom > 1 ? '−' : '+'}</span>
-                  </span>
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="8.5" cy="8.5" r="6" stroke="white" strokeWidth="2"/>
+                    <line x1="13.5" y1="13.5" x2="18" y2="18" stroke="white" strokeWidth="2" strokeLinecap="round"/>
+                    {/* horizontal — always shown */}
+                    <line x1="5.5" y1="8.5" x2="11.5" y2="8.5" stroke="white" strokeWidth="1.8" strokeLinecap="round"/>
+                    {/* vertical — only for + (zoom in) */}
+                    {imgZoom <= 1 && <line x1="8.5" y1="5.5" x2="8.5" y2="11.5" stroke="white" strokeWidth="1.8" strokeLinecap="round"/>}
+                  </svg>
                 </div>
               </div>
 
