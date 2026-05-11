@@ -263,7 +263,10 @@ export default function ProductDetail({ product }: Props) {
                     cursor: 'pointer', transition: 'background 0.2s',
                   }}
                 >
-                  {imgZoom > 1 ? '✕' : '🔍'}
+                  <span style={{ display: 'flex', alignItems: 'center', color: '#fff', fontSize: '13px', fontWeight: 700, gap: '1px', lineHeight: 1 }}>
+                    <span style={{ fontSize: '15px' }}>🔍</span>
+                    <span style={{ fontSize: '16px', marginTop: '-2px' }}>{imgZoom > 1 ? '−' : '+'}</span>
+                  </span>
                 </div>
               </div>
 
