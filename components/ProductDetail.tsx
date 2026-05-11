@@ -124,8 +124,8 @@ export default function ProductDetail({ product }: Props) {
                     objectPosition: product.imgPosition || 'center',
                   }}
                 />
-                <div style={{ position: 'absolute', bottom: '12px', right: '12px', background: 'rgba(0,0,0,0.55)', borderRadius: '20px', padding: '5px 12px', fontSize: '9px', fontWeight: 600, letterSpacing: '0.12em', color: '#fff', zIndex: 10, display: 'flex', alignItems: 'center', gap: '5px' }}>
-                  <i className="fa-solid fa-magnifying-glass-plus" style={{ fontSize: '9px' }} /> Agrandir
+                <div style={{ position: 'absolute', bottom: '12px', right: '12px', background: 'rgba(0,0,0,0.45)', borderRadius: '50%', width: '36px', height: '36px', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 10, fontSize: '16px' }}>
+                  🔍
                 </div>
               </div>
 
