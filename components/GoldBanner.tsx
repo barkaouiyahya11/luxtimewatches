@@ -78,7 +78,7 @@ export default function GoldBanner() {
             </span>
           </h2>
           <p className="gold-banner-sub text-[11px] md:text-xs uppercase tracking-[0.35em] text-black font-semibold mt-4">
-            Collection Exclusive Â· Ã€ Partir de 149 MAD
+            Collection Exclusive · À Partir de 149 MAD
           </p>
           <button
             onClick={() => scrollTo('coll-femme')}
