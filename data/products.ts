@@ -210,7 +210,7 @@ export const products: Product[] = [
     stock: 0,
     rating: 4.9,
     reviews: 0,
-    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778167412/luxtim/eecynmuzujz0kramtlpw.jpg',
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778503366/luxtim/qyz9gnscchcv5kibytrw.jpg',
     detailImgs: [
     ],
     imgPosition: 'bottom',
@@ -225,7 +225,7 @@ export const products: Product[] = [
     stock: 0,
     rating: 4.9,
     reviews: 0,
-    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778502444/luxtim/soc3b4qqxrnx6nmhar2s.jpg',
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778503219/luxtim/fvyyz0a7tcxdbvbdblnn.jpg',
     detailImgs: [
     ],
     imgPosition: 'bottom',
@@ -240,7 +240,7 @@ export const products: Product[] = [
     stock: 0,
     rating: 4.9,
     reviews: 0,
-    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778167658/luxtim/egham8t4tssczpqqrumx.jpg',
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778503489/luxtim/zxkhffvka8qjjgkqhuwa.jpg',
     detailImgs: [
     ],
     imgPosition: 'bottom',
@@ -255,7 +255,7 @@ export const products: Product[] = [
     stock: 0,
     rating: 4.9,
     reviews: 0,
-    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778168128/luxtim/hiqwjwy2itxfkgaprcny.jpg',
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778503843/luxtim/piljh5ujkj223ae8szeu.jpg',
     detailImgs: [
     ],
     imgPosition: 'bottom',
@@ -270,7 +270,7 @@ export const products: Product[] = [
     stock: 0,
     rating: 4.9,
     reviews: 0,
-    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778168375/luxtim/skynndclaumliycdih8a.jpg',
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778503912/luxtim/nlkxzjc5nhyp21pp1quv.jpg',
     detailImgs: [
     ],
     imgPosition: 'bottom',
@@ -285,7 +285,7 @@ export const products: Product[] = [
     stock: 0,
     rating: 4.9,
     reviews: 0,
-    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778168770/luxtim/zm4vjuzo2qoyi1uibx7d.jpg',
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778503954/luxtim/mjgysfwiky21ncetdu0c.jpg',
     detailImgs: [
     ],
     imgPosition: 'bottom',
@@ -300,7 +300,7 @@ export const products: Product[] = [
     stock: 0,
     rating: 4.9,
     reviews: 0,
-    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778169086/luxtim/bwamrbqiyg12wrtortnu.jpg',
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778504091/luxtim/chxbzgghoummx25jd6nu.jpg',
     detailImgs: [
     ],
     imgPosition: 'bottom',
