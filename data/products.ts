@@ -515,4 +515,18 @@ export const products: Product[] = [
     detailImgs: [
     ],
   },
+  {
+    id: 152,
+    sku: 'GSH-H-BS-11',
+    cat: 'homme',
+    name: 'CARTIER SANTOS HOMME BOITE SIMPLE',
+    price: 220,
+    originalPrice: 220,
+    stock: 0,
+    rating: 4.9,
+    reviews: 0,
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778538030/luxtim/cidbe1nid2naukzxxlog.jpg',
+    detailImgs: [
+    ],
+  },
 ]
