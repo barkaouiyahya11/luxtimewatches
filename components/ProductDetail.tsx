@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import { Product } from '@/types'
 import { useStore } from '@/context/StoreContext'
 import { products } from '@/data/products'
+import Lightbox from '@/components/Lightbox'
 
 interface Props {
   product: Product
@@ -130,63 +131,11 @@ export default function ProductDetail({ product }: Props) {
 
               {/* Lightbox */}
               {lightbox && (
-                <div
-                  onClick={() => setLightbox(false)}
-                  style={{
-                    position: 'fixed', inset: 0, zIndex: 99999,
-                    background: 'rgba(0,0,0,0.92)',
-                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    padding: '20px',
-                    animation: 'fadeIn 0.2s ease',
-                  }}
-                >
-                  <button
-                    onClick={() => setLightbox(false)}
-                    style={{
-                      position: 'absolute', top: '20px', right: '20px',
-                      background: 'rgba(255,255,255,0.15)', border: 'none',
-                      color: '#fff', width: '40px', height: '40px',
-                      borderRadius: '50%', fontSize: '18px', cursor: 'pointer',
-                      display: 'flex', alignItems: 'center', justifyContent: 'center',
-                      backdropFilter: 'blur(4px)',
-                    }}
-                  >
-                    ✕
-                  </button>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={mainImg}
-                    alt={product.name}
-                    onClick={(e) => e.stopPropagation()}
-                    style={{
-                      maxWidth: '90vw',
-                      maxHeight: '90vh',
-                      objectFit: 'contain',
-                      borderRadius: '8px',
-                      boxShadow: '0 20px 60px rgba(0,0,0,0.6)',
-                    }}
-                  />
-                  {allImgs.length > 1 && (
-                    <div
-                      onClick={(e) => e.stopPropagation()}
-                      style={{ position: 'absolute', bottom: '20px', left: '50%', transform: 'translateX(-50%)', display: 'flex', gap: '8px' }}
-                    >
-                      {allImgs.map((img, i) => (
-                        // eslint-disable-next-line @next/next/no-img-element
-                        <img
-                          key={i} src={img} alt=""
-                          onClick={() => setMainImg(img)}
-                          style={{
-                            width: '52px', height: '52px', objectFit: 'cover',
-                            borderRadius: '6px', cursor: 'pointer',
-                            border: mainImg === img ? '2px solid #fff' : '2px solid rgba(255,255,255,0.3)',
-                            transition: 'border-color 0.2s',
-                          }}
-                        />
-                      ))}
-                    </div>
-                  )}
-                </div>
+                <Lightbox
+                  images={allImgs}
+                  initialIndex={allImgs.indexOf(mainImg)}
+                  onClose={() => setLightbox(false)}
+                />
               )}
 
               {/* Thumbnails */}

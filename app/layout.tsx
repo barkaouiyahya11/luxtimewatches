@@ -8,7 +8,6 @@ import AnnouncementBar from '@/components/AnnouncementBar'
 import CartDrawer from '@/components/CartDrawer'
 import CheckoutModal from '@/components/CheckoutModal'
 import ReviewModal from '@/components/ReviewModal'
-import Lightbox from '@/components/Lightbox'
 import Toast from '@/components/Toast'
 import { GA_ID } from '@/lib/constants'
 import './globals.css'
@@ -92,7 +91,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <CartDrawer />
           <CheckoutModal />
           <ReviewModal />
-          <Lightbox />
           <Toast />
         </StoreProvider>
       </body>
