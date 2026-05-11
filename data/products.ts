@@ -182,7 +182,7 @@ export const products: Product[] = [
     stock: 0,
     rating: 4.9,
     reviews: 0,
-    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778166600/luxtim/cicg0hu7ujjlmpl3nyij.jpg',
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778499625/luxtim/rzcgwngpfcybhl2jo33o.heic',
     detailImgs: [
     ],
   },
