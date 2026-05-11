@@ -26,13 +26,16 @@ export default function ProductDetail({ product }: Props) {
   const [showSticky, setShowSticky] = useState(false)
   const orderBtnRef = useRef<HTMLButtonElement>(null)
 
-  // ── Inline pinch-to-zoom ──
+  // ── Inline zoom + pan ──
   const [imgZoom, setImgZoom] = useState(1)
   const [imgTranslate, setImgTranslate] = useState({ x: 0, y: 0 })
   const zLastDist = useRef<number | null>(null)
   const zLastPos = useRef<{ x: number; y: number } | null>(null)
   const zBaseScale = useRef(1)
   const zBaseTranslate = useRef({ x: 0, y: 0 })
+  const isDragging = useRef(false)
+  const dragStart = useRef({ x: 0, y: 0 })
+  const dragBase = useRef({ x: 0, y: 0 })
 
   // Reset zoom when thumbnail changes
   useEffect(() => {
@@ -43,6 +46,35 @@ export default function ProductDetail({ product }: Props) {
   function resetImgZoom() {
     setImgZoom(1)
     setImgTranslate({ x: 0, y: 0 })
+  }
+
+  function toggleZoom() {
+    if (imgZoom > 1) {
+      resetImgZoom()
+    } else {
+      setImgZoom(2.5)
+      setImgTranslate({ x: 0, y: 0 })
+    }
+  }
+
+  // ── Mouse drag (desktop) ──
+  function onMouseDown(e: React.MouseEvent) {
+    if (imgZoom <= 1) return
+    isDragging.current = true
+    dragStart.current = { x: e.clientX, y: e.clientY }
+    dragBase.current = { x: imgTranslate.x, y: imgTranslate.y }
+    e.preventDefault()
+  }
+
+  function onMouseMove(e: React.MouseEvent) {
+    if (!isDragging.current) return
+    const dx = e.clientX - dragStart.current.x
+    const dy = e.clientY - dragStart.current.y
+    setImgTranslate({ x: dragBase.current.x + dx, y: dragBase.current.y + dy })
+  }
+
+  function onMouseUp() {
+    isDragging.current = false
   }
 
   function onImgTouchStart(e: React.TouchEvent) {
@@ -156,7 +188,7 @@ export default function ProductDetail({ product }: Props) {
             {/* ── LEFT: Gallery ── */}
             <div className="w-full md:w-[52%] flex flex-col gap-4">
 
-              {/* Main image — inline pinch-to-zoom */}
+              {/* Main image — click-to-zoom + drag to pan */}
               <div
                 style={{
                   position: 'relative',
@@ -165,7 +197,7 @@ export default function ProductDetail({ product }: Props) {
                   borderRadius: '12px',
                   background: '#F9F8F6',
                   cursor: imgZoom > 1 ? 'grab' : 'default',
-                  touchAction: 'pan-y',
+                  touchAction: imgZoom > 1 ? 'none' : 'pan-y',
                   userSelect: 'none',
                   ...(product.frame ? {
                     border: '2px solid #C6A769',
@@ -175,6 +207,10 @@ export default function ProductDetail({ product }: Props) {
                     boxShadow: '0 4px 16px rgba(0,0,0,0.04)',
                   }),
                 }}
+                onMouseDown={onMouseDown}
+                onMouseMove={onMouseMove}
+                onMouseUp={onMouseUp}
+                onMouseLeave={onMouseUp}
                 onTouchStart={onImgTouchStart}
                 onTouchMove={onImgTouchMove}
                 onTouchEnd={onImgTouchEnd}
@@ -185,7 +221,7 @@ export default function ProductDetail({ product }: Props) {
                     width: '100%',
                     height: '100%',
                     transform: `scale(${imgZoom}) translate(${imgTranslate.x / imgZoom}px, ${imgTranslate.y / imgZoom}px)`,
-                    transition: imgZoom === 1 ? 'transform 0.3s ease' : 'none',
+                    transition: imgZoom === 1 ? 'transform 0.35s ease' : 'none',
                     transformOrigin: 'center center',
                   }}
                 >
@@ -201,16 +237,24 @@ export default function ProductDetail({ product }: Props) {
                       objectPosition: product.imgPosition || 'center',
                       WebkitUserSelect: 'none',
                       display: 'block',
+                      pointerEvents: 'none',
                     }}
                   />
                 </div>
 
-                {/* 🔍 — tap resets zoom */}
+                {/* bouton zoom toggle */}
                 <div
-                  onClick={resetImgZoom}
-                  style={{ position: 'absolute', bottom: '12px', right: '12px', background: 'rgba(0,0,0,0.45)', borderRadius: '50%', width: '36px', height: '36px', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 10, fontSize: '16px', cursor: 'pointer' }}
+                  onClick={toggleZoom}
+                  style={{
+                    position: 'absolute', bottom: '12px', right: '12px',
+                    background: imgZoom > 1 ? 'rgba(0,0,0,0.7)' : 'rgba(0,0,0,0.45)',
+                    borderRadius: '50%', width: '38px', height: '38px',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    zIndex: 10, fontSize: imgZoom > 1 ? '14px' : '17px',
+                    cursor: 'pointer', transition: 'background 0.2s',
+                  }}
                 >
-                  🔍
+                  {imgZoom > 1 ? '✕' : '🔍'}
                 </div>
               </div>
 
