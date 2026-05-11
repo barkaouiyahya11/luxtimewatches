@@ -111,6 +111,9 @@ export default function AdminPage() {
   const [editCode, setEditCode] = useState('')
   const [editCopied, setEditCopied] = useState(false)
   const [editSearch, setEditSearch] = useState('')
+  const [editSaving, setEditSaving] = useState(false)
+  const [editSaveStatus, setEditSaveStatus] = useState<'idle' | 'success' | 'error'>('idle')
+  const [editSaveMsg, setEditSaveMsg] = useState('')
   const [banner, setBanner] = useState({ img1: '', img2: '', img3: '' })
   const [bannerCode, setBannerCode] = useState('')
   const [bannerCopied, setBannerCopied] = useState(false)
@@ -304,8 +307,8 @@ ${valid.map((c) => `      { name: '${c.name}', img: '${c.img}' }`).join(',\n')},
     setEditCode('')
   }
 
-  function generateEditCode() {
-    if (!editingProduct) return
+  function buildEditBlock(): string {
+    if (!editingProduct) return ''
     const p = editingProduct
     const name = editName || p.name
     const price = editPrice || String(p.price)
@@ -318,7 +321,7 @@ ${valid.map((c) => `      { name: '${c.name}', img: '${c.img}' }`).join(',\n')},
     const colorsCode = p.colors && p.colors.length > 0
       ? `\n    colors: [\n${p.colors.map((c: {name:string;img:string}) => `      { name: '${c.name}', img: '${c.img}' }`).join(',\n')},\n    ],`
       : ''
-    const code = `  {
+    return `  {
     id: ${p.id},
     sku: '${p.sku}',
     cat: '${p.cat}',
@@ -332,7 +335,39 @@ ${valid.map((c) => `      { name: '${c.name}', img: '${c.img}' }`).join(',\n')},
     detailImgs: [${detailImgsCode}
     ],${p.hot ? '\n    hot: true,' : ''}${p.coffret ? '\n    coffret: true,' : ''}${p.frame ? '\n    frame: true,' : ''}${p.imgScale && p.imgScale !== 1 ? `\n    imgScale: ${p.imgScale},` : ''}${p.imgPosition && p.imgPosition !== 'center' ? `\n    imgPosition: '${p.imgPosition}',` : ''}${colorsCode}
   },`
-    setEditCode(code)
+  }
+
+  function generateEditCode() {
+    if (!editingProduct) return
+    setEditCode(buildEditBlock())
+  }
+
+  async function saveProduct() {
+    if (!editingProduct) return
+    setEditSaving(true)
+    setEditSaveStatus('idle')
+    setEditSaveMsg('')
+    try {
+      const newBlock = buildEditBlock()
+      const res = await fetch('/api/products/update', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ productId: editingProduct.id, newBlock }),
+      })
+      const data = await res.json()
+      if (data.success) {
+        setEditSaveStatus('success')
+        setEditSaveMsg('✅ Sauvegardé ! Le site se met à jour dans ~1 minute.')
+      } else {
+        setEditSaveStatus('error')
+        setEditSaveMsg(`❌ Erreur : ${data.error}`)
+      }
+    } catch {
+      setEditSaveStatus('error')
+      setEditSaveMsg('❌ Erreur réseau')
+    } finally {
+      setEditSaving(false)
+    }
   }
 
   function resetEdit() {
@@ -1424,11 +1459,24 @@ ${valid.map((c) => `      { name: '${c.name}', img: '${c.img}' }`).join(',\n')},
                       />
                     </div>
 
+                    {/* Save status */}
+                    {editSaveStatus !== 'idle' && (
+                      <div className={`rounded-xl px-5 py-4 text-sm font-black ${
+                        editSaveStatus === 'success'
+                          ? 'bg-green-500/20 border border-green-500/40 text-green-400'
+                          : 'bg-red-500/20 border border-red-500/40 text-red-400'
+                      }`}>
+                        {editSaveMsg}
+                      </div>
+                    )}
+
+                    {/* Save button */}
                     <button
-                      onClick={generateEditCode}
-                      className="w-full py-4 bg-[#C5A059] text-black font-black uppercase text-[11px] tracking-widest rounded-xl hover:bg-[#d4b572] transition shadow-lg"
+                      onClick={saveProduct}
+                      disabled={editSaving}
+                      className="w-full py-4 bg-[#C5A059] text-black font-black uppercase text-[11px] tracking-widest rounded-xl hover:bg-[#d4b572] transition shadow-lg disabled:opacity-50 disabled:cursor-wait"
                     >
-                      ⚡ Générer le code mis à jour
+                      {editSaving ? '⏳ Sauvegarde en cours...' : '💾 Sauvegarder sur le site'}
                     </button>
                   </div>
 
@@ -1480,9 +1528,8 @@ ${valid.map((c) => `      { name: '${c.name}', img: '${c.img}' }`).join(',\n')},
                       </h3>
                       <ol className="text-gray-400 text-xs flex flex-col gap-2 list-decimal list-inside">
                         <li>Modifiez le nom, le prix ou uploadez de nouvelles photos</li>
-                        <li>Cliquez sur <strong className="text-white">Générer le code</strong></li>
-                        <li>Copiez le code généré</li>
-                        <li>Dans <code className="text-[#C5A059]">data/products.ts</code>, trouvez le produit <strong className="text-white">{editingProduct.sku}</strong> et remplacez-le</li>
+                        <li>Cliquez sur <strong className="text-white">💾 Sauvegarder sur le site</strong></li>
+                        <li>Le site se met à jour automatiquement en ~1 minute ✅</li>
                       </ol>
                     </div>
 
