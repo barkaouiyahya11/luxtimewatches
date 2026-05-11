@@ -501,4 +501,18 @@ export const products: Product[] = [
     detailImgs: [
     ],
   },
+  {
+    id: 151,
+    sku: 'GSH-F-BS-14',
+    cat: 'femme',
+    name: 'EMPORIO ARMANI BOITE SIMPLE INOXYDABLE ACIER FEMME',
+    price: 190,
+    originalPrice: 250,
+    stock: 0,
+    rating: 4.9,
+    reviews: 0,
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778514368/luxtim/vbklltfgcltzaotpyxf7.jpg',
+    detailImgs: [
+    ],
+  },
 ]
