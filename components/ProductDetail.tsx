@@ -36,6 +36,19 @@ export default function ProductDetail({ product }: Props) {
   const isDragging = useRef(false)
   const dragStart = useRef({ x: 0, y: 0 })
   const dragBase = useRef({ x: 0, y: 0 })
+  const containerRef = useRef<HTMLDivElement>(null)
+
+  function clamp(x: number, y: number, zoom: number) {
+    if (!containerRef.current) return { x, y }
+    const W = containerRef.current.offsetWidth
+    const H = containerRef.current.offsetHeight
+    const maxX = ((zoom - 1) * W) / 2
+    const maxY = ((zoom - 1) * H) / 2
+    return {
+      x: Math.min(Math.max(x, -maxX), maxX),
+      y: Math.min(Math.max(y, -maxY), maxY),
+    }
+  }
 
   // Reset zoom when thumbnail changes
   useEffect(() => {
@@ -70,7 +83,7 @@ export default function ProductDetail({ product }: Props) {
     if (!isDragging.current) return
     const dx = e.clientX - dragStart.current.x
     const dy = e.clientY - dragStart.current.y
-    setImgTranslate({ x: dragBase.current.x + dx, y: dragBase.current.y + dy })
+    setImgTranslate(clamp(dragBase.current.x + dx, dragBase.current.y + dy, imgZoom))
   }
 
   function onMouseUp() {
@@ -104,14 +117,9 @@ export default function ProductDetail({ product }: Props) {
       e.preventDefault()
       const dx = e.touches[0].clientX - zLastPos.current.x
       const dy = e.touches[0].clientY - zLastPos.current.y
-      setImgTranslate({
-        x: zBaseTranslate.current.x + dx,
-        y: zBaseTranslate.current.y + dy,
-      })
-      zBaseTranslate.current = {
-        x: zBaseTranslate.current.x + dx,
-        y: zBaseTranslate.current.y + dy,
-      }
+      const next = clamp(zBaseTranslate.current.x + dx, zBaseTranslate.current.y + dy, imgZoom)
+      setImgTranslate(next)
+      zBaseTranslate.current = { x: next.x, y: next.y }
       zLastPos.current = { x: e.touches[0].clientX, y: e.touches[0].clientY }
     }
   }
@@ -190,6 +198,7 @@ export default function ProductDetail({ product }: Props) {
 
               {/* Main image — click-to-zoom + drag to pan */}
               <div
+                ref={containerRef}
                 style={{
                   position: 'relative',
                   aspectRatio: '4/5',
