@@ -559,6 +559,16 @@ ${valid.map((c) => `      { name: '${c.name}', img: '${c.img}' }`).join(',\n')},
             🌟 Photo Showcase
           </button>
           <button
+            onClick={() => setTab('banner')}
+            className={`px-6 py-3 rounded-xl text-[11px] font-black uppercase tracking-widest transition ${
+              tab === 'banner'
+                ? 'bg-[#C5A059] text-black'
+                : 'bg-white/5 border border-white/10 text-gray-400 hover:border-white/30'
+            }`}
+          >
+            🖼️ 3 Photos Cercles
+          </button>
+          <button
             onClick={() => setTab('cartes')}
             className={`px-6 py-3 rounded-xl text-[11px] font-black uppercase tracking-widest transition ${
               tab === 'cartes'
