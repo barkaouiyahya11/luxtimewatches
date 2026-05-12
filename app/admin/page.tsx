@@ -123,6 +123,8 @@ export default function AdminPage() {
   const [cartesFemme, setCartesFemme] = useState({ simple: '', coffret: '' })
   const [cartesFemmeCode, setCartesFemmeCode] = useState('')
   const [cartesFemmeCopied, setCartesFemmeCopied] = useState(false)
+  const [cartesFemmeSaving, setCartesFemmeSaving] = useState(false)
+  const [cartesFemmeStatus, setCartesFemmeStatus] = useState<'idle' | 'success' | 'error'>('idle')
   // Showcase section
   const [showcaseImg, setShowcaseImg] = useState('')
   const [showcaseCode, setShowcaseCode] = useState('')
@@ -172,20 +174,33 @@ const BANNER_IMAGES = [
     setTimeout(() => setBannerCopied(false), 2000)
   }
 
-  function generateCartesFemmeCode() {
+  async function saveCartesFemme() {
     if (!cartesFemme.simple && !cartesFemme.coffret) {
       alert('Uploadez au moins une image')
       return
     }
-    const currentSimple = 'https://i.ibb.co/pBN8vddr/Whats-App-Image-2026-03-23-at-18-03-23.jpg'
-    const currentCoffret = 'https://i.ibb.co/KvKBFZX/Whats-App-Image-2026-03-27-at-20-25-08-1.jpg'
-    const code = `Dans components/FemmeSection.tsx, remplacez les 2 lignes CARD_SIMPLE et CARD_COFFRET par :
-
-const CARD_SIMPLE = '${cartesFemme.simple || currentSimple}'
-const CARD_COFFRET = '${cartesFemme.coffret || currentCoffret}'`
-    setCartesFemmeCode(code)
+    setCartesFemmeSaving(true)
+    setCartesFemmeStatus('idle')
+    try {
+      const res = await fetch('/api/section/femme', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ simple: cartesFemme.simple, coffret: cartesFemme.coffret }),
+      })
+      const data = await res.json()
+      if (data.success) {
+        setCartesFemmeStatus('success')
+      } else {
+        setCartesFemmeStatus('error')
+      }
+    } catch {
+      setCartesFemmeStatus('error')
+    } finally {
+      setCartesFemmeSaving(false)
+    }
   }
 
+  function generateCartesFemmeCode() { /* kept for compat */ }
   async function copyCartesFemmeCode() {
     await navigator.clipboard.writeText(cartesFemmeCode)
     setCartesFemmeCopied(true)
@@ -805,37 +820,32 @@ ${valid.map((c) => `      { name: '${c.name}', img: '${c.img}' }`).join(',\n')},
                   currentUrl={cartesFemme.coffret}
                 />
                 <button
-                  onClick={generateCartesFemmeCode}
-                  className="w-full py-4 bg-[#C5A059] text-black font-black uppercase text-[11px] tracking-widest rounded-xl hover:bg-[#d4b572] transition"
+                  onClick={saveCartesFemme}
+                  disabled={cartesFemmeSaving}
+                  className="w-full py-4 bg-[#C5A059] text-black font-black uppercase text-[11px] tracking-widest rounded-xl hover:bg-[#d4b572] transition disabled:opacity-50"
                 >
-                  ⚡ Générer le code
+                  {cartesFemmeSaving ? '⏳ Sauvegarde...' : '💾 Sauvegarder'}
                 </button>
+                {cartesFemmeStatus === 'success' && (
+                  <p className="text-green-400 text-xs font-bold text-center">✅ Sauvegardé ! Le site se met à jour dans ~1 minute.</p>
+                )}
+                {cartesFemmeStatus === 'error' && (
+                  <p className="text-red-400 text-xs font-bold text-center">❌ Erreur — réessayez</p>
+                )}
               </div>
 
               <div className="flex flex-col gap-4">
-                <div className="bg-[#C5A059]/10 border border-[#C5A059]/30 rounded-2xl p-5">
-                  <h3 className="text-[11px] font-black uppercase tracking-widest text-[#C5A059] mb-3">
-                    📋 Comment utiliser
-                  </h3>
-                  <ol className="text-gray-400 text-xs flex flex-col gap-2 list-decimal list-inside">
-                    <li>Uploadez la nouvelle photo pour chaque carte femme</li>
-                    <li>Cliquez sur <strong className="text-white">Générer le code</strong></li>
-                    <li>Copiez et collez dans Antigravity</li>
-                    <li>Antigravity met à jour et déploie</li>
-                  </ol>
-                </div>
-
                 {/* Aperçu */}
                 <div className="bg-white/5 border border-white/10 rounded-2xl p-5">
                   <h3 className="text-[10px] font-black uppercase tracking-widest text-[#C5A059] mb-3">
-                    👁️ Aperçu actuel
+                    👁️ Aperçu
                   </h3>
                   <div className="grid grid-cols-2 gap-3">
                     <div className="flex flex-col gap-1">
                       <span className="text-[9px] font-black uppercase text-gray-500">Boite Simple</span>
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
-                        src={cartesFemme.simple || 'https://i.ibb.co/pBN8vddr/Whats-App-Image-2026-03-23-at-18-03-23.jpg'}
+                        src={cartesFemme.simple || 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778590459/luxtim/azl6yitgbm54nxyrju6x.jpg'}
                         alt="simple femme"
                         className="w-full aspect-video object-cover rounded-lg"
                       />
@@ -844,38 +854,18 @@ ${valid.map((c) => `      { name: '${c.name}', img: '${c.img}' }`).join(',\n')},
                       <span className="text-[9px] font-black uppercase text-gray-500">Avec Coffret</span>
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
-                        src={cartesFemme.coffret || 'https://i.ibb.co/KvKBFZX/Whats-App-Image-2026-03-27-at-20-25-08-1.jpg'}
+                        src={cartesFemme.coffret || 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778590463/luxtim/q2bhxqz0ll5wiilbrsy6.jpg'}
                         alt="coffret femme"
                         className="w-full aspect-video object-cover rounded-lg"
                       />
                     </div>
                   </div>
                 </div>
-
-                <div className="bg-white/5 border border-white/10 rounded-2xl overflow-hidden">
-                  <div className="flex items-center justify-between px-5 py-3 border-b border-white/10">
-                    <span className="text-[10px] font-black uppercase tracking-widest text-gray-400">Code généré</span>
-                    {cartesFemmeCode && (
-                      <button
-                        onClick={copyCartesFemmeCode}
-                        className={`text-[10px] font-black uppercase px-4 py-1.5 rounded-lg transition ${
-                          cartesFemmeCopied ? 'bg-green-500 text-white' : 'bg-[#C5A059] text-black'
-                        }`}
-                      >
-                        {cartesFemmeCopied ? '✓ Copié !' : 'Copier'}
-                      </button>
-                    )}
-                  </div>
+                <div className="bg-white/5 border border-white/10 rounded-2xl p-5 hidden">
                   <div className="p-5 min-h-[120px]">
-                    {cartesFemmeCode ? (
-                      <pre className="text-green-400 text-xs font-mono whitespace-pre-wrap leading-relaxed">
-                        {cartesFemmeCode}
-                      </pre>
-                    ) : (
-                      <div className="flex items-center justify-center py-8 text-gray-600">
-                        <p className="text-[11px] font-bold uppercase tracking-widest">Le code apparaîtra ici</p>
-                      </div>
-                    )}
+                    <div className="flex items-center justify-center py-8 text-gray-600">
+                      <p className="text-[11px] font-bold uppercase tracking-widest"></p>
+                    </div>
                   </div>
                 </div>
               </div>
