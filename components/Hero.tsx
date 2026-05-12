@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 
 const SLIDES = [
-  'https://res.cloudinary.com/dannr2e0c/image/upload/e_contrast:20,e_brightness:5,e_saturation:-25,e_vignette:strength_60/v1778613932/luxtim/o1liyrssuwkbtjkqr3b2.jpg'
+  'https://res.cloudinary.com/dannr2e0c/image/upload/e_contrast:15,e_brightness:-10,e_saturation:-15,e_vignette:50/v1778613932/luxtim/o1liyrssuwkbtjkqr3b2.jpg'
 ]
 
 export default function Hero() {
@@ -53,7 +53,7 @@ export default function Hero() {
               flexShrink: 0,
               backgroundImage: `url('${src}')`,
               backgroundSize: 'cover',
-              backgroundPosition: 'center top',
+              backgroundPosition: 'center 20%',
             }}
           />
         ))}
