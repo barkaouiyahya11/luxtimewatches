@@ -66,10 +66,10 @@ export default function Hero() {
 
       {/* ── Contenu texte ── */}
       <div
-        className="absolute inset-0 flex flex-col justify-center pointer-events-none"
+        className="absolute inset-0 flex flex-col justify-end pointer-events-none"
         style={{
-          padding: 'clamp(28px, 7vw, 72px)',
-          paddingBottom: 'clamp(70px, 12vw, 110px)',
+          padding: 'clamp(28px, 7vw, 64px)',
+          paddingBottom: 'clamp(80px, 14vw, 120px)',
           opacity: visible ? 1 : 0,
           transform: visible ? 'translateY(0)' : 'translateY(24px)',
           transition: 'opacity 1s ease, transform 1s ease',
@@ -96,7 +96,7 @@ export default function Hero() {
         {/* Titre ligne 1 */}
         <h1 style={{
           fontFamily: 'var(--font-playfair), serif',
-          fontSize: 'clamp(2.6rem, 10vw, 5.5rem)',
+          fontSize: 'clamp(2.2rem, 8vw, 4.5rem)',
           fontWeight: 900,
           color: '#FFFFFF',
           lineHeight: 1,
@@ -110,12 +110,13 @@ export default function Hero() {
         {/* Script doré */}
         <div style={{
           fontFamily: 'var(--font-allura), cursive',
-          fontSize: 'clamp(3rem, 12vw, 6.5rem)',
+          fontSize: 'clamp(2.2rem, 7vw, 4rem)',
           fontWeight: 400,
           color: '#C6A769',
-          lineHeight: 1.05,
+          lineHeight: 1.1,
           marginBottom: '8px',
           textShadow: '0 4px 30px rgba(0,0,0,0.3)',
+          whiteSpace: 'nowrap',
         }}>
           seconde compte
         </div>
