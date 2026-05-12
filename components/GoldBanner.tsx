@@ -4,7 +4,7 @@ import Image from 'next/image'
 
 const BANNER_IMAGES = [
   {
-    src: 'https://res.cloudinary.com/dannr2e0c/image/upload/f_auto/v1778274005/luxtim/t4i1f0az245jyvo90fqg.heic',
+    src: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778598073/luxtim/hoyzo6j7woo9q24zp5bn.jpg',
     alt: 'GUSHKIN Collection 1',
   },
   {
@@ -12,7 +12,7 @@ const BANNER_IMAGES = [
     alt: 'GUSHKIN Luxe',
   },
   {
-    src: 'https://i.ibb.co/DfJh70n6/Gemini-Generated-Image-rdy4m6rdy4m6rdy4-1.png',
+    src: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778598063/luxtim/smntpxy7kfgqjo53exdq.jpg',
     alt: 'GUSHKIN Prestige',
   },
 ]
