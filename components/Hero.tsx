@@ -3,7 +3,9 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 
-const SLIDES = ['https://res.cloudinary.com/dannr2e0c/image/upload/v1778613932/luxtim/o1liyrssuwkbtjkqr3b2.jpg']
+const SLIDES = [
+  'https://res.cloudinary.com/dannr2e0c/image/upload/e_contrast:20,e_brightness:5,e_saturation:-25,e_vignette:strength_60/v1778613932/luxtim/o1liyrssuwkbtjkqr3b2.jpg'
+]
 
 export default function Hero() {
   const [current, setCurrent] = useState(0)
