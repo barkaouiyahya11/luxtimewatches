@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 
-const SLIDES = ['https://res.cloudinary.com/dannr2e0c/image/upload/v1778610247/luxtim/i3m3gvezqhwknd3iy6mx.jpg']
+const SLIDES = ['https://res.cloudinary.com/dannr2e0c/image/upload/v1778611097/luxtim/r2mpnzne8d6xwo073fkp.jpg']
 
 export default function Hero() {
   const [current, setCurrent] = useState(0)
