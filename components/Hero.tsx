@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 
 const SLIDES = [
-  'https://res.cloudinary.com/dannr2e0c/image/upload/e_improve:60,e_contrast:30,e_brightness:-8,e_saturation:-20,e_vignette:55/v1778623885/luxtim/l9lsbiph4h9sck2lbrka.jpg'
+  'https://res.cloudinary.com/dannr2e0c/image/upload/e_improve:50,e_contrast:25,e_brightness:-5,e_saturation:-15/v1778623885/luxtim/l9lsbiph4h9sck2lbrka.jpg'
 ]
 
 export default function Hero() {
@@ -47,137 +47,121 @@ export default function Hero() {
               flexShrink: 0,
               backgroundImage: `url('${src}')`,
               backgroundSize: 'cover',
-              backgroundPosition: 'center 15%',
+              backgroundPosition: 'center 10%',
             }}
           />
         ))}
       </div>
 
-      {/* ── Gradient gauche sombre → droite transparent ── */}
+      {/* ── Gradient : bas sombre + gauche sombre ── */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: `
-            linear-gradient(to right, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.35) 55%, rgba(0,0,0,0.05) 100%),
-            linear-gradient(to top, rgba(0,0,0,0.55) 0%, transparent 50%)
-          `,
+          background: `linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.5) 35%, rgba(0,0,0,0.1) 65%, transparent 100%)`,
         }}
       />
 
-      {/* ── Contenu texte ── */}
+      {/* ── Texte positionné en bas ── */}
       <div
-        className="absolute inset-0 flex flex-col justify-end pointer-events-none"
+        className="absolute bottom-0 left-0 right-0 pointer-events-none"
         style={{
-          padding: 'clamp(28px, 7vw, 64px)',
-          paddingBottom: 'clamp(80px, 14vw, 120px)',
+          padding: 'clamp(20px, 5vw, 56px)',
+          paddingBottom: 'clamp(64px, 11vw, 100px)',
           opacity: visible ? 1 : 0,
-          transform: visible ? 'translateY(0)' : 'translateY(24px)',
-          transition: 'opacity 1s ease, transform 1s ease',
+          transform: visible ? 'translateY(0)' : 'translateY(16px)',
+          transition: 'opacity 0.9s ease, transform 0.9s ease',
           zIndex: 2,
-          maxWidth: '600px',
         }}
       >
-        {/* Badge */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '20px' }}>
-          <div style={{ width: '32px', height: '1px', background: '#C6A769' }} />
-          <span style={{
-            fontSize: 'clamp(8px, 1.8vw, 10px)',
-            fontWeight: 700,
-            letterSpacing: '0.4em',
-            textTransform: 'uppercase',
-            color: '#C6A769',
-            fontFamily: 'var(--font-inter), sans-serif',
-          }}>
-            Collection 2026 · Maroc
-          </span>
-          <div style={{ width: '32px', height: '1px', background: '#C6A769' }} />
-        </div>
+        {/* Badge petit */}
+        <p style={{
+          fontSize: 'clamp(8px, 2vw, 10px)',
+          fontWeight: 700,
+          letterSpacing: '0.35em',
+          textTransform: 'uppercase',
+          color: '#C6A769',
+          marginBottom: '10px',
+          fontFamily: 'var(--font-inter), sans-serif',
+        }}>
+          — Collection 2026 · Maroc —
+        </p>
 
-        {/* Titre ligne 1 */}
+        {/* Titre */}
         <h1 style={{
           fontFamily: 'var(--font-playfair), serif',
-          fontSize: 'clamp(2.2rem, 8vw, 4.5rem)',
+          fontSize: 'clamp(2rem, 8vw, 4.5rem)',
           fontWeight: 900,
           color: '#FFFFFF',
           lineHeight: 1,
-          letterSpacing: '-0.02em',
-          marginBottom: '4px',
-          textShadow: '0 4px 30px rgba(0,0,0,0.4)',
+          letterSpacing: '-0.01em',
+          marginBottom: '2px',
+          textShadow: '0 2px 20px rgba(0,0,0,0.5)',
         }}>
           Chaque
         </h1>
 
-        {/* Script doré */}
-        <div style={{
+        {/* Script doré — une seule ligne */}
+        <p style={{
           fontFamily: 'var(--font-allura), cursive',
-          fontSize: 'clamp(2.2rem, 7vw, 4rem)',
-          fontWeight: 400,
+          fontSize: 'clamp(1.8rem, 6.5vw, 3.8rem)',
           color: '#C6A769',
           lineHeight: 1.1,
-          marginBottom: '8px',
-          textShadow: '0 4px 30px rgba(0,0,0,0.3)',
+          marginBottom: '10px',
+          textShadow: '0 2px 16px rgba(0,0,0,0.4)',
           whiteSpace: 'nowrap',
         }}>
           seconde compte
-        </div>
+        </p>
 
         {/* Sous-titre */}
-        <h2 style={{
+        <p style={{
           fontFamily: 'var(--font-playfair), serif',
-          fontSize: 'clamp(1rem, 3.5vw, 1.8rem)',
+          fontSize: 'clamp(10px, 3vw, 15px)',
           fontWeight: 700,
           color: 'rgba(255,255,255,0.85)',
-          lineHeight: 1.2,
-          letterSpacing: '0.1em',
+          letterSpacing: '0.18em',
           textTransform: 'uppercase',
-          marginBottom: '28px',
+          marginBottom: '16px',
         }}>
           Portez-la avec style.
-        </h2>
+        </p>
 
         {/* Ligne dorée */}
-        <div style={{ width: '48px', height: '2px', background: '#C6A769', marginBottom: '20px' }} />
+        <div style={{ width: '40px', height: '1.5px', background: '#C6A769', marginBottom: '14px' }} />
 
-        {/* Infos */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', marginBottom: '32px' }}>
-          {[
-            '✦  À partir de 149 MAD',
-            '✦  Livraison gratuite partout au Maroc',
-            '✦  Paiement à la livraison',
-          ].map((line) => (
-            <p key={line} style={{
-              fontSize: 'clamp(10px, 2.2vw, 12px)',
-              color: 'rgba(255,255,255,0.7)',
-              fontWeight: 500,
-              letterSpacing: '0.06em',
-              fontFamily: 'var(--font-inter), sans-serif',
-            }}>
-              {line}
-            </p>
-          ))}
-        </div>
+        {/* Infos compactes */}
+        <p style={{
+          fontSize: 'clamp(9px, 2vw, 11px)',
+          color: 'rgba(255,255,255,0.65)',
+          fontFamily: 'var(--font-inter), sans-serif',
+          letterSpacing: '0.04em',
+          marginBottom: '22px',
+          lineHeight: 1.7,
+        }}>
+          À partir de 149 MAD · Livraison gratuite · Paiement à la livraison
+        </p>
 
         {/* CTA */}
-        <div className="pointer-events-auto" style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
+        <div className="pointer-events-auto" style={{ display: 'flex', gap: '10px' }}>
           <Link href="/collection/femme" style={{
-            display: 'inline-flex', alignItems: 'center',
-            padding: 'clamp(12px,2.5vw,16px) clamp(24px,5vw,40px)',
+            padding: 'clamp(10px,2.5vw,14px) clamp(22px,5vw,36px)',
             background: '#C6A769', color: '#000',
             fontSize: 'clamp(9px, 2vw, 11px)', fontWeight: 800,
-            letterSpacing: '0.22em', textTransform: 'uppercase',
+            letterSpacing: '0.2em', textTransform: 'uppercase',
             borderRadius: '2px', textDecoration: 'none',
-            boxShadow: '0 4px 20px rgba(198,167,105,0.4)',
+            boxShadow: '0 4px 16px rgba(198,167,105,0.35)',
+            display: 'inline-block',
           }}>
             Femme
           </Link>
           <Link href="/collection/homme" style={{
-            display: 'inline-flex', alignItems: 'center',
-            padding: 'clamp(12px,2.5vw,16px) clamp(24px,5vw,40px)',
+            padding: 'clamp(10px,2.5vw,14px) clamp(22px,5vw,36px)',
             background: 'transparent', color: '#fff',
             fontSize: 'clamp(9px, 2vw, 11px)', fontWeight: 800,
-            letterSpacing: '0.22em', textTransform: 'uppercase',
+            letterSpacing: '0.2em', textTransform: 'uppercase',
             borderRadius: '2px', textDecoration: 'none',
-            border: '1.5px solid rgba(255,255,255,0.6)',
+            border: '1.5px solid rgba(255,255,255,0.55)',
+            display: 'inline-block',
           }}>
             Homme
           </Link>
