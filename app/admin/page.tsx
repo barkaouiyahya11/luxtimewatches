@@ -117,6 +117,8 @@ export default function AdminPage() {
   const [banner, setBanner] = useState({ img1: '', img2: '', img3: '' })
   const [bannerCode, setBannerCode] = useState('')
   const [bannerCopied, setBannerCopied] = useState(false)
+  const [bannerSaving, setBannerSaving] = useState(false)
+  const [bannerStatus, setBannerStatus] = useState<'idle' | 'success' | 'error'>('idle')
   const [cartes, setCartes] = useState({ simple: '', coffret: '' })
   const [cartesCode, setCartesCode] = useState('')
   const [cartesCopied, setCartesCopied] = useState(false)
@@ -148,26 +150,29 @@ export default function AdminPage() {
   const [colorsCopied, setColorsCopied] = useState(false)
   const router = useRouter()
 
-  function generateBannerCode() {
+  async function saveBanner() {
     if (!banner.img1 && !banner.img2 && !banner.img3) {
       alert('Uploadez au moins une image')
       return
     }
-    const current = [
-      'https://i.ibb.co/W4ZCgmbC/Whats-App-Image-2026-03-27-at-20-25-56.jpg',
-      'https://i.ibb.co/dwDPGFXf/Whats-App-Image-2026-03-23-at-18-02-06-1.jpg',
-      'https://i.ibb.co/DfJh70n6/Gemini-Generated-Image-rdy4m6rdy4m6rdy4-1.png',
-    ]
-    const code = `Dans components/GoldBanner.tsx, remplacez BANNER_IMAGES par :
-
-const BANNER_IMAGES = [
-  { src: '${banner.img1 || current[0]}', alt: 'LUX TIME Banner 1' },
-  { src: '${banner.img2 || current[1]}', alt: 'LUX TIME Banner 2' },
-  { src: '${banner.img3 || current[2]}', alt: 'LUX TIME Banner 3' },
-]`
-    setBannerCode(code)
+    setBannerSaving(true)
+    setBannerStatus('idle')
+    try {
+      const res = await fetch('/api/section/banner', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ img1: banner.img1, img2: banner.img2, img3: banner.img3 }),
+      })
+      const data = await res.json()
+      setBannerStatus(data.success ? 'success' : 'error')
+    } catch {
+      setBannerStatus('error')
+    } finally {
+      setBannerSaving(false)
+    }
   }
 
+  function generateBannerCode() { /* kept for compat */ }
   async function copyBannerCode() {
     await navigator.clipboard.writeText(bannerCode)
     setBannerCopied(true)
@@ -737,56 +742,18 @@ ${valid.map((c) => `      { name: '${c.name}', img: '${c.img}' }`).join(',\n')},
                   currentUrl={banner.img3}
                 />
                 <button
-                  onClick={generateBannerCode}
-                  className="w-full py-4 bg-[#C5A059] text-black font-black uppercase text-[11px] tracking-widest rounded-xl hover:bg-[#d4b572] transition"
+                  onClick={saveBanner}
+                  disabled={bannerSaving}
+                  className="w-full py-4 bg-[#C5A059] text-black font-black uppercase text-[11px] tracking-widest rounded-xl hover:bg-[#d4b572] transition disabled:opacity-50"
                 >
-                  ⚡ Générer le code
+                  {bannerSaving ? '⏳ Sauvegarde...' : '💾 Sauvegarder'}
                 </button>
-              </div>
-
-              <div className="flex flex-col gap-4">
-                <div className="bg-[#C5A059]/10 border border-[#C5A059]/30 rounded-2xl p-5">
-                  <h3 className="text-[11px] font-black uppercase tracking-widest text-[#C5A059] mb-3">
-                    📋 Comment utiliser
-                  </h3>
-                  <ol className="text-gray-400 text-xs flex flex-col gap-2 list-decimal list-inside">
-                    <li>Uploadez 1, 2 ou 3 nouvelles photos</li>
-                    <li>Cliquez sur <strong className="text-white">Générer le code</strong></li>
-                    <li>Copiez et collez dans Antigravity</li>
-                    <li>Antigravity met à jour et déploie</li>
-                  </ol>
-                </div>
-
-                <div className="bg-white/5 border border-white/10 rounded-2xl overflow-hidden flex-1">
-                  <div className="flex items-center justify-between px-5 py-3 border-b border-white/10">
-                    <span className="text-[10px] font-black uppercase tracking-widest text-gray-400">
-                      Code généré
-                    </span>
-                    {bannerCode && (
-                      <button
-                        onClick={copyBannerCode}
-                        className={`text-[10px] font-black uppercase px-4 py-1.5 rounded-lg transition ${
-                          bannerCopied ? 'bg-green-500 text-white' : 'bg-[#C5A059] text-black'
-                        }`}
-                      >
-                        {bannerCopied ? '✓ Copié !' : 'Copier'}
-                      </button>
-                    )}
-                  </div>
-                  <div className="p-5 min-h-[200px]">
-                    {bannerCode ? (
-                      <pre className="text-green-400 text-xs font-mono whitespace-pre-wrap leading-relaxed">
-                        {bannerCode}
-                      </pre>
-                    ) : (
-                      <div className="h-full flex items-center justify-center text-gray-600 py-10">
-                        <p className="text-[11px] font-bold uppercase tracking-widest text-center">
-                          Le code apparaîtra ici
-                        </p>
-                      </div>
-                    )}
-                  </div>
-                </div>
+                {bannerStatus === 'success' && (
+                  <p className="text-green-400 text-xs font-bold text-center">✅ Sauvegardé ! Le site se met à jour dans ~1 minute.</p>
+                )}
+                {bannerStatus === 'error' && (
+                  <p className="text-red-400 text-xs font-bold text-center">❌ Erreur — réessayez</p>
+                )}
               </div>
             </div>
           </div>
