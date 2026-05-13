@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 
-const VIDEO_URL = 'https://res.cloudinary.com/dannr2e0c/video/upload/v1778691039/luxtim/eyfk9ymvgyeh7kfnz8mo.mp4'
+const VIDEO_URL = 'https://res.cloudinary.com/dannr2e0c/video/upload/v1778694272/luxtim/fdskrvsyr1brpnoeijet.mp4'
 
 export default function Hero() {
   const [visible, setVisible] = useState(false)
