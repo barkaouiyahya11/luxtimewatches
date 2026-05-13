@@ -17,17 +17,31 @@ export default function Hero() {
   useEffect(() => {
     const video = videoRef.current
     if (!video) return
+
+    // Force mute (required for iOS autoplay)
     video.muted = true
-    video.play().catch(() => {
-      // Autoplay blocked — try again on first user interaction
-      const tryPlay = () => {
-        video.play().catch(() => {})
-        window.removeEventListener('touchstart', tryPlay)
-        window.removeEventListener('click', tryPlay)
-      }
-      window.addEventListener('touchstart', tryPlay, { once: true })
-      window.addEventListener('click', tryPlay, { once: true })
-    })
+
+    // Manual seamless loop — avoids the 3s gap of native loop attribute
+    const onEnded = () => {
+      video.currentTime = 0
+      video.play().catch(() => {})
+    }
+    video.addEventListener('ended', onEnded)
+
+    // Programmatic play (bypasses iOS autoplay block)
+    const doPlay = () => video.play().catch(() => {})
+    doPlay()
+
+    // Fallback: play on first user touch/click if autoplay still blocked
+    const tryPlay = () => doPlay()
+    window.addEventListener('touchstart', tryPlay, { once: true })
+    window.addEventListener('click', tryPlay, { once: true })
+
+    return () => {
+      video.removeEventListener('ended', onEnded)
+      window.removeEventListener('touchstart', tryPlay)
+      window.removeEventListener('click', tryPlay)
+    }
   }, [])
 
   return (
@@ -40,10 +54,10 @@ export default function Hero() {
         ref={videoRef}
         autoPlay
         muted
-        loop
         playsInline
         disablePictureInPicture
         preload="auto"
+        poster="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
         style={{
           position: 'absolute',
           inset: 0,
