@@ -3,18 +3,10 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 
-const SLIDES = ['https://res.cloudinary.com/dannr2e0c/image/upload/v1778674335/luxtim/ym48eclehvwtvymbzfxg.jpg']
+const VIDEO_URL = 'https://res.cloudinary.com/dannr2e0c/video/upload/v1778691039/luxtim/eyfk9ymvgyeh7kfnz8mo.mp4'
 
 export default function Hero() {
-  const [current, setCurrent] = useState(0)
   const [visible, setVisible] = useState(false)
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrent((c) => (c + 1) % SLIDES.length)
-    }, 6000)
-    return () => clearInterval(timer)
-  }, [])
 
   useEffect(() => {
     const t = setTimeout(() => setVisible(true), 150)
@@ -26,36 +18,30 @@ export default function Hero() {
       className="hero-container relative w-full overflow-hidden"
       style={{ aspectRatio: '4/5', maxHeight: '92vh', display: 'block', lineHeight: 0 }}
     >
-      {/* ── Image ── */}
-      <div
+      {/* ── Video ── */}
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
         style={{
-          display: 'flex',
-          width: `${SLIDES.length * 100}%`,
+          position: 'absolute',
+          inset: 0,
+          width: '100%',
           height: '100%',
-          transform: `translateX(-${(current * 100) / SLIDES.length}%)`,
-          transition: 'transform 1.2s cubic-bezier(0.77, 0, 0.18, 1)',
+          objectFit: 'cover',
+          objectPosition: 'center 20%',
         }}
       >
-        {SLIDES.map((src) => (
-          <div
-            key={src}
-            style={{
-              width: `${100 / SLIDES.length}%`,
-              height: '100%',
-              flexShrink: 0,
-              backgroundImage: `url('${src}')`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center 10%',
-            }}
-          />
-        ))}
-      </div>
+        <source src={VIDEO_URL} type="video/mp4" />
+      </video>
 
-      {/* ── Gradient : bas sombre + gauche sombre ── */}
+      {/* ── Gradient : bas sombre ── */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
           background: `linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.5) 35%, rgba(0,0,0,0.1) 65%, transparent 100%)`,
+          zIndex: 1,
         }}
       />
 

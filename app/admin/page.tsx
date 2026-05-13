@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import ImageUpload from '@/components/ImageUpload'
+import VideoUpload from '@/components/VideoUpload'
 import { products } from '@/data/products'
 
 const ADMIN_PASSWORD = 'luxtim2024'
@@ -133,10 +134,7 @@ export default function AdminPage() {
   const [showcaseCopied, setShowcaseCopied] = useState(false)
 
   // Hero / Accueil section
-  const [heroSlide1, setHeroSlide1] = useState('')
-  const [heroSlide2, setHeroSlide2] = useState('')
-  const [heroCode, setHeroCode] = useState('')
-  const [heroCopied, setHeroCopied] = useState(false)
+  const [heroVideoUrl, setHeroVideoUrl] = useState('')
   const [heroSaving, setHeroSaving] = useState(false)
   const [heroStatus, setHeroStatus] = useState<'idle' | 'success' | 'error'>('idle')
 
@@ -249,14 +247,14 @@ export const SHOWCASE_IMG = '${showcaseImg}'`
   }
 
   async function saveHero() {
-    if (!heroSlide1) { alert('Uploadez au moins la photo 1'); return }
+    if (!heroVideoUrl) { alert('Uploadez une vidéo'); return }
     setHeroSaving(true)
     setHeroStatus('idle')
     try {
       const res = await fetch('/api/section/hero', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ slide1: heroSlide1, slide2: heroSlide2 }),
+        body: JSON.stringify({ videoUrl: heroVideoUrl }),
       })
       const data = await res.json()
       setHeroStatus(data.success ? 'success' : 'error')
@@ -265,13 +263,6 @@ export const SHOWCASE_IMG = '${showcaseImg}'`
     } finally {
       setHeroSaving(false)
     }
-  }
-
-  function generateHeroCode() { /* kept for compat */ }
-  async function copyHeroCode() {
-    await navigator.clipboard.writeText(heroCode)
-    setHeroCopied(true)
-    setTimeout(() => setHeroCopied(false), 2000)
   }
 
   function generateVitrineCode() {
@@ -608,15 +599,10 @@ ${valid.map((c) => `      { name: '${c.name}', img: '${c.img}' }`).join(',\n')},
               <p className="text-gray-500 text-sm">Changez les photos du slider (1 ou 2 photos)</p>
             </div>
             <div className="bg-white/5 border border-white/10 rounded-2xl p-6 flex flex-col gap-5 max-w-xl">
-              <ImageUpload
-                label="Photo 1 (principale)"
-                onUpload={(url) => setHeroSlide1(url)}
-                currentUrl={heroSlide1}
-              />
-              <ImageUpload
-                label="Photo 2 (optionnelle)"
-                onUpload={(url) => setHeroSlide2(url)}
-                currentUrl={heroSlide2}
+              <VideoUpload
+                label="Vidéo d'accueil (MP4)"
+                onUpload={(url) => setHeroVideoUrl(url)}
+                currentUrl={heroVideoUrl}
               />
               <button
                 onClick={saveHero}

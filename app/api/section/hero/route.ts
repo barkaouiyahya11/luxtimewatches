@@ -7,9 +7,9 @@ const GITHUB_API = 'https://api.github.com'
 
 export async function POST(req: NextRequest) {
   try {
-    const { slide1, slide2 } = await req.json()
-    if (!slide1) {
-      return NextResponse.json({ error: 'No image provided' }, { status: 400 })
+    const { videoUrl } = await req.json()
+    if (!videoUrl) {
+      return NextResponse.json({ error: 'No video URL provided' }, { status: 400 })
     }
 
     const token = process.env.GITHUB_TOKEN
@@ -36,13 +36,9 @@ export async function POST(req: NextRequest) {
     const sha: string = fileData.sha
     let content = Buffer.from(fileData.content, 'base64').toString('utf-8')
 
-    const newSlides = slide2
-      ? `['${slide1}', '${slide2}']`
-      : `['${slide1}']`
-
     content = content.replace(
-      /const SLIDES\s*=\s*\[[\s\S]*?\]/m,
-      `const SLIDES = ${newSlides}`
+      /const VIDEO_URL\s*=\s*'[^']*'/,
+      `const VIDEO_URL = '${videoUrl}'`
     )
 
     const commitRes = await fetch(
@@ -51,7 +47,7 @@ export async function POST(req: NextRequest) {
         method: 'PUT',
         headers,
         body: JSON.stringify({
-          message: 'Update Hero slides via admin dashboard',
+          message: 'Update Hero video via admin dashboard',
           content: Buffer.from(content).toString('base64'),
           sha,
         }),
