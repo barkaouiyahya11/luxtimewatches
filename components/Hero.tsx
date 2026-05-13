@@ -47,7 +47,15 @@ export default function Hero() {
   return (
     <section
       className="hero-container relative w-full overflow-hidden"
-      style={{ aspectRatio: '4/5', maxHeight: '92vh', display: 'block', lineHeight: 0 }}
+      style={{
+        aspectRatio: '4/5',
+        maxHeight: '92vh',
+        display: 'block',
+        lineHeight: 0,
+        transform: 'translateZ(0)',
+        WebkitTransform: 'translateZ(0)',
+        isolation: 'isolate',
+      }}
     >
       {/* ── Video ── */}
       <video
@@ -65,6 +73,11 @@ export default function Hero() {
           height: '100%',
           objectFit: 'cover',
           objectPosition: 'center 20%',
+          transform: 'translateZ(0)',
+          WebkitTransform: 'translateZ(0)',
+          backfaceVisibility: 'hidden',
+          WebkitBackfaceVisibility: 'hidden',
+          willChange: 'transform',
         }}
         src={VIDEO_URL}
       />
