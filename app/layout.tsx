@@ -4,6 +4,7 @@ import Script from 'next/script'
 import { StoreProvider } from '@/context/StoreContext'
 
 import Header from '@/components/Header'
+import NoDownload from '@/components/NoDownload'
 import AnnouncementBar from '@/components/AnnouncementBar'
 import CartDrawer from '@/components/CartDrawer'
 import CheckoutModal from '@/components/CheckoutModal'
@@ -84,6 +85,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           gtag('config', '${GA_ID}');
         `}</Script>
 
+        <NoDownload />
         <StoreProvider>
           <AnnouncementBar />
           <Header />

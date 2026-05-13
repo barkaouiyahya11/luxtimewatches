@@ -2,6 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ── Protection téléchargement images & vidéos ── */
+img,
+video {
+  -webkit-touch-callout: none;    /* iOS : désactive menu long-press Save Image/Video */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  -webkit-user-drag: none;        /* Chrome/Safari : désactive drag-and-drop */
+}
+
 /* ── Hide iOS Safari native video play button overlay ── */
 video::-webkit-media-controls,
 video::-webkit-media-controls-panel,
