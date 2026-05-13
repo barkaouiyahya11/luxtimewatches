@@ -1,16 +1,33 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 
 const VIDEO_URL = 'https://res.cloudinary.com/dannr2e0c/video/upload/v1778694272/luxtim/fdskrvsyr1brpnoeijet.mp4'
 
 export default function Hero() {
   const [visible, setVisible] = useState(false)
+  const videoRef = useRef<HTMLVideoElement>(null)
 
   useEffect(() => {
     const t = setTimeout(() => setVisible(true), 150)
     return () => clearTimeout(t)
+  }, [])
+
+  useEffect(() => {
+    const video = videoRef.current
+    if (!video) return
+    video.muted = true
+    video.play().catch(() => {
+      // Autoplay blocked — try again on first user interaction
+      const tryPlay = () => {
+        video.play().catch(() => {})
+        window.removeEventListener('touchstart', tryPlay)
+        window.removeEventListener('click', tryPlay)
+      }
+      window.addEventListener('touchstart', tryPlay, { once: true })
+      window.addEventListener('click', tryPlay, { once: true })
+    })
   }, [])
 
   return (
@@ -20,10 +37,13 @@ export default function Hero() {
     >
       {/* ── Video ── */}
       <video
+        ref={videoRef}
         autoPlay
         muted
         loop
         playsInline
+        disablePictureInPicture
+        preload="auto"
         style={{
           position: 'absolute',
           inset: 0,
@@ -32,9 +52,8 @@ export default function Hero() {
           objectFit: 'cover',
           objectPosition: 'center 20%',
         }}
-      >
-        <source src={VIDEO_URL} type="video/mp4" />
-      </video>
+        src={VIDEO_URL}
+      />
 
       {/* ── Gradient : bas sombre ── */}
       <div
