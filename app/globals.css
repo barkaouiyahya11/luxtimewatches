@@ -5,11 +5,9 @@
 /* ── Protection téléchargement images & vidéos ── */
 img,
 video {
-  -webkit-touch-callout: none;    /* iOS : désactive menu long-press Save Image/Video */
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  user-select: none;
-  -webkit-user-drag: none;        /* Chrome/Safari : désactive drag-and-drop */
+  -webkit-touch-callout: none;  /* iOS : désactive long-press "Enregistrer l'image" */
+  -webkit-user-drag: none;      /* Safari desktop : désactive le drag */
+  user-drag: none;
 }
 
 /* ── Hide iOS Safari native video play button overlay ── */
