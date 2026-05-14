@@ -16,27 +16,33 @@ export default function Footer() {
       </div>
 
       <div className="flex justify-center gap-8 mb-8">
-        <button
-          onClick={() => window.open(TIKTOK_URL, '_blank')}
+        <a
+          href={TIKTOK_URL}
+          target="_blank"
+          rel="noopener noreferrer"
           className="text-gray-400 hover:text-black hover:scale-110 transition"
           aria-label="TikTok"
         >
           <i className="fa-brands fa-tiktok text-3xl" />
-        </button>
-        <button
-          onClick={() => window.open(INSTAGRAM_URL, '_blank')}
+        </a>
+        <a
+          href={INSTAGRAM_URL}
+          target="_blank"
+          rel="noopener noreferrer"
           className="text-gray-400 hover:text-[#E1306C] hover:scale-110 transition"
           aria-label="Instagram"
         >
           <i className="fa-brands fa-instagram text-3xl" />
-        </button>
-        <button
-          onClick={() => window.open(`https://wa.me/${WHATSAPP_NUMBER}`, '_blank')}
+        </a>
+        <a
+          href={`https://wa.me/${WHATSAPP_NUMBER}`}
+          target="_blank"
+          rel="noopener noreferrer"
           className="text-gray-400 hover:text-[#25d366] hover:scale-110 transition"
           aria-label="WhatsApp"
         >
           <i className="fa-brands fa-whatsapp text-3xl" />
-        </button>
+        </a>
       </div>
 
       <div className="w-24 h-px mx-auto mb-6 bg-gray-200" />
