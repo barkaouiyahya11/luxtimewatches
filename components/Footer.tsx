@@ -1,6 +1,6 @@
 'use client'
 
-import { WHATSAPP_NUMBER, TIKTOK_URL } from '@/lib/constants'
+import { WHATSAPP_NUMBER, TIKTOK_URL, INSTAGRAM_URL } from '@/lib/constants'
 
 export default function Footer() {
   return (
@@ -22,6 +22,13 @@ export default function Footer() {
           aria-label="TikTok"
         >
           <i className="fa-brands fa-tiktok text-3xl" />
+        </button>
+        <button
+          onClick={() => window.open(INSTAGRAM_URL, '_blank')}
+          className="text-gray-400 hover:text-[#E1306C] hover:scale-110 transition"
+          aria-label="Instagram"
+        >
+          <i className="fa-brands fa-instagram text-3xl" />
         </button>
         <button
           onClick={() => window.open(`https://wa.me/${WHATSAPP_NUMBER}`, '_blank')}
