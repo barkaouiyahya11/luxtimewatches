@@ -229,7 +229,7 @@ export default function Hero() {
         height: '28%',
         zIndex: 3,
         pointerEvents: 'none',
-        background: 'linear-gradient(to top, rgba(250,249,247,1) 0%, rgba(250,249,247,0.6) 40%, transparent 100%)',
+        background: 'linear-gradient(to top, rgba(250,249,247,1) 0%, rgba(250,249,247,0.4) 25%, transparent 60%)',
       }} />
 
     </section>
