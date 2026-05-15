@@ -96,7 +96,7 @@ export default function Hero() {
         `,
       }} />
 
-      {/* ── Bloc texte : positionné en haut-gauche ── */}
+      {/* ── Bloc texte : positionné en bas-gauche ── */}
       <div style={{
         position: 'absolute',
         top: 0,
@@ -105,8 +105,8 @@ export default function Hero() {
         bottom: 0,
         zIndex: 2,
         display: 'flex',
-        alignItems: 'flex-start',
-        paddingTop: 'clamp(40px, 12vw, 90px)',
+        alignItems: 'flex-end',
+        paddingBottom: 'clamp(60px, 16vw, 110px)',
         pointerEvents: 'none',
         opacity: visible ? 1 : 0,
         transform: visible ? 'translateY(0px)' : 'translateY(18px)',
