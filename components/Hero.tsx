@@ -96,14 +96,20 @@ export default function Hero() {
         `,
       }} />
 
-      {/* ── Bloc texte centré — stagger par élément ── */}
+      {/* ── Bloc texte : positionné en bas-gauche ── */}
       <div style={{
         position: 'absolute',
-        inset: 0,
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
         zIndex: 2,
         display: 'flex',
         alignItems: 'center',
         pointerEvents: 'none',
+        opacity: visible ? 1 : 0,
+        transform: visible ? 'translateY(0px)' : 'translateY(18px)',
+        transition: 'opacity 1.3s cubic-bezier(0.22,1,0.36,1), transform 1.3s cubic-bezier(0.22,1,0.36,1)',
       }}>
         <div style={{
           paddingLeft: 'clamp(22px, 7vw, 64px)',
@@ -111,17 +117,19 @@ export default function Hero() {
           maxWidth: 'clamp(230px, 62vw, 520px)',
         }}>
 
-          {/* Badge — apparaît en 1er */}
+          {/* Badge collection */}
           <div style={{
             display: 'flex',
             alignItems: 'center',
             gap: '8px',
-            marginBottom: 'clamp(16px, 4.5vw, 28px)',
-            opacity: visible ? 1 : 0,
-            transform: visible ? 'translateY(0)' : 'translateY(14px)',
-            transition: 'opacity 0.9s cubic-bezier(0.22,1,0.36,1) 0.05s, transform 0.9s cubic-bezier(0.22,1,0.36,1) 0.05s',
+            marginBottom: 'clamp(18px, 5vw, 32px)',
           }}>
-            <div style={{ width: 'clamp(18px,4vw,30px)', height: '0.5px', background: '#C8A96B', opacity: 0.7 }} />
+            <div style={{
+              width: 'clamp(18px, 4vw, 30px)',
+              height: '0.5px',
+              background: '#C8A96B',
+              opacity: 0.7,
+            }} />
             <p style={{
               fontFamily: 'var(--font-inter), sans-serif',
               fontSize: 'clamp(6.5px, 1.6vw, 9px)',
@@ -134,10 +142,15 @@ export default function Hero() {
             }}>
               Collection Exclusive 2026 · Maroc
             </p>
-            <div style={{ width: 'clamp(18px,4vw,30px)', height: '0.5px', background: '#C8A96B', opacity: 0.7 }} />
+            <div style={{
+              width: 'clamp(18px, 4vw, 30px)',
+              height: '0.5px',
+              background: '#C8A96B',
+              opacity: 0.7,
+            }} />
           </div>
 
-          {/* Titre ligne 1 — delay 0.2s */}
+          {/* Grand titre — 3 lignes sur mobile */}
           <h1 style={{
             fontFamily: 'var(--font-playfair), serif',
             fontSize: 'clamp(2.1rem, 7.8vw, 5rem)',
@@ -147,73 +160,59 @@ export default function Hero() {
             lineHeight: 1.06,
             letterSpacing: '-0.015em',
             margin: 0,
-            marginBottom: '0.06em',
+            marginBottom: '0.08em',
             textShadow: '0 2px 32px rgba(0,0,0,0.55)',
-            opacity: visible ? 1 : 0,
-            transform: visible ? 'translateY(0)' : 'translateY(20px)',
-            transition: 'opacity 0.95s cubic-bezier(0.22,1,0.36,1) 0.2s, transform 0.95s cubic-bezier(0.22,1,0.36,1) 0.2s',
           }}>
             L&apos;élégance
           </h1>
-
-          {/* Titre ligne 2 — delay 0.34s */}
           <h1 style={{
             fontFamily: 'var(--font-playfair), serif',
             fontSize: 'clamp(2.1rem, 7.8vw, 5rem)',
             fontWeight: 800,
+            fontStyle: 'normal',
             color: '#F5F2ED',
             lineHeight: 1.06,
             letterSpacing: '-0.015em',
             margin: 0,
-            marginBottom: '0.06em',
+            marginBottom: '0.08em',
             textShadow: '0 2px 32px rgba(0,0,0,0.55)',
-            opacity: visible ? 1 : 0,
-            transform: visible ? 'translateY(0)' : 'translateY(20px)',
-            transition: 'opacity 0.95s cubic-bezier(0.22,1,0.36,1) 0.34s, transform 0.95s cubic-bezier(0.22,1,0.36,1) 0.34s',
           }}>
             à votre
           </h1>
-
-          {/* Titre ligne 3 — delay 0.48s */}
           <h1 style={{
             fontFamily: 'var(--font-playfair), serif',
             fontSize: 'clamp(2.1rem, 7.8vw, 5rem)',
             fontWeight: 800,
+            fontStyle: 'normal',
             color: '#F5F2ED',
             lineHeight: 1.06,
             letterSpacing: '-0.015em',
             margin: 0,
-            marginBottom: 'clamp(14px, 4vw, 26px)',
+            marginBottom: 'clamp(16px, 4.5vw, 30px)',
             textShadow: '0 2px 32px rgba(0,0,0,0.55)',
-            opacity: visible ? 1 : 0,
-            transform: visible ? 'translateY(0)' : 'translateY(20px)',
-            transition: 'opacity 0.95s cubic-bezier(0.22,1,0.36,1) 0.48s, transform 0.95s cubic-bezier(0.22,1,0.36,1) 0.48s',
           }}>
             poignet
           </h1>
 
-          {/* Séparateur — delay 0.62s */}
+          {/* Séparateur doré très fin */}
           <div style={{
             width: 'clamp(28px, 6vw, 44px)',
             height: '0.5px',
             background: 'linear-gradient(to right, #C8A96B 60%, transparent)',
-            marginBottom: 'clamp(10px, 3vw, 18px)',
-            opacity: visible ? 0.75 : 0,
-            transition: 'opacity 0.8s ease 0.62s',
+            marginBottom: 'clamp(12px, 3.5vw, 22px)',
+            opacity: 0.75,
           }} />
 
-          {/* Script Great Vibes — delay 0.74s */}
+          {/* Script Great Vibes — discret, raffiné */}
           <p style={{
             fontFamily: 'var(--font-great-vibes), cursive',
             fontSize: 'clamp(1.3rem, 4.8vw, 2.6rem)',
             color: '#C8A96B',
             lineHeight: 1.3,
             letterSpacing: '0.02em',
+            opacity: 0.88,
             textShadow: '0 2px 18px rgba(200,169,107,0.25)',
-            margin: 0,
-            opacity: visible ? 0.88 : 0,
-            transform: visible ? 'translateY(0)' : 'translateY(12px)',
-            transition: 'opacity 1s cubic-bezier(0.22,1,0.36,1) 0.74s, transform 1s cubic-bezier(0.22,1,0.36,1) 0.74s',
+            marginBottom: 0,
           }}>
             Le luxe qui attire les regards.
           </p>
