@@ -1,7 +1,6 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
-import Link from 'next/link'
 
 const VIDEO_URL = 'https://res.cloudinary.com/dannr2e0c/video/upload/v1778694272/luxtim/fdskrvsyr1brpnoeijet.mp4'
 
@@ -10,29 +9,24 @@ export default function Hero() {
   const videoRef = useRef<HTMLVideoElement>(null)
 
   useEffect(() => {
-    const t = setTimeout(() => setVisible(true), 150)
+    const t = setTimeout(() => setVisible(true), 300)
     return () => clearTimeout(t)
   }, [])
 
   useEffect(() => {
     const video = videoRef.current
     if (!video) return
-
-    // Force mute (required for iOS autoplay)
     video.muted = true
 
-    // Manual seamless loop — avoids the 3s gap of native loop attribute
     const onEnded = () => {
       video.currentTime = 0
       video.play().catch(() => {})
     }
     video.addEventListener('ended', onEnded)
 
-    // Programmatic play (bypasses iOS autoplay block)
     const doPlay = () => video.play().catch(() => {})
     doPlay()
 
-    // Fallback: play on first user touch/click if autoplay still blocked
     const tryPlay = () => doPlay()
     window.addEventListener('touchstart', tryPlay, { once: true })
     window.addEventListener('click', tryPlay, { once: true })
@@ -46,8 +40,10 @@ export default function Hero() {
 
   return (
     <section
-      className="hero-container relative w-full overflow-hidden"
       style={{
+        position: 'relative',
+        width: '100%',
+        overflow: 'hidden',
         aspectRatio: '4/5',
         maxHeight: '92vh',
         display: 'block',
@@ -55,9 +51,10 @@ export default function Hero() {
         transform: 'translateZ(0)',
         WebkitTransform: 'translateZ(0)',
         isolation: 'isolate',
+        background: '#080808',
       }}
     >
-      {/* ── Video ── */}
+      {/* ── Vidéo fond ── */}
       <video
         ref={videoRef}
         autoPlay
@@ -82,128 +79,151 @@ export default function Hero() {
         src={VIDEO_URL}
       />
 
-      {/* ── Gradient : bas sombre ── */}
+      {/* ── Couche cinématique : gauche sombre + bas sombre ── */}
       <div
-        className="absolute inset-0 pointer-events-none"
         style={{
-          background: `linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.5) 35%, rgba(0,0,0,0.1) 65%, transparent 100%)`,
+          position: 'absolute',
+          inset: 0,
           zIndex: 1,
+          pointerEvents: 'none',
+          background: `
+            linear-gradient(to right,  rgba(4,4,4,0.82) 0%, rgba(4,4,4,0.55) 42%, rgba(4,4,4,0.15) 65%, transparent 100%),
+            linear-gradient(to top,    rgba(4,4,4,0.70) 0%, rgba(4,4,4,0.20) 30%, transparent 60%),
+            linear-gradient(to bottom, rgba(4,4,4,0.35) 0%, transparent 22%)
+          `,
         }}
       />
 
-      {/* ── Texte positionné en bas ── */}
+      {/* ── Texte luxe — centré verticalement à gauche ── */}
       <div
-        className="absolute bottom-0 left-0 right-0 pointer-events-none"
         style={{
-          padding: 'clamp(20px, 5vw, 56px)',
-          paddingBottom: 'clamp(64px, 11vw, 100px)',
-          opacity: visible ? 1 : 0,
-          transform: visible ? 'translateY(0)' : 'translateY(16px)',
-          transition: 'opacity 0.9s ease, transform 0.9s ease',
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          bottom: 0,
+          width: '100%',
           zIndex: 2,
+          display: 'flex',
+          alignItems: 'center',
+          pointerEvents: 'none',
+          opacity: visible ? 1 : 0,
+          transform: visible ? 'translateY(0px)' : 'translateY(22px)',
+          transition: 'opacity 1.1s cubic-bezier(0.25,0.46,0.45,0.94), transform 1.1s cubic-bezier(0.25,0.46,0.45,0.94)',
         }}
       >
-        {/* Badge petit */}
-        <p style={{
-          fontSize: 'clamp(8px, 2vw, 10px)',
-          fontWeight: 700,
-          letterSpacing: '0.35em',
-          textTransform: 'uppercase',
-          color: '#C6A769',
-          marginBottom: '10px',
-          fontFamily: 'var(--font-inter), sans-serif',
-        }}>
-          — Collection 2026 · Maroc —
-        </p>
-
-        {/* Titre */}
-        <h1 style={{
-          fontFamily: 'var(--font-playfair), serif',
-          fontSize: 'clamp(2rem, 8vw, 4.5rem)',
-          fontWeight: 900,
-          color: '#FFFFFF',
+        <div style={{
+          padding: 'clamp(24px, 6vw, 64px)',
+          paddingRight: 'clamp(20px, 5vw, 40px)',
+          maxWidth: 'clamp(260px, 58vw, 540px)',
           lineHeight: 1,
-          letterSpacing: '-0.01em',
-          marginBottom: '2px',
-          textShadow: '0 2px 20px rgba(0,0,0,0.5)',
         }}>
-          Chaque
-        </h1>
 
-        {/* Script doré — une seule ligne */}
-        <p style={{
-          fontFamily: 'var(--font-allura), cursive',
-          fontSize: 'clamp(1.8rem, 6.5vw, 3.8rem)',
-          color: '#C6A769',
-          lineHeight: 1.1,
-          marginBottom: '10px',
-          textShadow: '0 2px 16px rgba(0,0,0,0.4)',
-          whiteSpace: 'nowrap',
-        }}>
-          seconde compte
-        </p>
-
-        {/* Sous-titre */}
-        <p style={{
-          fontFamily: 'var(--font-playfair), serif',
-          fontSize: 'clamp(10px, 3vw, 15px)',
-          fontWeight: 700,
-          color: 'rgba(255,255,255,0.85)',
-          letterSpacing: '0.18em',
-          textTransform: 'uppercase',
-          marginBottom: '16px',
-        }}>
-          Portez-la avec style.
-        </p>
-
-        {/* Ligne dorée */}
-        <div style={{ width: '40px', height: '1.5px', background: '#C6A769', marginBottom: '14px' }} />
-
-        {/* Infos compactes */}
-        <p style={{
-          fontSize: 'clamp(9px, 2vw, 11px)',
-          color: 'rgba(255,255,255,0.65)',
-          fontFamily: 'var(--font-inter), sans-serif',
-          letterSpacing: '0.04em',
-          marginBottom: '22px',
-          lineHeight: 1.7,
-        }}>
-          À partir de 149 MAD · Livraison gratuite · Paiement à la livraison
-        </p>
-
-        {/* CTA */}
-        <div className="pointer-events-auto" style={{ display: 'flex', gap: '10px' }}>
-          <Link href="/collection/femme" style={{
-            padding: 'clamp(10px,2.5vw,14px) clamp(22px,5vw,36px)',
-            background: '#C6A769', color: '#000',
-            fontSize: 'clamp(9px, 2vw, 11px)', fontWeight: 800,
-            letterSpacing: '0.2em', textTransform: 'uppercase',
-            borderRadius: '2px', textDecoration: 'none',
-            boxShadow: '0 4px 16px rgba(198,167,105,0.35)',
-            display: 'inline-block',
+          {/* ── Ligne décorative fine ── */}
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '10px',
+            marginBottom: 'clamp(14px, 3vw, 22px)',
           }}>
-            Femme
-          </Link>
-          <Link href="/collection/homme" style={{
-            padding: 'clamp(10px,2.5vw,14px) clamp(22px,5vw,36px)',
-            background: 'transparent', color: '#fff',
-            fontSize: 'clamp(9px, 2vw, 11px)', fontWeight: 800,
-            letterSpacing: '0.2em', textTransform: 'uppercase',
-            borderRadius: '2px', textDecoration: 'none',
-            border: '1.5px solid rgba(255,255,255,0.55)',
-            display: 'inline-block',
+            <div style={{ width: 'clamp(22px, 4vw, 36px)', height: '1px', background: '#C8A96B', opacity: 0.8 }} />
+            <p style={{
+              fontFamily: 'var(--font-inter), sans-serif',
+              fontSize: 'clamp(7px, 1.4vw, 9.5px)',
+              fontWeight: 600,
+              letterSpacing: '0.38em',
+              textTransform: 'uppercase',
+              color: '#C8A96B',
+              opacity: 0.9,
+              whiteSpace: 'nowrap',
+            }}>
+              Collection Exclusive 2026 · Maroc
+            </p>
+            <div style={{ width: 'clamp(22px, 4vw, 36px)', height: '1px', background: '#C8A96B', opacity: 0.8 }} />
+          </div>
+
+          {/* ── Grand titre principal ── */}
+          <h1 style={{
+            fontFamily: 'var(--font-playfair), serif',
+            fontSize: 'clamp(2.4rem, 8.5vw, 5.2rem)',
+            fontWeight: 700,
+            fontStyle: 'italic',
+            color: '#F5F2ED',
+            lineHeight: 1.05,
+            letterSpacing: '-0.02em',
+            marginBottom: 'clamp(2px, 0.5vw, 6px)',
+            textShadow: '0 4px 40px rgba(0,0,0,0.6), 0 1px 0 rgba(255,255,255,0.05)',
           }}>
-            Homme
-          </Link>
+            L&apos;élégance
+          </h1>
+          <h1 style={{
+            fontFamily: 'var(--font-playfair), serif',
+            fontSize: 'clamp(2.4rem, 8.5vw, 5.2rem)',
+            fontWeight: 900,
+            fontStyle: 'normal',
+            color: '#F5F2ED',
+            lineHeight: 1.05,
+            letterSpacing: '-0.02em',
+            marginBottom: 'clamp(14px, 3vw, 24px)',
+            textShadow: '0 4px 40px rgba(0,0,0,0.6), 0 1px 0 rgba(255,255,255,0.05)',
+          }}>
+            à votre poignet
+          </h1>
+
+          {/* ── Script doré ── */}
+          <p style={{
+            fontFamily: 'var(--font-allura), cursive',
+            fontSize: 'clamp(1.5rem, 5.5vw, 3rem)',
+            color: '#C8A96B',
+            lineHeight: 1.2,
+            marginBottom: 'clamp(16px, 3.5vw, 28px)',
+            textShadow: '0 2px 24px rgba(200,169,107,0.35)',
+            letterSpacing: '0.01em',
+          }}>
+            Le luxe qui attire les regards.
+          </p>
+
+          {/* ── Ligne dorée fine ── */}
+          <div style={{
+            width: 'clamp(32px, 6vw, 52px)',
+            height: '1px',
+            background: 'linear-gradient(to right, #C8A96B, transparent)',
+            marginBottom: 'clamp(14px, 3vw, 22px)',
+            opacity: 0.8,
+          }} />
+
+          {/* ── Slogan uppercase ── */}
+          <p style={{
+            fontFamily: 'var(--font-inter), sans-serif',
+            fontSize: 'clamp(7px, 1.5vw, 9px)',
+            fontWeight: 700,
+            letterSpacing: '0.32em',
+            textTransform: 'uppercase',
+            color: '#B8B8B8',
+            marginBottom: 'clamp(10px, 2.5vw, 18px)',
+            opacity: 0.85,
+          }}>
+            Design Intemporel • Finitions Premium
+          </p>
+
+          {/* ── Info livraison ── */}
+          <p style={{
+            fontFamily: 'var(--font-inter), sans-serif',
+            fontSize: 'clamp(8px, 1.6vw, 10px)',
+            color: 'rgba(184,184,184,0.65)',
+            letterSpacing: '0.06em',
+            lineHeight: 1.6,
+          }}>
+            Livraison offerte partout au Maroc · Paiement à la livraison
+          </p>
+
         </div>
       </div>
 
-      {/* Wave */}
-      <div className="absolute bottom-0 left-0 w-full leading-none" style={{ zIndex: 3 }}>
-        <svg viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"
-          style={{ display: 'block', width: '100%', height: '60px' }}>
-          <path d="M0,40 C360,90 1080,0 1440,50 L1440,80 L0,80 Z" fill="#FAF9F7" />
-          <rect x="0" y="79" width="1440" height="2" fill="#FAF9F7" />
+      {/* ── Vague de transition bas ── */}
+      <div style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', zIndex: 3, lineHeight: 0 }}>
+        <svg viewBox="0 0 1440 70" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"
+          style={{ display: 'block', width: '100%', height: '52px' }}>
+          <path d="M0,35 C400,75 1040,0 1440,42 L1440,70 L0,70 Z" fill="#FAF9F7" />
         </svg>
       </div>
     </section>
