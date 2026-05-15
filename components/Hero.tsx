@@ -9,7 +9,7 @@ export default function Hero() {
   const videoRef = useRef<HTMLVideoElement>(null)
 
   useEffect(() => {
-    const t = setTimeout(() => setVisible(true), 300)
+    const t = setTimeout(() => setVisible(true), 200)
     return () => clearTimeout(t)
   }, [])
 
@@ -26,35 +26,30 @@ export default function Hero() {
 
     const doPlay = () => video.play().catch(() => {})
     doPlay()
-
-    const tryPlay = () => doPlay()
-    window.addEventListener('touchstart', tryPlay, { once: true })
-    window.addEventListener('click', tryPlay, { once: true })
+    window.addEventListener('touchstart', doPlay, { once: true })
+    window.addEventListener('click',      doPlay, { once: true })
 
     return () => {
       video.removeEventListener('ended', onEnded)
-      window.removeEventListener('touchstart', tryPlay)
-      window.removeEventListener('click', tryPlay)
+      window.removeEventListener('touchstart', doPlay)
+      window.removeEventListener('click',      doPlay)
     }
   }, [])
 
   return (
-    <section
-      style={{
-        position: 'relative',
-        width: '100%',
-        overflow: 'hidden',
-        aspectRatio: '4/5',
-        maxHeight: '92vh',
-        display: 'block',
-        lineHeight: 0,
-        transform: 'translateZ(0)',
-        WebkitTransform: 'translateZ(0)',
-        isolation: 'isolate',
-        background: '#080808',
-      }}
-    >
-      {/* ── Vidéo fond ── */}
+    <section style={{
+      position: 'relative',
+      width: '100%',
+      overflow: 'hidden',
+      aspectRatio: '4/5',
+      maxHeight: '92vh',
+      display: 'block',
+      lineHeight: 0,
+      background: '#060606',
+      isolation: 'isolate',
+    }}>
+
+      {/* ── Vidéo + Ken Burns ── */}
       <video
         ref={videoRef}
         autoPlay
@@ -63,6 +58,7 @@ export default function Hero() {
         disablePictureInPicture
         preload="auto"
         poster="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+        className="hero-video-kenburns"
         style={{
           position: 'absolute',
           inset: 0,
@@ -70,162 +66,173 @@ export default function Hero() {
           height: '100%',
           objectFit: 'cover',
           objectPosition: 'center 20%',
-          transform: 'translateZ(0)',
-          WebkitTransform: 'translateZ(0)',
-          backfaceVisibility: 'hidden',
-          WebkitBackfaceVisibility: 'hidden',
-          willChange: 'transform',
+          transformOrigin: 'center center',
         }}
         src={VIDEO_URL}
       />
 
-      {/* ── Couche cinématique : gauche sombre + bas sombre ── */}
-      <div
-        style={{
-          position: 'absolute',
-          inset: 0,
-          zIndex: 1,
-          pointerEvents: 'none',
-          background: `
-            linear-gradient(to right,  rgba(4,4,4,0.82) 0%, rgba(4,4,4,0.55) 42%, rgba(4,4,4,0.15) 65%, transparent 100%),
-            linear-gradient(to top,    rgba(4,4,4,0.70) 0%, rgba(4,4,4,0.20) 30%, transparent 60%),
-            linear-gradient(to bottom, rgba(4,4,4,0.35) 0%, transparent 22%)
-          `,
-        }}
-      />
+      {/* ── Overlay cinématique premium ── */}
+      <div style={{
+        position: 'absolute',
+        inset: 0,
+        zIndex: 1,
+        pointerEvents: 'none',
+        background: `
+          linear-gradient(to right,
+            rgba(3,3,3,0.88) 0%,
+            rgba(3,3,3,0.60) 38%,
+            rgba(3,3,3,0.22) 58%,
+            transparent 78%
+          ),
+          linear-gradient(to bottom,
+            rgba(3,3,3,0.42) 0%,
+            transparent 28%
+          ),
+          linear-gradient(to top,
+            rgba(3,3,3,0.95) 0%,
+            rgba(3,3,3,0.30) 22%,
+            transparent 45%
+          )
+        `,
+      }} />
 
-      {/* ── Texte luxe — centré verticalement à gauche ── */}
-      <div
-        style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          bottom: 0,
-          width: '100%',
-          zIndex: 2,
-          display: 'flex',
-          alignItems: 'center',
-          pointerEvents: 'none',
-          opacity: visible ? 1 : 0,
-          transform: visible ? 'translateY(0px)' : 'translateY(22px)',
-          transition: 'opacity 1.1s cubic-bezier(0.25,0.46,0.45,0.94), transform 1.1s cubic-bezier(0.25,0.46,0.45,0.94)',
-        }}
-      >
+      {/* ── Bloc texte : positionné en haut-gauche ── */}
+      <div style={{
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        zIndex: 2,
+        display: 'flex',
+        alignItems: 'flex-start',
+        paddingTop: 'clamp(40px, 12vw, 90px)',
+        pointerEvents: 'none',
+        opacity: visible ? 1 : 0,
+        transform: visible ? 'translateY(0px)' : 'translateY(18px)',
+        transition: 'opacity 1.3s cubic-bezier(0.22,1,0.36,1), transform 1.3s cubic-bezier(0.22,1,0.36,1)',
+      }}>
         <div style={{
-          padding: 'clamp(24px, 6vw, 64px)',
-          paddingRight: 'clamp(20px, 5vw, 40px)',
-          maxWidth: 'clamp(260px, 58vw, 540px)',
-          lineHeight: 1,
+          paddingLeft: 'clamp(22px, 7vw, 64px)',
+          paddingRight: 'clamp(16px, 4vw, 32px)',
+          maxWidth: 'clamp(230px, 62vw, 520px)',
         }}>
 
-          {/* ── Ligne décorative fine ── */}
+          {/* Badge collection */}
           <div style={{
             display: 'flex',
             alignItems: 'center',
-            gap: '10px',
-            marginBottom: 'clamp(14px, 3vw, 22px)',
+            gap: '8px',
+            marginBottom: 'clamp(18px, 5vw, 32px)',
           }}>
-            <div style={{ width: 'clamp(22px, 4vw, 36px)', height: '1px', background: '#C8A96B', opacity: 0.8 }} />
+            <div style={{
+              width: 'clamp(18px, 4vw, 30px)',
+              height: '0.5px',
+              background: '#C8A96B',
+              opacity: 0.7,
+            }} />
             <p style={{
               fontFamily: 'var(--font-inter), sans-serif',
-              fontSize: 'clamp(7px, 1.4vw, 9.5px)',
-              fontWeight: 600,
-              letterSpacing: '0.38em',
+              fontSize: 'clamp(6.5px, 1.6vw, 9px)',
+              fontWeight: 500,
+              letterSpacing: '0.34em',
               textTransform: 'uppercase',
               color: '#C8A96B',
-              opacity: 0.9,
+              opacity: 0.85,
               whiteSpace: 'nowrap',
             }}>
               Collection Exclusive 2026 · Maroc
             </p>
-            <div style={{ width: 'clamp(22px, 4vw, 36px)', height: '1px', background: '#C8A96B', opacity: 0.8 }} />
+            <div style={{
+              width: 'clamp(18px, 4vw, 30px)',
+              height: '0.5px',
+              background: '#C8A96B',
+              opacity: 0.7,
+            }} />
           </div>
 
-          {/* ── Grand titre principal ── */}
+          {/* Grand titre — 3 lignes sur mobile */}
           <h1 style={{
             fontFamily: 'var(--font-playfair), serif',
-            fontSize: 'clamp(2.4rem, 8.5vw, 5.2rem)',
-            fontWeight: 700,
+            fontSize: 'clamp(2.1rem, 7.8vw, 5rem)',
+            fontWeight: 400,
             fontStyle: 'italic',
             color: '#F5F2ED',
-            lineHeight: 1.05,
-            letterSpacing: '-0.02em',
-            marginBottom: 'clamp(2px, 0.5vw, 6px)',
-            textShadow: '0 4px 40px rgba(0,0,0,0.6), 0 1px 0 rgba(255,255,255,0.05)',
+            lineHeight: 1.06,
+            letterSpacing: '-0.015em',
+            margin: 0,
+            marginBottom: '0.08em',
+            textShadow: '0 2px 32px rgba(0,0,0,0.55)',
           }}>
             L&apos;élégance
           </h1>
           <h1 style={{
             fontFamily: 'var(--font-playfair), serif',
-            fontSize: 'clamp(2.4rem, 8.5vw, 5.2rem)',
-            fontWeight: 900,
+            fontSize: 'clamp(2.1rem, 7.8vw, 5rem)',
+            fontWeight: 800,
             fontStyle: 'normal',
             color: '#F5F2ED',
-            lineHeight: 1.05,
-            letterSpacing: '-0.02em',
-            marginBottom: 'clamp(14px, 3vw, 24px)',
-            textShadow: '0 4px 40px rgba(0,0,0,0.6), 0 1px 0 rgba(255,255,255,0.05)',
+            lineHeight: 1.06,
+            letterSpacing: '-0.015em',
+            margin: 0,
+            marginBottom: '0.08em',
+            textShadow: '0 2px 32px rgba(0,0,0,0.55)',
           }}>
-            à votre poignet
+            à votre
+          </h1>
+          <h1 style={{
+            fontFamily: 'var(--font-playfair), serif',
+            fontSize: 'clamp(2.1rem, 7.8vw, 5rem)',
+            fontWeight: 800,
+            fontStyle: 'normal',
+            color: '#F5F2ED',
+            lineHeight: 1.06,
+            letterSpacing: '-0.015em',
+            margin: 0,
+            marginBottom: 'clamp(16px, 4.5vw, 30px)',
+            textShadow: '0 2px 32px rgba(0,0,0,0.55)',
+          }}>
+            poignet
           </h1>
 
-          {/* ── Script doré ── */}
-          <p style={{
-            fontFamily: 'var(--font-allura), cursive',
-            fontSize: 'clamp(1.5rem, 5.5vw, 3rem)',
-            color: '#C8A96B',
-            lineHeight: 1.2,
-            marginBottom: 'clamp(16px, 3.5vw, 28px)',
-            textShadow: '0 2px 24px rgba(200,169,107,0.35)',
-            letterSpacing: '0.01em',
-          }}>
-            Le luxe qui attire les regards.
-          </p>
-
-          {/* ── Ligne dorée fine ── */}
+          {/* Séparateur doré très fin */}
           <div style={{
-            width: 'clamp(32px, 6vw, 52px)',
-            height: '1px',
-            background: 'linear-gradient(to right, #C8A96B, transparent)',
-            marginBottom: 'clamp(14px, 3vw, 22px)',
-            opacity: 0.8,
+            width: 'clamp(28px, 6vw, 44px)',
+            height: '0.5px',
+            background: 'linear-gradient(to right, #C8A96B 60%, transparent)',
+            marginBottom: 'clamp(12px, 3.5vw, 22px)',
+            opacity: 0.75,
           }} />
 
-          {/* ── Slogan uppercase ── */}
+          {/* Script Great Vibes — discret, raffiné */}
           <p style={{
-            fontFamily: 'var(--font-inter), sans-serif',
-            fontSize: 'clamp(7px, 1.5vw, 9px)',
-            fontWeight: 700,
-            letterSpacing: '0.32em',
-            textTransform: 'uppercase',
-            color: '#B8B8B8',
-            marginBottom: 'clamp(10px, 2.5vw, 18px)',
-            opacity: 0.85,
+            fontFamily: 'var(--font-great-vibes), cursive',
+            fontSize: 'clamp(1.3rem, 4.8vw, 2.6rem)',
+            color: '#C8A96B',
+            lineHeight: 1.3,
+            letterSpacing: '0.02em',
+            opacity: 0.88,
+            textShadow: '0 2px 18px rgba(200,169,107,0.25)',
+            marginBottom: 0,
           }}>
-            Design Intemporel • Finitions Premium
-          </p>
-
-          {/* ── Info livraison ── */}
-          <p style={{
-            fontFamily: 'var(--font-inter), sans-serif',
-            fontSize: 'clamp(8px, 1.6vw, 10px)',
-            color: 'rgba(184,184,184,0.65)',
-            letterSpacing: '0.06em',
-            lineHeight: 1.6,
-          }}>
-            Livraison offerte partout au Maroc · Paiement à la livraison
+            Le luxe qui attire les regards.
           </p>
 
         </div>
       </div>
 
-      {/* ── Vague de transition bas ── */}
-      <div style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', zIndex: 3, lineHeight: 0 }}>
-        <svg viewBox="0 0 1440 70" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"
-          style={{ display: 'block', width: '100%', height: '52px' }}>
-          <path d="M0,35 C400,75 1040,0 1440,42 L1440,70 L0,70 Z" fill="#FAF9F7" />
-        </svg>
-      </div>
+      {/* ── Fade noir élégant en bas — remplace la vague ── */}
+      <div style={{
+        position: 'absolute',
+        bottom: 0,
+        left: 0,
+        right: 0,
+        height: '28%',
+        zIndex: 3,
+        pointerEvents: 'none',
+        background: 'linear-gradient(to top, rgba(250,249,247,1) 0%, rgba(250,249,247,0.6) 40%, transparent 100%)',
+      }} />
+
     </section>
   )
 }

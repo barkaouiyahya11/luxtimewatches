@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Playfair_Display, Inter, Cairo, Allura } from 'next/font/google'
+import { Playfair_Display, Inter, Cairo, Allura, Great_Vibes } from 'next/font/google'
 import Script from 'next/script'
 import { StoreProvider } from '@/context/StoreContext'
 
@@ -37,6 +37,12 @@ const allura = Allura({
   variable: '--font-allura',
 })
 
+const greatVibes = Great_Vibes({
+  subsets: ['latin'],
+  weight: ['400'],
+  variable: '--font-great-vibes',
+})
+
 export const metadata: Metadata = {
   title: 'GUSHKIN - Boutique Officielle | Montres & Accessoires de Luxe au Maroc',
   description:
@@ -62,7 +68,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="fr"
-      className={`${playfair.variable} ${inter.variable} ${cairo.variable} ${allura.variable}`}
+      className={`${playfair.variable} ${inter.variable} ${cairo.variable} ${allura.variable} ${greatVibes.variable}`}
       suppressHydrationWarning
     >
       <head>
