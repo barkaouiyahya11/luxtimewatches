@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { Product } from '@/types'
 import ProductCard from '@/components/ProductCard'
@@ -30,12 +31,13 @@ function CompactCard({ product }: { product: Product }) {
         <div className="absolute top-1 right-1 bg-red-500 text-white text-[7px] font-black px-1 py-0.5 rounded z-10">
           -{discount}%
         </div>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
+        <Image
           src={product.gridImg}
           alt={product.name}
-          className="w-full h-full object-cover"
-          loading="lazy"
+          fill
+          quality={85}
+          sizes="(max-width: 768px) 55vw, 25vw"
+          className="object-cover"
         />
       </div>
       {/* Minimal text */}
@@ -103,8 +105,8 @@ export default function ProductGrid({ products, singleRow, scrollRow }: Props) {
 
   return (
     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-8">
-      {products.map((p) => (
-        <ProductCard key={p.id} product={p} />
+      {products.map((p, i) => (
+        <ProductCard key={p.id} product={p} revealDelay={(i % 4) * 90} />
       ))}
     </div>
   )

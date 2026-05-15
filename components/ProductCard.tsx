@@ -1,21 +1,22 @@
 'use client'
 
+import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { Product } from '@/types'
 
 interface Props {
   product: Product
+  revealDelay?: number
 }
 
-
-
-export default function ProductCard({ product }: Props) {
+export default function ProductCard({ product, revealDelay = 0 }: Props) {
   const router = useRouter()
 
   return (
     <div
       id={`prod-card-${product.id}`}
       className="product-card group scroll-reveal cursor-pointer"
+      data-reveal-delay={revealDelay}
       onClick={() => router.push(`/product/${product.id}`)}
     >
       {/* Image Container */}
@@ -33,21 +34,24 @@ export default function ProductCard({ product }: Props) {
             : '0 2px 12px rgba(0,0,0,0.08)',
         }}
       >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
+        <Image
           src={product.gridImg}
           alt={product.name}
-          className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+          fill
+          quality={85}
+          sizes="(max-width: 768px) 50vw, 25vw"
+          className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.07]"
           style={{
             objectPosition: product.imgPosition || 'center',
             transform: `scale(${product.imgScale || 1})`,
             transformOrigin: product.imgPosition || 'center',
             borderRadius: '0px',
           }}
-          loading="lazy"
-          decoding="async"
         />
-        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-500 pointer-events-none" />
+        {/* Overlay hover luxe */}
+        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/8 transition-all duration-500 pointer-events-none" />
+        {/* Ligne dorée en bas au hover */}
+        <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#C8A96B] scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out origin-left" />
       </div>
 
       {/* Text */}
