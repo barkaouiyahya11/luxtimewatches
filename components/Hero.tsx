@@ -220,17 +220,6 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* ── Fade noir élégant en bas — remplace la vague ── */}
-      <div style={{
-        position: 'absolute',
-        bottom: 0,
-        left: 0,
-        right: 0,
-        height: '28%',
-        zIndex: 3,
-        pointerEvents: 'none',
-        background: 'linear-gradient(to top, rgba(250,249,247,1) 0%, rgba(250,249,247,0.4) 25%, transparent 60%)',
-      }} />
 
     </section>
   )
