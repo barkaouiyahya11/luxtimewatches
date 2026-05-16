@@ -89,6 +89,7 @@ export default function CheckoutModal() {
     }
 
     const payload = {
+      type: 'order',
       date: new Date().toLocaleString('fr-MA', { timeZone: 'Africa/Casablanca' }),
       name: name.trim(),
       phone: phone.trim(),
@@ -96,6 +97,8 @@ export default function CheckoutModal() {
       city: city.trim(),
       items: items.map(formatItem).join('\n'),
       total: `${orderTotal} MAD`,
+      totalNum: orderTotal,
+      prixRevient: 0,
     }
 
     setSubmitting(true)
