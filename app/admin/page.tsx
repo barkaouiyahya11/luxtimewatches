@@ -99,7 +99,7 @@ export default function AdminPage() {
   const [copied, setCopied] = useState(false)
   const [nextId, setNextId] = useState(() => Math.max(0, ...products.map((p) => p.id)) + 1)
   const [skuManual, setSkuManual] = useState(false)
-  const [tab, setTab] = useState<'product' | 'edit' | 'banner' | 'cartes' | 'cartesfemme' | 'colors' | 'vitrine' | 'showcase' | 'hero' | 'depenses'>('product')
+  const [tab, setTab] = useState<'product' | 'edit' | 'banner' | 'cartes' | 'cartesfemme' | 'colors' | 'vitrine' | 'showcase' | 'hero'>('product')
 
   // ── Edit product state ──────────────────────────────────
   const [editingProduct, setEditingProduct] = useState<typeof products[0] | null>(null)
@@ -137,13 +137,6 @@ export default function AdminPage() {
   const [heroVideoUrl, setHeroVideoUrl] = useState('')
   const [heroSaving, setHeroSaving] = useState(false)
   const [heroStatus, setHeroStatus] = useState<'idle' | 'success' | 'error'>('idle')
-
-  // Dépenses
-  const [depCategorie, setDepCategorie] = useState('Publicité')
-  const [depDescription, setDepDescription] = useState('')
-  const [depMontant, setDepMontant] = useState('')
-  const [depSaving, setDepSaving] = useState(false)
-  const [depStatus, setDepStatus] = useState<'idle' | 'success' | 'error'>('idle')
 
   // Vitrine section
   const [vitrineImg, setVitrineImg] = useState('')
@@ -270,26 +263,6 @@ export const SHOWCASE_IMG = '${showcaseImg}'`
     } finally {
       setHeroSaving(false)
     }
-  }
-
-  async function saveDepense() {
-    if (!depDescription || !depMontant) { alert('Remplis la description et le montant'); return }
-    setDepSaving(true)
-    setDepStatus('idle')
-    try {
-      const res = await fetch('/api/depense', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ categorie: depCategorie, description: depDescription, montant: parseFloat(depMontant) }),
-      })
-      const data = await res.json()
-      if (data.success) {
-        setDepStatus('success')
-        setDepDescription('')
-        setDepMontant('')
-      } else { setDepStatus('error') }
-    } catch { setDepStatus('error') }
-    finally { setDepSaving(false) }
   }
 
   function generateVitrineCode() {
@@ -572,17 +545,7 @@ ${valid.map((c) => `      { name: '${c.name}', img: '${c.img}' }`).join(',\n')},
                 : 'bg-white/5 border border-white/10 text-gray-400 hover:border-white/30'
             }`}
           >
-            🎬 Accueil
-          </button>
-          <button
-            onClick={() => setTab('depenses')}
-            className={`px-6 py-3 rounded-xl text-[11px] font-black uppercase tracking-widest transition ${
-              tab === 'depenses'
-                ? 'bg-red-500 text-white'
-                : 'bg-white/5 border border-white/10 text-gray-400 hover:border-white/30'
-            }`}
-          >
-            💸 Dépenses
+            🏠 Photo Accueil
           </button>
           <button
             onClick={() => setTab('showcase')}
@@ -654,91 +617,6 @@ ${valid.map((c) => `      { name: '${c.name}', img: '${c.img}' }`).join(',\n')},
               {heroStatus === 'error' && (
                 <p className="text-red-400 text-xs font-bold text-center">❌ Erreur — réessayez</p>
               )}
-            </div>
-          </div>
-        )}
-
-        {/* Dépenses Tab */}
-        {tab === 'depenses' && (
-          <div className="flex flex-col gap-6 max-w-xl">
-            <div>
-              <h2 className="text-2xl font-serif font-black uppercase tracking-widest text-white mb-1">
-                💸 Ajouter une Dépense
-              </h2>
-              <p className="text-gray-500 text-sm">Elle sera enregistrée automatiquement dans Google Sheets</p>
-            </div>
-
-            <div className="bg-white/5 border border-white/10 rounded-2xl p-6 flex flex-col gap-4">
-
-              {/* Catégorie */}
-              <div className="flex flex-col gap-1">
-                <label className="text-[10px] font-black uppercase tracking-widest text-gray-400">Catégorie</label>
-                <select
-                  value={depCategorie}
-                  onChange={(e) => setDepCategorie(e.target.value)}
-                  className="bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white text-sm font-medium"
-                >
-                  <option value="Publicité">📢 Publicité (Facebook, TikTok...)</option>
-                  <option value="Emballage">📦 Emballage / Packaging</option>
-                  <option value="Achat produits">🛍️ Achat produits / Stock</option>
-                  <option value="Transport">🚚 Transport / Livraison</option>
-                  <option value="Abonnement">💻 Abonnement (site, outils...)</option>
-                  <option value="Autre">📝 Autre</option>
-                </select>
-              </div>
-
-              {/* Description */}
-              <div className="flex flex-col gap-1">
-                <label className="text-[10px] font-black uppercase tracking-widest text-gray-400">Description</label>
-                <input
-                  type="text"
-                  placeholder="Ex: Pub Facebook campagne montres femme"
-                  value={depDescription}
-                  onChange={(e) => setDepDescription(e.target.value)}
-                  className="bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white text-sm placeholder-gray-600"
-                />
-              </div>
-
-              {/* Montant */}
-              <div className="flex flex-col gap-1">
-                <label className="text-[10px] font-black uppercase tracking-widest text-gray-400">Montant (MAD)</label>
-                <input
-                  type="number"
-                  placeholder="Ex: 150"
-                  value={depMontant}
-                  onChange={(e) => setDepMontant(e.target.value)}
-                  className="bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white text-sm placeholder-gray-600"
-                />
-              </div>
-
-              {/* Bouton */}
-              <button
-                onClick={saveDepense}
-                disabled={depSaving}
-                className="w-full py-4 bg-red-500 text-white font-black uppercase text-[11px] tracking-widest rounded-xl hover:bg-red-400 transition disabled:opacity-50 mt-2"
-              >
-                {depSaving ? '⏳ Enregistrement...' : '💾 Enregistrer la dépense'}
-              </button>
-
-              {depStatus === 'success' && (
-                <p className="text-green-400 text-xs font-bold text-center">✅ Dépense ajoutée dans Google Sheets !</p>
-              )}
-              {depStatus === 'error' && (
-                <p className="text-red-400 text-xs font-bold text-center">❌ Erreur — réessayez</p>
-              )}
-            </div>
-
-            {/* Lien Google Sheets */}
-            <div className="bg-white/5 border border-white/10 rounded-2xl p-5 flex flex-col gap-3">
-              <p className="text-[10px] font-black uppercase tracking-widest text-gray-400">📊 Voir le tableau de bord</p>
-              <a
-                href="https://docs.google.com/spreadsheets/d/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full py-3 bg-[#0f9d58] text-white font-black uppercase text-[11px] tracking-widest rounded-xl text-center hover:bg-[#0b8043] transition"
-              >
-                📊 Ouvrir Google Sheets
-              </a>
             </div>
           </div>
         )}
