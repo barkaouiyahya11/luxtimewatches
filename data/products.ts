@@ -529,4 +529,18 @@ export const products: Product[] = [
     detailImgs: [
     ],
   },
+  {
+    id: 153,
+    sku: 'GSH-H-BS-12',
+    cat: 'homme',
+    name: 'ROLEX DAY-DATE HOMME BOITE SIMPLE',
+    price: 190,
+    originalPrice: 220,
+    stock: 0,
+    rating: 4.9,
+    reviews: 0,
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1779019836/luxtim/ro79cnzloedithtycxvw.jpg',
+    detailImgs: [],
+    imgScale: 1.1,
+  },
 ]

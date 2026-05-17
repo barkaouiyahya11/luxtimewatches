@@ -9,4 +9,4 @@ export const GOOGLE_SCRIPT_URL = ''
 
 // URL Google Apps Script pour recevoir les commandes (orders)
 // Collez ici l'URL de déploiement de votre Apps Script après l'avoir créé
-export const GOOGLE_ORDERS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbziCOl35Zu5T2s5GpNarpDIHOods5EInwU9692cJzYYOypRJTr6GpOmjbFV8wJrNB9-/exec'
+export const GOOGLE_ORDERS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz0kujEmv5_ZMHuiWa8P9u2D5E9rrQJ26PiV7HWefzfvZR3b4wkItujgqJbgAUVbwC6UQ/exec'

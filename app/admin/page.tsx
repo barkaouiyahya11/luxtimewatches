@@ -100,6 +100,9 @@ export default function AdminPage() {
   const [nextId, setNextId] = useState(() => Math.max(0, ...products.map((p) => p.id)) + 1)
   const [skuManual, setSkuManual] = useState(false)
   const [tab, setTab] = useState<'product' | 'edit' | 'banner' | 'cartes' | 'cartesfemme' | 'colors' | 'vitrine' | 'showcase' | 'hero'>('product')
+  const [addSaving, setAddSaving] = useState(false)
+  const [addSaveStatus, setAddSaveStatus] = useState<'idle' | 'success' | 'error'>('idle')
+  const [addSaveMsg, setAddSaveMsg] = useState('')
 
   // ── Edit product state ──────────────────────────────────
   const [editingProduct, setEditingProduct] = useState<typeof products[0] | null>(null)
@@ -404,6 +407,39 @@ ${valid.map((c) => `      { name: '${c.name}', img: '${c.img}' }`).join(',\n')},
     await navigator.clipboard.writeText(editCode)
     setEditCopied(true)
     setTimeout(() => setEditCopied(false), 2000)
+  }
+
+  async function saveNewProduct() {
+    if (!form.name || !form.price || !form.gridImg) {
+      alert('Remplissez au minimum : nom, prix et image principale')
+      return
+    }
+    const code = generateCode(form, nextId)
+    setGeneratedCode(code)
+    setAddSaving(true)
+    setAddSaveStatus('idle')
+    setAddSaveMsg('')
+    try {
+      const res = await fetch('/api/products/add', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ newBlock: code }),
+      })
+      const data = await res.json()
+      if (data.success) {
+        setAddSaveStatus('success')
+        setAddSaveMsg('✅ Produit sauvegardé ! Le site se met à jour dans ~1 minute.')
+        setNextId((n) => n + 1)
+      } else {
+        setAddSaveStatus('error')
+        setAddSaveMsg(`❌ Erreur : ${data.error}`)
+      }
+    } catch {
+      setAddSaveStatus('error')
+      setAddSaveMsg('❌ Erreur réseau')
+    } finally {
+      setAddSaving(false)
+    }
   }
 
   async function generate() {
@@ -1704,19 +1740,37 @@ ${valid.map((c) => `      { name: '${c.name}', img: '${c.img}' }`).join(',\n')},
             </div>
 
             {/* Actions */}
-            <div className="flex gap-3">
-              <button
-                onClick={generate}
-                className="flex-1 py-4 bg-[#C5A059] text-black font-black uppercase text-[11px] tracking-widest rounded-xl hover:bg-[#d4b572] transition shadow-lg"
-              >
-                ⚡ Générer le code
-              </button>
-              <button
-                onClick={reset}
-                className="px-5 py-4 border border-white/10 text-gray-400 font-black uppercase text-[11px] tracking-widest rounded-xl hover:border-white/30 hover:text-white transition"
-              >
-                Reset
-              </button>
+            <div className="flex flex-col gap-3">
+              <div className="flex gap-3">
+                <button
+                  onClick={saveNewProduct}
+                  disabled={addSaving}
+                  className="flex-1 py-4 bg-[#C5A059] text-black font-black uppercase text-[11px] tracking-widest rounded-xl hover:bg-[#d4b572] transition shadow-lg disabled:opacity-50 disabled:cursor-wait"
+                >
+                  {addSaving ? '⏳ Sauvegarde...' : '💾 Sauvegarder sur le site'}
+                </button>
+                <button
+                  onClick={generate}
+                  className="px-5 py-4 border border-white/10 text-gray-400 font-black uppercase text-[11px] tracking-widest rounded-xl hover:border-white/30 hover:text-white transition"
+                >
+                  Code
+                </button>
+                <button
+                  onClick={reset}
+                  className="px-5 py-4 border border-white/10 text-gray-400 font-black uppercase text-[11px] tracking-widest rounded-xl hover:border-white/30 hover:text-white transition"
+                >
+                  Reset
+                </button>
+              </div>
+              {addSaveStatus !== 'idle' && (
+                <div className={`rounded-xl px-5 py-4 text-sm font-black ${
+                  addSaveStatus === 'success'
+                    ? 'bg-green-500/20 border border-green-500/40 text-green-400'
+                    : 'bg-red-500/20 border border-red-500/40 text-red-400'
+                }`}>
+                  {addSaveMsg}
+                </div>
+              )}
             </div>
           </div>
 
@@ -1900,12 +1954,10 @@ ${valid.map((c) => `      { name: '${c.name}', img: '${c.img}' }`).join(',\n')},
                 📋 Comment utiliser
               </h3>
               <ol className="text-gray-400 text-xs flex flex-col gap-2 list-decimal list-inside">
-                <li>Uploadez les images depuis votre ordinateur (glisser ou cliquer)</li>
+                <li>Uploadez les images depuis votre ordinateur</li>
                 <li>Remplissez les informations du produit</li>
-                <li>Cliquez sur <strong className="text-white">Générer le code</strong></li>
-                <li>Copiez le code généré</li>
-                <li>Collez-le dans <code className="text-[#C5A059]">data/products.ts</code> avant le <code className="text-[#C5A059]">]</code> final</li>
-                <li>Sauvegardez et déployez</li>
+                <li>Cliquez sur <strong className="text-white">💾 Sauvegarder sur le site</strong></li>
+                <li>Le produit apparaît sur le site en ~1 minute ✅</li>
               </ol>
             </div>
 
