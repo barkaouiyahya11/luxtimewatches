@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { verifyAdminToken, unauthorized } from '@/lib/admin-auth'
 
 const GITHUB_OWNER = 'barkaouiyahya11'
 const GITHUB_REPO  = 'luxtimewatches'
@@ -6,6 +7,7 @@ const FILE_PATH    = 'data/products.ts'
 const GITHUB_API   = 'https://api.github.com'
 
 export async function POST(req: NextRequest) {
+  if (!verifyAdminToken(req)) return unauthorized()
   try {
     const { newBlock } = await req.json()
     if (!newBlock) {

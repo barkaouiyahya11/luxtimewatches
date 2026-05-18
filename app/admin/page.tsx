@@ -6,7 +6,7 @@ import ImageUpload from '@/components/ImageUpload'
 import VideoUpload from '@/components/VideoUpload'
 import { products } from '@/data/products'
 
-const ADMIN_PASSWORD = 'luxtim2024'
+const ADMIN_PASSWORD = '' // handled server-side now
 
 interface ColorVariant {
   name: string
@@ -93,7 +93,10 @@ function generateCode(form: ProductForm, id: number): string {
 
 export default function AdminPage() {
   const [auth, setAuth] = useState(false)
+  const [adminToken, setAdminToken] = useState('')
   const [password, setPassword] = useState('')
+  const [loginError, setLoginError] = useState('')
+  const [loginLoading, setLoginLoading] = useState(false)
   const [form, setForm] = useState<ProductForm>(EMPTY)
   const [generatedCode, setGeneratedCode] = useState('')
   const [copied, setCopied] = useState(false)
@@ -300,9 +303,28 @@ ${valid.map((c) => `      { name: '${c.name}', img: '${c.img}' }`).join(',\n')},
     setTimeout(() => setColorsCopied(false), 2000)
   }
 
-  function login() {
-    if (password === ADMIN_PASSWORD) setAuth(true)
-    else alert('Mot de passe incorrect')
+  async function login() {
+    if (!password) return
+    setLoginLoading(true)
+    setLoginError('')
+    try {
+      const res = await fetch('/api/admin/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ password }),
+      })
+      const data = await res.json()
+      if (res.ok && data.token) {
+        setAdminToken(data.token)
+        setAuth(true)
+      } else {
+        setLoginError(data.error || 'Mot de passe incorrect')
+      }
+    } catch {
+      setLoginError('Erreur réseau')
+    } finally {
+      setLoginLoading(false)
+    }
   }
 
   function set(field: keyof ProductForm, value: string | boolean | number) {
@@ -373,7 +395,7 @@ ${valid.map((c) => `      { name: '${c.name}', img: '${c.img}' }`).join(',\n')},
       const newBlock = buildEditBlock()
       const res = await fetch('/api/products/update', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', 'x-admin-token': adminToken },
         body: JSON.stringify({ productId: editingProduct.id, newBlock }),
       })
       const data = await res.json()
@@ -422,7 +444,7 @@ ${valid.map((c) => `      { name: '${c.name}', img: '${c.img}' }`).join(',\n')},
     try {
       const res = await fetch('/api/products/add', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', 'x-admin-token': adminToken },
         body: JSON.stringify({ newBlock: code }),
       })
       const data = await res.json()
@@ -508,11 +530,15 @@ ${valid.map((c) => `      { name: '${c.name}', img: '${c.img}' }`).join(',\n')},
               placeholder="••••••••"
               autoFocus
             />
+            {loginError && (
+              <p className="text-red-400 text-xs font-bold text-center">{loginError}</p>
+            )}
             <button
               onClick={login}
-              className="bg-[#C5A059] text-black font-black uppercase text-[11px] tracking-widest py-3 rounded-lg hover:bg-[#d4b572] transition"
+              disabled={loginLoading}
+              className="bg-[#C5A059] text-black font-black uppercase text-[11px] tracking-widest py-3 rounded-lg hover:bg-[#d4b572] transition disabled:opacity-60"
             >
-              Accéder au dashboard
+              {loginLoading ? '⏳ Vérification...' : 'Accéder au dashboard'}
             </button>
           </div>
         </div>

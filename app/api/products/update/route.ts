@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { verifyAdminToken, unauthorized } from '@/lib/admin-auth'
 
 const GITHUB_OWNER = 'barkaouiyahya11'
 const GITHUB_REPO = 'luxtimewatches'
@@ -43,6 +44,7 @@ function replaceProductBlock(content: string, productId: number, newBlock: strin
 }
 
 export async function POST(req: NextRequest) {
+  if (!verifyAdminToken(req)) return unauthorized()
   try {
     const { productId, newBlock } = await req.json()
 
