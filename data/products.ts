@@ -543,4 +543,18 @@ export const products: Product[] = [
     detailImgs: [],
     imgScale: 1.1,
   },
+  {
+    id: 154,
+    sku: 'GSH-F-BS-15',
+    cat: 'femme',
+    name: 'CASIO QUARTZ FEMME  BOITE SIMPLE',
+    price: 160,
+    originalPrice: 160,
+    stock: 0,
+    rating: 4.9,
+    reviews: 0,
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1779021337/luxtim/kfvfieb96qd5wn6jiaax.jpg',
+    detailImgs: [
+    ],
+  },
 ]
