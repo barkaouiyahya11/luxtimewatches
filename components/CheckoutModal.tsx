@@ -1,12 +1,80 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useStore } from '@/context/StoreContext'
 import { GOOGLE_ORDERS_SCRIPT_URL } from '@/lib/constants'
 
 function isValidMoroccanPhone(phone: string) {
   const cleaned = phone.replace(/[\s\-.]/g, '')
   return /^(0[67]\d{8}|(\+212|00212)[67]\d{8})$/.test(cleaned)
+}
+
+// ── Confetti ──────────────────────────────────────────────
+function Confetti() {
+  const canvasRef = useRef<HTMLCanvasElement>(null)
+
+  useEffect(() => {
+    const canvas = canvasRef.current
+    if (!canvas) return
+    const ctx = canvas.getContext('2d')
+    if (!ctx) return
+
+    canvas.width = canvas.offsetWidth
+    canvas.height = canvas.offsetHeight
+
+    const colors = ['#C5A059', '#FFD700', '#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', '#FFEAA7', '#DDA0DD']
+    const pieces: {
+      x: number; y: number; vx: number; vy: number;
+      color: string; size: number; angle: number; va: number
+    }[] = []
+
+    for (let i = 0; i < 120; i++) {
+      pieces.push({
+        x: canvas.width / 2,
+        y: canvas.height / 2,
+        vx: (Math.random() - 0.5) * 18,
+        vy: (Math.random() - 0.5) * 18 - 6,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        size: Math.random() * 8 + 4,
+        angle: Math.random() * 360,
+        va: (Math.random() - 0.5) * 10,
+      })
+    }
+
+    let frame = 0
+    let animId: number
+
+    function draw() {
+      if (!ctx || !canvas) return
+      ctx.clearRect(0, 0, canvas.width, canvas.height)
+      pieces.forEach((p) => {
+        p.x += p.vx
+        p.y += p.vy
+        p.vy += 0.4
+        p.angle += p.va
+        ctx.save()
+        ctx.translate(p.x, p.y)
+        ctx.rotate((p.angle * Math.PI) / 180)
+        ctx.fillStyle = p.color
+        ctx.globalAlpha = Math.max(0, 1 - frame / 90)
+        ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size / 2)
+        ctx.restore()
+      })
+      frame++
+      if (frame < 100) animId = requestAnimationFrame(draw)
+    }
+
+    draw()
+    return () => cancelAnimationFrame(animId)
+  }, [])
+
+  return (
+    <canvas
+      ref={canvasRef}
+      className="absolute inset-0 w-full h-full pointer-events-none"
+      style={{ zIndex: 10 }}
+    />
+  )
 }
 
 export default function CheckoutModal() {
@@ -102,21 +170,19 @@ export default function CheckoutModal() {
 
     setSubmitting(true)
 
-    try {
-      await fetch(GOOGLE_ORDERS_SCRIPT_URL, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-        body: JSON.stringify(payload),
-      })
-    } catch {
-      // continue même si erreur
-    }
-
+    // Afficher le succès immédiatement, envoyer en arrière-plan
     setFinalTotal(orderTotal)
     setSuccess(true)
     clearCart()
     setSubmitting(false)
+
+    // Envoi en arrière-plan (ne bloque pas l'UI)
+    fetch(GOOGLE_ORDERS_SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify(payload),
+    }).catch(() => {})
   }
 
   return (
@@ -125,7 +191,7 @@ export default function CheckoutModal() {
       onClick={(e) => e.target === e.currentTarget && handleClose()}
     >
       <div
-        className="bg-white w-full max-w-md rounded-xl shadow-2xl flex flex-col"
+        className="bg-white w-full max-w-md rounded-xl shadow-2xl flex flex-col relative overflow-hidden"
         style={{ maxHeight: '90vh' }}
       >
         {/* Header */}
@@ -148,6 +214,15 @@ export default function CheckoutModal() {
         <div className="overflow-y-auto px-6 pb-6 pt-4">
           {!success ? (
             <div className="space-y-4">
+              {/* Livraison gratuite */}
+              <div className="flex items-center justify-center gap-2 bg-green-50 border border-green-200 rounded-lg py-2.5 px-4">
+                <span className="text-green-600 text-lg">🚚</span>
+                <div className="text-center">
+                  <span className="text-green-700 font-black text-xs uppercase tracking-widest">Livraison GRATUITE</span>
+                  <span className="text-green-600 font-arabic text-xs block">التوصيل مجاني</span>
+                </div>
+              </div>
+
               <input
                 type="text"
                 placeholder="Nom complet | الإسم الكامل"
@@ -195,27 +270,39 @@ export default function CheckoutModal() {
               </button>
             </div>
           ) : (
-            <div className="text-center py-8">
-              <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                <i className="fa-solid fa-check text-4xl text-green-500" />
+            <div className="text-center py-8 relative">
+              {/* Confetti */}
+              <Confetti />
+
+              <div className="relative z-20">
+                <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <i className="fa-solid fa-check text-4xl text-green-500" />
+                </div>
+                <p className="font-black text-xl text-gray-800 uppercase mb-2">Félicitations !</p>
+                <p className="font-arabic text-base text-gray-600 mb-2">
+                  لقد تم تسجيل طلبكم بنجاح
+                </p>
+                <p className="text-xs text-gray-400 mb-4">
+                  Votre commande a bien été reçue. Notre équipe vous contactera pour la confirmer.
+                </p>
+
+                {/* Livraison gratuite dans success */}
+                <div className="flex items-center justify-center gap-2 bg-green-50 border border-green-200 rounded-lg py-2 px-4 mb-4 inline-flex mx-auto">
+                  <span className="text-green-600">🚚</span>
+                  <span className="text-green-700 font-black text-xs uppercase tracking-widest">Livraison GRATUITE</span>
+                </div>
+
+                <p className="text-xs text-gray-500 font-bold tracking-widest bg-gray-50 py-3 px-6 rounded-lg inline-block border mb-2">
+                  Commande envoyée ✓
+                </p>
+                <p className="text-sm font-black text-black">{finalTotal} MAD</p>
+                <button
+                  onClick={handleClose}
+                  className="mt-8 w-full border-2 border-black text-black py-4 text-[10px] font-black uppercase tracking-widest rounded-lg hover:bg-black hover:text-white transition"
+                >
+                  Continuer mes achats
+                </button>
               </div>
-              <p className="font-black text-xl text-gray-800 uppercase mb-2">Félicitations !</p>
-              <p className="font-arabic text-base text-gray-600 mb-2">
-                لقد تم تسجيل طلبكم بنجاح
-              </p>
-              <p className="text-xs text-gray-400 mb-4">
-                Votre commande a bien été reçue. Notre équipe vous contactera pour la confirmer.
-              </p>
-              <p className="text-xs text-gray-500 font-bold tracking-widest bg-gray-50 py-3 px-6 rounded-lg inline-block border mb-2">
-                Commande envoyée ✓
-              </p>
-              <p className="text-sm font-black text-black">{finalTotal} MAD</p>
-              <button
-                onClick={handleClose}
-                className="mt-8 w-full border-2 border-black text-black py-4 text-[10px] font-black uppercase tracking-widest rounded-lg hover:bg-black hover:text-white transition"
-              >
-                Continuer mes achats
-              </button>
             </div>
           )}
         </div>
