@@ -228,21 +228,24 @@ export default function CheckoutModal() {
                 placeholder="Nom complet | الإسم الكامل"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                className="w-full p-4 border border-gray-200 rounded-lg outline-none focus:border-[#C5A059] focus:ring-1 focus:ring-[#C5A059] text-sm font-semibold transition"
+                className="w-full p-4 border border-gray-200 rounded-lg outline-none focus:border-[#C5A059] focus:ring-1 focus:ring-[#C5A059] font-semibold transition"
+                style={{ fontSize: '16px' }}
               />
               <input
                 type="tel"
                 placeholder="Téléphone: 06XXXXXXXX ou 07XXXXXXXX"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
-                className="w-full p-4 border border-gray-200 rounded-lg outline-none focus:border-[#C5A059] focus:ring-1 focus:ring-[#C5A059] text-sm font-semibold transition"
+                className="w-full p-4 border border-gray-200 rounded-lg outline-none focus:border-[#C5A059] focus:ring-1 focus:ring-[#C5A059] font-semibold transition"
+                style={{ fontSize: '16px' }}
               />
               <input
                 type="text"
                 placeholder="Ville | المدينة"
                 value={city}
                 onChange={(e) => setCity(e.target.value)}
-                className="w-full p-4 border border-gray-200 rounded-lg outline-none focus:border-[#C5A059] focus:ring-1 focus:ring-[#C5A059] text-sm font-semibold transition"
+                className="w-full p-4 border border-gray-200 rounded-lg outline-none focus:border-[#C5A059] focus:ring-1 focus:ring-[#C5A059] font-semibold transition"
+                style={{ fontSize: '16px' }}
               />
 
               {error && (
