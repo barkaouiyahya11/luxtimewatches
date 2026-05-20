@@ -1,4 +1,4 @@
-export const WHATSAPP_NUMBER = '212633830774'
+export const WHATSAPP_NUMBER = '212666538860'
 export const TIKTOK_URL = 'https://www.tiktok.com/@gushkin.com'
 export const INSTAGRAM_URL = 'https://www.instagram.com/gushkinaccessoire/'
 export const DOMAIN = 'https://www.gushkin.com'
