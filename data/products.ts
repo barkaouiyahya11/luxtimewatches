@@ -587,4 +587,19 @@ export const products: Product[] = [
       'https://res.cloudinary.com/dannr2e0c/image/upload/v1779291938/luxtim/qilai0jepr4vwcv6rbll.jpg',
     ],
   },
+  {
+    id: 158,
+    sku: 'GSH-H-BS-15',
+    cat: 'homme',
+    name: 'ROLEX ARABIC DIAL HOMME BOITE SIMPLE',
+    price: 230,
+    originalPrice: 250,
+    stock: 0,
+    rating: 4.9,
+    reviews: 0,
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1779292310/luxtim/ci02udla2b5hcgqn04id.jpg',
+    detailImgs: [
+      'https://res.cloudinary.com/dannr2e0c/image/upload/v1779292317/luxtim/kah4seir6y49oc0ae98l.jpg',
+    ],
+  },
 ]
