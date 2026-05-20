@@ -557,4 +557,19 @@ export const products: Product[] = [
     detailImgs: [
     ],
   },
+  {
+    id: 155,
+    sku: 'GSH-F-BS-16',
+    cat: 'femme',
+    name: 'ROLEX GMT-MASTER II HOMME BOITE SIMPLE ',
+    price: 230,
+    originalPrice: 270,
+    stock: 0,
+    rating: 4.9,
+    reviews: 0,
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1779290281/luxtim/x1dxcvtxki9kqlezd5py.jpg',
+    detailImgs: [
+      'https://res.cloudinary.com/dannr2e0c/image/upload/v1779290291/luxtim/tnfjfjm38ujbrz4vmamd.jpg',
+    ],
+  },
 ]
