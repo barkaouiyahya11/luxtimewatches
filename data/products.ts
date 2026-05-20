@@ -572,4 +572,19 @@ export const products: Product[] = [
       'https://res.cloudinary.com/dannr2e0c/image/upload/v1779290291/luxtim/tnfjfjm38ujbrz4vmamd.jpg',
     ],
   },
+  {
+    id: 156,
+    sku: 'GSH-H-BS-13',
+    cat: 'homme',
+    name: 'ROLEX GMT-MASTER II HOMME BOITE SIMPLE ',
+    price: 230,
+    originalPrice: 270,
+    stock: 0,
+    rating: 4.9,
+    reviews: 0,
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1779290281/luxtim/x1dxcvtxki9kqlezd5py.jpg',
+    detailImgs: [
+      'https://res.cloudinary.com/dannr2e0c/image/upload/v1779290291/luxtim/tnfjfjm38ujbrz4vmamd.jpg',
+    ],
+  },
 ]
