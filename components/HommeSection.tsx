@@ -75,7 +75,7 @@ export default function HommeSection({ products }: Props) {
             </h3>
             <div className="mt-3">
               <span className="inline-block text-[10px] md:text-xs font-black uppercase tracking-widest text-black border border-black px-4 py-2 rounded-full group-hover:bg-black group-hover:text-white transition-all duration-300">
-                Voir â†’
+                Voir →
               </span>
             </div>
           </div>
@@ -119,7 +119,7 @@ export default function HommeSection({ products }: Props) {
             </h3>
             <div className="mt-3">
               <span className="inline-block text-[10px] md:text-xs font-black uppercase tracking-widest text-black border border-[#C5A059] text-[#C5A059] px-4 py-2 rounded-full group-hover:bg-[#C5A059] group-hover:text-black transition-all duration-300">
-                Voir â†’
+                Voir →
               </span>
             </div>
           </div>
