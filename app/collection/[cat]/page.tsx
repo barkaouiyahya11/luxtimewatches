@@ -1,7 +1,7 @@
 'use client'
 
-import { useParams, useRouter, useSearchParams } from 'next/navigation'
-import { useCallback } from 'react'
+import { useParams, useRouter } from 'next/navigation'
+import { useState, useCallback } from 'react'
 import { products } from '@/data/products'
 import ProductCard from '@/components/ProductCard'
 import Footer from '@/components/Footer'
@@ -27,15 +27,18 @@ const SUBTITLES: Record<string, string> = {
 
 const PER_PAGE = 16
 
+function getInitialPage(): number {
+  if (typeof window === 'undefined') return 1
+  const p = parseInt(new URLSearchParams(window.location.search).get('page') ?? '1', 10)
+  return isNaN(p) || p < 1 ? 1 : p
+}
+
 export default function CollectionPage() {
   const params = useParams()
   const router = useRouter()
-  const searchParams = useSearchParams()
   const cat = params.cat as string
 
-  // Page stored in URL ?page=N — survives refresh
-  const page = Math.max(1, parseInt(searchParams.get('page') ?? '1', 10))
-
+  const [page, setPage] = useState<number>(getInitialPage)
   useScrollReveal([page])
 
   const filtered = (() => {
@@ -54,11 +57,13 @@ export default function CollectionPage() {
   const showBack = ['homme-simple', 'homme-coffret', 'femme-simple', 'femme-coffret'].includes(cat)
 
   const goToPage = useCallback((p: number) => {
+    setPage(p)
+    // Met à jour l'URL sans navigation (pas de reload, pas de saut)
     const url = new URL(window.location.href)
     url.searchParams.set('page', String(p))
-    router.push(url.pathname + url.search)
+    window.history.replaceState({}, '', url.pathname + url.search)
     window.scrollTo({ top: 0, behavior: 'smooth' })
-  }, [router])
+  }, [])
 
   return (
     <>
