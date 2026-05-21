@@ -102,7 +102,7 @@ export default function CollectionPage() {
           )}
           {totalPages > 1 && (
             <p className="text-[11px] text-gray-400 mt-1 font-medium">
-              {filtered.length} articles — Page {page} / {totalPages}
+              Page {page} / {totalPages}
             </p>
           )}
         </div>
