@@ -632,19 +632,4 @@ export const products: Product[] = [
     ],
     imgScale: 1.1,
   },
-  {
-    id: 161,
-    sku: 'GSH-H-BS-17',
-    cat: 'homme',
-    name: 'Hublot Spirit HUBLOT SPIRIT HOMME BOITE SIMPLE',
-    price: 180,
-    originalPrice: 247,
-    stock: 0,
-    rating: 4.9,
-    reviews: 0,
-    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1779364301/luxtim/h3xoyazqo9ywq6nwcnuj.jpg',
-    detailImgs: [
-    ],
-    imgScale: 1.1,
-  },
 ]
