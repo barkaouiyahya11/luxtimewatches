@@ -1,7 +1,7 @@
 'use client'
 
-import { useParams, useRouter } from 'next/navigation'
-import { useState } from 'react'
+import { useParams, useRouter, useSearchParams } from 'next/navigation'
+import { useCallback } from 'react'
 import { products } from '@/data/products'
 import ProductCard from '@/components/ProductCard'
 import Footer from '@/components/Footer'
@@ -30,8 +30,12 @@ const PER_PAGE = 16
 export default function CollectionPage() {
   const params = useParams()
   const router = useRouter()
+  const searchParams = useSearchParams()
   const cat = params.cat as string
-  const [page, setPage] = useState(1)
+
+  // Page stored in URL ?page=N — survives refresh
+  const page = Math.max(1, parseInt(searchParams.get('page') ?? '1', 10))
+
   useScrollReveal([page])
 
   const filtered = (() => {
@@ -49,10 +53,12 @@ export default function CollectionPage() {
   const subtitle = SUBTITLES[cat] ?? ''
   const showBack = ['homme-simple', 'homme-coffret', 'femme-simple', 'femme-coffret'].includes(cat)
 
-  function goToPage(p: number) {
-    setPage(p)
+  const goToPage = useCallback((p: number) => {
+    const url = new URL(window.location.href)
+    url.searchParams.set('page', String(p))
+    router.push(url.pathname + url.search)
     window.scrollTo({ top: 0, behavior: 'smooth' })
-  }
+  }, [router])
 
   return (
     <>
