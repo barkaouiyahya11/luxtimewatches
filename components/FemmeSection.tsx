@@ -71,9 +71,6 @@ export default function FemmeSection({ products }: Props) {
             <h3 className="text-base md:text-xl font-black uppercase tracking-wider text-black leading-tight">
               Boite Simple
             </h3>
-            <p className="text-[10px] md:text-xs text-gray-400 mt-1 font-semibold">
-              {simpleCount} article{simpleCount > 1 ? 's' : ''}
-            </p>
             <div className="mt-3">
               <span className="inline-block text-[10px] md:text-xs font-black uppercase tracking-widest text-black border border-black px-4 py-2 rounded-full group-hover:bg-black group-hover:text-white transition-all duration-300">
                 Voir â†’
@@ -115,9 +112,6 @@ export default function FemmeSection({ products }: Props) {
             <h3 className="text-base md:text-xl font-black uppercase tracking-wider text-black leading-tight">
               Avec Coffret
             </h3>
-            <p className="text-[10px] md:text-xs text-gray-400 mt-1 font-semibold">
-              {coffretCount} article{coffretCount > 1 ? 's' : ''}
-            </p>
             <div className="mt-3">
               <span className="inline-block text-[10px] md:text-xs font-black uppercase tracking-widest border border-[#C5A059] text-[#C5A059] px-4 py-2 rounded-full group-hover:bg-[#C5A059] group-hover:text-black transition-all duration-300">
                 Voir â†’
