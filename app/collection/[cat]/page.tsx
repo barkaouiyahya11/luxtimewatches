@@ -28,11 +28,11 @@ const SUBTITLES: Record<string, string> = {
 const PER_PAGE = 16
 
 export default function CollectionPage() {
-  useScrollReveal([page])
   const params = useParams()
   const router = useRouter()
   const cat = params.cat as string
   const [page, setPage] = useState(1)
+  useScrollReveal([page])
 
   const filtered = (() => {
     if (cat === 'homme-simple') return products.filter((p) => p.cat === 'homme' && !p.coffret)
