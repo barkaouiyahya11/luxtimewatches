@@ -28,7 +28,7 @@ const SUBTITLES: Record<string, string> = {
 const PER_PAGE = 16
 
 export default function CollectionPage() {
-  useScrollReveal()
+  useScrollReveal([page])
   const params = useParams()
   const router = useRouter()
   const cat = params.cat as string
