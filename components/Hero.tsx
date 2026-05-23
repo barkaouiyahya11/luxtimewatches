@@ -66,6 +66,15 @@ export default function Hero() {
         src={VIDEO_URL}
       />
 
+      {/* ── Overlay transparent pour bloquer les contrôles TikTok browser ── */}
+      <div style={{
+        position: 'absolute',
+        inset: 0,
+        zIndex: 1,
+        pointerEvents: 'auto',
+        background: 'transparent',
+      }} />
+
       {/* ── Overlay cinématique premium ── */}
       <div style={{
         position: 'absolute',

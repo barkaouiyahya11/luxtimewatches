@@ -22,16 +22,26 @@ video {
   user-drag: none;
 }
 
-/* ── Hide iOS Safari native video play button overlay ── */
+/* ── Hide ALL native video controls (iOS Safari, TikTok browser, Chrome) ── */
 video::-webkit-media-controls,
 video::-webkit-media-controls-panel,
+video::-webkit-media-controls-panel-container,
 video::-webkit-media-controls-play-button,
 video::-webkit-media-controls-start-playback-button,
-video::-webkit-media-controls-overlay-play-button {
+video::-webkit-media-controls-overlay-play-button,
+video::-webkit-media-controls-overlay-enclosure,
+video::-webkit-media-controls-enclosure,
+video::-webkit-media-controls-fullscreen-button,
+video::-webkit-media-controls-timeline,
+video::-webkit-media-controls-current-time-display,
+video::-webkit-media-controls-time-remaining-display,
+video::-webkit-media-controls-mute-button,
+video::-webkit-media-controls-volume-slider {
   display: none !important;
   -webkit-appearance: none !important;
   opacity: 0 !important;
   pointer-events: none !important;
+  visibility: hidden !important;
 }
 
 :root {

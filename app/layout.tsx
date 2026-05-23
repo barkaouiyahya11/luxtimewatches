@@ -5,6 +5,7 @@ import { StoreProvider } from '@/context/StoreContext'
 
 import Header from '@/components/Header'
 import NoDownload from '@/components/NoDownload'
+import TikTokFix from '@/components/TikTokFix'
 import AnnouncementBar from '@/components/AnnouncementBar'
 import CartDrawer from '@/components/CartDrawer'
 import CheckoutModal from '@/components/CheckoutModal'
@@ -92,6 +93,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         `}</Script>
 
         <NoDownload />
+        <TikTokFix />
         <StoreProvider>
           <AnnouncementBar />
           <Header />
