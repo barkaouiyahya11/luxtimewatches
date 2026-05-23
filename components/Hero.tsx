@@ -17,22 +17,16 @@ export default function Hero() {
     const video = videoRef.current
     if (!video) return
     video.muted = true
+    video.play().catch(() => {})
 
-    const onEnded = () => {
-      video.currentTime = 0
-      video.play().catch(() => {})
+    // Reprend la lecture si le navigateur la met en pause (ex: TikTok browser)
+    const onVisibility = () => {
+      if (!document.hidden) video.play().catch(() => {})
     }
-    video.addEventListener('ended', onEnded)
-
-    const doPlay = () => video.play().catch(() => {})
-    doPlay()
-    window.addEventListener('touchstart', doPlay, { once: true })
-    window.addEventListener('click',      doPlay, { once: true })
+    document.addEventListener('visibilitychange', onVisibility)
 
     return () => {
-      video.removeEventListener('ended', onEnded)
-      window.removeEventListener('touchstart', doPlay)
-      window.removeEventListener('click',      doPlay)
+      document.removeEventListener('visibilitychange', onVisibility)
     }
   }, [])
 
@@ -54,6 +48,7 @@ export default function Hero() {
         ref={videoRef}
         autoPlay
         muted
+        loop
         playsInline
         disablePictureInPicture
         preload="auto"
