@@ -158,14 +158,16 @@ export default function CheckoutModal() {
 
     const payload = {
       type: 'order',
-      date: new Date().toLocaleString('fr-MA', { timeZone: 'Africa/Casablanca' }),
-      name: name.trim(),
-      phone: phone.trim(),
-      address: '',
-      city: city.trim(),
-      items: items.map(formatItem).join('\n'),
-      total: `${orderTotal} MAD`,
       id: Date.now().toString(),
+      customerName: name.trim(),
+      phone: phone.trim(),
+      city: city.trim(),
+      items: items.map((i) => ({
+        name: i.name,
+        sku: i.sku,
+        qty: i.qty,
+        price: i.price,
+      })),
     }
 
     setSubmitting(true)
