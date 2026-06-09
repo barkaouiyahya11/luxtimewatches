@@ -267,7 +267,7 @@ export const products: Product[] = [
     sku: 'GSH-H-BS-07',
     cat: 'homme',
     name: 'CASIO QUARTZ HOMME BOITE SIMPLE',
-    price: 160,
+    price: 150,
     originalPrice: 170,
     stock: 0,
     rating: 4.9,
