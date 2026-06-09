@@ -550,7 +550,7 @@ export const products: Product[] = [
     sku: 'GSH-F-BS-15',
     cat: 'femme',
     name: 'CASIO QUARTZ FEMME  BOITE SIMPLE',
-    price: 160,
+    price: 150,
     originalPrice: 160,
     stock: 0,
     rating: 4.9,
