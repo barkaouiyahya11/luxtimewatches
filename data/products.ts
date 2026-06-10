@@ -301,7 +301,7 @@ export const products: Product[] = [
     sku: 'GSH-H-BS-09',
     cat: 'homme',
     name: 'PATEK PHILIPPE NAUTILUS HOMME BOITE SIMPLE',
-    price: 220,
+    price: 199,
     originalPrice: 250,
     stock: 0,
     rating: 4.9,
