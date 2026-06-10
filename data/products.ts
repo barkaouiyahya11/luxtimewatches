@@ -211,7 +211,7 @@ export const products: Product[] = [
     stock: 0,
     rating: 4.9,
     reviews: 0,
-    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1781123132/luxtim/giwt4niyzlv9n8rvzb3e.jpg',
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1781124015/luxtim/phbpuwgqvfktxcr5mgko.jpg',
     detailImgs: [
       'https://res.cloudinary.com/dannr2e0c/image/upload/v1781123202/luxtim/r4du31ybob73ds4d1yuo.jpg',
     ],
