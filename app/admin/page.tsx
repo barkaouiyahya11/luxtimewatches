@@ -115,6 +115,8 @@ export default function AdminPage() {
   const [editGridImg, setEditGridImg] = useState('')
   const [editDetailImg1, setEditDetailImg1] = useState('')
   const [editDetailImg2, setEditDetailImg2] = useState('')
+  const [editImgScale, setEditImgScale] = useState(1)
+  const [editImgPosition, setEditImgPosition] = useState('center')
   const [editCode, setEditCode] = useState('')
   const [editCopied, setEditCopied] = useState(false)
   const [editSearch, setEditSearch] = useState('')
@@ -348,6 +350,8 @@ ${valid.map((c) => `      { name: '${c.name}', img: '${c.img}' }`).join(',\n')},
     setEditGridImg(product.gridImg)
     setEditDetailImg1(product.detailImgs?.[0] || '')
     setEditDetailImg2(product.detailImgs?.[1] || '')
+    setEditImgScale(product.imgScale || 1)
+    setEditImgPosition(product.imgPosition || 'center')
     setEditCode('')
   }
 
@@ -377,7 +381,7 @@ ${valid.map((c) => `      { name: '${c.name}', img: '${c.img}' }`).join(',\n')},
     reviews: ${p.reviews},
     gridImg: '${gridImg}',
     detailImgs: [${detailImgsCode}
-    ],${p.hot ? '\n    hot: true,' : ''}${p.coffret ? '\n    coffret: true,' : ''}${p.frame ? '\n    frame: true,' : ''}${p.imgScale && p.imgScale !== 1 ? `\n    imgScale: ${p.imgScale},` : ''}${p.imgPosition && p.imgPosition !== 'center' ? `\n    imgPosition: '${p.imgPosition}',` : ''}${colorsCode}
+    ],${p.hot ? '\n    hot: true,' : ''}${p.coffret ? '\n    coffret: true,' : ''}${p.frame ? '\n    frame: true,' : ''}${editImgScale !== 1 ? `\n    imgScale: ${editImgScale},` : ''}${editImgPosition !== 'center' ? `\n    imgPosition: '${editImgPosition}',` : ''}${colorsCode}
   },`
   }
 
@@ -422,6 +426,8 @@ ${valid.map((c) => `      { name: '${c.name}', img: '${c.img}' }`).join(',\n')},
     setEditGridImg('')
     setEditDetailImg1('')
     setEditDetailImg2('')
+    setEditImgScale(1)
+    setEditImgPosition('center')
     setEditCode('')
   }
 
@@ -1390,6 +1396,52 @@ ${valid.map((c) => `      { name: '${c.name}', img: '${c.img}' }`).join(',\n')},
                       />
                     </div>
 
+                    {/* Zoom + Position */}
+                    <div className="flex flex-col gap-3 border border-white/10 rounded-xl p-4">
+                      <p className="text-[10px] font-black uppercase tracking-widest text-[#C5A059]">
+                        🔍 Ajuster le cadrage
+                      </p>
+                      <div className="flex flex-col gap-2">
+                        <span className="text-[9px] font-black uppercase text-gray-400">Zoom</span>
+                        <div className="flex items-center gap-2">
+                          <button
+                            onClick={() => setEditImgScale(Math.max(1, parseFloat((editImgScale - 0.1).toFixed(1))))}
+                            className="flex-1 py-2 bg-white/10 text-white text-xl font-black rounded-lg hover:bg-white/20 transition"
+                          >−</button>
+                          <span className="text-base font-black text-white w-12 text-center">
+                            {editImgScale.toFixed(1)}×
+                          </span>
+                          <button
+                            onClick={() => setEditImgScale(Math.min(2, parseFloat((editImgScale + 0.1).toFixed(1))))}
+                            className="flex-1 py-2 bg-[#C5A059] text-black text-xl font-black rounded-lg hover:bg-[#d4b572] transition"
+                          >+</button>
+                        </div>
+                        <div className="flex justify-between text-[9px] text-gray-500 px-1">
+                          <span>1.0× = normal</span><span>2.0× = max</span>
+                        </div>
+                      </div>
+                      <div className="flex flex-col gap-2">
+                        <span className="text-[9px] font-black uppercase text-gray-400">Position</span>
+                        <div className="grid grid-cols-3 gap-1.5">
+                          {[
+                            { label: '↖', val: 'top left' }, { label: '↑', val: 'top' }, { label: '↗', val: 'top right' },
+                            { label: '←', val: 'left' },     { label: '⊙', val: 'center' }, { label: '→', val: 'right' },
+                            { label: '↙', val: 'bottom left' }, { label: '↓', val: 'bottom' }, { label: '↘', val: 'bottom right' },
+                          ].map(({ label, val }) => (
+                            <button
+                              key={val}
+                              onClick={() => setEditImgPosition(val)}
+                              className={`py-2 rounded-lg text-sm font-black transition ${
+                                editImgPosition === val
+                                  ? 'bg-[#C5A059] text-black'
+                                  : 'bg-white/10 text-white hover:bg-white/20'
+                              }`}
+                            >{label}</button>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+
                     {/* Save status */}
                     {editSaveStatus !== 'idle' && (
                       <div className={`rounded-xl px-5 py-4 text-sm font-black ${
@@ -1436,12 +1488,19 @@ ${valid.map((c) => `      { name: '${c.name}', img: '${c.img}' }`).join(',\n')},
                         </div>
                         <div className="flex flex-col gap-2">
                           <span className="text-[9px] font-black uppercase text-[#C5A059]">APRÈS</span>
-                          {/* eslint-disable-next-line @next/next/no-img-element */}
-                          <img
-                            src={editGridImg || editingProduct.gridImg}
-                            alt="après"
-                            className="w-full aspect-square object-cover rounded-xl"
-                          />
+                          <div className="w-full aspect-square overflow-hidden rounded-xl">
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                            <img
+                              src={editGridImg || editingProduct.gridImg}
+                              alt="après"
+                              className="w-full h-full object-cover"
+                              style={{
+                                objectPosition: editImgPosition,
+                                transform: `scale(${editImgScale})`,
+                                transformOrigin: editImgPosition,
+                              }}
+                            />
+                          </div>
                           <p className="text-[9px] font-black uppercase text-black line-clamp-1">
                             {editName || editingProduct.name.trim()}
                           </p>
