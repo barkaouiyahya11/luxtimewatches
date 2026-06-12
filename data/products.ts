@@ -667,4 +667,19 @@ export const products: Product[] = [
       'https://res.cloudinary.com/dannr2e0c/image/upload/v1781287492/luxtim/cabrlppk4shbjnkz4you.jpg',
     ],
   },
+  {
+    id: 163,
+    sku: 'GSH-H-BS-19',
+    cat: 'homme',
+    name: 'CARTIER SANTOS SILICONE HOMMES BOIT SIMPLE ',
+    price: 200,
+    originalPrice: 200,
+    stock: 0,
+    rating: 4.9,
+    reviews: 0,
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1781288852/luxtim/ayxoj2fnt082xigerbzk.jpg',
+    detailImgs: [
+      'https://res.cloudinary.com/dannr2e0c/image/upload/v1781288856/luxtim/ooilrmrx8goa4xnnsr2z.jpg',
+    ],
+  },
 ]
