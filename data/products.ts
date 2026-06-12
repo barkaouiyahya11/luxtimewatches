@@ -652,4 +652,19 @@ export const products: Product[] = [
     ],
     imgPosition: 'bottom',
   },
+  {
+    id: 162,
+    sku: 'GSH-H-BS-18',
+    cat: 'homme',
+    name: 'CARTIER SANTOS HOMME BOITE SIMPLE',
+    price: 220,
+    originalPrice: 4,
+    stock: 0,
+    rating: 4.9,
+    reviews: 0,
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1781287487/luxtim/syef5tqxu4syrjuk03vf.jpg',
+    detailImgs: [
+      'https://res.cloudinary.com/dannr2e0c/image/upload/v1781287492/luxtim/cabrlppk4shbjnkz4you.jpg',
+    ],
+  },
 ]
