@@ -10,19 +10,25 @@ import { useScrollReveal } from '@/hooks/useScrollReveal'
 const TITLES: Record<string, string> = {
   femme: 'Collection Femme',
   homme: 'Collection Homme',
+  pack: 'Pack Femme & Homme',
   'homme-simple': 'Collection Homme — Boite Simple',
   'homme-coffret': 'Collection Homme — Avec Coffret',
   'femme-simple': 'Collection Femme — Boite Simple',
   'femme-coffret': 'Collection Femme — Avec Coffret',
+  'pack-simple': 'Pack Femme & Homme — Boite Simple',
+  'pack-coffret': 'Pack Femme & Homme — Avec Coffret',
 }
 
 const SUBTITLES: Record<string, string> = {
   femme: 'Sublime ta beauté avec nos montres ✨',
   homme: 'Style & élégance pour homme ✨',
+  pack: 'Le duo parfait Femme & Homme ✨',
   'homme-simple': 'Montres homme avec boite simple',
   'homme-coffret': 'Montres homme avec coffret cadeau',
   'femme-simple': 'Montres femme avec boite simple',
   'femme-coffret': 'Montres femme avec coffret cadeau',
+  'pack-simple': 'Pack duo femme & homme avec boite simple',
+  'pack-coffret': 'Pack duo femme & homme avec coffret cadeau',
 }
 
 const PER_PAGE = 16
@@ -46,6 +52,8 @@ export default function CollectionPage() {
     if (cat === 'homme-coffret') return products.filter((p) => p.cat === 'homme' && p.coffret)
     if (cat === 'femme-simple') return products.filter((p) => p.cat === 'femme' && !p.coffret)
     if (cat === 'femme-coffret') return products.filter((p) => p.cat === 'femme' && p.coffret)
+    if (cat === 'pack-simple') return products.filter((p) => p.cat === 'pack' && !p.coffret)
+    if (cat === 'pack-coffret') return products.filter((p) => p.cat === 'pack' && p.coffret)
     return products.filter((p) => p.cat === cat)
   })()
 
@@ -54,7 +62,7 @@ export default function CollectionPage() {
 
   const title = TITLES[cat] ?? 'Collection'
   const subtitle = SUBTITLES[cat] ?? ''
-  const showBack = ['homme-simple', 'homme-coffret', 'femme-simple', 'femme-coffret'].includes(cat)
+  const showBack = ['homme-simple', 'homme-coffret', 'femme-simple', 'femme-coffret', 'pack-simple', 'pack-coffret'].includes(cat)
 
   const goToPage = useCallback((p: number) => {
     setPage(p)

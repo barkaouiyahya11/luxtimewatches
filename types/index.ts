@@ -1,7 +1,7 @@
 export interface Product {
   id: number
   sku: string
-  cat: 'femme' | 'homme'
+  cat: 'femme' | 'homme' | 'pack'
   name: string
   price: number
   originalPrice: number

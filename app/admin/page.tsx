@@ -16,7 +16,7 @@ interface ColorVariant {
 interface ProductForm {
   name: string
   sku: string
-  cat: 'femme' | 'homme'
+  cat: 'femme' | 'homme' | 'pack'
   price: string
   originalPrice: string
   stock: string
@@ -32,8 +32,9 @@ interface ProductForm {
 }
 
 // ── Auto-génération de la référence SKU ─────────────────
-function computeSku(cat: 'femme' | 'homme', coffret: boolean): string {
-  const prefix = `GSH-${cat === 'femme' ? 'F' : 'H'}-${coffret ? 'CP' : 'BS'}`
+function computeSku(cat: 'femme' | 'homme' | 'pack', coffret: boolean): string {
+  const catCode = cat === 'femme' ? 'F' : cat === 'pack' ? 'P' : 'H'
+  const prefix = `GSH-${catCode}-${coffret ? 'CP' : 'BS'}`
   const existing = products
     .filter((p) => p.sku && p.sku.startsWith(prefix))
     .map((p) => parseInt(p.sku.split('-').pop() || '0'))
@@ -334,7 +335,7 @@ ${valid.map((c) => `      { name: '${c.name}', img: '${c.img}' }`).join(',\n')},
       const next = { ...f, [field]: value }
       // Auto-update SKU when cat or coffret changes (only if not manually set)
       if ((field === 'cat' || field === 'coffret') && !skuManual) {
-        const cat = field === 'cat' ? (value as 'femme' | 'homme') : f.cat
+        const cat = field === 'cat' ? (value as 'femme' | 'homme' | 'pack') : f.cat
         const coffret = field === 'coffret' ? (value as boolean) : f.coffret
         next.sku = computeSku(cat, coffret)
       }
@@ -1656,7 +1657,7 @@ ${valid.map((c) => `      { name: '${c.name}', img: '${c.img}' }`).join(',\n')},
                   Catégorie *
                 </label>
                 <div className="flex gap-3">
-                  {(['femme', 'homme'] as const).map((c) => (
+                  {(['femme', 'homme', 'pack'] as const).map((c) => (
                     <button
                       key={c}
                       onClick={() => set('cat', c)}
