@@ -9,13 +9,9 @@ interface Props {
 }
 
 const CARD_SIMPLE = 'https://res.cloudinary.com/dannr2e0c/image/upload/v1777747850/luxtim/e674kdpmxph43lddqqut.jpg'
-const CARD_COFFRET = 'https://res.cloudinary.com/dannr2e0c/image/upload/v1777749218/luxtim/ldz36jecb5ywkphillhw.jpg'
 
 export default function PackSection({ products }: Props) {
   const router = useRouter()
-
-  const simpleCount = products.filter((p) => !p.coffret).length
-  const coffretCount = products.filter((p) => p.coffret).length
 
   return (
     <section id="coll-pack" className="px-4 md:px-8 py-10 max-w-7xl mx-auto">
@@ -34,13 +30,11 @@ export default function PackSection({ products }: Props) {
         </p>
       </div>
 
-      {/* Two category cards */}
-      <div className="grid grid-cols-2 gap-4 md:gap-6">
-
-        {/* BOITE SIMPLE */}
+      {/* Single card */}
+      <div className="max-w-md mx-auto">
         <button
-          onClick={() => router.push('/collection/pack-simple')}
-          className="group text-left flex flex-col"
+          onClick={() => router.push('/collection/pack')}
+          className="group text-left flex flex-col w-full"
         >
           <div
             className="relative w-full overflow-hidden"
@@ -54,10 +48,10 @@ export default function PackSection({ products }: Props) {
           >
             <Image
               src={CARD_SIMPLE}
-              alt="Pack Boite Simple"
+              alt="Pack Femme & Homme"
               fill
               quality={85}
-              sizes="(max-width: 768px) 50vw, 40vw"
+              sizes="(max-width: 768px) 100vw, 50vw"
               className="object-cover transition-transform duration-700 group-hover:scale-105"
             />
             <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-500 pointer-events-none" />
@@ -76,47 +70,6 @@ export default function PackSection({ products }: Props) {
             </div>
           </div>
         </button>
-
-        {/* AVEC COFFRET */}
-        <button
-          onClick={() => router.push('/collection/pack-coffret')}
-          className="group text-left flex flex-col"
-        >
-          <div
-            className="relative w-full overflow-hidden"
-            style={{
-              aspectRatio: '1/1',
-              borderRadius: '12px',
-              background: '#F9F8F6',
-              border: '1px solid rgba(0,0,0,0.03)',
-              boxShadow: '0 4px 16px rgba(0,0,0,0.04)',
-            }}
-          >
-            <Image
-              src={CARD_COFFRET}
-              alt="Pack Avec Coffret"
-              fill
-              quality={85}
-              sizes="(max-width: 768px) 50vw, 40vw"
-              className="object-cover transition-transform duration-700 group-hover:scale-105"
-            />
-            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-500 pointer-events-none" />
-          </div>
-          <div className="pt-4 px-1">
-            <p className="text-[9px] md:text-[10px] font-black uppercase tracking-[0.25em] text-gray-400 mb-1">
-              Pack Femme & Homme
-            </p>
-            <h3 className="text-base md:text-xl font-black uppercase tracking-wider text-black leading-tight">
-              Avec Coffret
-            </h3>
-            <div className="mt-3">
-              <span className="inline-block text-[10px] md:text-xs font-black uppercase tracking-widest border border-[#C5A059] text-[#C5A059] px-4 py-2 rounded-full group-hover:bg-[#C5A059] group-hover:text-black transition-all duration-300">
-                Voir →
-              </span>
-            </div>
-          </div>
-        </button>
-
       </div>
     </section>
   )
