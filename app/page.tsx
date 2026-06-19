@@ -7,7 +7,7 @@ import Footer from '@/components/Footer'
 import HommeSection from '@/components/HommeSection'
 import FemmeSection from '@/components/FemmeSection'
 
-import ShowcaseSection from '@/components/ShowcaseSection'
+
 import { approvedReviews } from '@/data/reviews'
 import { products } from '@/data/products'
 
@@ -20,9 +20,6 @@ export default function HomePage() {
 
       {/* ── Collection Homme ── */}
       <HommeSection products={homme} />
-
-      {/* ── Showcase avant Femme ── */}
-      <ShowcaseSection />
 
       {/* ── Collection Femme ── */}
       <FemmeSection products={femme} />
