@@ -4,7 +4,7 @@ import Image from 'next/image'
 
 const BANNER_IMAGES = [
   {
-    src: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778605612/luxtim/iqsbse8qwyvfzon98le4.jpg',
+    src: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1782134801/luxtim/javrdav0giwelrs0zwfw.jpg',
     alt: 'GUSHKIN Collection 1',
   },
   {
