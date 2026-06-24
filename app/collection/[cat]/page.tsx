@@ -66,11 +66,12 @@ export default function CollectionPage() {
 
   const goToPage = useCallback((p: number) => {
     setPage(p)
-    // Met à jour l'URL sans navigation (pas de reload, pas de saut)
     const url = new URL(window.location.href)
     url.searchParams.set('page', String(p))
     window.history.replaceState({}, '', url.pathname + url.search)
-    window.scrollTo({ top: 0, behavior: 'smooth' })
+    // Scroll immédiat vers le haut — compatible mobile iOS/Android
+    document.documentElement.scrollTop = 0
+    document.body.scrollTop = 0
   }, [])
 
   return (
