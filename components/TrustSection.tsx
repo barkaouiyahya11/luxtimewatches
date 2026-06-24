@@ -4,9 +4,9 @@ import { useEffect, useRef, useState } from 'react'
 import { useScrollReveal } from '@/hooks/useScrollReveal'
 
 const STATS = [
-  { end: 500, suffix: '+', label: 'Commandes livrées' },
+  { end: 500, suffix: '+', label: 'Clients satisfaits' },
   { end: 48, suffix: 'h', label: 'Livraison max' },
-  { end: 100, suffix: '%', label: 'Paiement sécurisé' },
+  { end: 100, suffix: '%', label: 'Satisfaction garantie' },
 ]
 
 const TRUST_ITEMS = [
