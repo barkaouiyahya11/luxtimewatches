@@ -710,7 +710,7 @@ export const products: Product[] = [
     gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1782300351/luxtim/amnmcy5hexqqehqdwoxh.jpg',
     detailImgs: [
       'https://res.cloudinary.com/dannr2e0c/image/upload/v1782300354/luxtim/dasbusjiintvnlguckiy.jpg',
-      'https://res.cloudinary.com/dannr2e0c/image/upload/v1782300055/luxtim/blhc4bystsnjw4jayq7z.jpg',
+      'https://res.cloudinary.com/dannr2e0c/image/upload/v1782300761/luxtim/yhzigk8cov4asbwv0vfz.jpg',
     ],
     coffret: true,
   },
