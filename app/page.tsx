@@ -6,6 +6,7 @@ import ReviewsSection from '@/components/ReviewsSection'
 import Footer from '@/components/Footer'
 import HommeSection from '@/components/HommeSection'
 import FemmeSection from '@/components/FemmeSection'
+import ScrollStorySection from '@/components/ScrollStorySection'
 
 
 import { approvedReviews } from '@/data/reviews'
@@ -17,6 +18,9 @@ export default function HomePage() {
   return (
     <>
       <Hero />
+
+      {/* ── Scroll Story (effet Rolex) ── */}
+      <ScrollStorySection />
 
       {/* ── Collection Homme ── */}
       <HommeSection products={homme} />
