@@ -697,4 +697,21 @@ export const products: Product[] = [
       'https://res.cloudinary.com/dannr2e0c/image/upload/v1781291454/luxtim/evoaulzren50jv9n13rv.jpg',
     ],
   },
+  {
+    id: 165,
+    sku: 'GSH-H-CP-06',
+    cat: 'homme',
+    name: 'PATEK PHILIPPE NAUTILUS AVEC PACKAGING HOMME',
+    price: 350,
+    originalPrice: 380,
+    stock: 0,
+    rating: 4.9,
+    reviews: 0,
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1782300048/luxtim/xxkzr4qqttinzzo50dfs.jpg',
+    detailImgs: [
+      'https://res.cloudinary.com/dannr2e0c/image/upload/v1782300051/luxtim/iuoxfxph5cuxag5pjqxg.jpg',
+      'https://res.cloudinary.com/dannr2e0c/image/upload/v1782300055/luxtim/blhc4bystsnjw4jayq7z.jpg',
+    ],
+    coffret: true,
+  },
 ]
