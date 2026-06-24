@@ -707,9 +707,9 @@ export const products: Product[] = [
     stock: 0,
     rating: 4.9,
     reviews: 0,
-    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1782300048/luxtim/xxkzr4qqttinzzo50dfs.jpg',
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1782300351/luxtim/amnmcy5hexqqehqdwoxh.jpg',
     detailImgs: [
-      'https://res.cloudinary.com/dannr2e0c/image/upload/v1782300051/luxtim/iuoxfxph5cuxag5pjqxg.jpg',
+      'https://res.cloudinary.com/dannr2e0c/image/upload/v1782300354/luxtim/dasbusjiintvnlguckiy.jpg',
       'https://res.cloudinary.com/dannr2e0c/image/upload/v1782300055/luxtim/blhc4bystsnjw4jayq7z.jpg',
     ],
     coffret: true,
