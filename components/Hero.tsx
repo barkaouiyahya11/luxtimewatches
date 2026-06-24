@@ -8,16 +8,36 @@ export default function Hero() {
   const [visible, setVisible] = useState(false)
   const videoRef = useRef<HTMLVideoElement>(null)
   const parallaxRef = useRef<HTMLDivElement>(null)
+  const textRef = useRef<HTMLDivElement>(null)
+  const scrollLineRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const t = setTimeout(() => setVisible(true), 200)
     return () => clearTimeout(t)
   }, [])
 
+  // ── Parallax : fond + texte + indicateur scroll ──
   useEffect(() => {
     const handleScroll = () => {
-      if (!parallaxRef.current) return
-      parallaxRef.current.style.transform = `translateY(${window.scrollY * 0.22}px)`
+      const scrolled = window.scrollY
+
+      // Fond vidéo — bouge à 40% de la vitesse (comme Rolex)
+      if (parallaxRef.current) {
+        parallaxRef.current.style.transform = `translateY(${scrolled * 0.40}px)`
+      }
+
+      // Texte — disparaît et monte légèrement
+      if (textRef.current) {
+        const opacity = Math.max(0, 1 - scrolled / 350)
+        const translateY = -scrolled * 0.18
+        textRef.current.style.opacity = String(opacity)
+        textRef.current.style.transform = `translateY(${translateY}px)`
+      }
+
+      // Indicateur scroll — disparaît vite
+      if (scrollLineRef.current) {
+        scrollLineRef.current.style.opacity = String(Math.max(0, 1 - scrolled / 120))
+      }
     }
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
@@ -28,16 +48,11 @@ export default function Hero() {
     if (!video) return
     video.muted = true
     video.play().catch(() => {})
-
-    // Reprend la lecture si le navigateur la met en pause (ex: TikTok browser)
     const onVisibility = () => {
       if (!document.hidden) video.play().catch(() => {})
     }
     document.addEventListener('visibilitychange', onVisibility)
-
-    return () => {
-      document.removeEventListener('visibilitychange', onVisibility)
-    }
+    return () => document.removeEventListener('visibilitychange', onVisibility)
   }, [])
 
   return (
@@ -58,7 +73,7 @@ export default function Hero() {
         ref={parallaxRef}
         style={{
           position: 'absolute',
-          inset: '-12% 0 -12% 0',
+          inset: '-18% 0 -18% 0',
           willChange: 'transform',
         }}
       >
@@ -119,21 +134,27 @@ export default function Hero() {
         `,
       }} />
 
-      {/* ── Bloc texte : positionné en bas-gauche ── */}
-      <div style={{
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-        zIndex: 2,
-        display: 'flex',
-        alignItems: 'center',
-        pointerEvents: 'none',
-        opacity: visible ? 1 : 0,
-        transform: visible ? 'translateY(0px)' : 'translateY(18px)',
-        transition: 'opacity 1.3s cubic-bezier(0.22,1,0.36,1), transform 1.3s cubic-bezier(0.22,1,0.36,1)',
-      }}>
+      {/* ── Bloc texte avec parallax inversé ── */}
+      <div
+        ref={textRef}
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          zIndex: 2,
+          display: 'flex',
+          alignItems: 'center',
+          pointerEvents: 'none',
+          opacity: visible ? 1 : 0,
+          transform: visible ? 'translateY(0px)' : 'translateY(18px)',
+          transition: visible
+            ? 'opacity 1.3s cubic-bezier(0.22,1,0.36,1), transform 1.3s cubic-bezier(0.22,1,0.36,1)'
+            : 'none',
+          willChange: 'transform, opacity',
+        }}
+      >
         <div style={{
           paddingLeft: 'clamp(22px, 7vw, 64px)',
           paddingRight: 'clamp(16px, 4vw, 32px)',
@@ -147,12 +168,7 @@ export default function Hero() {
             gap: '8px',
             marginBottom: 'clamp(18px, 5vw, 32px)',
           }}>
-            <div style={{
-              width: 'clamp(18px, 4vw, 30px)',
-              height: '0.5px',
-              background: '#C8A96B',
-              opacity: 0.7,
-            }} />
+            <div style={{ width: 'clamp(18px, 4vw, 30px)', height: '0.5px', background: '#C8A96B', opacity: 0.7 }} />
             <p style={{
               fontFamily: 'var(--font-inter), sans-serif',
               fontSize: 'clamp(6.5px, 1.6vw, 9px)',
@@ -165,15 +181,10 @@ export default function Hero() {
             }}>
               Collection Exclusive 2026 · Maroc
             </p>
-            <div style={{
-              width: 'clamp(18px, 4vw, 30px)',
-              height: '0.5px',
-              background: '#C8A96B',
-              opacity: 0.7,
-            }} />
+            <div style={{ width: 'clamp(18px, 4vw, 30px)', height: '0.5px', background: '#C8A96B', opacity: 0.7 }} />
           </div>
 
-          {/* Grand titre — 3 lignes sur mobile */}
+          {/* Grand titre */}
           <h1 style={{
             fontFamily: 'var(--font-playfair), serif',
             fontSize: 'clamp(2.1rem, 7.8vw, 5rem)',
@@ -192,7 +203,6 @@ export default function Hero() {
             fontFamily: 'var(--font-playfair), serif',
             fontSize: 'clamp(2.1rem, 7.8vw, 5rem)',
             fontWeight: 800,
-            fontStyle: 'normal',
             color: '#F5F2ED',
             lineHeight: 1.06,
             letterSpacing: '-0.015em',
@@ -206,7 +216,6 @@ export default function Hero() {
             fontFamily: 'var(--font-playfair), serif',
             fontSize: 'clamp(2.1rem, 7.8vw, 5rem)',
             fontWeight: 800,
-            fontStyle: 'normal',
             color: '#F5F2ED',
             lineHeight: 1.06,
             letterSpacing: '-0.015em',
@@ -217,7 +226,6 @@ export default function Hero() {
             poignet
           </h1>
 
-          {/* Séparateur doré très fin */}
           <div style={{
             width: 'clamp(28px, 6vw, 44px)',
             height: '0.5px',
@@ -226,7 +234,6 @@ export default function Hero() {
             opacity: 0.75,
           }} />
 
-          {/* Script Great Vibes — discret, raffiné */}
           <p style={{
             fontFamily: 'var(--font-great-vibes), cursive',
             fontSize: 'clamp(1.3rem, 4.8vw, 2.6rem)',
@@ -243,6 +250,41 @@ export default function Hero() {
         </div>
       </div>
 
+      {/* ── Indicateur scroll (ligne animée) — comme Rolex ── */}
+      <div
+        ref={scrollLineRef}
+        style={{
+          position: 'absolute',
+          bottom: '28px',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          zIndex: 3,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          gap: '8px',
+          opacity: visible ? 1 : 0,
+          transition: 'opacity 1.5s ease 1s',
+          pointerEvents: 'none',
+        }}
+      >
+        <p style={{
+          fontSize: '8px',
+          letterSpacing: '0.3em',
+          textTransform: 'uppercase',
+          color: 'rgba(200,169,107,0.7)',
+          fontWeight: 500,
+          margin: 0,
+        }}>
+          Scroll
+        </p>
+        <div style={{
+          width: '1px',
+          height: '40px',
+          background: 'linear-gradient(to bottom, #C8A96B, transparent)',
+          animation: 'scrollLine 1.8s ease-in-out infinite',
+        }} />
+      </div>
 
     </section>
   )
