@@ -7,10 +7,20 @@ const VIDEO_URL = 'https://res.cloudinary.com/dannr2e0c/video/upload/v1778694272
 export default function Hero() {
   const [visible, setVisible] = useState(false)
   const videoRef = useRef<HTMLVideoElement>(null)
+  const parallaxRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const t = setTimeout(() => setVisible(true), 200)
     return () => clearTimeout(t)
+  }, [])
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!parallaxRef.current) return
+      parallaxRef.current.style.transform = `translateY(${window.scrollY * 0.22}px)`
+    }
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
   useEffect(() => {
@@ -43,28 +53,37 @@ export default function Hero() {
       isolation: 'isolate',
     }}>
 
-      {/* ── Vidéo + Ken Burns ── */}
-      <video
-        ref={videoRef}
-        autoPlay
-        muted
-        loop
-        playsInline
-        disablePictureInPicture
-        preload="auto"
-        poster="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-        className="hero-video-kenburns"
+      {/* ── Vidéo + Ken Burns + Parallax ── */}
+      <div
+        ref={parallaxRef}
         style={{
           position: 'absolute',
-          inset: 0,
-          width: '100%',
-          height: '100%',
-          objectFit: 'cover',
-          objectPosition: 'center 20%',
-          transformOrigin: 'center center',
+          inset: '-12% 0 -12% 0',
+          willChange: 'transform',
         }}
-        src={VIDEO_URL}
-      />
+      >
+        <video
+          ref={videoRef}
+          autoPlay
+          muted
+          loop
+          playsInline
+          disablePictureInPicture
+          preload="auto"
+          poster="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+          className="hero-video-kenburns"
+          style={{
+            position: 'absolute',
+            inset: 0,
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            objectPosition: 'center 20%',
+            transformOrigin: 'center center',
+          }}
+          src={VIDEO_URL}
+        />
+      </div>
 
       {/* ── Overlay transparent pour bloquer les contrôles TikTok browser ── */}
       <div style={{

@@ -278,13 +278,76 @@ body {
 .scroll-reveal {
   opacity: 0;
   transform: translateY(28px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transition: opacity 0.75s cubic-bezier(0.22,1,0.36,1), transform 0.75s cubic-bezier(0.22,1,0.36,1);
 }
 
 .scroll-reveal.visible {
   opacity: 1;
   transform: translateY(0);
 }
+
+/* ── Stagger produits dans la grille ── */
+.grid > .scroll-reveal:nth-child(4n+1) { transition-delay: 0.00s; }
+.grid > .scroll-reveal:nth-child(4n+2) { transition-delay: 0.08s; }
+.grid > .scroll-reveal:nth-child(4n+3) { transition-delay: 0.16s; }
+.grid > .scroll-reveal:nth-child(4n+4) { transition-delay: 0.24s; }
+
+/* ── Ligne dorée animée ── */
+.gold-line-anim {
+  transform-origin: left center;
+  transform: scaleX(0);
+  opacity: 0;
+  transition: transform 0.9s cubic-bezier(0.22,1,0.36,1) 0.3s, opacity 0.4s ease;
+}
+.gold-line-anim.visible {
+  transform: scaleX(1);
+  opacity: 1;
+}
+
+/* ── Titre révélé (slide up) ── */
+.title-reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.8s cubic-bezier(0.22,1,0.36,1), transform 0.8s cubic-bezier(0.22,1,0.36,1);
+}
+.title-reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.title-reveal-d1 { transition-delay: 0.12s; }
+.title-reveal-d2 { transition-delay: 0.24s; }
+.title-reveal-d3 { transition-delay: 0.36s; }
+.title-reveal-d4 { transition-delay: 0.48s; }
+
+/* ── Cartes de section (HommeSection / FemmeSection) ── */
+.section-card-a {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.85s cubic-bezier(0.22,1,0.36,1), transform 0.85s cubic-bezier(0.22,1,0.36,1);
+}
+.section-card-a.visible { opacity: 1; transform: translateY(0); }
+.section-card-a.delay-1 { transition-delay: 0.18s; }
+
+/* ── Hover zoom image produit (avec imgScale) ── */
+.img-cover {
+  transform: scale(var(--img-scale, 1));
+  transform-origin: var(--img-origin, center);
+  transition: transform 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+}
+.product-card:hover .img-cover {
+  transform: scale(calc(var(--img-scale, 1) * 1.08)) !important;
+}
+
+/* ── Stats compteur ── */
+.stat-item {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1);
+}
+.stat-item.visible { opacity: 1; transform: translateY(0); }
+.stat-item:nth-child(1) { transition-delay: 0.00s; }
+.stat-item:nth-child(2) { transition-delay: 0.12s; }
+.stat-item:nth-child(3) { transition-delay: 0.24s; }
 
 /* ===== LOADER SPINNER ===== */
 @keyframes spin {

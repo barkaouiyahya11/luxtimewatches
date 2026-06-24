@@ -16,7 +16,9 @@ export function useScrollReveal(deps: unknown[] = []) {
       { threshold: 0.1 }
     )
 
-    const elements = document.querySelectorAll('.scroll-reveal')
+    const elements = document.querySelectorAll(
+      '.scroll-reveal, .gold-line-anim, .title-reveal, .section-card-a, .stat-item'
+    )
     elements.forEach((el) => observer.observe(el))
 
     return () => observer.disconnect()

@@ -3,6 +3,7 @@
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { Product } from '@/types'
+import { useScrollReveal } from '@/hooks/useScrollReveal'
 
 interface Props {
   products: Product[]
@@ -13,23 +14,21 @@ const CARD_COFFRET = 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778590
 
 export default function FemmeSection({ products }: Props) {
   const router = useRouter()
-
-  const simpleCount = products.filter((p) => !p.coffret).length
-  const coffretCount = products.filter((p) => p.coffret).length
+  useScrollReveal()
 
   return (
     <section id="coll-femme" className="px-4 md:px-8 py-10 max-w-7xl mx-auto">
 
       {/* Section title */}
       <div className="flex flex-col items-center justify-center mb-12 text-center">
-        <p style={{ fontSize: '10px', letterSpacing: '0.35em', color: '#C6A769', fontWeight: 600, textTransform: 'uppercase', marginBottom: '10px' }}>
+        <p className="title-reveal" style={{ fontSize: '10px', letterSpacing: '0.35em', color: '#C6A769', fontWeight: 600, textTransform: 'uppercase', marginBottom: '10px' }}>
           Élégance Féminine
         </p>
-        <h2 style={{ fontFamily: 'var(--font-playfair), serif', fontSize: 'clamp(1.6rem, 4vw, 2.8rem)', fontWeight: 700, color: '#1A1A1A', letterSpacing: '0.08em', textTransform: 'uppercase', lineHeight: 1.15 }}>
+        <h2 className="title-reveal title-reveal-d1" style={{ fontFamily: 'var(--font-playfair), serif', fontSize: 'clamp(1.6rem, 4vw, 2.8rem)', fontWeight: 700, color: '#1A1A1A', letterSpacing: '0.08em', textTransform: 'uppercase', lineHeight: 1.15 }}>
           Collection Femme
         </h2>
-        <div style={{ width: '40px', height: '1px', background: '#C6A769', margin: '14px auto 0' }} />
-        <p style={{ fontSize: '12px', color: '#6E6E6E', marginTop: '10px', letterSpacing: '0.05em' }}>
+        <div className="gold-line-anim" style={{ width: '40px', height: '1px', background: '#C6A769', margin: '14px auto 0' }} />
+        <p className="title-reveal title-reveal-d2" style={{ fontSize: '12px', color: '#6E6E6E', marginTop: '10px', letterSpacing: '0.05em' }}>
           Raffinement et féminité à chaque instant.
         </p>
       </div>
@@ -40,7 +39,7 @@ export default function FemmeSection({ products }: Props) {
         {/* BOITE SIMPLE */}
         <button
           onClick={() => router.push('/collection/femme-simple')}
-          className="group text-left flex flex-col"
+          className="section-card-a group text-left flex flex-col"
         >
           <div
             className="relative w-full overflow-hidden"
@@ -82,7 +81,7 @@ export default function FemmeSection({ products }: Props) {
         {/* AVEC COFFRET */}
         <button
           onClick={() => router.push('/collection/femme-coffret')}
-          className="group text-left flex flex-col"
+          className="section-card-a delay-1 group text-left flex flex-col"
         >
           <div
             className="relative w-full overflow-hidden"

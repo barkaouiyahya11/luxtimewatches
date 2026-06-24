@@ -37,13 +37,13 @@ export default function ProductCard({ product }: Props) {
         <img
           src={product.gridImg}
           alt={product.name}
-          className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+          className="img-cover w-full h-full object-cover"
           style={{
             objectPosition: product.imgPosition || 'center',
-            transform: `scale(${product.imgScale || 1})`,
-            transformOrigin: product.imgPosition || 'center',
             borderRadius: '0px',
-          }}
+            '--img-scale': String(product.imgScale || 1),
+            '--img-origin': product.imgPosition || 'center',
+          } as React.CSSProperties}
           loading="lazy"
           decoding="async"
         />
