@@ -77,18 +77,10 @@ export default function TrustSection() {
     <section style={{ background: '#FAFAFA', borderTop: '1px solid #E5E5E5', borderBottom: '1px solid #E5E5E5', padding: '72px 24px' }}>
       <div style={{ maxWidth: '900px', margin: '0 auto', textAlign: 'center' }}>
 
-        {/* Title */}
-        <p className="title-reveal" style={{ fontSize: '10px', letterSpacing: '0.35em', color: '#C6A769', fontWeight: 600, textTransform: 'uppercase', marginBottom: '10px' }}>
-          Notre Engagement
-        </p>
-        <h2 className="title-reveal title-reveal-d1" style={{ fontFamily: 'var(--font-playfair), serif', fontSize: 'clamp(1.4rem, 3vw, 2rem)', fontWeight: 700, color: '#1A1A1A', letterSpacing: '0.06em', textTransform: 'uppercase', marginBottom: '48px' }}>
-          L&apos;Excellence Lux Time
-        </h2>
-
-        {/* Stats compteurs */}
+        {/* Stats compteurs — EN HAUT */}
         <div
           ref={statsRef}
-          style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '24px', marginBottom: '56px' }}
+          style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '24px', marginBottom: '48px' }}
         >
           {STATS.map((s) => (
             <div key={s.label} className="stat-item" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px' }}>
@@ -107,6 +99,14 @@ export default function TrustSection() {
             </div>
           ))}
         </div>
+
+        {/* Title — après les stats */}
+        <p className="title-reveal" style={{ fontSize: '10px', letterSpacing: '0.35em', color: '#C6A769', fontWeight: 600, textTransform: 'uppercase', marginBottom: '10px' }}>
+          Notre Engagement
+        </p>
+        <h2 className="title-reveal title-reveal-d1" style={{ fontFamily: 'var(--font-playfair), serif', fontSize: 'clamp(1.4rem, 3vw, 2rem)', fontWeight: 700, color: '#1A1A1A', letterSpacing: '0.06em', textTransform: 'uppercase', marginBottom: '40px' }}>
+          L&apos;Excellence Lux Time
+        </h2>
 
         {/* Divider */}
         <div className="gold-line-anim" style={{ width: '40px', height: '1px', background: '#C6A769', margin: '0 auto 48px' }} />
