@@ -350,7 +350,7 @@ export const products: Product[] = [
     sku: 'GSH-F-CP-03',
     cat: 'femme',
     name: 'ROLEX TWO-TONE FEMME AVEC PACKAGING',
-    price: 370,
+    price: 350,
     originalPrice: 370,
     stock: 0,
     rating: 4.9,
@@ -361,7 +361,6 @@ export const products: Product[] = [
     ],
     coffret: true,
     imgScale: 1.1,
-    boxColors: ['BOITE VERTE', 'BOITE ROUGE'],
   },
   {
     id: 140,
