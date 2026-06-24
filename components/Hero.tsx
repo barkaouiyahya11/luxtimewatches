@@ -16,22 +16,16 @@ export default function Hero() {
     return () => clearTimeout(t)
   }, [])
 
-  // ── Parallax : fond + texte + indicateur scroll ──
+  // ── Parallax : texte + indicateur scroll ──
   useEffect(() => {
     const handleScroll = () => {
       const scrolled = window.scrollY
 
-      // Fond vidéo — bouge à 40% de la vitesse (comme Rolex)
-      if (parallaxRef.current) {
-        parallaxRef.current.style.transform = `translateY(${scrolled * 0.40}px)`
-      }
-
       // Texte — disparaît et monte légèrement
       if (textRef.current) {
         const opacity = Math.max(0, 1 - scrolled / 350)
-        const translateY = -scrolled * 0.18
         textRef.current.style.opacity = String(opacity)
-        textRef.current.style.transform = `translateY(${translateY}px)`
+        textRef.current.style.transform = `translateY(${-scrolled * 0.15}px)`
       }
 
       // Indicateur scroll — disparaît vite
@@ -68,37 +62,28 @@ export default function Hero() {
       isolation: 'isolate',
     }}>
 
-      {/* ── Vidéo + Ken Burns + Parallax ── */}
-      <div
-        ref={parallaxRef}
+      {/* ── Vidéo + Ken Burns ── */}
+      <video
+        ref={videoRef}
+        autoPlay
+        muted
+        loop
+        playsInline
+        disablePictureInPicture
+        preload="auto"
+        poster="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+        className="hero-video-kenburns"
         style={{
           position: 'absolute',
-          inset: '-18% 0 -18% 0',
-          willChange: 'transform',
+          inset: 0,
+          width: '100%',
+          height: '100%',
+          objectFit: 'cover',
+          objectPosition: 'center 20%',
+          transformOrigin: 'center center',
         }}
-      >
-        <video
-          ref={videoRef}
-          autoPlay
-          muted
-          loop
-          playsInline
-          disablePictureInPicture
-          preload="auto"
-          poster="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-          className="hero-video-kenburns"
-          style={{
-            position: 'absolute',
-            inset: 0,
-            width: '100%',
-            height: '100%',
-            objectFit: 'cover',
-            objectPosition: 'center 20%',
-            transformOrigin: 'center center',
-          }}
-          src={VIDEO_URL}
-        />
-      </div>
+        src={VIDEO_URL}
+      />
 
       {/* ── Overlay transparent pour bloquer les contrôles TikTok browser ── */}
       <div style={{
