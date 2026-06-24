@@ -714,4 +714,20 @@ export const products: Product[] = [
     ],
     coffret: true,
   },
+  {
+    id: 166,
+    sku: 'GSH-H-CP-07',
+    cat: 'homme',
+    name: 'ROLEX SUBMARINER AVEC PACKAGING HOMME',
+    price: 380,
+    originalPrice: 380,
+    stock: 0,
+    rating: 4.9,
+    reviews: 0,
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1782300406/luxtim/p9wtqs6jrsuuflsjmcmc.jpg',
+    detailImgs: [
+      'https://res.cloudinary.com/dannr2e0c/image/upload/v1782300435/luxtim/wfs3jvfkgxgauutyrqye.jpg',
+    ],
+    coffret: true,
+  },
 ]
