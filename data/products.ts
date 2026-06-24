@@ -745,4 +745,20 @@ export const products: Product[] = [
     ],
     coffret: true,
   },
+  {
+    id: 168,
+    sku: 'GSH-F-CP-04',
+    cat: 'femme',
+    name: 'ROLEX TWO-TONE FEMME AVEC PACKAGING',
+    price: 348,
+    originalPrice: 348,
+    stock: 0,
+    rating: 4.9,
+    reviews: 0,
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1782301283/luxtim/xzwvzfvj97m7x2khr2es.jpg',
+    detailImgs: [
+      'https://res.cloudinary.com/dannr2e0c/image/upload/v1782301288/luxtim/sj82sdepb93cltzugeqr.jpg',
+    ],
+    coffret: true,
+  },
 ]
