@@ -134,7 +134,7 @@ export default function ScrollStorySection() {
 
   return (
     /* ── Conteneur 400vh : crée l'espace de scroll ── */
-    <div ref={wrapRef} style={{ height: '400vh', position: 'relative' }}>
+    <div ref={wrapRef} style={{ height: '250vh', position: 'relative' }}>
 
       {/* ── Sticky : reste collé pendant tout le scroll ── */}
       <div
