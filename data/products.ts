@@ -400,16 +400,15 @@ export const products: Product[] = [
     id: 141,
     sku: 'GSH-F-BS-08',
     cat: 'femme',
-    name: 'ROLEX DAY-DATE FEMME BOITE SIMPLE ',
+    name: 'ROLEX DAY-DATE FEMME BOITE SIMPLE',
     price: 180,
     originalPrice: 180,
     stock: 0,
     rating: 4.9,
     reviews: 0,
-    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778252855/luxtim/zjrugdjzijyn3sxfwcvw.jpg',
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1785078123/luxtim/v5ydn69epcmceiact1j7.jpg',
     detailImgs: [
     ],
-    imgPosition: 'bottom',
   },
   // ðŸŸ¢ verte
   {
