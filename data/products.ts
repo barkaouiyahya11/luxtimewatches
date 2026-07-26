@@ -563,21 +563,6 @@ export const products: Product[] = [
     ],
   },
   {
-    id: 156,
-    sku: 'GSH-H-BS-13',
-    cat: 'homme',
-    name: 'ROLEX GMT-MASTER II HOMME BOITE SIMPLE',
-    price: 230,
-    originalPrice: 270,
-    stock: 0,
-    rating: 4.9,
-    reviews: 0,
-    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1781122373/luxtim/tvxe9qx3dzubimbioytv.jpg',
-    detailImgs: [
-      'https://res.cloudinary.com/dannr2e0c/image/upload/v1781122407/luxtim/zu0xsv0irewe5ztpznot.jpg',
-    ],
-  },
-  {
     id: 157,
     sku: 'GSH-H-BS-14',
     cat: 'homme',
@@ -590,21 +575,6 @@ export const products: Product[] = [
     gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1780844290/luxtim/frgdrkebmbj22qyua66d.jpg',
     detailImgs: [
       'https://res.cloudinary.com/dannr2e0c/image/upload/v1780844348/luxtim/vzumhks4u98r2ibxfav1.jpg',
-    ],
-  },
-  {
-    id: 158,
-    sku: 'GSH-H-BS-15',
-    cat: 'homme',
-    name: 'ROLEX ARABIC DIAL HOMME BOITE SIMPLE',
-    price: 230,
-    originalPrice: 250,
-    stock: 0,
-    rating: 4.9,
-    reviews: 0,
-    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1780848558/luxtim/obn0mn8dzoibjmvfupvh.jpg',
-    detailImgs: [
-      'https://res.cloudinary.com/dannr2e0c/image/upload/v1780848838/luxtim/x3zrkdjefgi7dxndzovh.jpg',
     ],
   },
   {
