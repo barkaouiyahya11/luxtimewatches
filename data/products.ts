@@ -566,6 +566,7 @@ export const products: Product[] = [
     detailImgs: [
       'https://res.cloudinary.com/dannr2e0c/image/upload/v1781291454/luxtim/evoaulzren50jv9n13rv.jpg',
     ],
+    imgScale: 1.1,
   },
   {
     id: 154,
