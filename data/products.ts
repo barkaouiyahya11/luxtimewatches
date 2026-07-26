@@ -394,7 +394,6 @@ export const products: Product[] = [
     gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1785075177/luxtim/zwfmpsp7lsmhhsjgswxb.jpg',
     detailImgs: [
     ],
-    imgPosition: 'bottom',
   },
   // ðŸŸ¢ verte
   {
