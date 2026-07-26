@@ -375,10 +375,9 @@ export const products: Product[] = [
     stock: 0,
     rating: 4.9,
     reviews: 0,
-    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778251485/luxtim/x1arqp8az9mrcqtdaobq.jpg',
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1785079488/luxtim/wxymqyz6asq7d3hzkhns.jpg',
     detailImgs: [
     ],
-    imgPosition: 'bottom',
   },
   // ðŸ”´ rouge
   {
