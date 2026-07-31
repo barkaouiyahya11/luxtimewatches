@@ -414,16 +414,16 @@ export const products: Product[] = [
     id: 142,
     sku: 'GSH-F-BS-09',
     cat: 'femme',
-    name: 'ROLEX TWO-TONE FEMME BOITE SIMPLE ',
+    name: 'ROLEX TWO-TONE FEMME BOITE SIMPLE',
     price: 180,
     originalPrice: 180,
     stock: 0,
     rating: 4.9,
     reviews: 0,
-    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778252967/luxtim/cyfbjwv9qfg4r1dqswpk.jpg',
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1785514247/luxtim/zuph2aqe7qxvcipyvydr.jpg',
     detailImgs: [
+      'https://res.cloudinary.com/dannr2e0c/image/upload/v1785514284/luxtim/ruayekdwk0b7qvit83ap.jpg',
     ],
-    imgPosition: 'bottom',
   },
   // ðŸ”´ rouge
   {
