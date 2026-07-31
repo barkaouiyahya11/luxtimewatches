@@ -690,4 +690,20 @@ export const products: Product[] = [
     ],
     coffret: true,
   },
+  {
+    id: 169,
+    sku: 'GSH-H-BS-21',
+    cat: 'homme',
+    name: 'Cartier Black Silicone Homme ',
+    price: 200,
+    originalPrice: 200,
+    stock: 0,
+    rating: 4.9,
+    reviews: 0,
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1785512733/luxtim/ugzkep8hkxch15nopnem.jpg',
+    detailImgs: [
+      'https://res.cloudinary.com/dannr2e0c/image/upload/v1785512713/luxtim/xrnwhvio5ase80fvkvi4.jpg',
+      'https://res.cloudinary.com/dannr2e0c/image/upload/v1785512729/luxtim/kvyr1qewk9xwdqdccpxf.jpg',
+    ],
+  },
 ]
