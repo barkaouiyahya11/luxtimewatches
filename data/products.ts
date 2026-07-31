@@ -24,21 +24,6 @@ export const products: Product[] = [
     ],
   },
   {
-    id: 115,
-    sku: 'GSH-F-BS-05',
-    cat: 'femme',
-    name: 'MGQ CHRONOGRAPHE FEMME BOITE SIMPLE',
-    price: 149,
-    originalPrice: 170,
-    stock: 0,
-    rating: 4.9,
-    reviews: 0,
-    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778093504/luxtim/e3b5ib7hv4ndzret0x29.jpg',
-    detailImgs: [
-    ],
-    imgPosition: 'bottom',
-  },
-  {
     id: 118,
     sku: 'GSH-H-CP-01',
     cat: 'homme',
