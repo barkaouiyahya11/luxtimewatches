@@ -377,6 +377,7 @@ export const products: Product[] = [
     reviews: 0,
     gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1785079488/luxtim/wxymqyz6asq7d3hzkhns.jpg',
     detailImgs: [
+      'https://res.cloudinary.com/dannr2e0c/image/upload/v1785515414/luxtim/hrjstez6dhbjspm6uzvz.jpg',
     ],
   },
   // ðŸ”´ rouge
