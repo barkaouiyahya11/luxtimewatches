@@ -9,36 +9,6 @@
 // ============================================================
 export const products: Product[] = [
   {
-    id: 110,
-    sku: 'GSH-F-BS-01',
-    cat: 'femme',
-    name: ' EMPORIO ARMANI BOITE SIMPLE FEMME ',
-    price: 149,
-    originalPrice: 149,
-    stock: 0,
-    rating: 4.9,
-    reviews: 0,
-    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778091084/luxtim/sk3vageigk5oqq8jqj4a.jpg',
-    detailImgs: [
-    ],
-    imgPosition: 'bottom',
-  },
-  {
-    id: 111,
-    sku: 'GSH-F-BS-02',
-    cat: 'femme',
-    name: ' DANIEL WELLINGTON BOITE SIMPLE FEMME ',
-    price: 149,
-    originalPrice: 170,
-    stock: 0,
-    rating: 4.9,
-    reviews: 0,
-    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778092258/luxtim/hy7qyqzyk9s0lec5owd6.jpg',
-    detailImgs: [
-    ],
-    imgPosition: 'bottom',
-  },
-  {
     id: 112,
     sku: 'GSH-F-BS-03',
     cat: 'femme',
@@ -52,21 +22,6 @@ export const products: Product[] = [
     detailImgs: [
       'https://res.cloudinary.com/dannr2e0c/image/upload/v1785512479/luxtim/lfj68eahklllhbt4lhpf.jpg',
     ],
-  },
-  {
-    id: 116,
-    sku: 'GSH-F-BS-04',
-    cat: 'femme',
-    name: 'MONTRE GUCCI FEMME DORÃ‰ BOITE SIMPLE ',
-    price: 149,
-    originalPrice: 170,
-    stock: 0,
-    rating: 4.9,
-    reviews: 0,
-    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778094425/luxtim/oy6gud6wvx8p7cp34ysx.jpg',
-    detailImgs: [
-    ],
-    imgPosition: 'bottom',
   },
   {
     id: 115,
