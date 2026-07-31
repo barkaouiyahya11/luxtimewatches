@@ -461,14 +461,15 @@ export const products: Product[] = [
     id: 147,
     sku: 'GSH-F-BS-12',
     cat: 'femme',
-    name: 'MGQ DORÃ‰E FEMME BOITE SIMPLE ',
-    price: 170,
+    name: 'MGQ DORÃ‰E FEMME BOITE SIMPLE',
+    price: 149,
     originalPrice: 170,
     stock: 0,
     rating: 4.9,
     reviews: 0,
-    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778254567/luxtim/u2qfos5hmxkpsysi2o1b.jpg',
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1785514410/luxtim/uxoevmwjx5je1lvmodto.jpg',
     detailImgs: [
+      'https://res.cloudinary.com/dannr2e0c/image/upload/v1785514423/luxtim/l0vfhlf1zewiklmpuvmd.jpg',
     ],
   },
   // ðŸ”´ rouge
