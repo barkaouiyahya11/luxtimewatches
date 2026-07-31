@@ -409,6 +409,7 @@ export const products: Product[] = [
     reviews: 0,
     gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1785078123/luxtim/v5ydn69epcmceiact1j7.jpg',
     detailImgs: [
+      'https://res.cloudinary.com/dannr2e0c/image/upload/v1785515574/luxtim/somqbae9ou6olxk2cj5n.jpg',
     ],
   },
   // ðŸŸ¢ verte
