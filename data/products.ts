@@ -425,22 +425,6 @@ export const products: Product[] = [
       'https://res.cloudinary.com/dannr2e0c/image/upload/v1785514284/luxtim/ruayekdwk0b7qvit83ap.jpg',
     ],
   },
-  // ðŸ”´ rouge
-  {
-    id: 146,
-    sku: 'GSH-F-BS-10',
-    cat: 'femme',
-    name: 'OLIBIN BICOLORE STAINLESS FEMME BOITE SIMPLE',
-    price: 180,
-    originalPrice: 199,
-    stock: 0,
-    rating: 4.9,
-    reviews: 0,
-    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778253979/luxtim/eqge3ws1rawdfpkbhbm2.jpg',
-    detailImgs: [
-    ],
-    imgPosition: 'bottom',
-  },
   // ðŸŸ¢ verte
   {
     id: 143,
@@ -471,36 +455,6 @@ export const products: Product[] = [
     gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1785514410/luxtim/uxoevmwjx5je1lvmodto.jpg',
     detailImgs: [
       'https://res.cloudinary.com/dannr2e0c/image/upload/v1785514423/luxtim/l0vfhlf1zewiklmpuvmd.jpg',
-    ],
-  },
-  // ðŸ”´ rouge
-  {
-    id: 149,
-    sku: 'GSH-F-BS-13',
-    cat: 'femme',
-    name: 'MGQ BICOLORE CADRAN FEMME BOITE SIMPLE ',
-    price: 149,
-    originalPrice: 149,
-    stock: 0,
-    rating: 4.9,
-    reviews: 0,
-    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778254808/luxtim/z5afdylqryk8rr2fgupr.jpg',
-    detailImgs: [
-    ],
-    imgPosition: 'bottom',
-  },
-  {
-    id: 151,
-    sku: 'GSH-F-BS-14',
-    cat: 'femme',
-    name: 'EMPORIO ARMANI BOITE SIMPLE INOXYDABLE ACIER FEMME',
-    price: 200,
-    originalPrice: 250,
-    stock: 0,
-    rating: 4.9,
-    reviews: 0,
-    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1778514368/luxtim/vbklltfgcltzaotpyxf7.jpg',
-    detailImgs: [
     ],
   },
   {
