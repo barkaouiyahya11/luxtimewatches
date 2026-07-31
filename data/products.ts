@@ -706,4 +706,20 @@ export const products: Product[] = [
       'https://res.cloudinary.com/dannr2e0c/image/upload/v1785512729/luxtim/kvyr1qewk9xwdqdccpxf.jpg',
     ],
   },
+  {
+    id: 169,
+    sku: 'GSH-H-BS-21',
+    cat: 'homme',
+    name: 'Cartier full Black Silicone ',
+    price: 198,
+    originalPrice: 198,
+    stock: 0,
+    rating: 4.9,
+    reviews: 0,
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1785513920/luxtim/xbpmvgqne9wzax7ofq7b.jpg',
+    detailImgs: [
+      'https://res.cloudinary.com/dannr2e0c/image/upload/v1785513939/luxtim/paqvaubyyysbgonhl3my.jpg',
+      'https://res.cloudinary.com/dannr2e0c/image/upload/v1785513937/luxtim/hr9ujyqshqdwwlac3pm4.jpg',
+    ],
+  },
 ]
