@@ -638,4 +638,19 @@ export const products: Product[] = [
       'https://res.cloudinary.com/dannr2e0c/image/upload/v1785682816/luxtim/bsyj7bhypgblxmeifxxo.jpg',
     ],
   },
+  {
+    id: 171,
+    sku: 'GSH-H-BS-23',
+    cat: 'homme',
+    name: 'Rolex Yacht Homme ',
+    price: 220,
+    originalPrice: 220,
+    stock: 0,
+    rating: 4.9,
+    reviews: 0,
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1785683293/luxtim/eulzqk8cxd0s565mouk3.jpg',
+    detailImgs: [
+      'https://res.cloudinary.com/dannr2e0c/image/upload/v1785683301/luxtim/yrjnqzavtod0vivx14ci.jpg',
+    ],
+  },
 ]
