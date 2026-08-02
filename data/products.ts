@@ -607,8 +607,8 @@ export const products: Product[] = [
     ],
   },
   {
-    id: 169,
-    sku: 'GSH-H-BS-21',
+    id: 170,
+    sku: 'GSH-H-BS-22',
     cat: 'homme',
     name: 'Cartier full Black Silicone ',
     price: 198,
