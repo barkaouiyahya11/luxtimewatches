@@ -622,4 +622,20 @@ export const products: Product[] = [
       'https://res.cloudinary.com/dannr2e0c/image/upload/v1785513937/luxtim/hr9ujyqshqdwwlac3pm4.jpg',
     ],
   },
+  {
+    id: 170,
+    sku: 'GSH-H-BS-22',
+    cat: 'homme',
+    name: 'Tissot PRX Quartz Homme ',
+    price: 170,
+    originalPrice: 170,
+    stock: 0,
+    rating: 4.9,
+    reviews: 0,
+    gridImg: 'https://res.cloudinary.com/dannr2e0c/image/upload/v1785682746/luxtim/irok03b9q9fkf0ofcrcx.jpg',
+    detailImgs: [
+      'https://res.cloudinary.com/dannr2e0c/image/upload/v1785682789/luxtim/nrm7soljsuxa1tlsroab.jpg',
+      'https://res.cloudinary.com/dannr2e0c/image/upload/v1785682816/luxtim/bsyj7bhypgblxmeifxxo.jpg',
+    ],
+  },
 ]
