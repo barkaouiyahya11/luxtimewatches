@@ -102,40 +102,18 @@ export default function Header() {
           <div className="flex justify-center">
             <div
               onClick={() => router.push('/')}
-              style={{ cursor: 'pointer', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '2px', userSelect: 'none' }}
+              style={{ cursor: 'pointer', display: 'flex', alignItems: 'center', userSelect: 'none' }}
             >
-              <h1
+              <img
+                src="https://res.cloudinary.com/dannr2e0c/image/upload/v1786231601/luxtim/gushkin_logo.png"
+                alt="GUSHKIN"
                 style={{
-                  fontSize: scrolled ? '1.1rem' : '1.45rem',
-                  transition: 'font-size 0.4s cubic-bezier(0.4,0,0.2,1)',
-                  letterSpacing: '0.35em',
-                  fontWeight: 400,
-                  fontFamily: 'var(--font-playfair), serif',
-                  color: '#1a1a1a',
-                  textTransform: 'uppercase',
-                  whiteSpace: 'nowrap',
-                  lineHeight: 1,
-                  margin: 0,
+                  height: scrolled ? '36px' : '48px',
+                  width: 'auto',
+                  transition: 'height 0.4s cubic-bezier(0.4,0,0.2,1)',
+                  objectFit: 'contain',
                 }}
-              >
-                GUSHKIN
-              </h1>
-              {/* Line + subtitle */}
-              <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                <div style={{ width: '28px', height: '1px', background: 'linear-gradient(90deg, transparent, #1a1a1a)' }} />
-                <span style={{
-                  fontSize: '6px',
-                  letterSpacing: '0.4em',
-                  fontFamily: 'sans-serif',
-                  fontWeight: 400,
-                  color: '#1a1a1a',
-                  textTransform: 'uppercase',
-                  whiteSpace: 'nowrap',
-                }}>
-                  ACCESSOIRES
-                </span>
-                <div style={{ width: '28px', height: '1px', background: 'linear-gradient(90deg, #1a1a1a, transparent)' }} />
-              </div>
+              />
             </div>
           </div>
 
