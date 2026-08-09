@@ -36,8 +36,7 @@ export default function Hero() {
   return (
     <section style={{
       position: 'relative',
-      width: '100vw',
-      marginLeft: 'calc(-50vw + 50%)',
+      width: '100%',
       overflow: 'hidden',
       aspectRatio: '4/5',
       maxHeight: '92vh',
@@ -49,7 +48,7 @@ export default function Hero() {
 
       {/* ── Image hero + Ken Burns ── */}
       <img
-        src="https://res.cloudinary.com/dannr2e0c/image/upload/c_fill,g_center,z_1.5/v1786236179/luxtim/hero_watches.jpg"
+        src="https://res.cloudinary.com/dannr2e0c/image/upload/e_trim:15/c_fill,g_center/v1786236179/luxtim/hero_watches.jpg"
         alt="Collection Gushkin"
         style={{
           position: 'absolute',
