@@ -2,12 +2,8 @@
 
 import { useState, useEffect, useRef } from 'react'
 
-const VIDEO_URL = 'https://res.cloudinary.com/dannr2e0c/video/upload/v1778694272/luxtim/fdskrvsyr1brpnoeijet.mp4'
-
 export default function Hero() {
   const [visible, setVisible] = useState(false)
-  const videoRef = useRef<HTMLVideoElement>(null)
-  const parallaxRef = useRef<HTMLDivElement>(null)
   const textRef = useRef<HTMLDivElement>(null)
   const scrollLineRef = useRef<HTMLDivElement>(null)
 
@@ -37,18 +33,6 @@ export default function Hero() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  useEffect(() => {
-    const video = videoRef.current
-    if (!video) return
-    video.muted = true
-    video.play().catch(() => {})
-    const onVisibility = () => {
-      if (!document.hidden) video.play().catch(() => {})
-    }
-    document.addEventListener('visibilitychange', onVisibility)
-    return () => document.removeEventListener('visibilitychange', onVisibility)
-  }, [])
-
   return (
     <section style={{
       position: 'relative',
@@ -62,16 +46,10 @@ export default function Hero() {
       isolation: 'isolate',
     }}>
 
-      {/* ── Vidéo + Ken Burns ── */}
-      <video
-        ref={videoRef}
-        autoPlay
-        muted
-        loop
-        playsInline
-        disablePictureInPicture
-        preload="auto"
-        poster="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+      {/* ── Image hero + Ken Burns ── */}
+      <img
+        src="https://res.cloudinary.com/dannr2e0c/image/upload/v1786234796/luxtim/hero_watches.jpg"
+        alt="Collection Gushkin"
         className="hero-video-kenburns"
         style={{
           position: 'absolute',
@@ -79,20 +57,10 @@ export default function Hero() {
           width: '100%',
           height: '100%',
           objectFit: 'cover',
-          objectPosition: 'center 20%',
+          objectPosition: 'center center',
           transformOrigin: 'center center',
         }}
-        src={VIDEO_URL}
       />
-
-      {/* ── Overlay transparent pour bloquer les contrôles TikTok browser ── */}
-      <div style={{
-        position: 'absolute',
-        inset: 0,
-        zIndex: 1,
-        pointerEvents: 'auto',
-        background: 'transparent',
-      }} />
 
       {/* ── Overlay cinématique premium ── */}
       <div style={{
