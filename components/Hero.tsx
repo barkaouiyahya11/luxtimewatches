@@ -48,7 +48,7 @@ export default function Hero() {
 
       {/* ── Image hero + Ken Burns ── */}
       <img
-        src="https://res.cloudinary.com/dannr2e0c/image/upload/v1786234796/luxtim/hero_watches.jpg"
+        src="https://res.cloudinary.com/dannr2e0c/image/upload/v1786236179/luxtim/hero_watches.jpg"
         alt="Collection Gushkin"
         className="hero-video-kenburns"
         style={{
