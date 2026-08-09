@@ -50,7 +50,6 @@ export default function Hero() {
       <img
         src="https://res.cloudinary.com/dannr2e0c/image/upload/c_fill,g_center,z_1.5/v1786236179/luxtim/hero_watches.jpg"
         alt="Collection Gushkin"
-        className="hero-video-kenburns"
         style={{
           position: 'absolute',
           inset: 0,
