@@ -36,7 +36,8 @@ export default function Hero() {
   return (
     <section style={{
       position: 'relative',
-      width: '100%',
+      width: '100vw',
+      marginLeft: 'calc(-50vw + 50%)',
       overflow: 'hidden',
       aspectRatio: '4/5',
       maxHeight: '92vh',
