@@ -61,32 +61,16 @@ export default function Hero() {
         }}
       />
 
-      {/* ── Overlay cinématique premium ── */}
+      {/* ── Overlay léger en haut ── */}
       <div style={{
         position: 'absolute',
         inset: 0,
         zIndex: 1,
         pointerEvents: 'none',
-        background: `
-          linear-gradient(to right,
-            rgba(3,3,3,0.88) 0%,
-            rgba(3,3,3,0.60) 38%,
-            rgba(3,3,3,0.22) 58%,
-            transparent 78%
-          ),
-          linear-gradient(to bottom,
-            rgba(3,3,3,0.42) 0%,
-            transparent 28%
-          ),
-          linear-gradient(to top,
-            rgba(3,3,3,0.95) 0%,
-            rgba(3,3,3,0.30) 22%,
-            transparent 45%
-          )
-        `,
+        background: 'linear-gradient(to bottom, rgba(0,0,0,0.45) 0%, transparent 30%)',
       }} />
 
-      {/* ── Bloc texte avec parallax inversé ── */}
+      {/* ── Texte centré en haut ── */}
       <div
         ref={textRef}
         style={{
@@ -94,112 +78,37 @@ export default function Hero() {
           top: 0,
           left: 0,
           right: 0,
-          bottom: 0,
           zIndex: 2,
           display: 'flex',
+          flexDirection: 'column',
           alignItems: 'center',
+          paddingTop: 'clamp(20px, 5vw, 48px)',
           pointerEvents: 'none',
           opacity: visible ? 1 : 0,
-          transform: visible ? 'translateY(0px)' : 'translateY(18px)',
-          transition: visible
-            ? 'opacity 1.3s cubic-bezier(0.22,1,0.36,1), transform 1.3s cubic-bezier(0.22,1,0.36,1)'
-            : 'none',
-          willChange: 'transform, opacity',
+          transition: visible ? 'opacity 1.3s cubic-bezier(0.22,1,0.36,1)' : 'none',
         }}
       >
-        <div style={{
-          paddingLeft: 'clamp(22px, 7vw, 64px)',
-          paddingRight: 'clamp(16px, 4vw, 32px)',
-          maxWidth: 'clamp(230px, 62vw, 520px)',
+        <h1 style={{
+          fontFamily: 'var(--font-playfair), serif',
+          fontSize: 'clamp(1.6rem, 5vw, 3.2rem)',
+          fontWeight: 400,
+          fontStyle: 'italic',
+          color: '#F5F2ED',
+          letterSpacing: '0.08em',
+          margin: 0,
+          textShadow: '0 2px 20px rgba(0,0,0,0.6)',
+          whiteSpace: 'nowrap',
         }}>
+          Gushkin Accessoires
+        </h1>
+        <div style={{
+          width: 'clamp(40px, 8vw, 80px)',
+          height: '0.5px',
+          background: '#C8A96B',
+          marginTop: '10px',
+          opacity: 0.8,
+        }} />
 
-          {/* Badge collection */}
-          <div style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '8px',
-            marginBottom: 'clamp(18px, 5vw, 32px)',
-          }}>
-            <div style={{ width: 'clamp(18px, 4vw, 30px)', height: '0.5px', background: '#C8A96B', opacity: 0.7 }} />
-            <p style={{
-              fontFamily: 'var(--font-inter), sans-serif',
-              fontSize: 'clamp(6.5px, 1.6vw, 9px)',
-              fontWeight: 500,
-              letterSpacing: '0.34em',
-              textTransform: 'uppercase',
-              color: '#C8A96B',
-              opacity: 0.85,
-              whiteSpace: 'nowrap',
-            }}>
-              Collection Exclusive 2026 · Maroc
-            </p>
-            <div style={{ width: 'clamp(18px, 4vw, 30px)', height: '0.5px', background: '#C8A96B', opacity: 0.7 }} />
-          </div>
-
-          {/* Grand titre */}
-          <h1 style={{
-            fontFamily: 'var(--font-playfair), serif',
-            fontSize: 'clamp(2.1rem, 7.8vw, 5rem)',
-            fontWeight: 400,
-            fontStyle: 'italic',
-            color: '#F5F2ED',
-            lineHeight: 1.06,
-            letterSpacing: '-0.015em',
-            margin: 0,
-            marginBottom: '0.08em',
-            textShadow: '0 2px 32px rgba(0,0,0,0.55)',
-          }}>
-            L&apos;élégance
-          </h1>
-          <h1 style={{
-            fontFamily: 'var(--font-playfair), serif',
-            fontSize: 'clamp(2.1rem, 7.8vw, 5rem)',
-            fontWeight: 800,
-            color: '#F5F2ED',
-            lineHeight: 1.06,
-            letterSpacing: '-0.015em',
-            margin: 0,
-            marginBottom: '0.08em',
-            textShadow: '0 2px 32px rgba(0,0,0,0.55)',
-          }}>
-            à votre
-          </h1>
-          <h1 style={{
-            fontFamily: 'var(--font-playfair), serif',
-            fontSize: 'clamp(2.1rem, 7.8vw, 5rem)',
-            fontWeight: 800,
-            color: '#F5F2ED',
-            lineHeight: 1.06,
-            letterSpacing: '-0.015em',
-            margin: 0,
-            marginBottom: 'clamp(16px, 4.5vw, 30px)',
-            textShadow: '0 2px 32px rgba(0,0,0,0.55)',
-          }}>
-            poignet
-          </h1>
-
-          <div style={{
-            width: 'clamp(28px, 6vw, 44px)',
-            height: '0.5px',
-            background: 'linear-gradient(to right, #C8A96B 60%, transparent)',
-            marginBottom: 'clamp(12px, 3.5vw, 22px)',
-            opacity: 0.75,
-          }} />
-
-          <p style={{
-            fontFamily: 'var(--font-great-vibes), cursive',
-            fontSize: 'clamp(1.3rem, 4.8vw, 2.6rem)',
-            color: '#C8A96B',
-            lineHeight: 1.3,
-            letterSpacing: '0.02em',
-            opacity: 0.88,
-            textShadow: '0 2px 18px rgba(200,169,107,0.25)',
-            marginBottom: 0,
-          }}>
-            Le luxe qui attire les regards.
-          </p>
-
-        </div>
       </div>
 
       {/* ── Indicateur scroll (ligne animée) — comme Rolex ── */}
