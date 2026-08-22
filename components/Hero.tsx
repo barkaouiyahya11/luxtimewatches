@@ -70,46 +70,6 @@ export default function Hero() {
         background: 'linear-gradient(to bottom, rgba(0,0,0,0.45) 0%, transparent 30%)',
       }} />
 
-      {/* ── Texte centré en haut ── */}
-      <div
-        ref={textRef}
-        style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          right: 0,
-          zIndex: 2,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          paddingTop: 'clamp(20px, 5vw, 48px)',
-          pointerEvents: 'none',
-          opacity: visible ? 1 : 0,
-          transition: visible ? 'opacity 1.3s cubic-bezier(0.22,1,0.36,1)' : 'none',
-        }}
-      >
-        <h1 style={{
-          fontFamily: 'var(--font-playfair), serif',
-          fontSize: 'clamp(1.6rem, 5vw, 3.2rem)',
-          fontWeight: 400,
-          fontStyle: 'italic',
-          color: '#F5F2ED',
-          letterSpacing: '0.08em',
-          margin: 0,
-          textShadow: '0 2px 20px rgba(0,0,0,0.6)',
-          whiteSpace: 'nowrap',
-        }}>
-          Gushkin Accessoires
-        </h1>
-        <div style={{
-          width: 'clamp(40px, 8vw, 80px)',
-          height: '0.5px',
-          background: '#C8A96B',
-          marginTop: '10px',
-          opacity: 0.8,
-        }} />
-
-      </div>
 
       {/* ── Indicateur scroll (ligne animée) — comme Rolex ── */}
       <div
