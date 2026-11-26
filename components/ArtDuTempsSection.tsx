@@ -63,7 +63,7 @@ export default function ArtDuTempsSection() {
   const grid = useReveal<HTMLDivElement>()
 
   return (
-    <section style={{ background: GREEN, color: '#f5efe3' }} aria-label="L'art du temps">
+    <section id="art-du-temps" style={{ background: GREEN, color: '#f5efe3' }} aria-label="L'art du temps">
       {/* ── Bandeau plein écran ── */}
       <div
         ref={hero.ref}

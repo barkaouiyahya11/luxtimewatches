@@ -75,6 +75,14 @@ body {
   -webkit-tap-highlight-color: transparent;
 }
 
+/* "clip" coupe le débordement horizontal sans casser position: sticky (hero vidéo) */
+@supports (overflow-x: clip) {
+  html,
+  body {
+    overflow-x: clip !important;
+  }
+}
+
 /* ===== NOIR & IVOIRE — CTA BUTTONS ===== */
 .btn-ql {
   display: inline-flex;
