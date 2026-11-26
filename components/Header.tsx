@@ -98,25 +98,8 @@ export default function Header() {
             </button>
           </div>
 
-          {/* Center — Logo */}
-          <div className="flex justify-center">
-            <div
-              onClick={() => router.push('/')}
-              style={{ cursor: 'pointer', display: 'flex', alignItems: 'center', userSelect: 'none' }}
-            >
-              <img
-                src="https://res.cloudinary.com/dannr2e0c/image/upload/e_trim:10,c_crop/v1786231601/luxtim/gushkin_logo.png"
-                alt="GUSHKIN"
-                style={{
-                  height: scrolled ? '50px' : '62px',
-                  width: 'auto',
-                  maxWidth: '200px',
-                  transition: 'height 0.4s cubic-bezier(0.4,0,0.2,1)',
-                  objectFit: 'contain',
-                }}
-              />
-            </div>
-          </div>
+          {/* Center — vide (logo retiré) */}
+          <div />
 
           {/* Right */}
           <div className="flex items-center gap-2 justify-end">
