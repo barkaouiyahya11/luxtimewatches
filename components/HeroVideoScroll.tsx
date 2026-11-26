@@ -1,40 +1,16 @@
 'use client'
 
-import Image from 'next/image'
 import { useEffect, useRef } from 'react'
 
 /* ─────────────────────────────────────────────
    HERO VIDÉO + EFFET AU SCROLL
    - Vidéo plein écran (générée avec Higgsfield) collée en haut (sticky).
    - En descendant : la vidéo s'assombrit et zoome légèrement,
-     le titre s'efface, puis les cartes montent par-dessus.
+     le titre s'efface, puis la Collection Homme arrive directement.
 ───────────────────────────────────────────── */
 
 const GOLD = '#C8A96B'
 
-const CARDS = [
-  {
-    img: '/art/cadran.jpg',
-    pos: '78% center',
-    tag: 'Pour lui',
-    title: 'Collection Homme',
-    target: 'coll-homme',
-  },
-  {
-    img: '/art/ecrin.jpg',
-    pos: 'center',
-    tag: 'Pour elle',
-    title: 'Collection Femme',
-    target: 'coll-femme',
-  },
-  {
-    img: '/art/mouvement.jpg',
-    pos: 'center',
-    tag: 'Savoir-faire',
-    title: "L'Art du Temps",
-    target: 'art-du-temps',
-  },
-]
 
 function goTo(id: string) {
   document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
@@ -106,28 +82,6 @@ export default function HeroVideoScroll() {
         </div>
       </div>
 
-      {/* ── Cartes qui montent par-dessus la vidéo ── */}
-      <div className="hvs-cards-wrap">
-        <div className="hvs-cards">
-          {CARDS.map((c) => (
-            <button key={c.title} className="hvs-card" onClick={() => goTo(c.target)}>
-              <Image
-                src={c.img}
-                alt={c.title}
-                fill
-                sizes="(max-width: 767px) 78vw, 32vw"
-                quality={80}
-                style={{ objectFit: 'cover', objectPosition: c.pos }}
-              />
-              <span className="hvs-card-shade" />
-              <span className="hvs-card-text">
-                <span className="hvs-card-tag">{c.tag}</span>
-                <span className="font-serif hvs-card-title">{c.title}</span>
-              </span>
-            </button>
-          ))}
-        </div>
-      </div>
 
       <style>{`
         .hvs-sticky {
@@ -165,34 +119,10 @@ export default function HeroVideoScroll() {
         .hvs-hint span { font-size: 8px; letter-spacing: .3em; text-transform: uppercase; color: rgba(200,169,107,.75); }
         .hvs-hint i { display: block; width: 1px; height: 40px; background: linear-gradient(to bottom, ${GOLD}, transparent); animation: scrollLine 1.8s ease-in-out infinite; }
 
-        .hvs-cards-wrap { position: relative; z-index: 2; padding: 0 0 12vh; margin-top: 35vh; }
-        .hvs-cards {
-          max-width: 1280px; margin: 0 auto; padding: 0 24px;
-          display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px;
-        }
-        .hvs-card {
-          position: relative; aspect-ratio: 3/4; border-radius: 6px; overflow: hidden;
-          border: none; padding: 0; cursor: pointer; background: #0b1f17; text-align: center;
-        }
-        .hvs-card img { transition: transform 1.2s cubic-bezier(.2,.7,.2,1); }
-        .hvs-card:hover img { transform: scale(1.05); }
-        .hvs-card-shade { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,.65) 0%, rgba(0,0,0,0) 45%); }
-        .hvs-card-text {
-          position: absolute; left: 0; right: 0; bottom: 26px;
-          display: flex; flex-direction: column; align-items: center; color: #fff;
-        }
-        .hvs-card-tag { font-size: 9px; letter-spacing: .3em; text-transform: uppercase; color: ${GOLD}; margin-bottom: 6px; }
-        .hvs-card-title { font-size: 24px; font-weight: 400; }
 
         @media (max-width: 767px) {
           .hvs-text { top: calc(109px + 4vh); }
           .hvs-btn { display: none; }
-          .hvs-cards {
-            display: flex; overflow-x: auto; scroll-snap-type: x mandatory;
-            gap: 12px; padding: 0 20px; scrollbar-width: none;
-          }
-          .hvs-cards::-webkit-scrollbar { display: none; }
-          .hvs-card { flex: 0 0 78%; scroll-snap-align: center; }
         }
       `}</style>
     </section>
