@@ -1,4 +1,4 @@
-import HeroVideoScroll from '@/components/HeroVideoScroll'
+import WatchExplodeScroll from '@/components/WatchExplodeScroll'
 import AnnouncementBar from '@/components/AnnouncementBar'
 import GoldBanner from '@/components/GoldBanner'
 import TrustSection from '@/components/TrustSection'
@@ -17,7 +17,7 @@ export default function HomePage() {
   const homme = products.filter((p) => p.cat === 'homme')
   return (
     <>
-      <HeroVideoScroll />
+      <WatchExplodeScroll />
 
       {/* ── Collection Homme ── */}
       <HommeSection products={homme} />
