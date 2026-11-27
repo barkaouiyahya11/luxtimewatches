@@ -4,7 +4,8 @@ import { useEffect, useRef } from 'react'
 
 /* ─────────────────────────────────────────────
    ACCUEIL — MONTRE QUI SE DÉMONTE AU SCROLL
-   - 97 images (public/art/demontage/) tirées d'une vidéo Higgsfield.
+   - 97 images (public/art/demontage/) tirées d'une vidéo Higgsfield
+     (montre acier, cadran bleu marine, fond plage claire).
    - Le scroll fait avancer l'animation : la montre s'ouvre, le verre monte,
      le cadran se soulève et le mouvement apparaît au milieu.
    - À la fin, le mot GUSHKIN s'écrit, puis la Collection Homme arrive.
@@ -13,7 +14,7 @@ import { useEffect, useRef } from 'react'
 const FRAME_COUNT = 97
 const FRAME_W = 720
 const FRAME_H = 1280
-const GOLD = '#C8A96B'
+const GOLD = '#d9e2ec' // argent, assorti à la montre acier
 const LETTERS = 'GUSHKIN'.split('')
 
 /* Part du scroll consacrée au démontage (le reste sert au texte GUSHKIN) */
@@ -63,19 +64,67 @@ export default function WatchExplodeScroll() {
       update()
     }
 
-    const draw = (index: number, alpha: number, scale: number) => {
+    /* Calque intermédiaire : l'image nette avec des bords fondus dans le décor */
+    const off = document.createElement('canvas')
+    const offCtx = off.getContext('2d')
+
+    /* Plage vide pour remplir les côtés sur grand écran */
+    const bg = new Image()
+    let bgLoaded = false
+    bg.onload = () => {
+      bgLoaded = true
+      current = -1
+      onScroll()
+    }
+    bg.src = '/art/demontage/plage.jpg'
+
+    const draw = (index: number, shade: number, scale: number) => {
       const i = nearestLoaded(index)
-      if (i < 0) return
+      if (i < 0 || !offCtx) return
+      const img = frames[i]
       const W = canvas.width
       const H = canvas.height
-      // La montre occupe la hauteur de l'écran (rognée sur les côtés si l'écran est étroit)
-      const h = H * 0.94 * scale
+      // La montre occupe toute la hauteur de l'écran
+      const h = H * scale
       const w = h * (FRAME_W / FRAME_H)
-      ctx.fillStyle = '#000'
+      const x = (W - w) / 2
+      const y = (H - h) / 2
+
+      // Fond : plage vide et floue, en plein écran (cover)
+      ctx.fillStyle = '#e6f1f4'
       ctx.fillRect(0, 0, W, H)
-      ctx.globalAlpha = alpha
-      ctx.drawImage(frames[i], (W - w) / 2, H * 0.03 + (H * 0.94 - h) / 2, w, h)
-      ctx.globalAlpha = 1
+      if (bgLoaded) {
+        const bs = Math.max(W / bg.naturalWidth, H / bg.naturalHeight)
+        const bw = bg.naturalWidth * bs
+        const bh = bg.naturalHeight * bs
+        ctx.drawImage(bg, (W - bw) / 2, (H - bh) * 0.4, bw, bh)
+      }
+
+      if (w >= W) {
+        // Écran étroit (téléphone) : l'image couvre tout
+        ctx.drawImage(img, x, y, w, h)
+      } else {
+        // …et l'image nette est posée au centre avec des bords fondus
+        off.width = Math.ceil(w)
+        off.height = Math.ceil(h)
+        offCtx.globalCompositeOperation = 'source-over'
+        offCtx.drawImage(img, 0, 0, off.width, off.height)
+        const g = offCtx.createLinearGradient(0, 0, off.width, 0)
+        g.addColorStop(0, 'rgba(0,0,0,0)')
+        g.addColorStop(0.18, 'rgba(0,0,0,1)')
+        g.addColorStop(0.82, 'rgba(0,0,0,1)')
+        g.addColorStop(1, 'rgba(0,0,0,0)')
+        offCtx.globalCompositeOperation = 'destination-in'
+        offCtx.fillStyle = g
+        offCtx.fillRect(0, 0, off.width, off.height)
+        ctx.drawImage(off, x, y, w, h)
+      }
+
+      // Fin : voile bleu marine pour faire ressortir GUSHKIN
+      if (shade > 0) {
+        ctx.fillStyle = `rgba(8,22,45,${shade})`
+        ctx.fillRect(0, 0, W, H)
+      }
     }
 
     const update = () => {
@@ -88,14 +137,14 @@ export default function WatchExplodeScroll() {
       // 1) Démontage
       const e = range(p, 0, EXPLODE_END)
       const index = Math.round(e * (FRAME_COUNT - 1))
-      // 2) Fin : la montre s'efface doucement derrière le texte
+      // 2) Fin : voile bleu marine derrière le texte
       const t = range(p, EXPLODE_END, 0.92)
-      const alpha = 1 - t * 0.78
+      const shade = t * 0.72
       const scale = 1 - t * 0.06
-      const key = index * 1000 + Math.round(alpha * 100) + Math.round(scale * 1000) * 100000
+      const key = index * 1000 + Math.round(shade * 100) + Math.round(scale * 1000) * 100000
       if (key !== current) {
         current = key
-        draw(index, alpha, scale)
+        draw(index, shade, scale)
       }
 
       if (introRef.current) {
@@ -190,21 +239,21 @@ export default function WatchExplodeScroll() {
       </div>
 
       <style>{`
-        .wes { position: relative; height: 420vh; margin-top: -109px; background: #000; }
+        .wes { position: relative; height: 420vh; margin-top: -109px; background: #e6f1f4; }
         .wes-sticky { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; }
         .wes-canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
         .wes-intro {
           position: absolute; left: 0; right: 0; top: calc(109px + 3vh);
-          text-align: center; color: #fff; pointer-events: none; will-change: opacity, transform;
+          text-align: center; color: #0c2340; pointer-events: none; will-change: opacity, transform;
         }
-        .wes-tag { font-size: 11px; letter-spacing: .4em; text-transform: uppercase; color: ${GOLD}; margin: 0 0 10px; }
-        .wes-intro-title { font-size: clamp(1.6rem, 3.6vw, 2.8rem); font-weight: 400; margin: 0; text-shadow: 0 2px 24px rgba(0,0,0,.8); }
+        .wes-tag { font-size: 11px; letter-spacing: .4em; text-transform: uppercase; color: #0c2340; opacity: .75; margin: 0 0 10px; }
+        .wes-intro-title { font-size: clamp(1.6rem, 3.6vw, 2.8rem); font-weight: 400; margin: 0; text-shadow: 0 1px 18px rgba(255,255,255,.7); }
         .wes-hint {
           position: absolute; bottom: 26px; left: 50%; transform: translateX(-50%);
           display: flex; flex-direction: column; align-items: center; gap: 8px; pointer-events: none;
         }
-        .wes-hint span { font-size: 8px; letter-spacing: .3em; text-transform: uppercase; color: rgba(200,169,107,.8); }
-        .wes-hint i { display: block; width: 1px; height: 40px; background: linear-gradient(to bottom, ${GOLD}, transparent); animation: scrollLine 1.8s ease-in-out infinite; }
+        .wes-hint span { font-size: 8px; letter-spacing: .3em; text-transform: uppercase; color: rgba(12,35,64,.75); }
+        .wes-hint i { display: block; width: 1px; height: 40px; background: linear-gradient(to bottom, #0c2340, transparent); animation: scrollLine 1.8s ease-in-out infinite; }
         .wes-brand {
           position: absolute; inset: 0; display: flex; flex-direction: column;
           align-items: center; justify-content: center; pointer-events: none; visibility: hidden;
